@@ -108,3 +108,8 @@ secret_key*
 
 # idea
 .idea/
+
+#sass
+node_modules/
+package*.json
+scss/
