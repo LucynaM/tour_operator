@@ -91,16 +91,3 @@ class Entry(models.Model):
     text = models.TextField()
 
 # Blog management - stop
-
-
-
-
-
-
-
-
-
-
-
-
-
