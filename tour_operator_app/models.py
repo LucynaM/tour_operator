@@ -5,10 +5,10 @@ from django.db import models
 # Offer management - start
 
 CATEGORIES = (
-    ('pilgrimage', 'pilgrimage'),
-    ('school_trip', 'school trip'),
-    ('work_trip', 'school trip'),
-    ('holiday', 'holiday'),
+    ('pilgrimage', 'pielgrzymka'),
+    ('school_trip', 'oferta dla szkół'),
+    ('work_trip', 'oferta dla firm'),
+    ('holiday', 'wakacje'),
 )
 
 class Offer(models.Model):
