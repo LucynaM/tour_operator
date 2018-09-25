@@ -1,0 +1,41 @@
+#header_for_school .container-fluid {
+  padding-left: 0;
+  padding-right: 0; }
+
+#header_for_school #header_for_school_img {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("../images/AdobeStock_83919622_Preview.jpeg");
+  height: 50vh; }
+
+#header_for_school h1 {
+  padding-top: 15vh;
+  padding-bottom: 15vh;
+  font-size: 100px;
+  font-weight: 300;
+  text-align: center; }
+
+#selected_for_school .selected_for_school_img {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 50vh; }
+
+#selected_for_school .selected_for_school_data {
+  background-color: #F7F5F5;
+  height: 50vh; }
+
+#selected_for_school_img1 {
+  background-image: url("../images/AdobeStock_99232091_Preview.jpeg"); }
+
+#selected_for_school_img2 {
+  background-image: url("../images/AdobeStock_127234415_Preview.jpeg"); }
+
+#offer_for_school {
+  padding-top: 15vh;
+  padding-bottom: 15vh; }
+  #offer_for_school th:last-child, #offer_for_school td:last-child {
+    text-align: right; }
+  #offer_for_school th:first-of-type, #offer_for_school td:first-of-type {
+    text-align: left; }

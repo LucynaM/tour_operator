@@ -1,0 +1,54 @@
+{% extends './_base.html' %}
+{% load static %}
+
+{% block styles_css %}
+<link rel="stylesheet" href="{% static 'tour_operator_app/css/style_for_school.css' %}">
+{% endblock styles_css %}
+
+{% block content %}
+<!-- Header - start -->
+<header id="header_for_school">
+    <div class="container-fluid">
+        <div id="header_for_school_img"></div>
+        <h1>Oferta dla szkół</h1>
+    </div>
+</header>
+<!-- Header - stop -->
+<!-- Selected - start -->
+<section id="selected_for_school">
+    <div class="container">
+        <div class="row no-gutters">
+            <div id="selected_for_school_img1" class="col-sm-6 selected_for_school_img"></div>
+            <div class="col-sm-6 selected_for_school_data"></div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-sm-6 selected_for_school_data"></div>
+            <div id="selected_for_school_img2" class="col-sm-6 selected_for_school_img"></div>
+        </div>
+    </div>
+</section>
+<!-- Selected - stop-->
+<!-- Offer for school - start -->
+<section id="offer_for_school">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 offset-sm-3">
+                
+                <table class="table">
+                    <tr>
+                        <th>Kierunek</th>
+                        <th>Czas trwania</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                
+            </div>
+        </div>
+    </div>
+</section> 
+<!-- Offer for school - stop -->       
+
+{% endblock content %}

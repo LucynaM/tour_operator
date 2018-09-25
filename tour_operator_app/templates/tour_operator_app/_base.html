@@ -10,9 +10,11 @@
     <title>{% block title %}{% endblock title %}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Rajdhani:300,400,500,600,700&amp;subset=latin-ext" rel="stylesheet"> 
-    <link rel="stylesheet" href="{% static 'tour_operator_app/css/style.css' %}">
-    
+    <link href="https://fonts.googleapis.com/css?family=Rajdhani:300,400,500,600,700&amp;subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'tour_operator_app/css/style_base.css' %}">
+    {% block styles_css %}
+    {% endblock styles_css %}
+
 
 </head>
 
@@ -22,17 +24,18 @@
     <nav class="navbar navbar-expand-lg ">
         <div class="container">
             <a class="navbar-brand" href="#"><img src="{% static 'tour_operator_app/images/logo-przezr-tlo.png' %}" alt="Marco Polo"></a>
-            <button class="navbar-toggler navbar-light" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler navbar-light" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-    
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto justify-content-center">
                     <!-- Offer as dropdown menu - start -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">oferta</a>
-    
+
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#">pielgrzymki</a>
                             <a class="dropdown-item" href="#">dla firm</a>
@@ -55,7 +58,7 @@
                 </ul>
                 <span class="navbar-text">
                     <div>tel: <strong>606-723-829</strong> lub <strong>508-195-683</strong></div>
-                    <div>email: <strong><a href="mailto:biuro@marcopolo.rzeszow.pl">biuro@marcopolo.rzeszow.pl</a></strong></div> 
+                    <div>email: <strong><a href="mailto:biuro@marcopolo.rzeszow.pl">biuro@marcopolo.rzeszow.pl</a></strong></div>
                 </span>
             </div>
         </div>
@@ -64,6 +67,43 @@
     {% endblock nav %}
     {% block content %}
     {% endblock content %}
+    {% block footer %}
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <h6>Marco Polo Travel</h6>
+                    <p>Skontaktuj się z nami przez telefon lub e-mail <br>i pozwól nam zaplanować Twoją podróż.</p>
+                    <p>tel: 606-723-829 lub 508-195-683</p>
+                    <p>email: <strong><a href="mailto:biuro@marcopolo.rzeszow.pl">biuro@marcopolo.rzeszow.pl</a></strong></p>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h6>Oferta</h6>
+                    <ul>
+                        <li><a href="">Oferta dla szkół</a></li>
+                        <li><a href="">Oferta dla firm</a></li>
+                        <li><a href="">Wakacje</a></li>
+                        <li><a href="">Pielgrzymki</a></li>
+                        <li><a href="">Aktualności</a></li>
+                        <li><a href="">Polecamy</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h6>Blog</h6>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h6>Siedziba firmy</h6>
+                    <p>Słoneczny Stok 91 <br>
+                        35-213 Rzeszów </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <section id="copyright">
+        <p>Copyright: Marco Polo Travel 2018</p>
+    </section>
+
+    {% endblock footer %}
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"

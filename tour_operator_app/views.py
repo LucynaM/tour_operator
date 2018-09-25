@@ -6,3 +6,9 @@ from django.views import View
 class HomePage(View):
     def get(self, request):
         return render(request, 'tour_operator_app/home.html')
+
+
+class HomeForSchoolPage(View):
+    def get(self, request):
+        ctx = {}
+        return render(request, 'tour_operator_app/home_for_school.html', ctx)

@@ -113,3 +113,6 @@ secret_key*
 node_modules/
 package*.json
 scss/
+
+#images_to_select
+prev/
