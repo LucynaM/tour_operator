@@ -6,7 +6,7 @@
 <section id="list_offer">
     <div class="container">
         <div class="row">
-            <div class="col-sm-6 offset-sm-3">
+            <div class="col-sm-8 offset-sm-2">
                 {% if offer_list %}
                 <table class="table">
                     <tr>
@@ -32,9 +32,9 @@
 <section id="add_offer">
     <div class="container">
         <div class="row">
-            <div class="col-sm-6 offset-sm-3">
+            <div class="col-sm-8 offset-sm-2">
                 <div class="jumbotron">
-                    <h2 class="page-header">Dodaj usługę</h2>
+                    <h2 class="page-header">Dodaj ofertę</h2>
                     <form action="" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{ form|crispy }}
