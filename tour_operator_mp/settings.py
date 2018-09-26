@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     # other app
     'crispy_forms',
     # my app
-    'tour_operator_app',
+    'webpage',
+    'webpage_offer',
+    'webpage_tour',
 ]
 
 MIDDLEWARE = [

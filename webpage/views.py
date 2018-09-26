@@ -1,40 +1,14 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from .models import Offer
-from .forms import AddOfferForm
 
 # Create your views here.
 
 class HomePage(View):
     def get(self, request):
-        return render(request, 'tour_operator_app/home.html')
+        return render(request, 'webpage/home.html')
 
 
 class HomeForSchoolPage(View):
     def get(self, request):
         ctx = {}
-        return render(request, 'tour_operator_app/home_for_school.html', ctx)
-
-
-# offer managment - start
-
-class AddListOffer(View):
-    """Show all offer and add new one"""
-    def get(self, request):
-        offer_list = Offer.objects.all().order_by('category', 'title')
-        form = AddOfferForm()
-        ctx = {
-            'offer_list': offer_list,
-            'form': form,
-               }
-        return render(request, 'tour_operator_app/add_offer.html', ctx)
-    def post(self, request):
-        form = AddOfferForm(request.POST, request.FILES)
-        if form.is_valid():
-            Offer.objects.create(**form.cleaned_data)
-        offer_list = Offer.objects.all().order_by('category', 'title')
-        ctx = {
-            'offer_list': offer_list,
-            'form': form,
-        }
-        return render(request, 'tour_operator_app/add_offer.html', ctx)
+        return render(request, 'webpage/home_for_school.html', ctx)

@@ -18,5 +18,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'', include('tour_operator_app.urls', namespace='tour_operator')),
+    url(r'', include('webpage.urls', namespace='webpage')),
+    url(r'', include('webpage_offer.urls', namespace='offer')),
+    url(r'', include('webpage_tour.urls', namespace='tour')),
 ]
