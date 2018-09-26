@@ -25,7 +25,7 @@ class Offer(models.Model):
     #flags for recommendation choice
     recommended = models.BooleanField(default=False)
     recommended_sort = models.IntegerField(null=True, blank=True)
-    # flags that allows set an offer as "inactive"
+    # flag that allows admin to set an offer as "inactive"
     withdrawn = models.BooleanField(default=False)
 
     @property
