@@ -1,0 +1,38 @@
+{% extends './_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<section id="show_offer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2">
+                <h2>{{ offer.title }}</h2>
+                <p>kategoria: {{ offer.get_category_display }}</p>
+                <p>czas trwania {{ offer.duration_in_days }}</p>
+                <p>{{ offer.short_descr }}</p>
+                <p>{{ offer.schedule}}</p>
+                <p>Cena: {{ offer.price|floatformat:2 }}</p>
+                <p>Wycofany:{% if not offer.withdrawn %} Nie {% else %} Tak {% endif %} </p>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="edit_offer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2">
+                <div class="jumbotron">
+                    <h2 class="page-header">Edytuj ofertę</h2>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <input type="submit" name="submit" value="add" class="btn btn-primary">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

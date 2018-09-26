@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views import View
 from django.http import JsonResponse, HttpResponseBadRequest
 from .models import Offer
-from .forms import AddOfferForm
+from .forms import AddOfferForm, EditOfferForm
 
 # Create your views here.
 
@@ -33,10 +33,26 @@ class AddListOffer(View):
 class EditOffer(View):
 
     def get(self, request, pk):
-        pass
+        offer = Offer.objects.get(pk=pk)
+        form = EditOfferForm(instance=offer)
+        ctx = {
+            'form': form,
+            'offer': offer,
+        }
+        return render(request, 'webpage_offer/edit_offer.html', ctx)
 
     def post(self, request, pk):
-        pass
+        offer = Offer.objects.get(pk=pk)
+        form = EditOfferForm(request.POST, instance=offer)
+        if form.is_valid():
+            form.save()
+        offer = Offer.objects.get(pk=pk)
+        ctx = {
+            'form': form,
+            'offer': offer,
+        }
+        return render(request, 'webpage_offer/edit_offer.html', ctx)
+
 
 
 class ShowOffer(View):
