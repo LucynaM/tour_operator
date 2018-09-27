@@ -1,0 +1,38 @@
+{% extends './_base.html' %}
+
+{% block content %}
+<section id="select-school">
+    <div class="container">
+        <div class="row">
+            <h2>Oferta dla szkół </h2>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="select-drop ui-widget-header" id="sort0" data-url="{% url 'offer:set_selected' %}">
+                    {% if school_selected %}
+                    <p data-id="{{ school_selected.0.id }}">{{ school_selected.0.title }}</p>
+                    {% endif %}
+                </div>
+                <div class="select-drop ui-widget-header" id="sort1" data-url="{% url 'offer:set_selected' %}">
+                    {% if school_selected %}
+                    <p data-id="{{ school_selected.1.id }}">{{ school_selected.1.title }}</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                {% if school_offer %}
+                <ul id="school-offer">
+                    {% for offer in school_offer %}
+                    <li data-id="{{ offer.id }}" class="select-drag ui-widget-content">{{ offer.title }} - {{ offer.duration_in_days }} {% if offer.duration_in_days == 1 %} dzień {% else %} dni {% endif %} </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p>Brak oferty dla szkół</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
