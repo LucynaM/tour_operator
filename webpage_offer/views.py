@@ -97,9 +97,16 @@ class SetSelected(View):
             new_selected.selected = True
             new_selected.selected_sort = sort
             new_selected.save()
-            data = {
-                "ok": "ok",
-            }
-            return JsonResponse(data)
+            offer = Offer.objects.filter(category__icontains='school').exclude(selected=True)
+            data = []
+
+            for item in offer:
+                data_element = {}
+                for attr, value in item.__dict__.items():
+                    if attr in ['id', 'title', 'duration_in_days']:
+                        data_element[attr] = value
+                data.append(data_element)
+
+            return JsonResponse(data, safe=False)
         except Exception as e:
             print(e)

@@ -71,7 +71,7 @@ $(document).ready(function(){
                     data["old_id"] = aboutSelected[1]
                 }
                 console.log(data);
-                ajaxHandler(url, data, 'GET', showSelection);
+                ajaxHandler(url, data, 'GET', createList);
             }
         });
     };
@@ -91,8 +91,17 @@ $(document).ready(function(){
         }
     }
 
-    function showSelection(r) {
-        console.log(r)
+    function createList(r) {
+        const list = $('ul');
+        list.children().length = 0
+
+        for(let i = 0; i < r.length; i++) {
+            let newListElement = $('<li>');
+            list.append(newListElement);
+            newListElement.data('id', r[i].id).addClass('select-drag ui-widget-content').css('position', 'relative');
+            let dayMarker = (r[i] == '1')? 'dzień' : 'dni';
+            newListElement.text(r[i].title + ' - ' + r[i].duration_in_days + ' ' + dayMarker)
+        }
     }
 
       selectOffer();
