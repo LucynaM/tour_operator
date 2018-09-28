@@ -45,19 +45,25 @@ $(document).ready(function(){
     /* Show offer on click - stop */
 
     /* Select offer - start */
-    function selectOffer() {
-        $(".select-drag").draggable({
+    function makeDraggable() {
+     $(".select-drag").draggable({
             cursor: "move",
             revert: "invalid",
             }
         );
+    }
 
+    function selectOffer() {
+        makeDraggable()
         $(".select-drop").droppable({
             drop: function( event, ui ) {
                 const newSelectedId = ui.draggable.data('id');
                 const newSelectedText = ui.draggable.text();
-                ui.draggable.hide();
+                // remove list element
+                ui.draggable.remove();
+                // get p into selection placeholder
                 const aboutSelected = prepareSelection($(this));
+                // fill selection placeholder with content from list element
                 aboutSelected[0].text(newSelectedText);
                 aboutSelected[0].data("id", newSelectedId);
 
@@ -81,8 +87,6 @@ $(document).ready(function(){
         if (item.children().length) {
             const aboutSelected = item.children('p');
             const oldElementId = aboutSelected.data('id')
-            // revert previous selected element to its original position in list
-            $('li[data-id="'+oldElementId+'"]').css({"left": "0px", "top": "0px"}).show()
             return [aboutSelected, oldElementId]
         } else {
             const aboutSelected = $('<p>', {class: "test-dropped"})
@@ -93,15 +97,21 @@ $(document).ready(function(){
 
     function createList(r) {
         const list = $('ul');
-        list.children().length = 0
 
+        list.children().each(function(index, element) {
+                element.remove();
+            }
+        )
         for(let i = 0; i < r.length; i++) {
             let newListElement = $('<li>');
             list.append(newListElement);
-            newListElement.data('id', r[i].id).addClass('select-drag ui-widget-content').css('position', 'relative');
+            newListElement.data('id', r[i].id).addClass('select-drag ui-widget-content ui-draggable ui-draggable-handle').css('position', 'relative');
             let dayMarker = (r[i] == '1')? 'dzień' : 'dni';
             newListElement.text(r[i].title + ' - ' + r[i].duration_in_days + ' ' + dayMarker)
         }
+        // initilize droppable after ajax
+        makeDraggable()
+
     }
 
       selectOffer();
