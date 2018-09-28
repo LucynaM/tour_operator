@@ -1,6 +1,5 @@
 $(document).ready(function(){
 
-    /* Show offer on click - start */
     function ajaxHandler(url, data, type, callback) {
         $.ajax({
                 url: url,
@@ -16,7 +15,10 @@ $(document).ready(function(){
         });
     }
 
+    /* Show offer on click - start */
+
     function showOffer(r) {
+    /* display data retrived via ajax */
         const row = $("#"+ r.id);
         const nextRow = row.next();
         if (nextRow.hasClass('new-row')) {
@@ -24,10 +26,10 @@ $(document).ready(function(){
         } else {
             const newRow = $("<tr>", {class: "new-row"});
             const newCell = $("<td>", {colspan: "4"});
-            const textOfCell = r.short_descr + '<br>' +  r.schedule;
+            const textInCell = r.short_descr + '<br>' +  r.schedule;
             row.after(newRow);
             newRow.append(newCell);
-            newCell.html(textOfCell);
+            newCell.html(textInCell);
         }
     }
 
@@ -45,6 +47,7 @@ $(document).ready(function(){
     /* Show offer on click - stop */
 
     /* Select offer - start */
+    
     function makeDraggable() {
      $(".select-drag").draggable({
             cursor: "move",
@@ -54,67 +57,81 @@ $(document).ready(function(){
     }
 
     function selectOffer() {
+        // initilize draggable
         makeDraggable()
+        // initilize droppable
         $(".select-drop").droppable({
             drop: function( event, ui ) {
+                // retrieve id and content from list element that has been dropped
                 const newSelectedId = ui.draggable.data('id');
                 const newSelectedText = ui.draggable.text();
-                // remove list element
+                // remove list element that has been dropped
                 ui.draggable.remove();
-                // get p into selection placeholder
-                const aboutSelected = prepareSelection($(this));
-                // fill selection placeholder with content from list element
+                // create p element in order to contain info about selection and retrieve id of the element that has been deselected
+                const aboutSelected = checkIfSelection($(this));
+                // fill p element with information retrieved from list element that has been dropped
                 aboutSelected[0].text(newSelectedText);
                 aboutSelected[0].data("id", newSelectedId);
 
-                // prepare ajax
+                // prepare data needed for ajax function
                 const url = $(this).data('url')
+
                 const data = {
-                    sort: $(this).attr('id').slice(-1),
+                    sort: getSort($(this)),
                     new_id: newSelectedId,
                 }
                 if (aboutSelected.length == 2) {
                     data["old_id"] = aboutSelected[1]
                 }
-                console.log(data);
+
                 ajaxHandler(url, data, 'GET', createList);
             }
         });
     };
 
 
-    function prepareSelection(item) {
+    function checkIfSelection(item) {
+        // check if droppable already contains a p element
         if (item.children().length) {
+            // if so, return p element and id of former selection
             const aboutSelected = item.children('p');
             const oldElementId = aboutSelected.data('id')
             return [aboutSelected, oldElementId]
         } else {
-            const aboutSelected = $('<p>', {class: "test-dropped"})
+            // if no, create p element and return it
+            const aboutSelected = $('<p>')
             item.append(aboutSelected);
             return [aboutSelected]
         }
     }
 
-    function createList(r) {
-        const list = $('ul');
+    function getSort(item) {
+        /* retrieve information about sort of droppable element */
+        const startCut = parseInt(item.attr('class').indexOf('sort'), 10) + 4;
+        return item.attr('class').slice(startCut, startCut+1);
 
+    }
+
+    function createList(r) {
+        /*  create updated list of offer after ajax */
+        const list = $('#'+r[0].category +' ul');
         list.children().each(function(index, element) {
                 element.remove();
             }
         )
         for(let i = 0; i < r.length; i++) {
-            let newListElement = $('<li>');
+            const newListElement = $('<li>');
             list.append(newListElement);
-            newListElement.data('id', r[i].id).addClass('select-drag ui-widget-content ui-draggable ui-draggable-handle').css('position', 'relative');
-            let dayMarker = (r[i] == '1')? 'dzień' : 'dni';
+            newListElement.data('id', r[i].id).addClass('select-drag ui-widget-content').css('position', 'relative');
+            const dayMarker = (r[i] == '1')? 'dzień' : 'dni';
             newListElement.text(r[i].title + ' - ' + r[i].duration_in_days + ' ' + dayMarker)
         }
-        // initilize droppable after ajax
+        // initilize draggable after ajax
         makeDraggable()
-
     }
 
       selectOffer();
+
     /* Select offer - stop */
 
 

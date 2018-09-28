@@ -72,13 +72,24 @@ class ShowOffer(View):
 
 class SelectOffer(View):
     def get(self, request):
-        school_offer = Offer.objects.filter(category__icontains='school').exclude(selected=True)
-        school_selected = Offer.objects.filter(selected=True).order_by("selected_sort")
+        school_offer = Offer.objects.filter(category='school_trip', selected=False).order_by('title')
+        school_selected = Offer.objects.filter(category='school_trip', selected=True).order_by('selected_sort')
+        pilgrimage_offer = Offer.objects.filter(category='pilgrimage', selected=False).order_by('title')
+        pilgrimage_selected = Offer.objects.filter(category='pilgrimage', selected=True).order_by('selected_sort')
+        work_offer = Offer.objects.filter(category='work_trip', selected=False).order_by('title')
+        work_selected = Offer.objects.filter(category='work_trip', selected=True).order_by('selected_sort')
+
         ctx = {
             'school_offer': school_offer,
             'school_selected': school_selected,
+            'pilgrimage_offer': pilgrimage_offer,
+            'pilgrimage_selected': pilgrimage_selected,
+            'work_offer': work_offer,
+            'work_selected': work_selected,
         }
         return render(request, 'webpage_offer/select_school.html', ctx)
+
+
 
 
 class SetSelected(View):
@@ -97,13 +108,13 @@ class SetSelected(View):
             new_selected.selected = True
             new_selected.selected_sort = sort
             new_selected.save()
-            offer = Offer.objects.filter(category__icontains='school').exclude(selected=True)
+            offer = Offer.objects.filter(category=new_selected.category).exclude(selected=True)
             data = []
 
             for item in offer:
                 data_element = {}
                 for attr, value in item.__dict__.items():
-                    if attr in ['id', 'title', 'duration_in_days']:
+                    if attr in ['id', 'title', 'duration_in_days', 'category']:
                         data_element[attr] = value
                 data.append(data_element)
 
