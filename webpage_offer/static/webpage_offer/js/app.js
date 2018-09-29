@@ -132,6 +132,7 @@ $(document).ready(function(){
             newListElement.data('id', r[i].id)
                 .addClass('select-drag ui-widget-content')
                 .css('position', 'relative');
+
             const dayMarker = (r[i] == '1')? 'dzień' : 'dni';
 
             if (recommendation) {
@@ -146,13 +147,7 @@ $(document).ready(function(){
     }
 
     function chooseList(r, flag) {
-        if (flag) {
-            const list = $('#recommend ul');
-            return list
-        } else {
-            const list = $('#'+r[0].category +' ul');
-            return list
-        }
+        return flag ? $('#recommend ul') : $('#'+r[0].category +' ul');
     }
 
     function renameCategory(category) {
@@ -175,6 +170,5 @@ $(document).ready(function(){
     selectOffer();
 
     /* Select offer - stop */
-
 
 });

@@ -2,135 +2,61 @@
 
 {% block content %}
 
-<!--Selection for school - start -->
-<section id="school_trip" class="select-offer">
+
+<!--Offer selection - start -->
+{% for category in categories %}
+<section id="{{ category }}" class="select-offer">
     <div class="container">
         <div class="row">
+            {% if category == 'pilgrimage' %}
+            <h2>Oferta pielgrzymkowa</h2>
+            {% elif category == 'school_trip' %}
             <h2>Oferta dla szkół </h2>
+            {% else %}
+            <h2>Oferta dla firm</h2>
+            {% endif %}
         </div>
         <div class="row">
             <div class="col-sm-6">
+
                 <div class="select-drop ui-widget-header sort0" data-url="{% url 'offer:set_selected' %}">
-                    {% if school_selected.0 %}
-                    <p data-id="{{ school_selected.0.id }}">
-                        <strong>{{ school_selected.0.title }}</strong> - {{ school_selected.0.duration_in_days }}
-                        {% if school_selected.0.duration_in_days == 1 %} dzień {% else %} dni {% endif %}
+                    {% for offer in all_offer %}
+                    {% if offer.category == category and offer.selected and offer.selected_sort == 0 %}
+                    <p data-id="{{ offer.id }}">
+                        <strong>{{ offer.title }}</strong> - {{ offer.duration_in_days }}
+                        {% if offer.duration_in_days == 1 %} dzień {% else %} dni {% endif %}
                     </p>
                     {% endif %}
+                    {% endfor %}
                 </div>
                 <div class="select-drop ui-widget-header sort1" data-url="{% url 'offer:set_selected' %}">
-                    {% if school_selected.1 %}
-                    <p data-id="{{ school_selected.1.id }}">
-                        <strong>{{ school_selected.1.title }}</strong> - {{ school_selected.1.duration_in_days }}
-                        {% if school_selected.1.duration_in_days == 1 %} dzień {% else %} dni {% endif %}
+                    {% for offer in all_offer %}
+                    {% if offer.category == category and offer.selected and offer.selected_sort == 1 %}
+                    <p data-id="{{ offer.id }}">
+                        <strong>{{ offer.title }}</strong> - {{ offer.duration_in_days }}
+                        {% if offer.duration_in_days == 1 %} dzień {% else %} dni {% endif %}
                     </p>
                     {% endif %}
+                    {% endfor %}
                 </div>
+
             </div>
 
             <div class="col-sm-6">
-                {% if school_offer %}
                 <ul id="school-offer">
-                    {% for offer in school_offer %}
+                    {% for offer in all_offer %}
+                    {% if offer.category == category and offer.selected == False %}
                     <li data-id="{{ offer.id }}" class="select-drag ui-widget-content"><strong>{{ offer.title }}</strong>
-                        - {{ offer.duration_in_days }} {% if offer.duration_in_days == 1 %} dzień {% else %} dni {% endif %} </li>
+                         - {{ offer.duration_in_days }} {% if offer.duration_in_days == 1 %} dzień {% else %} dni {% endif %} </li>
+                    {% endif %}
                     {% endfor %}
                 </ul>
-                {% else %}
-                <p>Brak oferty dla szkół</p>
-                {% endif %}
             </div>
         </div>
     </div>
 </section>
-<!--Selection for school - stop -->
-
-<!--Selection for work - start -->
-<section id="work_trip" class="select-offer">
-    <div class="container">
-        <div class="row">
-            <h2>Oferta dla firm </h2>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="select-drop ui-widget-header sort0" data-url="{% url 'offer:set_selected' %}">
-                    {% if work_selected.0 %}
-                    <p data-id="{{ work_selected.0.id }}">
-                        <strong>{{ work_selected.0.title }}</strong> - {{ work_selected.0.duration_in_days }}
-                        {% if work_selected.0.duration_in_days == 1 %} dzień {% else %} dni {% endif %}
-                    </p>
-                    {% endif %}
-                </div>
-                <div class="select-drop ui-widget-header sort1" data-url="{% url 'offer:set_selected' %}">
-                    {% if work_selected.1 %}
-                    <p data-id="{{ work_selected.1.id }}">
-                        <strong>{{ work_selected.1.title }}</strong> - {{ work_selected.1.duration_in_days }}
-                        {% if work_selected.1.duration_in_days == 1 %} dzień {% else %} dni {% endif %}
-                    </p>
-                    {% endif %}
-                </div>
-            </div>
-
-            <div class="col-sm-6">
-                {% if work_offer %}
-                <ul id="work-offer">
-                    {% for offer in work_offer %}
-                    <li data-id="{{ offer.id }}" class="select-drag ui-widget-content"><strong>{{ offer.title }}</strong>
-                        - {{ offer.duration_in_days }} {% if offer.duration_in_days == 1 %} dzień {% else %} dni {% endif %} </li>
-                    {% endfor %}
-                </ul>
-                {% else %}
-                <p>Brak oferty dla firm</p>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-</section>
-<!--Selection for work - stop -->
-
-<!--Selection for pilgrimage - start -->
-<section id="pilgrimage" class="select-offer">
-    <div class="container">
-        <div class="row">
-            <h2>Oferta pielgrzymkowa </h2>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="select-drop ui-widget-header sort0" data-url="{% url 'offer:set_selected' %}">
-                    {% if pilgrimage_selected.0 %}
-                    <p data-id="{{ pilgrimage_selected.0.id }}">
-                        <strong>{{ pilgrimage_selected.0.title }}</strong> - {{ pilgrimage_selected.0.duration_in_days }}
-                        {% if pilgrimage_selected.0.duration_in_days == 1 %} dzień {% else %} dni {% endif %}
-                    </p>
-                    {% endif %}
-                </div>
-                <div class="select-drop ui-widget-header sort1" data-url="{% url 'offer:set_selected' %}">
-                    {% if pilgrimage_selected.1 %}
-                    <p data-id="{{ pilgrimage_selected.1.id }}">
-                        <strong>{{ pilgrimage_selected.1.title }}</strong> - {{ pilgrimage_selected.1.duration_in_days }}
-                        {% if pilgrimage_selected.1.duration_in_days == 1 %} dzień {% else %} dni {% endif %}
-                    </p>
-                    {% endif %}
-                </div>
-            </div>
-
-            <div class="col-sm-6">
-                {% if pilgrimage_offer %}
-                <ul id="pilgrimage-offer">
-                    {% for offer in pilgrimage_offer %}
-                    <li data-id="{{ offer.id }}" class="select-drag ui-widget-content"><strong>{{ offer.title }}</strong>
-                        - {{ offer.duration_in_days }} {% if offer.duration_in_days == 1 %} dzień {% else %} dni {% endif %} </li>
-                    {% endfor %}
-                </ul>
-                {% else %}
-                <p>Brak oferty pielgrzymkowej</p>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-</section>
-<!--Selection for pilgrimage - stop -->
-
+{% endfor category in categories %}
+<!--Offer selection - stop -->
 
 <!--Selection for recommendation - start -->
 <section id="recommend" class="select-offer">
@@ -141,37 +67,39 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="select-drop ui-widget-header sort0" data-url="{% url 'offer:set_recommended' %}">
-                    {% if all_offer_recommended.0 %}
-                    <p data-id="{{ all_offer_recommended.0.id }}">
-                        {{ all_offer_recommended.0.get_category_display }}: <strong>{{ all_offer_recommended.0.title }}</strong>
-                        - {{ all_offer_recommended.0.duration_in_days }}
-                        {% if all_offer_recommended.0.duration_in_days == 1 %} dzień {% else %} dni {% endif %}
+                    {% for offer in all_offer %}
+                    {% if offer.recommended and offer.recommended_sort == 0 %}
+                    <p data-id="{{ offer.id }}">
+                        {{ offer.get_category_display }}: <strong>{{ offer.title }}</strong>
+                         - {{ offer.duration_in_days }}
+                        {% if offer.duration_in_days == 1 %} dzień {% else %} dni {% endif %}
                     </p>
                     {% endif %}
+                    {% endfor %}
                 </div>
                 <div class="select-drop ui-widget-header sort1" data-url="{% url 'offer:set_recommended' %}">
-                    {% if all_offer_recommended.1 %}
-                    <p data-id="{{ all_offer_recommended.1.id }}">
-                        {{ all_offer_recommended.1.get_category_display }}: <strong>{{ all_offer_recommended.1.title }}</strong>
-                        - {{ all_offer_recommended.1.duration_in_days }}
-                        {% if all_offer_recommended.1.duration_in_days == 1 %} dzień {% else %} dni {% endif %}
+                    {% for offer in all_offer %}
+                    {% if offer.recommended and offer.recommended_sort == 1 %}
+                    <p data-id="{{ offer.id }}">
+                        {{ offer.get_category_display }}: <strong>{{ offer.title }}</strong>
+                         - {{ offer.duration_in_days }}
+                        {% if offer.duration_in_days == 1 %} dzień {% else %} dni {% endif %}
                     </p>
                     {% endif %}
+                    {% endfor %}
                 </div>
             </div>
 
             <div class="col-sm-6">
-                {% if all_offer %}
                 <ul id="all-offer">
                     {% for offer in all_offer %}
+                    {% if offer.recommended == False %}
                     <li data-id="{{ offer.id }}" class="select-drag ui-widget-content">{{ offer.get_category_display }}:
                         <strong>{{ offer.title }}</strong> - {{ offer.duration_in_days }}
                         {% if offer.duration_in_days == 1 %} dzień {% else %} dni {% endif %} </li>
+                    {% endif %}
                     {% endfor %}
                 </ul>
-                {% else %}
-                <p>Brak poleceń</p>
-                {% endif %}
             </div>
         </div>
     </div>

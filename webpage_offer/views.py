@@ -72,87 +72,74 @@ class ShowOffer(View):
 
 class SelectOffer(View):
     def get(self, request):
-        all_offer = Offer.objects.filter(recommended=False).order_by('category', 'title')
-        all_offer_recommended = Offer.objects.filter(recommended=True).order_by('recommended_sort')
-        school_offer = Offer.objects.filter(category='school_trip', selected=False).order_by('title')
-        school_selected = Offer.objects.filter(category='school_trip', selected=True).order_by('selected_sort')
-        pilgrimage_offer = Offer.objects.filter(category='pilgrimage', selected=False).order_by('title')
-        pilgrimage_selected = Offer.objects.filter(category='pilgrimage', selected=True).order_by('selected_sort')
-        work_offer = Offer.objects.filter(category='work_trip', selected=False).order_by('title')
-        work_selected = Offer.objects.filter(category='work_trip', selected=True).order_by('selected_sort')
+        all_offer = Offer.objects.all().order_by('category', 'title')
+        categories = ['pilgrimage', 'school_trip', 'work_trip']
 
         ctx = {
             'all_offer': all_offer,
-            'all_offer_recommended': all_offer_recommended,
-            'school_offer': school_offer,
-            'school_selected': school_selected,
-            'pilgrimage_offer': pilgrimage_offer,
-            'pilgrimage_selected': pilgrimage_selected,
-            'work_offer': work_offer,
-            'work_selected': work_selected,
+            'categories': categories,
         }
         return render(request, 'webpage_offer/select_offer.html', ctx)
 
 
+def process_offer(request, func1, func2):
+    if 'old_id' in request.GET.keys():
+        old_id = int(request.GET['old_id'])
+        old_element = Offer.objects.get(pk=old_id)
+        func1(old_element)
+
+    new_id = int(request.GET['new_id'])
+    sort = int(request.GET['sort'])
+    new_element = Offer.objects.get(pk=new_id)
+    offer = func2(new_element, sort)
+    data = []
+
+    for item in offer:
+        data_element = {}
+        for attr, value in item.__dict__.items():
+            if attr in ['id', 'title', 'duration_in_days', 'category']:
+                data_element[attr] = value
+        data.append(data_element)
+
+    return data
+
+
 class SetSelected(View):
+    def old_element_deselect(self, obj):
+        obj.selected = False
+        obj.selected_sort = None
+        obj.save()
+
+    def new_element_select(self, obj, sort):
+        obj.selected = True
+        obj.selected_sort = sort
+        obj.save()
+        return Offer.objects.filter(category=obj.category, selected=False).order_by('title')
+
     def get(self, request):
         try:
-            if 'old_id' in request.GET.keys():
-                old_id = int(request.GET['old_id'])
-                old_selected = Offer.objects.get(pk=old_id)
-                old_selected.selected = False
-                old_selected.selected_sort = None
-                old_selected.save()
-
-            new_id = int(request.GET['new_id'])
-            sort = int(request.GET['sort'])
-            new_selected = Offer.objects.get(pk=new_id)
-            new_selected.selected = True
-            new_selected.selected_sort = sort
-            new_selected.save()
-            offer = Offer.objects.filter(category=new_selected.category, selected=False).order_by('title')
-            data = []
-
-            for item in offer:
-                data_element = {}
-                for attr, value in item.__dict__.items():
-                    if attr in ['id', 'title', 'duration_in_days', 'category']:
-                        data_element[attr] = value
-                data.append(data_element)
-
+            data = process_offer(request, self.old_element_deselect, self.new_element_select)
             return JsonResponse(data, safe=False)
         except Exception as e:
             print(e)
 
 
 class SetRecommended(View):
+    def old_element_unrecommend(self, obj):
+        obj.recommended = False
+        obj.recommended_sort = None
+        obj.save()
+
+    def new_element_recommend(self, obj, sort):
+        obj.recommended = True
+        obj.recommended_sort = sort
+        obj.save()
+        return Offer.objects.filter(recommended=False).order_by('category', 'title')
 
     def get(self, request):
         try:
-            if 'old_id' in request.GET.keys():
-                old_id = int(request.GET['old_id'])
-                old_recommended = Offer.objects.get(pk=old_id)
-                old_recommended.recommended = False
-                old_recommended.recommended_sort = None
-                old_recommended.save()
-
-            new_id = int(request.GET['new_id'])
-            sort = int(request.GET['sort'])
-            new_recommended = Offer.objects.get(pk=new_id)
-            new_recommended.recommended = True
-            new_recommended.recommended_sort = sort
-            new_recommended.save()
-            offer = Offer.objects.filter(recommended=False).order_by('category', 'title')
-            data = []
-
-            for item in offer:
-                data_element = {}
-                for attr, value in item.__dict__.items():
-                    if attr in ['id', 'title', 'duration_in_days', 'category']:
-                        data_element[attr] = value
-                data.append(data_element)
+            data = process_offer(request, self.old_element_unrecommend, self.new_element_recommend)
             data.append('recommendation')
-
             return JsonResponse(data, safe=False)
         except Exception as e:
             print(e)
