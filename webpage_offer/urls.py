@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from .views import AddListOffer, EditOffer, ShowOffer, SelectOffer, SetSelected
+from .views import AddListOffer, EditOffer, ShowOffer, SelectOffer, SetSelected, SetRecommended
 
 urlpatterns = [
     url(r'^add/$', AddListOffer.as_view(), name='add_offer'),
@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^show/(?P<pk>[0-9]+)/$', ShowOffer.as_view(), name='show_offer'),
     url(r'^select/$', SelectOffer.as_view(), name='select_offer'),
     url(r'^set_selected/$', SetSelected.as_view(), name='set_selected'),
+    url(r'^set_recommended/$', SetRecommended.as_view(), name='set_recommended'),
 ]

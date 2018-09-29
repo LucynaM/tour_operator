@@ -72,6 +72,8 @@ class ShowOffer(View):
 
 class SelectOffer(View):
     def get(self, request):
+        all_offer = Offer.objects.filter(recommended=False).order_by('category', 'title')
+        all_offer_recommended = Offer.objects.filter(recommended=True).order_by('recommended_sort')
         school_offer = Offer.objects.filter(category='school_trip', selected=False).order_by('title')
         school_selected = Offer.objects.filter(category='school_trip', selected=True).order_by('selected_sort')
         pilgrimage_offer = Offer.objects.filter(category='pilgrimage', selected=False).order_by('title')
@@ -80,6 +82,8 @@ class SelectOffer(View):
         work_selected = Offer.objects.filter(category='work_trip', selected=True).order_by('selected_sort')
 
         ctx = {
+            'all_offer': all_offer,
+            'all_offer_recommended': all_offer_recommended,
             'school_offer': school_offer,
             'school_selected': school_selected,
             'pilgrimage_offer': pilgrimage_offer,
@@ -88,8 +92,6 @@ class SelectOffer(View):
             'work_selected': work_selected,
         }
         return render(request, 'webpage_offer/select_offer.html', ctx)
-
-
 
 
 class SetSelected(View):
@@ -108,7 +110,7 @@ class SetSelected(View):
             new_selected.selected = True
             new_selected.selected_sort = sort
             new_selected.save()
-            offer = Offer.objects.filter(category=new_selected.category).exclude(selected=True)
+            offer = Offer.objects.filter(category=new_selected.category, selected=False).order_by('title')
             data = []
 
             for item in offer:
@@ -117,6 +119,39 @@ class SetSelected(View):
                     if attr in ['id', 'title', 'duration_in_days', 'category']:
                         data_element[attr] = value
                 data.append(data_element)
+
+            return JsonResponse(data, safe=False)
+        except Exception as e:
+            print(e)
+
+
+class SetRecommended(View):
+
+    def get(self, request):
+        try:
+            if 'old_id' in request.GET.keys():
+                old_id = int(request.GET['old_id'])
+                old_recommended = Offer.objects.get(pk=old_id)
+                old_recommended.recommended = False
+                old_recommended.recommended_sort = None
+                old_recommended.save()
+
+            new_id = int(request.GET['new_id'])
+            sort = int(request.GET['sort'])
+            new_recommended = Offer.objects.get(pk=new_id)
+            new_recommended.recommended = True
+            new_recommended.recommended_sort = sort
+            new_recommended.save()
+            offer = Offer.objects.filter(recommended=False).order_by('category', 'title')
+            data = []
+
+            for item in offer:
+                data_element = {}
+                for attr, value in item.__dict__.items():
+                    if attr in ['id', 'title', 'duration_in_days', 'category']:
+                        data_element[attr] = value
+                data.append(data_element)
+            data.append('recommendation')
 
             return JsonResponse(data, safe=False)
         except Exception as e:

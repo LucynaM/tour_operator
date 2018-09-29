@@ -64,13 +64,13 @@ $(document).ready(function(){
             drop: function( event, ui ) {
                 // retrieve id and content from list element that has been dropped
                 const newSelectedId = ui.draggable.data('id');
-                const newSelectedText = ui.draggable.text();
+                const newSelectedText = ui.draggable.html();
                 // remove list element that has been dropped
                 ui.draggable.remove();
                 // create p element in order to contain info about selection and retrieve id of the element that has been deselected
                 const aboutSelected = checkIfSelection($(this));
                 // fill p element with information retrieved from list element that has been dropped
-                aboutSelected[0].text(newSelectedText);
+                aboutSelected[0].html(newSelectedText);
                 aboutSelected[0].data("id", newSelectedId);
 
                 // prepare data needed for ajax function
@@ -114,23 +114,65 @@ $(document).ready(function(){
 
     function createList(r) {
         /*  create updated list of offer after ajax */
-        const list = $('#'+r[0].category +' ul');
+        let recommendation = false;
+        let result_length = r.length
+        if (r.slice(-1) == 'recommendation') {
+            recommendation = true;
+            result_length --
+            }
+
+        const list = chooseList(r, recommendation);
         list.children().each(function(index, element) {
                 element.remove();
             }
         )
-        for(let i = 0; i < r.length; i++) {
+        for(let i = 0; i < result_length; i++) {
             const newListElement = $('<li>');
             list.append(newListElement);
-            newListElement.data('id', r[i].id).addClass('select-drag ui-widget-content').css('position', 'relative');
+            newListElement.data('id', r[i].id)
+                .addClass('select-drag ui-widget-content')
+                .css('position', 'relative');
             const dayMarker = (r[i] == '1')? 'dzień' : 'dni';
-            newListElement.text(r[i].title + ' - ' + r[i].duration_in_days + ' ' + dayMarker)
+
+            if (recommendation) {
+                const category = renameCategory(r[i].category)
+                newListElement.html(category + ': <strong>'+ r[i].title + '</strong> - ' + r[i].duration_in_days + ' ' + dayMarker)
+            } else {
+                newListElement.html('<strong>'+ r[i].title + '</strong> - ' + r[i].duration_in_days + ' ' + dayMarker)
+            }
         }
         // initilize draggable after ajax
         makeDraggable()
     }
 
-      selectOffer();
+    function chooseList(r, flag) {
+        if (flag) {
+            const list = $('#recommend ul');
+            return list
+        } else {
+            const list = $('#'+r[0].category +' ul');
+            return list
+        }
+    }
+
+    function renameCategory(category) {
+        switch (category) {
+            case 'school_trip':
+                category = 'oferta dla szkół';
+                break;
+            case 'work_trip':
+                category = 'oferta dla firm';
+                break;
+            case 'pilgrimage':
+                category = 'pielgrzymka';
+                break;
+            default:
+                console.log("Nie ma takiej kategorii");
+        }
+        return category;
+    }
+
+    selectOffer();
 
     /* Select offer - stop */
 
