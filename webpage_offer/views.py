@@ -87,7 +87,7 @@ class SelectOffer(View):
             'work_offer': work_offer,
             'work_selected': work_selected,
         }
-        return render(request, 'webpage_offer/select_school.html', ctx)
+        return render(request, 'webpage_offer/select_offer.html', ctx)
 
 
 
