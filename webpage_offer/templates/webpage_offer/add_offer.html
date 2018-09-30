@@ -49,7 +49,7 @@
                     {% for offer in offer_list %}
                     <tr id="{{ offer.pk }}">
                         <td>{{ offer.get_category_display }}</td>
-                        <td>{{ offer.title }}</td>
+                        <td><strong>{{ offer.title }}</strong></td>
                         <td data-url="{% url 'offer:show_offer' offer.pk %}" class="offer-details">pokaż szczegóły</td>
                         <td><a href="{% url 'offer:edit_offer' offer.pk %}">edytuj</a></td>
                     </tr>

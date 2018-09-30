@@ -19,12 +19,12 @@
         <div class="row">
             <div class="col-sm-8 offset-sm-2">
                 <h2>{{ offer.title }}</h2>
-                <p>kategoria: {{ offer.get_category_display }}</p>
-                <p>czas trwania {{ offer.duration_in_days }}</p>
-                <p>{{ offer.short_descr }}</p>
-                <p>{{ offer.schedule}}</p>
-                <p>Cena: {{ offer.price|floatformat:2 }}</p>
-                <p>Wycofany:{% if not offer.withdrawn %} Nie {% else %} Tak {% endif %} </p>
+                <p>kategoria: <strong>{{ offer.get_category_display }}</strong></p>
+                <p>czas trwania: {{ offer.duration_in_days }}{% if offer.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</p>
+                <p>krótki opis: {{ offer.short_descr }}</p>
+                <p>program: {{ offer.schedule}}</p>
+                {% if offer.price %}<p>cena: {{ offer.price|floatformat:2 }}</p>{% endif %}
+                {% if offer.withdrawn %}<p>wycofana z oferty</p>{% endif %}
             </div>
         </div>
     </div>
