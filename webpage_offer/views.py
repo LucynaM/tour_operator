@@ -22,6 +22,7 @@ class AddListOffer(View):
         form = AddOfferForm(request.POST, request.FILES)
         if form.is_valid():
             Offer.objects.create(**form.cleaned_data)
+            form = AddOfferForm()
         offer_list = Offer.objects.all().order_by('category', 'title')
         ctx = {
             'offer_list': offer_list,

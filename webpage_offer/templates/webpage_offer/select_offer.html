@@ -1,7 +1,25 @@
 {% extends './_base.html' %}
 
-{% block content %}
+{% block link_management %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'offer:add_offer' %}">zarządzanie ofertą</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#school_trip">wybór dla szkół</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#work_trip">wybór dla firm</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#pilgrimage">pielgrzymki</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#recommend">polecamy</a>
+                    </li>
+{% endblock link_management %}
 
+
+{% block content %}
 
 <!--Offer selection - start -->
 {% for category in categories %}
