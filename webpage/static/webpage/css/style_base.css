@@ -28,6 +28,18 @@ nav a {
 nav strong a {
   color: grey; }
 
+nav .btn.btn-outline-danger {
+  margin-right: 50px;
+  border-color: #B91B22;
+  color: #B91B22; }
+  nav .btn.btn-outline-danger:hover {
+    background-color: #B91B22;
+    color: #fff; }
+
+nav .form-control:focus {
+  border-color: #B91B22;
+  box-shadow: none; }
+
 @media (min-width: 992px) {
   nav .navbar-nav.mr-auto.justify-content-center {
     margin-right: auto;

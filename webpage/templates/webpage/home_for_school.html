@@ -18,15 +18,27 @@
 </header>
 <!-- Header - stop -->
 <!-- Selected - start -->
-<section id="selected_for_school">
+<section id="selected_for_school" class="selection">
     <div class="container">
         <div class="row no-gutters">
-            <div id="selected_for_school_img1" class="col-sm-6 selected_for_school_img"></div>
-            <div class="col-sm-6 selected_for_school_data"></div>
+            <div id="selected_for_school_img1" class="col-sm-6 selected_img"></div>
+            <div class="col-sm-6 selected_data">
+                <div class="selected_wrapper">
+                    <h2>{{ for_school_selected.0.title }}</h2>
+                    <p>{{ for_school_selected.0.duration_in_days }}{% if offer.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</p>
+                    <p data-url="{% url 'offer:show_offer' for_school_selected.0.pk %}" class="offer-details">pokaż szczegóły</p>
+                </div>
+            </div>
         </div>
         <div class="row no-gutters">
-            <div class="col-sm-6 selected_for_school_data"></div>
-            <div id="selected_for_school_img2" class="col-sm-6 selected_for_school_img"></div>
+            <div class="col-sm-6 selected_data">
+                <div class="selected_wrapper">
+                    <h2>{{ for_school_selected.1.title }}</h2>
+                    <p>{{ for_school_selected.1.duration_in_days }}{% if offer.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</p>
+                    <p data-url="{% url 'offer:show_offer' for_school_selected.1.pk %}" class="offer-details">pokaż szczegóły</p>
+                </div>
+            </div>
+            <div id="selected_for_school_img2" class="col-sm-6 selected_img"></div>
         </div>
     </div>
 </section>
@@ -35,19 +47,22 @@
 <section id="offer_for_school">
     <div class="container">
         <div class="row">
-            <div class="col-sm-6 offset-sm-3">
+            <div class="col-md-6 offset-md-3">
 
                 <table class="table">
                     <tr>
                         <th>Kierunek</th>
                         <th>Czas trwania</th>
+                        <th></th>
                     </tr>
+                    {% for offer in for_school %}
                     <tr>
-                        <td></td>
-                        <td></td>
+                        <td><strong>{{ offer.title }}</strong></td>
+                        <td>{{ offer.duration_in_days }} {% if offer.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</td>
+                        <td data-url="{% url 'offer:show_offer' offer.pk %}" class="offer-details">pokaż szczegóły</td>
                     </tr>
+                    {% endfor %}
                 </table>
-
             </div>
         </div>
     </div>

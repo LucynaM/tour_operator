@@ -16,21 +16,33 @@
   font-weight: 300;
   text-align: center; }
 
-#selected_for_school .selected_for_school_img {
+.selection .selected_img {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 50vh; }
+  height: 40vh; }
 
-#selected_for_school .selected_for_school_data {
+.selection .selected_data {
   background-color: #F7F5F5;
-  height: 50vh; }
+  height: 40vh;
+  position: relative; }
+  .selection .selected_data .selected_wrapper {
+    position: absolute;
+    width: 86%;
+    margin: 7% 7% 0 7%;
+    bottom: 7%; }
+    .selection .selected_data .selected_wrapper h2 {
+      margin-bottom: 15%; }
+
+@media (min-width: 992px) {
+  .selection .row.no-gutters:last-child h2, .selection .row.no-gutters:last-child p {
+    text-align: right; } }
 
 #selected_for_school_img1 {
-  background-image: url("../images/AdobeStock_99232091_Preview.jpeg"); }
+  background-image: url("../images/AdobeStock_203413374_Preview.jpeg"); }
 
 #selected_for_school_img2 {
-  background-image: url("../images/AdobeStock_127234415_Preview.jpeg"); }
+  background-image: url("../images/AdobeStock_123235384_Preview.jpeg"); }
 
 #offer_for_school {
   padding-top: 15vh;
