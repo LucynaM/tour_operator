@@ -31,14 +31,19 @@ nav strong a {
 nav .btn.btn-outline-danger {
   margin-right: 50px;
   border-color: #B91B22;
-  color: #B91B22; }
+  background-color: #B91B22;
+  color: #fff;
+  border-radius: 0; }
   nav .btn.btn-outline-danger:hover {
-    background-color: #B91B22;
-    color: #fff; }
+    background-color: #fff;
+    color: #B91B22; }
 
-nav .form-control:focus {
-  border-color: #B91B22;
-  box-shadow: none; }
+nav .form-control {
+  border-radius: 0;
+  border-right: none; }
+  nav .form-control:focus {
+    border-color: #ced4da;
+    box-shadow: none; }
 
 @media (min-width: 992px) {
   nav .navbar-nav.mr-auto.justify-content-center {

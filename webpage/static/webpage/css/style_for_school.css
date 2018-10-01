@@ -20,11 +20,11 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 40vh; }
+  height: 33vh; }
 
 .selection .selected_data {
   background-color: #F7F5F5;
-  height: 40vh;
+  height: 33vh;
   position: relative; }
   .selection .selected_data .selected_wrapper {
     position: absolute;
@@ -43,6 +43,9 @@
 
 #selected_for_school_img2 {
   background-image: url("../images/AdobeStock_123235384_Preview.jpeg"); }
+
+#selected_for_school_img3 {
+  background-image: url("../images/AdobeStock_181976409_Preview.jpeg"); }
 
 #offer_for_school {
   padding-top: 15vh;

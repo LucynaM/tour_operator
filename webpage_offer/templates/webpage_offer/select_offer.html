@@ -36,7 +36,7 @@
         </div>
         <div class="row">
 
-            <div class="col-sm-4 offset-sm-2">
+            <div class="col-sm-4">
                 <div class="select-drop ui-widget-header sort0" data-url="{% url 'offer:set_selected' %}">
                     {% for offer in all_offer %}
                     {% if offer.category == category and offer.selected and offer.selected_sort == 0 %}
@@ -52,6 +52,18 @@
                 <div class="select-drop ui-widget-header sort1" data-url="{% url 'offer:set_selected' %}">
                     {% for offer in all_offer %}
                     {% if offer.category == category and offer.selected and offer.selected_sort == 1 %}
+                    <p data-id="{{ offer.id }}">
+                        <strong>{{ offer.title }}</strong> - {{ offer.duration_in_days }}
+                        {% if offer.duration_in_days == 1 %} dzień {% else %} dni {% endif %}
+                    </p>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="select-drop ui-widget-header sort2" data-url="{% url 'offer:set_selected' %}">
+                    {% for offer in all_offer %}
+                    {% if offer.category == category and offer.selected and offer.selected_sort == 2 %}
                     <p data-id="{{ offer.id }}">
                         <strong>{{ offer.title }}</strong> - {{ offer.duration_in_days }}
                         {% if offer.duration_in_days == 1 %} dzień {% else %} dni {% endif %}
@@ -85,7 +97,7 @@
             <h2>Polecamy</h2>
         </div>
         <div class="row">
-            <div class="col-sm-4 offset-sm-2">
+            <div class="col-sm-4">
                 <div class="select-drop ui-widget-header sort0" data-url="{% url 'offer:set_recommended' %}">
                     {% for offer in all_offer %}
                     {% if offer.recommended and offer.recommended_sort == 0 %}
@@ -102,6 +114,19 @@
                 <div class="select-drop ui-widget-header sort1" data-url="{% url 'offer:set_recommended' %}">
                     {% for offer in all_offer %}
                     {% if offer.recommended and offer.recommended_sort == 1 %}
+                    <p data-id="{{ offer.id }}">
+                        {{ offer.get_category_display }}: <strong>{{ offer.title }}</strong>
+                         - {{ offer.duration_in_days }}
+                        {% if offer.duration_in_days == 1 %} dzień {% else %} dni {% endif %}
+                    </p>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="select-drop ui-widget-header sort2" data-url="{% url 'offer:set_recommended' %}">
+                    {% for offer in all_offer %}
+                    {% if offer.recommended and offer.recommended_sort == 2 %}
                     <p data-id="{{ offer.id }}">
                         {{ offer.get_category_display }}: <strong>{{ offer.title }}</strong>
                          - {{ offer.duration_in_days }}
