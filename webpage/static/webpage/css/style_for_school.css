@@ -35,7 +35,7 @@
       margin-bottom: 15%; }
 
 @media (min-width: 992px) {
-  .selection .row.no-gutters:last-child h2, .selection .row.no-gutters:last-child p {
+  .selection .row.no-gutters:nth-child(2) h2, .selection .row.no-gutters:nth-child(2) p {
     text-align: right; } }
 
 #selected_for_school_img1 {

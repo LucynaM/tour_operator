@@ -53,6 +53,21 @@ nav .form-control {
     nav .navbar-nav.mr-auto.justify-content-center .nav-item {
       padding: 0px 15px; } }
 
+@media (min-width: 1200px) {
+  .navbar-expand-custom {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start; }
+  .navbar-expand-custom .navbar-nav {
+    flex-direction: row; }
+  .navbar-expand-custom .navbar-nav .nav-link {
+    padding-right: .5rem;
+    padding-left: .5rem; }
+  .navbar-expand-custom .navbar-collapse {
+    display: flex !important; }
+  .navbar-expand-custom .navbar-toggler {
+    display: none; } }
+
 footer {
   background-color: #F7F5F5; }
   footer .row:nth-child(1) {
