@@ -21,30 +21,33 @@
 <section id="selected_for_school" class="selection">
     <div class="container">
         <div class="row no-gutters">
-            <div id="selected_for_school_img1" class="col-md-6 selected_img"></div>
-            <div class="col-md-6 selected_data">
+            <div id="selected_for_school_img1" class="col-md-6 selected-item selected_img"></div>
+            <div class="col-md-6 selected-item selected_data">
                 <div class="selected_wrapper">
                     <h2>{{ for_school_selected.0.title }}</h2>
+                    <p>{{ for_school_selected.0.short_descr}}</p>
                     <p>{{ for_school_selected.0.duration_in_days }}{% if for_school_selected.0.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</p>
                     <p data-url="{% url 'offer:show_offer' for_school_selected.0.pk %}" class="offer-details">pokaż szczegóły</p>
                 </div>
             </div>
         </div>
         <div class="row no-gutters">
-            <div class="col-md-6 selected_data">
+            <div class="col-md-6 selected-item selected_data">
                 <div class="selected_wrapper">
                     <h2>{{ for_school_selected.1.title }}</h2>
+                     <p>{{ for_school_selected.1.short_descr}}</p>
                     <p>{{ for_school_selected.1.duration_in_days }}{% if for_school_selected.1.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</p>
                     <p data-url="{% url 'offer:show_offer' for_school_selected.1.pk %}" class="offer-details">pokaż szczegóły</p>
                 </div>
             </div>
-            <div id="selected_for_school_img2" class="col-md-6 selected_img"></div>
+            <div id="selected_for_school_img2" class="col-md-6 selected-item selected_img"></div>
         </div>
         <div class="row no-gutters">
-            <div id="selected_for_school_img3" class="col-md-6 selected_img"></div>
-            <div class="col-md-6 selected_data">
+            <div id="selected_for_school_img3" class="col-md-6 selected-item selected_img"></div>
+            <div class="col-md-6 selected-item selected_data">
                 <div class="selected_wrapper">
                     <h2>{{ for_school_selected.2.title }}</h2>
+                     <p>{{ for_school_selected.2.short_descr}}</p>
                     <p>{{ for_school_selected.2.duration_in_days }}{% if for_school_selected.2.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</p>
                     <p data-url="{% url 'offer:show_offer' for_school_selected.0.pk %}" class="offer-details">pokaż szczegóły</p>
                 </div>

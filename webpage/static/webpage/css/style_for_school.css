@@ -16,28 +16,37 @@
   font-weight: 300;
   text-align: center; }
 
+.selection .selected-item {
+  height: 33vh; }
+
 .selection .selected_img {
   background-position: center;
   background-size: cover;
-  background-repeat: no-repeat;
-  height: 33vh; }
+  background-repeat: no-repeat; }
 
 .selection .selected_data {
-  background-color: #F7F5F5;
-  height: 33vh;
-  position: relative; }
+  background-color: #F7F5F5; }
   .selection .selected_data .selected_wrapper {
-    position: absolute;
+    text-align: center;
     width: 86%;
     margin: 7% 7% 0 7%;
     bottom: 7%; }
     .selection .selected_data .selected_wrapper h2 {
-      margin-bottom: 15%; }
+      margin-bottom: 7%; }
+    .selection .selected_data .selected_wrapper p {
+      text-align: left; }
 
-@media (min-width: 992px) {
-  .selection .row.no-gutters:nth-child(2) h2, .selection .row.no-gutters:nth-child(2) p {
-    text-align: right; } }
-
+/*@media (min-width: 992px) {
+    .selection {
+        .row.no-gutters {
+            &:nth-child(2) {
+                h2, p {
+                    text-align: right;
+                }
+            }
+        }
+    }
+}*/
 #selected_for_school_img1 {
   background-image: url("../images/AdobeStock_203413374_Preview.jpeg"); }
 
