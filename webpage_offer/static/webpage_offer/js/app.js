@@ -1,13 +1,13 @@
 $(document).ready(function(){
 
-    function ajaxHandler(url, data, type, callback) {
+    function ajaxHandler(url, data, type, callback, ...others) {
         $.ajax({
                 url: url,
                 data: data,
                 type: type,
                 dataType: 'json'
             }).done(function(result) {
-                callback(result)
+                callback(result, ...others);
             }).fail(function(xhr, status, err){
                 console.log(xhr, status, err);
             }).always(function(xhr, status){
@@ -15,34 +15,68 @@ $(document).ready(function(){
         });
     }
 
-    /* Show offer on click - start */
+        /* Show offer on click - start */
 
-    function showOffer(r) {
-    /* display data retrived via ajax */
-        const row = $("#"+ r.id);
-        const nextRow = row.next();
+    function hideElement(nextRow, toggler) {
+        nextRow.hide();
+        toggler.removeClass('fa-eye-slash').addClass('fa-eye');
+    }
+
+    function prepareOffer(row, nextRow, thisToggler, prefix, url) {
         if (nextRow.hasClass('new-row')) {
-            nextRow.toggle();
+            nextRow.show();
+            thisToggler.removeClass('fa-eye').addClass('fa-eye-slash');
         } else {
-            const newRow = $("<tr>", {class: "new-row"});
-            const newCell = $("<td>", {colspan: "4"});
-            const textInCell = r.short_descr + '<br>' +  r.schedule;
-            row.after(newRow);
-            newRow.append(newCell);
-            newCell.html(textInCell);
+            ajaxHandler(url, '', 'GET', showOffer, row, thisToggler, prefix);
         }
     }
 
+    function showOffer(r, row, thisToggler, prefix) {
+        let newRow;
+        let newRowContent;
+        let newRowContentText
+        if (prefix === 'table-') {
+            newRow = $("<tr>", {class: "new-row"});
+            newRowContent = $("<td>", {colspan: "4"});
+            newRowContentText = r.short_descr + '<br>' +  r.schedule;
+        } else {
+            newRow = $("<div>", {class: "new-row"});
+            newRowContent = $("<p>");
+            newRowContentText = r.schedule;
+        }
+        row.after(newRow);
+        thisToggler.removeClass('fa-eye').addClass('fa-eye-slash');
+        newRow.append(newRowContent);
+        newRowContent.html(newRowContentText);
 
-    function getOfferOnClick() {
-        $('table').on('click', '.offer-details', function(e) {
+    }
+
+
+    function getOfferOnClick(mainElement, prefix) {
+        $(mainElement).on('click', '.offer-details', function(e) {
             e.preventDefault();
-            const url = $(this).data('url');
-            ajaxHandler(url, '', 'GET', showOffer);
+
+            const thisToggler = $(this);
+            const thisRow = $(this).closest('.closestElement');
+            const thisNextRow = thisRow.next();
+
+            if (thisToggler.hasClass('fa-eye-slash')){
+                hideElement(thisNextRow, thisToggler);
+            } else {
+                const anySwitchedToggler = $(mainElement + ' .fa-eye-slash');
+                const anySwitchedRow = anySwitchedToggler.closest('.closestElement').next();
+                const url = $(this).data('url');
+                if (anySwitchedToggler) {
+                    hideElement(anySwitchedRow, anySwitchedToggler);
+                    prepareOffer(thisRow, thisNextRow, thisToggler, prefix, url)
+                } else {
+                    prepareOffer(thisRow, thisNextRow, thisToggler, prefix, url)
+                }
+            }
         });
     }
 
-    getOfferOnClick()
+    getOfferOnClick('table', 'table-');
 
     /* Show offer on click - stop */
 
@@ -58,7 +92,7 @@ $(document).ready(function(){
 
     function selectOffer() {
         // initilize draggable
-        makeDraggable()
+        makeDraggable();
         // initilize droppable
         $(".select-drop").droppable({
             drop: function( event, ui ) {
@@ -74,14 +108,14 @@ $(document).ready(function(){
                 aboutSelected[0].data("id", newSelectedId);
 
                 // prepare data needed for ajax function
-                const url = $(this).data('url')
+                const url = $(this).data('url');
 
                 const data = {
                     sort: getSort($(this)),
                     new_id: newSelectedId,
                 }
                 if (aboutSelected.length == 2) {
-                    data["old_id"] = aboutSelected[1]
+                    data["old_id"] = aboutSelected[1];
                 }
 
                 ajaxHandler(url, data, 'GET', createList);
@@ -95,11 +129,11 @@ $(document).ready(function(){
         if (item.children().length) {
             // if so, return p element and id of former selection
             const aboutSelected = item.children('p');
-            const oldElementId = aboutSelected.data('id')
+            const oldElementId = aboutSelected.data('id');
             return [aboutSelected, oldElementId]
         } else {
             // if no, create p element and return it
-            const aboutSelected = $('<p>')
+            const aboutSelected = $('<p>');
             item.append(aboutSelected);
             return [aboutSelected]
         }
@@ -115,7 +149,7 @@ $(document).ready(function(){
     function createList(r) {
         /*  create updated list of offer after ajax */
         let recommendation = false;
-        let result_length = r.length
+        let result_length = r.length;
         if (r.slice(-1) == 'recommendation') {
             recommendation = true;
             result_length --
@@ -136,14 +170,14 @@ $(document).ready(function(){
             const dayMarker = (r[i] == '1')? 'dzień' : 'dni';
 
             if (recommendation) {
-                const category = renameCategory(r[i].category)
-                newListElement.html(category + ': <strong>'+ r[i].title + '</strong> - ' + r[i].duration_in_days + ' ' + dayMarker)
+                const category = renameCategory(r[i].category);
+                newListElement.html(category + ': <strong>'+ r[i].title + '</strong> - ' + r[i].duration_in_days + ' ' + dayMarker);
             } else {
                 newListElement.html('<strong>'+ r[i].title + '</strong> - ' + r[i].duration_in_days + ' ' + dayMarker)
             }
         }
         // initilize draggable after ajax
-        makeDraggable()
+        makeDraggable();
     }
 
     function chooseList(r, flag) {
@@ -170,5 +204,6 @@ $(document).ready(function(){
     selectOffer();
 
     /* Select offer - stop */
+
 
 });

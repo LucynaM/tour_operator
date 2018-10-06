@@ -1,6 +1,9 @@
 .offer-details {
   cursor: pointer; }
 
+.new-row {
+  background-color: #F7F5F5; }
+
 section {
   padding-top: 15vh;
   padding-bottom: 15vh; }

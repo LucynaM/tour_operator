@@ -41,6 +41,16 @@ h1 {
   .table th:first-of-type, .table td:first-of-type {
     text-align: left; }
 
+.offer-details {
+  color: gray; }
+
+td:hover .offer-details, .selected_wrapper:hover .offer-details {
+  color: #B91B22;
+  cursor: pointer; }
+
+.new-row {
+  background-color: #F7F5F5; }
+
 /* general-styles - stop */
 /* navigation - start */
 .navbar {
@@ -185,7 +195,8 @@ footer {
 /* Header_for_school - stop */
 /* Selected_for_school - start */
 .selection .selected-item {
-  height: 33vh; }
+  height: 33vh;
+  min-height: 267px; }
 
 .selection .selected_img {
   background-position: center;
@@ -195,7 +206,6 @@ footer {
 .selection .selected_data {
   background-color: #F7F5F5; }
   .selection .selected_data .selected_wrapper {
-    text-align: center;
     width: 86%;
     margin: 7% 7% 0 7%;
     bottom: 7%; }
@@ -203,61 +213,51 @@ footer {
       margin-bottom: 7%; }
     .selection .selected_data .selected_wrapper p {
       text-align: left; }
+    .selection .selected_data .selected_wrapper .offer-details {
+      float: right;
+      font-size: 1.5rem;
+      line-height: 2rem;
+      transform: translateY(7%); }
 
-#selected_for_school_img1 {
+.selection .new-row {
+  background-color: #fff;
+  padding: 7%; }
+
+#selected_for_school_img0 {
   background-image: url("../images/AdobeStock_203413374_Preview.jpeg"); }
 
-#selected_for_school_img2 {
+#selected_for_school_img1 {
   background-image: url("../images/AdobeStock_123235384_Preview.jpeg"); }
 
-#selected_for_school_img3 {
+#selected_for_school_img2 {
   background-image: url("../images/AdobeStock_181976409_Preview.jpeg"); }
 
 /* Selected_for_school - stop */
 /* Responsive styles - start */
 /* navigation - start */
 @media (min-width: 1200px) {
-  .navbar-expand-custom {
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-start; }
-    .navbar-expand-custom .navbar-nav {
-      flex-direction: row; }
-      .navbar-expand-custom .navbar-nav .nav-link {
-        padding-right: .5rem;
-        padding-left: .5rem; }
-      .navbar-expand-custom .navbar-nav .dropdown-menu {
-        position: absolute;
-        left: initial; }
-    .navbar-expand-custom .navbar-collapse {
-      display: flex !important;
-      flex-basis: auto; }
-    .navbar-expand-custom .navbar-toggler {
-      display: none; }
-    .navbar-expand-custom .navbar-nav.mr-auto.justify-content-center {
-      margin-right: auto;
-      margin-left: auto;
-      text-align: center; }
-      .navbar-expand-custom .navbar-nav.mr-auto.justify-content-center .nav-item {
-        padding: 0px 15px; } }
+  .navbar-expand-xl .navbar-nav .dropdown-menu {
+    left: initial; }
+  .navbar-expand-xl .navbar-nav.mr-auto.justify-content-center {
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center; }
+    .navbar-expand-xl .navbar-nav.mr-auto.justify-content-center .nav-item {
+      padding: 0px 15px; } }
 
-@media (max-width: 1198px) {
-  .navbar-expand-custom .btn.btn-outline-danger {
+@media (max-width: 1199px) {
+  .navbar-expand-xl .btn.btn-outline-danger {
     margin-right: 0; }
-  .navbar-expand-custom .form-control {
+  .navbar-expand-xl .form-control {
     display: inline-block;
     width: calc(100% - 42px); }
-  .navbar-expand-custom .navbar-toggler {
+  .navbar-expand-xl .navbar-toggler {
     border-size: 0;
     padding-left: 0;
     padding-right: 0; } }
 
 /*medium window size*/
-@media (max-width: 991.98px) {
-  .selection .selected_data {
-    height: auto; } }
-
-@media (max-width: 991.98px) and (orientation: portrait) {
+@media (max-width: 991px) and (orientation: portrait) {
   section {
     padding-bottom: 8vw; }
     section:first-of-type {
@@ -280,11 +280,16 @@ footer {
     padding-bottom: 3vw; } }
 
 /*small window size*/
-@media (min-width: 576px) and (max-width: 767.98px) {
+@media (max-width: 767px) {
+  .selection .selected_data {
+    height: auto;
+    min-height: initial; } }
+
+@media (min-width: 576px) and (max-width: 767px) {
   h1 {
     font-size: 80px; } }
 
-@media (max-width: 575.98px) {
+@media (max-width: 575px) {
   h1 {
     font-size: 60px; }
   nav img {
