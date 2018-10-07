@@ -19,7 +19,7 @@ class AddListOffer(View):
         return render(request, 'webpage_offer/add_offer.html', ctx)
 
     def post(self, request):
-        form = AddOfferForm(request.POST, request.FILES)
+        form = AddOfferForm(request.POST)
         if form.is_valid():
             Offer.objects.create(**form.cleaned_data)
             form = AddOfferForm()

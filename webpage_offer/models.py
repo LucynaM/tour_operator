@@ -1,24 +1,24 @@
 from django.db import models
+from tinymce.models import HTMLField
 
 # Create your models here.
 
 
 CATEGORIES = (
-    ('pilgrimage', 'pielgrzymka'),
     ('school_trip', 'oferta dla szkół'),
     ('work_trip', 'oferta dla firm'),
-    ('holiday', 'wakacje'),
+    ('pilgrimage', 'pielgrzymka'),
 )
 
 class Offer(models.Model):
     """A class to represent offer"""
     title = models.CharField(max_length=255)
     category = models.CharField(choices=CATEGORIES, max_length=20)
+    direction = models.CharField(max_length=255)
     duration_in_days = models.IntegerField()
-    short_descr = models.TextField(max_length=500)
-    schedule = models.TextField()
+    short_descr = models.TextField(max_length=200)
+    schedule = HTMLField()
     price = models.FloatField(null=True, blank=True)
-    image = models.ImageField(upload_to='images')
     #flags for selection in category
     selected = models.BooleanField(default=False)
     selected_sort = models.IntegerField(null=True, blank=True)

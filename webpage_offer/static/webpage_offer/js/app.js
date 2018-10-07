@@ -15,27 +15,27 @@ $(document).ready(function(){
         });
     }
 
-        /* Show offer on click - start */
+    /* Show offer on click - start */
 
     function hideElement(nextRow, toggler) {
         nextRow.hide();
         toggler.removeClass('fa-eye-slash').addClass('fa-eye');
     }
 
-    function prepareOffer(row, nextRow, thisToggler, prefix, url) {
+    function prepareOffer(row, nextRow, thisToggler, url) {
         if (nextRow.hasClass('new-row')) {
             nextRow.show();
             thisToggler.removeClass('fa-eye').addClass('fa-eye-slash');
         } else {
-            ajaxHandler(url, '', 'GET', showOffer, row, thisToggler, prefix);
+            ajaxHandler(url, '', 'GET', showOffer, row, thisToggler);
         }
     }
 
-    function showOffer(r, row, thisToggler, prefix) {
+    function showOffer(r, row, thisToggler) {
         let newRow;
         let newRowContent;
         let newRowContentText
-        if (prefix === 'table-') {
+        if (row.prop('tagName') === 'TR') {
             newRow = $("<tr>", {class: "new-row"});
             newRowContent = $("<td>", {colspan: "4"});
             newRowContentText = r.short_descr + '<br>' +  r.schedule;
@@ -52,7 +52,7 @@ $(document).ready(function(){
     }
 
 
-    function getOfferOnClick(mainElement, prefix) {
+    function getOfferOnClick(mainElement) {
         $(mainElement).on('click', '.offer-details', function(e) {
             e.preventDefault();
 
@@ -68,15 +68,15 @@ $(document).ready(function(){
                 const url = $(this).data('url');
                 if (anySwitchedToggler) {
                     hideElement(anySwitchedRow, anySwitchedToggler);
-                    prepareOffer(thisRow, thisNextRow, thisToggler, prefix, url)
+                    prepareOffer(thisRow, thisNextRow, thisToggler, url)
                 } else {
-                    prepareOffer(thisRow, thisNextRow, thisToggler, prefix, url)
+                    prepareOffer(thisRow, thisNextRow, thisToggler, url)
                 }
             }
         });
     }
 
-    getOfferOnClick('table', 'table-');
+    getOfferOnClick('table');
 
     /* Show offer on click - stop */
 

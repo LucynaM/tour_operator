@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'', include('webpage.urls', namespace='webpage')),
     url(r'^offer/', include('webpage_offer.urls', namespace='offer')),
     url(r'^tour/', include('webpage_tour.urls', namespace='tour')),
+    url(r'^tinymce/', include('tinymce.urls')),
 ]
