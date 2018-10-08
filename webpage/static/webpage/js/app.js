@@ -67,7 +67,7 @@ $(document).ready(function() {
         if (row.prop('tagName') === 'TR') {
             newRow = $("<tr>", {class: "new-row"});
             newRowContent = $("<td>", {colspan: "3"});
-            newRowContentText = r.short_descr + '<br>' +  r.schedule;
+            newRowContentText = '<p><strong>' + r.short_descr + '</strong></p>' +  r.schedule;
         } else {
             newRow = $("<div>", {class: "new-row"});
             newRowContent = $("<p>");

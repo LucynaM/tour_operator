@@ -38,7 +38,7 @@ $(document).ready(function(){
         if (row.prop('tagName') === 'TR') {
             newRow = $("<tr>", {class: "new-row"});
             newRowContent = $("<td>", {colspan: "4"});
-            newRowContentText = r.short_descr + '<br>' +  r.schedule;
+            newRowContentText = '<p><strong>' + r.short_descr + '</strong></p>' +  r.schedule;
         } else {
             newRow = $("<div>", {class: "new-row"});
             newRowContent = $("<p>");
@@ -205,5 +205,21 @@ $(document).ready(function(){
 
     /* Select offer - stop */
 
+
+    /* Counter of characters - start*/
+
+    function textCounter() {
+        $('.counter').on('keyup', function() {
+            const label = $('label[for="'+ $(this).attr('id') +'"]')
+            const lengthOfThisText = $(this).val().length;
+            const endOfText = label.text().indexOf('*') + 1;
+            let labelText = label.text().slice(0, endOfText);
+            labelText += (' Characters left: ' + (200-lengthOfThisText));
+            label.text(labelText)
+        })
+    }
+
+    textCounter()
+    /* Counter of characters - stop*/
 
 });
