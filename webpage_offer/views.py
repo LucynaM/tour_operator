@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from django.http import JsonResponse, HttpResponseBadRequest
-from .models import Offer
-from .forms import AddOfferForm, EditOfferForm
+from .models import Offer, Holiday
+from .forms import AddOfferForm, EditOfferForm, HolidayForm
 
 # Create your views here.
 
@@ -144,3 +144,47 @@ class SetRecommended(View):
             return JsonResponse(data, safe=False)
         except Exception as e:
             print(e)
+
+
+class AddHoliday(View):
+    def get(self, request):
+        form = HolidayForm()
+        ctx = {
+            'form': form,
+        }
+        return render(request, 'webpage_offer/add_holiday.html', ctx)
+
+    def post(self, request):
+        form = HolidayForm(request.POST)
+
+        if form.is_valid():
+            holiday = form.save()
+            return redirect('offer:edit_holiday', pk=holiday.pk)
+        ctx = {
+            'form': form,
+        }
+        return render(request, 'webpage_offer/add_holiday.html', ctx)
+
+
+class EditHoliday(View):
+    def get(self, request, pk):
+        holiday = Holiday.objects.get(pk=pk)
+        form = HolidayForm(instance=holiday)
+        ctx = {
+            'form': form,
+            'holiday': holiday,
+
+        }
+        return render(request, 'webpage_offer/edit_holiday.html', ctx)
+
+    def post(self, request, pk):
+        holiday = Holiday.objects.get(pk=pk)
+        form = HolidayForm(request.POST, instance=holiday)
+        if form.is_valid():
+            form.save()
+        holiday = Holiday.objects.get(pk=pk)
+        ctx = {
+            'form': form,
+            'holiday': holiday,
+        }
+        return render(request, 'webpage_offer/edit_holiday.html', ctx)

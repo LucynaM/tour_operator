@@ -34,3 +34,14 @@ class Offer(models.Model):
 
     def __str__(self):
         return self.name
+
+class Holiday(models.Model):
+    """A class to represent holiday offer"""
+    title = models.CharField(max_length=255)
+    short_descr = models.TextField(max_length=200)
+    schedule = HTMLField()
+
+    def __str__(self):
+        return self.title
+
+

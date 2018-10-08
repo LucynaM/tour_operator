@@ -1,5 +1,5 @@
 from django import forms
-from .models import Offer
+from .models import Offer, Holiday
 
 class AddOfferForm(forms.ModelForm):
     class Meta:
@@ -18,7 +18,11 @@ class EditOfferForm(forms.ModelForm):
         exclude = ('selected', 'selected_sort', 'recommended', 'recommended_sort')
         widgets = {
             'short_descr': forms.Textarea(attrs={'rows': 4, 'cols': 80, 'class': 'counter'}),
-            # 'schedule': forms.Textarea(attrs={'class': 'editme form-control'}),
             'duration_in_days': forms.NumberInput(attrs={'step': 1}),
             'price': forms.NumberInput(attrs={'step': 0.01})
         }
+
+class HolidayForm(forms.ModelForm):
+    class Meta:
+        model = Holiday
+        fields = '__all__'
