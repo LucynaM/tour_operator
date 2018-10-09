@@ -35,6 +35,7 @@ class Offer(models.Model):
     def __str__(self):
         return self.name
 
+
 class Holiday(models.Model):
     """A class to represent holiday offer"""
     title = models.CharField(max_length=255)
@@ -45,3 +46,12 @@ class Holiday(models.Model):
         return self.title
 
 
+class News(models.Model):
+    """A class to represent news"""
+    title = models.CharField(max_length=255)
+    short_descr = models.TextField(max_length=200)
+    entry = models.TextField()
+    entry_date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return '{}: {}'.format(self.entry_date.strftime('%d.%m.%Y'), self.title)

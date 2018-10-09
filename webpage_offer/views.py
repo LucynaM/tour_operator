@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.http import JsonResponse, HttpResponseBadRequest
-from .models import Offer, Holiday
-from .forms import AddOfferForm, EditOfferForm, HolidayForm
+from .models import Offer, Holiday, News
+from .forms import AddOfferForm, EditOfferForm, HolidayForm, NewsForm
 
 # Create your views here.
 
@@ -55,17 +55,33 @@ class EditOffer(View):
         return render(request, 'webpage_offer/edit_offer.html', ctx)
 
 
+def show_elements(obj):
+    data = {}
+    for attr, value in obj.__dict__.items():
+        if attr != '_state':
+            data[attr] = value
+    return data
+
 
 class ShowOffer(View):
 
     def get(self, request, pk):
         try:
             offer = Offer.objects.get(pk=pk)
-            data = {}
-            for attr, value in offer.__dict__.items():
-                if attr != '_state':
-                    data[attr] = value
-            # print(data)
+            data = show_elements(offer)
+
+            return JsonResponse(data)
+        except Exception as e:
+            print(e)
+
+
+class ShowHoliday(View):
+
+    def get(self, request, pk):
+        try:
+            holiday = Holiday.objects.get(pk=pk)
+            data = show_elements(holiday)
+
             return JsonResponse(data)
         except Exception as e:
             print(e)
@@ -146,10 +162,12 @@ class SetRecommended(View):
             print(e)
 
 
-class AddHoliday(View):
+class AddListHoliday(View):
     def get(self, request):
+        holiday_list = Holiday.objects.all().order_by('-pk')
         form = HolidayForm()
         ctx = {
+            'holiday_list': holiday_list,
             'form': form,
         }
         return render(request, 'webpage_offer/add_holiday.html', ctx)
@@ -188,3 +206,4 @@ class EditHoliday(View):
             'holiday': holiday,
         }
         return render(request, 'webpage_offer/edit_holiday.html', ctx)
+

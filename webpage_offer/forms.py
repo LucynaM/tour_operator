@@ -1,5 +1,5 @@
 from django import forms
-from .models import Offer, Holiday
+from .models import Offer, Holiday, News
 
 class AddOfferForm(forms.ModelForm):
     class Meta:
@@ -26,3 +26,8 @@ class HolidayForm(forms.ModelForm):
     class Meta:
         model = Holiday
         fields = '__all__'
+
+class NewsForm(forms.ModelForm):
+    class Meta:
+        model = News
+        exclude = ('entry_date',)

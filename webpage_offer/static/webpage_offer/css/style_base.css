@@ -66,20 +66,20 @@ section {
   section:nth-of-type(odd) {
     background-color: #F7F5F5; }
 
-#list_offer .offer-details, #list_offer a {
+.list-elements .offer-details, .list-elements a {
   color: black; }
-  #list_offer .offer-details:hover, #list_offer a:hover {
+  .list-elements .offer-details:hover, .list-elements a:hover {
     color: #B91B22;
     font-weight: 600;
     text-decoration: none; }
 
-#list_offer td:nth-of-type(3) {
+.list-elements td:nth-of-type(3) {
   text-align: right; }
 
-#list_offer td:last-of-type {
+.list-elements td:last-of-type {
   text-align: right; }
 
-#list_offer td:first-of-type {
+.list-elements td:first-of-type {
   text-align: left; }
 
 .select-offer h2 {
