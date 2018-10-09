@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from webpage_offer.models import Offer
+from webpage_offer.models import Offer, Holiday
 
 # Create your views here.
 
@@ -18,3 +18,13 @@ class HomeForSchoolPage(View):
             'for_school_selected': for_school_selected,
         }
         return render(request, 'webpage/home_for_school.html', ctx)
+
+
+class HomeHolidayPage(View):
+    def get(self, request):
+
+        holiday = Holiday.objects.all()[0:1:-1]
+        ctx = {
+            'holiday': holiday,
+        }
+        return render(request, 'webpage/home_holiday.html', ctx)

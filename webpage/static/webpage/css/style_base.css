@@ -180,19 +180,25 @@ footer {
   background-image: url("../images/_MG_5425.JPG"); }
 
 /* header - stop */
-/* Header_for_school - start */
-#header_for_school .container-fluid {
+/* Header_for_school, Header_holiday - start */
+.header_container .container-fluid {
   padding-left: 0;
   padding-right: 0; }
 
-#header_for_school #header_for_school_img {
+.header_container .header_img {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url("../images/AdobeStock_83919622_Preview.jpeg");
   height: 50vh; }
 
-/* Header_for_school - stop */
+#header_for_school_img {
+  background-image: url("../images/AdobeStock_83919622_Preview.jpeg"); }
+
+#header_holiday_img {
+  background-position: 50% 35%;
+  background-image: url("../images/AdobeStock_171725583_Preview.jpeg"); }
+
+/* Header_for_school, Header_holiday - stop */
 /* Selected_for_school - start */
 .selection .selected-item {
   height: 33vh;
