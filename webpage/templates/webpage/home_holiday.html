@@ -1,0 +1,31 @@
+{% extends './_base.html' %}
+{% load static %}
+
+{% block styles_css %}
+<!--
+<link rel="stylesheet" href="{% static 'webpage/css/style_for_school.css' %}">
+-->
+{% endblock styles_css %}
+
+{% block about_link %}
+{% endblock about_link %}
+
+{% block content %}
+<!-- Header - start -->
+<header id="header_holiday" class="header_container">
+    <div class="container-fluid">
+        <div id="header_holiday_img" class="header_img"></div>
+    </div>
+</header>
+<!-- Header - stop -->
+<!-- Selected - start -->
+<section id="holiday">
+    <div class="container">
+        <h1>{{ holiday.0.title }}</h1>
+        <p><strong>{{ holiday.0.short_descr }}</strong></p>
+        <div>{{ holiday.0.schedule | safe }}</div>
+    </div>
+
+</section>
+
+{% endblock content %}
