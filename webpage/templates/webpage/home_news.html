@@ -1,0 +1,41 @@
+{% extends './_base.html' %}
+{% load static %}
+
+{% block styles_css %}
+<!--
+<link rel="stylesheet" href="{% static 'webpage/css/style_for_school.css' %}">
+-->
+{% endblock styles_css %}
+
+{% block about_link %}
+{% endblock about_link %}
+
+{% block content %}
+<!-- Header - start -->
+<header id="header_news" class="header_container">
+    <div class="container-fluid">
+        <div id="header_news_img" class="header_img"></div>
+    </div>
+</header>
+<!-- Header - stop -->
+<!-- Selected - start -->
+<section id="news">
+    <div class="container">
+        {% for news in news_list %}
+        <div class="row">
+            <div class="news_date">
+                <div class="news_date_container"><div class="news_day">{{ news.entry_date|date:"d"  }}.</div></div>
+                <div class="news_date_container"><div class="news_month">{{ news.entry_date|date:"m" }}.</div></div>
+            </div>
+            <h2>{{ news.title }}</h2>
+            <div class="news_entry">
+                <p><strong>{{ news.short_descr }}</strong></p>
+                <p>{{ news.entry }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</section>
+
+{% endblock content %}

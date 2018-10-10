@@ -198,6 +198,10 @@ footer {
   background-position: 50% 35%;
   background-image: url("../images/AdobeStock_171725583_Preview.jpeg"); }
 
+#header_news_img {
+  background-position: 50% 65%;
+  background-image: url("../images/AdobeStock_138326898_Preview.jpeg"); }
+
 /* Header_for_school, Header_holiday - stop */
 /* Selected_for_school - start */
 .selection .selected-item {
@@ -239,6 +243,37 @@ footer {
   background-image: url("../images/AdobeStock_181976409_Preview.jpeg"); }
 
 /* Selected_for_school - stop */
+/* News - start */
+#news .container .row:first-child {
+  margin-bottom: 7vh; }
+
+#news .news_date {
+  width: 100px;
+  height: 100px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  margin-right: 30px;
+  /*        background-color: pink;*/ }
+  #news .news_date .news_date_container {
+    width: 100%;
+    height: 50%;
+    position: relative;
+    font-size: 45px; }
+    #news .news_date .news_date_container .news_day {
+      position: absolute;
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, -50%); }
+    #news .news_date .news_date_container .news_month {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%); }
+
+#news .news_entry {
+  padding-top: 15px; }
+
+/* News - stop */
 /* Responsive styles - start */
 /* navigation - start */
 @media (min-width: 1200px) {
