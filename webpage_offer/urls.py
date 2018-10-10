@@ -14,7 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from .views import AddListOffer, EditOffer, ShowOffer, SelectOffer, SetSelected, SetRecommended, AddListHoliday, EditHoliday, ShowHoliday
+from .views import AddListOffer, EditOffer, ShowOffer, SelectOffer, SetSelected, SetRecommended, \
+    AddListHoliday, EditHoliday, ShowHoliday, AddListNews, EditNews, ShowNews
 
 urlpatterns = [
     url(r'^add/$', AddListOffer.as_view(), name='add_offer'),
@@ -24,7 +25,12 @@ urlpatterns = [
     url(r'^select/$', SelectOffer.as_view(), name='select_offer'),
     url(r'^set_selected/$', SetSelected.as_view(), name='set_selected'),
     url(r'^set_recommended/$', SetRecommended.as_view(), name='set_recommended'),
+
     url(r'^add_holiday/$', AddListHoliday.as_view(), name='add_holiday'),
     url(r'^edit_holiday/(?P<pk>[0-9]+)/$', EditHoliday.as_view(), name='edit_holiday'),
     url(r'^show_holiday/(?P<pk>[0-9]+)/$', ShowHoliday.as_view(), name='show_holiday'),
+
+    url(r'^add_news/$', AddListNews.as_view(), name='add_news'),
+    url(r'^edit_news/(?P<pk>(\d)+)/$', EditNews.as_view(), name='edit_news'),
+    url(r'^show_news/(?P<pk>(\d)+)/$', ShowNews.as_view(), name='show_news'),
 ]

@@ -87,6 +87,18 @@ class ShowHoliday(View):
             print(e)
 
 
+class ShowNews(View):
+
+    def get(self, request, pk):
+        try:
+            news = News.objects.get(pk=pk)
+            data = show_elements(news)
+
+            return JsonResponse(data)
+        except Exception as e:
+            print(e)
+
+
 class SelectOffer(View):
     def get(self, request):
         all_offer = Offer.objects.all().order_by('category', 'title')
@@ -207,3 +219,48 @@ class EditHoliday(View):
         }
         return render(request, 'webpage_offer/edit_holiday.html', ctx)
 
+
+class AddListNews(View):
+    def get(self, request):
+        news_list = News.objects.all().order_by('entry_date')
+        form = NewsForm()
+        ctx = {
+            'news_list': news_list,
+            'form': form,
+        }
+        return render(request, 'webpage_offer/add_news.html', ctx)
+
+    def post(self, request):
+        form = NewsForm(request.POST)
+        if form.is_valid():
+            form.save()
+            form = NewsForm()
+        news_list = News.objects.all().order_by('entry_date')
+        ctx = {
+            'news_list': news_list,
+            'form': form,
+        }
+        return render(request, 'webpage_offer/add_news.html', ctx)
+
+
+class EditNews(View):
+    def get(self, request, pk):
+        news = News.objects.get(pk=pk)
+        form = NewsForm(instance=news)
+
+        ctx = {
+            'form': form,
+            'news': news,
+        }
+        return render(request, 'webpage_offer/edit_news.html', ctx)
+
+    def post(self, request, pk):
+        news = News.objects.get(pk=pk)
+        form = NewsForm(request.POST, instance=news)
+        if form.is_valid():
+            news = form.save()
+        ctx = {
+            'form': form,
+            'news': news,
+        }
+        return render(request, 'webpage_offer/edit_news.html', ctx)

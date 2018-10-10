@@ -1,0 +1,65 @@
+{% extends './_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block link_management %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#add_offer">dodaj ofertę</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#list_offer">listuj oferty</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'offer:select_offer' %}">zarządzanie wyborem</a>
+                    </li>
+
+{% endblock link_management %}
+
+{% block content %}
+
+<section id="add_news">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2">
+                <div>
+                    <h2 class="page-header">Dodaj aktualności</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <input type="submit" name="submit" value="add" class="btn btn-danger">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="list_news" class="list-elements">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2">
+                {% if news_list %}
+                <table class="table">
+                    <tr>
+                        <th>Tytuł</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    {% for news in news_list %}
+                    <tr id="table-{{ news.pk }}" class="closestElement">
+                        <td><strong>{{ news.title }}</strong></td>
+                        <td>
+                            <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_news' news.pk %}" title="pokaż szczegóły"></i>
+                        </td>
+                        <td><a href="{% url 'offer:edit_news' news.pk %}"><i class="fas fa-edit"></i></a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% else %}
+                <p>Brak aktualności do wyświetlenia</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

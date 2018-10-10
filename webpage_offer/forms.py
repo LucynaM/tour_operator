@@ -26,8 +26,14 @@ class HolidayForm(forms.ModelForm):
     class Meta:
         model = Holiday
         fields = '__all__'
+        widgets = {
+            'short_descr': forms.Textarea(attrs={'rows': 4, 'cols': 80, 'class': 'counter'}),
+        }
 
 class NewsForm(forms.ModelForm):
     class Meta:
         model = News
         exclude = ('entry_date',)
+        widgets = {
+            'short_descr': forms.Textarea(attrs={'rows': 4, 'cols': 80, 'class': 'counter'}),
+        }
