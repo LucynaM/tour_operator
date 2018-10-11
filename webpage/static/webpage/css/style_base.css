@@ -202,6 +202,9 @@ footer {
   background-position: 50% 65%;
   background-image: url("../images/AdobeStock_138326898_Preview.jpeg"); }
 
+#header_search_img {
+  background-image: url("../images/_MG_0568-corr.jpg"); }
+
 /* Header_for_school, Header_holiday - stop */
 /* Selected_for_school - start */
 .selection .selected-item {

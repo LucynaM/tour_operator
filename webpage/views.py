@@ -4,9 +4,24 @@ from webpage_offer.models import Offer, Holiday, News
 
 # Create your views here.
 
+def search_snippet(request, page):
+    try:
+        search = request.POST['search']
+        return redirect('webpage:search', search=search)
+    except Exception as e:
+        print(e)
+        return render(request, page)
+
 class HomePage(View):
     def get(self, request):
         return render(request, 'webpage/home.html')
+    def post(self, request):
+        try:
+            search = request.POST['search']
+            return redirect('webpage:search', search=search)
+        except Exception as e:
+            print(e)
+            return render(request, 'webpage/home.html')
 
 
 class HomeForSchoolPage(View):
@@ -18,6 +33,8 @@ class HomeForSchoolPage(View):
             'for_school_selected': for_school_selected,
         }
         return render(request, 'webpage/home_for_school.html', ctx)
+    def post(self, request):
+        search_snippet(request, 'webpage/home_for_school.html')
 
 
 class HomeHolidayPage(View):
@@ -28,6 +45,9 @@ class HomeHolidayPage(View):
             'holiday': holiday,
         }
         return render(request, 'webpage/home_holiday.html', ctx)
+    def post(self, request):
+        search_snippet(request, 'webpage/home_holiday.html')
+
 
 class HomeNewsPage(View):
     def get(self, request):
@@ -37,3 +57,21 @@ class HomeNewsPage(View):
             'news_list': news_list,
         }
         return render(request, 'webpage/home_news.html', ctx)
+    def post(self, request):
+        search_snippet(request, 'webpage/home_news.html')
+
+
+class HomeSearchPage(View):
+    def get(self, request, search):
+        offer_list = Offer.objects.filter(direction__icontains=search)
+        ctx = {
+            'offer_list': offer_list,
+        }
+        return render(request, 'webpage/home_search.html', ctx)
+    def post(self, request, search):
+        search = request.POST['search']
+        offer_list = Offer.objects.filter(direction__icontains=search)
+        ctx = {
+            'offer_list': offer_list,
+        }
+        return render(request, 'webpage/home_search.html', ctx)

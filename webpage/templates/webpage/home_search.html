@@ -1,0 +1,49 @@
+{% extends './_base.html' %}
+{% load static %}
+
+{% block styles_css %}
+<!--
+<link rel="stylesheet" href="{% static 'webpage/css/style_for_school.css' %}">
+-->
+{% endblock styles_css %}
+
+{% block about_link %}
+{% endblock about_link %}
+
+{% block content %}
+<!-- Header - start -->
+<header id="header_search" class="header_container">
+    <div class="container-fluid">
+        <div id="header_search_img" class="header_img"></div>
+    </div>
+</header>
+<!-- Header - stop -->
+<!-- Offer for school - start -->
+<section id="offer_search">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+
+                <table class="table">
+                    <tr>
+                        <th>Kierunek</th>
+                        <th>Czas trwania</th>
+                        <th></th>
+                    </tr>
+                    {% if offer_list %}
+                    {% for offer in offer_list %}
+                    <tr id="table-{{ offer.pk }}" class="closestElement">
+                        <td><strong>{{ offer.title }}</strong></td>
+                        <td>{{ offer.duration_in_days }} {% if offer.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</td>
+                        <td><i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer.pk %}"></i></td>
+                    </tr>
+                    {% endfor %}
+                    {% endif %}
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Offer for school - stop -->
+
+{% endblock content %}
