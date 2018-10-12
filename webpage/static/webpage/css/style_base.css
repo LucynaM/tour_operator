@@ -51,6 +51,9 @@ td:hover .offer-details, .selected_wrapper:hover .offer-details {
 .new-row {
   background-color: #F7F5F5; }
 
+input[type="search"].ui-widget, .ui-menu-item-wrapper {
+  font-family: 'Rajdhani', sans-serif !important; }
+
 /* general-styles - stop */
 /* navigation - start */
 .navbar {
