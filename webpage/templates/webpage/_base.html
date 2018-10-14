@@ -16,23 +16,15 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'webpage/css/style_base.css' %}">
 
-    {% block styles_css %}
-    {% endblock styles_css %}
-
 </head>
 
 <body>
     {% block nav %}
     <!-- Nav - start -->
-<!--
-    <nav class="navbar navbar-expand-custom">
--->
-<!--
-    <nav class="navbar navbar-expand-lg">
--->
+
     <nav class="navbar navbar-expand-xl">
         <div class="container">
-            <a class="navbar-brand" href="#"><img src="{% static 'webpage/images/logo-przezr-tlo.png' %}" alt="Marco Polo"></a>
+            <a class="navbar-brand" href="{% block brand %}#{% endblock brand %}"><img src="{% static 'webpage/images/logo-przezr-tlo.png' %}" alt="Marco Polo"></a>
             <button class="navbar-toggler navbar-light" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -45,12 +37,12 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">oferta</a>
 
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">dla szkół</a>
-                            <a class="dropdown-item" href="#">dla firm</a>
-                            <a class="dropdown-item" href="#">wakacje</a>
-                            <a class="dropdown-item" href="#">pielgrzymki</a>
-                            <a class="dropdown-item" href="#">aktualności</a>
-                            <a class="dropdown-item" href="#">polecamy</a>
+                            {% block link_for_school %}<a class="dropdown-item" href="{% url 'webpage:for_school' %}">dla szkół</a>{% endblock link_for_school %}
+                            {% block link_for_work %}<a class="dropdown-item" href="#">dla firm</a>{% endblock link_for_work %}
+                            {% block link_holiday %}<a class="dropdown-item" href="{% url 'webpage:holiday' %}">wakacje</a>{% endblock link_holiday %}
+                            {% block link_pilgrimage %}<a class="dropdown-item" href="#">pielgrzymki</a>{% endblock link_pilgrimage %}
+                            {% block link_news %}<a class="dropdown-item" href="{% url 'webpage:news' %}">aktualności</a>{% endblock link_news %}
+                            {% block link_recommend %}<a class="dropdown-item" href="#">polecamy</a>{% endblock link_recommend %}
                         </div>
                     </li>
                     <!-- Offer as dropdown menu - stop -->
