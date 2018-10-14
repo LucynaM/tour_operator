@@ -90,6 +90,7 @@ $(document).ready(function(){
         );
     }
 
+
     function selectOffer() {
         // initilize draggable
         makeDraggable();
@@ -97,27 +98,37 @@ $(document).ready(function(){
         $(".select-drop").droppable({
             drop: function( event, ui ) {
                 // retrieve id and content from list element that has been dropped
-                const newSelectedId = ui.draggable.data('id');
-                const newSelectedText = ui.draggable.html();
-                // remove list element that has been dropped
-                ui.draggable.remove();
-                // create p element in order to contain info about selection and retrieve id of the element that has been deselected
-                const aboutSelected = checkIfSelection($(this));
-                // fill p element with information retrieved from list element that has been dropped
-                aboutSelected[0].html(newSelectedText);
-                aboutSelected[0].data("id", newSelectedId);
+                const draggableId = ui.draggable.data('id');
+                const draggableText = ui.draggable.html();
+
 
                 // prepare data needed for ajax function
+                const data = {}
                 const url = $(this).data('url');
 
-                const data = {
-                    sort: getSort($(this)),
-                    new_id: newSelectedId,
-                }
-                if (aboutSelected.length == 2) {
-                    data["old_id"] = aboutSelected[1];
-                }
+                if ($(this).hasClass('select-container')) {
+                    // remove list element that has been dropped
+                    ui.draggable.remove();
+                    // create p element in order to contain info about selection and retrieve id of the element that has been deselected
+                    const aboutSelected = checkIfSelection($(this));
+                    // fill p element with information retrieved from list element that has been dropped
+                    aboutSelected[0].html(draggableText);
+                    aboutSelected[0].data("id", draggableId);
+                    aboutSelected[0].data("sort", $(this).data('sort'));
+                    aboutSelected[0].addClass('select-drag ui-widget-content');
 
+                    data['sort'] = $(this).data('sort');
+                    data['new_id'] = draggableId;
+
+                    if (aboutSelected.length == 2) {
+                        data["old_id"] = aboutSelected[1];
+                    }
+                } else {
+                    data['sort'] = ui.draggable.data('sort');
+                    data['old_id'] = draggableId;
+                    // remove list element that has been dropped
+                    ui.draggable.remove();
+                }
                 ajaxHandler(url, data, 'GET', createList);
             }
         });
@@ -139,12 +150,6 @@ $(document).ready(function(){
         }
     }
 
-    function getSort(item) {
-        /* retrieve information about sort of droppable element */
-        const startCut = parseInt(item.attr('class').indexOf('sort'), 10) + 4;
-        return item.attr('class').slice(startCut, startCut+1);
-
-    }
 
     function createList(r) {
         /*  create updated list of offer after ajax */
@@ -152,7 +157,7 @@ $(document).ready(function(){
         let result_length = r.length;
         if (r.slice(-1) == 'recommendation') {
             recommendation = true;
-            result_length --
+            result_length --;
             }
 
         const list = chooseList(r, recommendation);

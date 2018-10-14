@@ -18,11 +18,11 @@ from .views import AddListOffer, EditOffer, ShowOffer, SelectOffer, SetSelected,
     AddListHoliday, EditHoliday, ShowHoliday, AddListNews, EditNews, ShowNews
 
 urlpatterns = [
-    url(r'^add/$', AddListOffer.as_view(), name='add_offer'),
-    url(r'^edit/(?P<pk>[0-9]+)/$', EditOffer.as_view(), name='edit_offer'),
-    url(r'^show/(?P<pk>[0-9]+)/$', ShowOffer.as_view(), name='show_offer'),
+    url(r'^add_offer/$', AddListOffer.as_view(), name='add_offer'),
+    url(r'^edit_offer/(?P<pk>[0-9]+)/$', EditOffer.as_view(), name='edit_offer'),
+    url(r'^show_offer/(?P<pk>[0-9]+)/$', ShowOffer.as_view(), name='show_offer'),
 
-    url(r'^select/$', SelectOffer.as_view(), name='select_offer'),
+    url(r'^select_offer/$', SelectOffer.as_view(), name='select_offer'),
     url(r'^set_selected/$', SetSelected.as_view(), name='set_selected'),
     url(r'^set_recommended/$', SetRecommended.as_view(), name='set_recommended'),
 

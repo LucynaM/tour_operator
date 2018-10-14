@@ -111,18 +111,22 @@ class SelectOffer(View):
         return render(request, 'webpage_offer/select_offer.html', ctx)
 
 
-def process_offer(request, func1, func2):
+def process_offer(request, func1, func2, get_result):
     if 'old_id' in request.GET.keys():
         old_id = int(request.GET['old_id'])
         old_element = Offer.objects.get(pk=old_id)
         func1(old_element)
 
-    new_id = int(request.GET['new_id'])
-    sort = int(request.GET['sort'])
-    new_element = Offer.objects.get(pk=new_id)
-    offer = func2(new_element, sort)
-    data = []
+    if 'new_id' in request.GET.keys():
+        new_id = int(request.GET['new_id'])
+        sort = int(request.GET['sort'])
+        new_element = Offer.objects.get(pk=new_id)
+        func2(new_element, sort)
+        offer = get_result(new_element)
+    else:
+        offer = get_result(old_element)
 
+    data = []
     for item in offer:
         data_element = {}
         for attr, value in item.__dict__.items():
@@ -143,11 +147,13 @@ class SetSelected(View):
         obj.selected = True
         obj.selected_sort = sort
         obj.save()
+
+    def get_result(self, obj):
         return Offer.objects.filter(category=obj.category, selected=False).order_by('title')
 
     def get(self, request):
         try:
-            data = process_offer(request, self.old_element_deselect, self.new_element_select)
+            data = process_offer(request, self.old_element_deselect, self.new_element_select, self.get_result)
             return JsonResponse(data, safe=False)
         except Exception as e:
             print(e)
@@ -163,11 +169,13 @@ class SetRecommended(View):
         obj.recommended = True
         obj.recommended_sort = sort
         obj.save()
+
+    def get_result(self, obj):
         return Offer.objects.filter(recommended=False).order_by('category', 'title')
 
     def get(self, request):
         try:
-            data = process_offer(request, self.old_element_unrecommend, self.new_element_recommend)
+            data = process_offer(request, self.old_element_unrecommend, self.new_element_recommend, self.get_result)
             data.append('recommendation')
             return JsonResponse(data, safe=False)
         except Exception as e:
