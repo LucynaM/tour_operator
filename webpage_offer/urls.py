@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url
 from .views import AddListOffer, EditOffer, ShowOffer, SelectOffer, SetSelected, SetRecommended, \
-    AddListHoliday, EditHoliday, ShowHoliday, AddListNews, EditNews, ShowNews
+    AddListHoliday, EditHoliday, ShowHoliday, AddListNews, EditNews, ShowNews, TourManager
 
 urlpatterns = [
+    url(r'^manager/$', TourManager.as_view(), name='tour_manager'),
+
     url(r'^add_offer/$', AddListOffer.as_view(), name='add_offer'),
     url(r'^edit_offer/(?P<pk>[0-9]+)/$', EditOffer.as_view(), name='edit_offer'),
     url(r'^show_offer/(?P<pk>[0-9]+)/$', ShowOffer.as_view(), name='show_offer'),

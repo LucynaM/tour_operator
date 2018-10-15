@@ -3,13 +3,10 @@
 
 {% block link_management %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#add_offer">dodaj ofertę</a>
+                        <a class="nav-link" href="#add_holiday">dodaj wakacje</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#list_offer">listuj oferty</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'offer:select_offer' %}">zarządzanie wyborem</a>
+                        <a class="nav-link" href="#list_holiday">listuj wakacje</a>
                     </li>
 
 {% endblock link_management %}
@@ -19,7 +16,7 @@
 <section id="add_holiday">
     <div class="container">
         <div class="row">
-            <div class="col-sm-8 offset-sm-2">
+            <div class="col-sm-12 col-md-8 offset-md-2">
                 <div>
                     <h2 class="page-header">Dodaj wakacje</h2>
                     <form action="" method="post">
@@ -36,7 +33,7 @@
 <section id="list_holiday" class="list-elements">
     <div class="container">
         <div class="row">
-            <div class="col-sm-8 offset-sm-2">
+            <div class="col-sm-12 col-md-8 offset-md-2">
                 {% if holiday_list %}
                 <table class="table">
                     <tr>

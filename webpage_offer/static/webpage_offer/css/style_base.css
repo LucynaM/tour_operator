@@ -123,10 +123,58 @@ section {
   column-rule-style: solid;
   padding-left: 0; }
 
-@media (max-width: 959px) {
+#manager-intro {
+  background-color: #F7F5F5;
+  padding-top: 2.5vh;
+  padding-bottom: 2.5vh; }
+  #manager-intro .row div:first-child .manager {
+    float: right; }
+  #manager-intro .manager {
+    margin-left: 2.5vh;
+    margin-right: 2.5vh;
+    width: 42.5vh;
+    height: 42.5vh;
+    position: relative;
+    background-color: #fff;
+    margin-top: 2.5vh;
+    margin-bottom: 2.5vh; }
+    #manager-intro .manager h5 {
+      text-align: center;
+      color: grey;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); }
+    #manager-intro .manager:hover {
+      box-shadow: 3px 3px 5px 1px rgba(165, 164, 164, 0.3); }
+      #manager-intro .manager:hover h5 {
+        color: #B91B22; }
+
+@media (min-width: 576px) and (orientation: portrait) {
+  #manager-intro {
+    padding-top: 2.5vw;
+    padding-bottom: 2.5vw; }
+    #manager-intro .manager {
+      margin-left: 2.5vw;
+      margin-right: 2.5vw;
+      margin-top: 2.5vw;
+      margin-bottom: 2.5vw;
+      width: 42.5vw;
+      height: 42.5vw; } }
+
+@media (max-width: 991px) {
   .select-offer ul {
     column-count: 2; } }
 
-@media (max-width: 719px) {
+@media (max-width: 767px) {
   .select-offer ul {
     column-count: 1; } }
+
+@media (max-width: 575px) {
+  #manager-intro .row div:first-child .manager {
+    float: inherit; }
+  #manager-intro .manager {
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto; } }

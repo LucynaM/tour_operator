@@ -3,11 +3,7 @@
 
 {% block link_management %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'offer:add_offer' %}">zarządzanie ofertą</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'offer:select_offer' %}">zarządzanie wyborem</a>
+                        <a class="nav-link" href="{% url 'offer:add_news' %}">zarządzanie aktualnościami</a>
                     </li>
                     {% endblock link_management %}
 
@@ -17,7 +13,7 @@
 <section id="show_news">
     <div class="container">
         <div class="row">
-            <div class="col-sm-8 offset-sm-2">
+            <div class="col-sm-12 col-md-8 offset-md-2">
                 <h2>{{ news.title }}</h2>
                 <p>krótki opis: {{ news.short_descr }}</p>
                 <p>program: {{ news.entry }}</p>
@@ -28,7 +24,7 @@
 <section id="edit_news">
     <div class="container">
         <div class="row">
-            <div class="col-sm-8 offset-sm-2">
+            <div class="col-sm-12 col-md-8 offset-md-2">
                 <div >
                     <h2 class="page-header">Edytuj aktualności</h2>
                     <form action="" method="post">

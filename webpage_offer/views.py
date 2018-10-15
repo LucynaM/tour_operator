@@ -6,6 +6,12 @@ from .forms import AddOfferForm, EditOfferForm, HolidayForm, NewsForm
 
 # Create your views here.
 
+class TourManager(View):
+
+    def get(self, request):
+        return render(request, 'webpage_offer/tour_manager.html')
+
+
 class AddListOffer(View):
     """Show all offer and add new one"""
 
