@@ -30,7 +30,7 @@ class Offer(models.Model):
 
     @property
     def name(self):
-        return '{}: {}'.format(self.category, self.title)
+        return '{}: {}'.format(self.get_category_display(), self.title)
 
     def __str__(self):
         return self.name
