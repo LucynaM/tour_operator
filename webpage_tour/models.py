@@ -4,7 +4,7 @@ from webpage_offer.models import Offer
 # Create your models here.
 
 class Tour(models.Model):
-    """A class to represent tour as offer in time"""
+    """A class to represent tour as an offer in time"""
     start_date = models.DateField()
     end_date = models.DateField()
     offer = models.ForeignKey(Offer, related_name='tours', on_delete=models.SET_NULL, null=True)
@@ -42,13 +42,3 @@ class TourParticipant(models.Model):
 
     def __str__(self):
         return "{} {}".format(self.tour, self.participant)
-
-
-# Blog management - start
-
-# class Entry(models.Model):
-#     date = models.DateField(auto_now_add=True)
-#     title = models.CharField(max_length=255)
-#     text = models.TextField()
-
-# Blog management - stop

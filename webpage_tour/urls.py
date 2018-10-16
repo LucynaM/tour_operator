@@ -14,7 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
+from .views import AddTour
+
 
 urlpatterns = [
+    url(r'^add_tour/$', AddTour.as_view(), name='add_tour'),
+    url(r'^edit_tour/(?P<pk>(/d)+)$', AddTour.as_view(), name='add_tour'),
 
 ]
