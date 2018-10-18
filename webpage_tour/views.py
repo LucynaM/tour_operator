@@ -23,11 +23,11 @@ class AddTour(View):
 
     def post(self, request):
         form = TourForm(request.POST)
-        tour_list = Tour.objects.all().exclude(end_date__lte=datetime.now().date())
+        tour_list = Tour.objects.all().exclude(end_date__lte=datetime.now().date()).order_by('start_date')
 
         if form.is_valid():
-            tour = form.save()
-            return redirect('tour: add_participant', pk=tour.pk)
+            tour = Tour.objects.create(**form.cleaned_data)
+            return redirect('tour:add_participant', pk=tour.pk)
         ctx = {
             'form': form,
             'tour_list': tour_list,
@@ -46,14 +46,14 @@ class AddParticipant(View):
             'form': form,
             'participants': participants,
         }
-        return render(request, 'webpage_tour/edit_tour.html', ctx)
+        return render(request, 'webpage_tour/add_participant.html', ctx)
 
     def post(self, request, pk):
         tour = Tour.objects.get(pk=pk)
         form = ParticipantForm(request.POST)
         if form.is_valid():
             participant = form.save()
-            TourParticipant.objects.create(tour=tour.pk, participant=participant.pk)
+            TourParticipant.objects.create(tour=tour, participant=participant)
             form = ParticipantForm()
         participants = tour.participants.all()
         ctx = {
@@ -61,4 +61,30 @@ class AddParticipant(View):
             'form': form,
             'participants': participants,
         }
+        return render(request, 'webpage_tour/add_participant.html', ctx)
+
+
+class EditTour(View):
+    def get(self, request, pk):
+        tour = Tour.objects.get(pk=pk)
+        form = TourForm(instance=tour)
+
+        ctx = {
+            'tour': tour,
+            'form': form,
+        }
+
         return render(request, 'webpage_tour/edit_tour.html', ctx)
+
+    def post(self, request, pk):
+        tour = Tour.objects.get(pk=pk)
+        form = TourForm(request.POST, instance=tour)
+
+        if form.is_valid():
+            form.save()
+            return redirect('tour:add_participant', pk=tour.pk)
+        ctx = {
+            'tour': tour,
+            'form': form,
+        }
+        return render(request, 'webpage_tour/add_tour.html', ctx)

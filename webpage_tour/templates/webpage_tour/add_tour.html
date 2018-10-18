@@ -31,12 +31,14 @@
                 <table class="table">
                     <tr>
                         <th>Wycieczka</th>
+                        <th>Termin</th>
                         <th></th>
                     </tr>
                     {% for tour in tour_list %}
                     <tr id="table-{{ tour.pk }}" class="closestElement">
-                        <td><strong>{{ tour }}</strong></td>
-                        <td><a href="{% url 'offer:edit_tour' tour.pk %}"><i class="fas fa-edit"></i></a></td>
+                        <td><strong>{{ tour.offer.title }}</strong></td>
+                        <td><strong>{{ tour.start_date|date:'d.m.' }}-{{ tour.end_date|date:'d.m.' }}</strong></td>
+                        <td><a href="{% url 'tour:edit_tour' tour.pk %}"><i class="fas fa-edit"></i></a></td>
                     </tr>
                     {% endfor %}
                 </table>

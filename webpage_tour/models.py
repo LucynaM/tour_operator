@@ -36,8 +36,8 @@ STATUSES = (
 
 class TourParticipant(models.Model):
     """A class to represent participant of a tour"""
-    participant = models.ForeignKey(Participant, related_name='participants', on_delete=models.CASCADE)
-    tour = models.ForeignKey(Tour, related_name='tours', on_delete=models.CASCADE)
+    participant = models.ForeignKey(Participant, related_name='tours', on_delete=models.CASCADE)
+    tour = models.ForeignKey(Tour, related_name='participants', on_delete=models.CASCADE)
     status = models.CharField(choices=STATUSES, default='reserved', max_length=20)
 
     def __str__(self):
