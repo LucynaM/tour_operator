@@ -33,11 +33,11 @@
                         <th></th>
                     </tr>
                     {% for participant in participants %}
-                    <tr id="table-{{ tour.pk }}" class="closestElement">
-                        <td><strong>{{ participant.participant.first_name }} {{ participant.participant.last_name }}</strong></td>
+                    <tr id="table-{{ participant.participant.pk }}" class="closestElement">
+                        <td><strong>{{ participant.participant.name }}</strong></td>
                         <td><strong>{{ participant.participant.phone }}</strong></td>
                         <td><strong>{{ participant.get_status_display }}</strong></td>
-                        <td><a href=""><i class="fas fa-edit"></i></a></td>
+                        <td><a href="{% url 'tour:edit_participant' tour.pk participant.participant.pk %}"><i class="fas fa-edit"></i></a></td>
                     </tr>
                     {% endfor %}
                 </table>

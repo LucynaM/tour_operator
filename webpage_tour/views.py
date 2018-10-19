@@ -88,3 +88,26 @@ class EditTour(View):
             'form': form,
         }
         return render(request, 'webpage_tour/add_tour.html', ctx)
+
+
+class EditParticipant(View):
+    def get(self, request, tour_pk, participant_pk):
+        participant = Participant.objects.get(pk=participant_pk)
+        form = ParticipantForm(instance=participant)
+        ctx = {
+            'participant': participant,
+            'form': form,
+        }
+        return render(request, 'webpage_tour/edit_participant.html', ctx)
+    def post(self, request, tour_pk, participant_pk):
+        participant = Participant.objects.get(pk=participant_pk)
+        form = ParticipantForm(request.POST, instance=participant)
+        if form.is_valid():
+            form.save()
+            return redirect('tour:add_participant', pk=tour_pk)
+
+        ctx = {
+            'participant': participant,
+            'form': form,
+        }
+        return render(request, 'webpage_tour/edit_participant.html', ctx)
