@@ -179,3 +179,18 @@ section {
     right: 0;
     margin-left: auto;
     margin-right: auto; } }
+
+select.custom-select {
+  border: none;
+  padding-top: 0;
+  padding-left: 0;
+  padding-bottom: 0;
+  width: auto;
+  height: auto;
+  vertical-align: none; }
+  select.custom-select:focus {
+    border-color: none;
+    box-shadow: none; }
+
+#participants td:nth-of-type(3) {
+  text-align: left; }

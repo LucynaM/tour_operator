@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from .views import AddTour, AddParticipant, EditTour, EditParticipant
+from .views import AddTour, AddParticipant, EditTour, EditParticipant, ChangeStatus
 
 
 urlpatterns = [
@@ -22,5 +22,6 @@ urlpatterns = [
     url(r'^add_participant/(?P<pk>(\d)+)/$', AddParticipant.as_view(), name='add_participant'),
     url(r'^edit_tour/(?P<pk>(\d)+)/$', EditTour.as_view(), name='edit_tour'),
     url(r'^edit_participant/(?P<tour_pk>(\d)+)/(?P<participant_pk>(\d)+)/$', EditParticipant.as_view(), name='edit_participant'),
+    url(r'^change_status/(?P<pk>(\d)+)/$', ChangeStatus.as_view(), name='change_status'),
 
 ]

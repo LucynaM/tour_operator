@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from django.views import View
+from django import forms
+from django.http import JsonResponse, HttpResponseBadRequest
 
-from .models import Tour, TourParticipant, Participant
-from .forms import TourForm, ParticipantForm
+from .models import Tour, TourParticipant, Participant, STATUSES
+from .forms import TourForm, ParticipantForm, TourParticipantForm
 
 from datetime import datetime
 
@@ -45,6 +47,7 @@ class AddParticipant(View):
             'tour': tour,
             'form': form,
             'participants': participants,
+            'statuses': STATUSES,
         }
         return render(request, 'webpage_tour/add_participant.html', ctx)
 
@@ -52,7 +55,11 @@ class AddParticipant(View):
         tour = Tour.objects.get(pk=pk)
         form = ParticipantForm(request.POST)
         if form.is_valid():
-            participant = form.save()
+            participant_list = Participant.objects.filter(**form.cleaned_data)
+            if participant_list:
+                participant = participant_list[0]
+            else:
+                participant = form.save()
             TourParticipant.objects.create(tour=tour, participant=participant)
             form = ParticipantForm()
         participants = tour.participants.all()
@@ -111,3 +118,20 @@ class EditParticipant(View):
             'form': form,
         }
         return render(request, 'webpage_tour/edit_participant.html', ctx)
+
+
+class ChangeStatus(View):
+    def get(self, request, pk):
+        try:
+            # pk z TourParticipant
+            status = request.GET['status']
+            tour_participant = TourParticipant.objects.get(pk=pk)
+            tour_participant.status = status
+            tour_participant.save()
+            data = {
+                'status': status,
+            }
+            return JsonResponse(data)
+        except Exception as e:
+            print(e)
+            

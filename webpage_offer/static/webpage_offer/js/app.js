@@ -224,7 +224,30 @@ $(document).ready(function(){
         })
     }
 
-    textCounter()
+    textCounter();
     /* Counter of characters - stop*/
+
+   /* Change status od participant of a tour - start */
+
+    function seeIfOK(r) {
+        console.log(r);
+    };
+
+    function changeStatus() {
+        $('select').on('change', function() {
+            console.log('działam');
+            const url = $(this).data('url');
+            const status = $(this).val();
+            data = {
+                status: status,
+            };
+            ajaxHandler(url, data, 'GET', seeIfOK);
+        });
+    };
+
+    changeStatus();
+    /* Change status od participant of a tour - stop */
+
+
 
 });
