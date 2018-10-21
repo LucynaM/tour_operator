@@ -16,12 +16,12 @@ section {
   section:first-of-type {
     padding-top: 8vh; }
 
-#title_for_school {
+.offer_title {
   padding-top: 13vh;
   padding-bottom: 12vh;
   text-align: center; }
 
-#offer_for_school {
+.offer_table {
   padding-top: 7vh;
   padding-bottom: 15vh; }
 
@@ -180,7 +180,7 @@ footer {
   background-image: url("../images/AdobeStock_138326898_Preview.jpeg"); }
 
 #offer-img-6 {
-  background-image: url("../images/_MG_5425.JPG"); }
+  background-image: url("../images/AdobeStock_66207813_Preview.jpeg"); }
 
 /* header - stop */
 /* Header_for_school, Header_holiday - start */
@@ -196,6 +196,14 @@ footer {
 
 #header_for_school_img {
   background-image: url("../images/AdobeStock_83919622_Preview.jpeg"); }
+
+#header_pilgrimage_img {
+  background-position: 50% 27%;
+  background-image: url("../images/_MG_2214-corr.jpg"); }
+
+#header_for_work_img {
+  background-position: 50% 77%;
+  background-image: url("../images/_MG_0139.jpg"); }
 
 #header_holiday_img {
   background-position: 50% 35%;
@@ -249,6 +257,31 @@ footer {
   background-image: url("../images/AdobeStock_181976409_Preview.jpeg"); }
 
 /* Selected_for_school - stop */
+/* Selected_pilgrimage - start */
+#selected_pilgrimage_img0 {
+  background-position: 50% 100%;
+  background-image: url("../images/pilgrimage/AdobeStock_40197495_Preview.jpeg"); }
+
+#selected_pilgrimage_img1 {
+  background-image: url("../images/pilgrimage/AdobeStock_105381495_Preview.jpeg"); }
+
+#selected_pilgrimage_img2 {
+  background-position: 0 50%;
+  background-image: url("../images/pilgrimage/AdobeStock_113589316_Preview.jpeg"); }
+
+/* Selected_pilgrimage - stop */
+/* Selected_pilgrimage - start */
+#selected_for_work_img0 {
+  background-position: 50% 25%;
+  background-image: url("../images/work/AdobeStock_71756428_Preview.jpeg"); }
+
+#selected_for_work_img1 {
+  background-image: url("../images/work/AdobeStock_137853264_Preview.jpeg"); }
+
+#selected_for_work_img2 {
+  background-image: url("../images/work/AdobeStock_216649646_Preview.jpeg"); }
+
+/* Selected_pilgrimage - stop */
 /* News - start */
 #news .container .row:first-child {
   margin-bottom: 7vh; }
@@ -309,10 +342,10 @@ footer {
     padding-bottom: 8vw; }
     section:first-of-type {
       padding-top: 8vw; }
-  #title_for_school {
+  .offer_title {
     padding-top: 13vw;
     padding-bottom: 12vw; }
-  #offer_for_school {
+  .offer_table {
     padding-top: 7vw;
     padding-bottom: 15vw; }
   footer .row:nth-child(1) {

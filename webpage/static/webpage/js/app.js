@@ -18,7 +18,7 @@ $(document).ready(function() {
     /* change order of image and offer presentation box depending on screen width - start*/
     function changeOrderOfLaoutElements() {
 
-        const imageToChangePosition = $('#selected_for_school_img1');
+        const imageToChangePosition = $('.img1');
         const selectedItem1 = $('.selected-item-1');
         const selectionRowToBeChanged = $('.selection-row').eq(1);
 

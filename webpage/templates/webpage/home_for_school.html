@@ -17,13 +17,13 @@
 </header>
 <!-- Header - stop -->
 <!-- Selected - start -->
-<section id="title_for_school">
+<section id="title_for_school" class="offer_title">
     <h1>Oferta dla szkół</h1>
 </section>
 <section id="selected_for_school" class="selection">
     <div class="container">
         <div id="section-{{for_school_selected.0.pk}}" class="row no-gutters selection-row closestElement">
-            <div id="selected_for_school_img0" class="col-md-6 selected-item selected_img"></div>
+            <div id="selected_for_school_img0" class="col-md-6 selected-item selected_img img0"></div>
             <div class="col-md-6 selected-item selected_data">
                 <div class="selected_wrapper">
                     {% if for_school_selected.0 %}
@@ -48,10 +48,10 @@
                     {% endif %}
                 </div>
             </div>
-            <div id="selected_for_school_img1" class="col-md-6 selected-item selected-item-1 selected_img"></div>
+            <div id="selected_for_school_img1" class="col-md-6 selected-item selected-item-1 selected_img img1"></div>
         </div>
         <div id="section-{{for_school_selected.2.pk}}" class="row no-gutters selection-row closestElement">
-            <div id="selected_for_school_img2" class="col-md-6 selected-item selected_img"></div>
+            <div id="selected_for_school_img2" class="col-md-6 selected-item selected_img img2"></div>
             <div class="col-md-6 selected-item selected_data">
                 <div class="selected_wrapper">
                     {% if for_school_selected.2 %}
@@ -68,7 +68,7 @@
 </section>
 <!-- Selected - stop-->
 <!-- Offer for school - start -->
-<section id="offer_for_school">
+<section id="offer_for_school" class="offer_table">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 offset-lg-3">

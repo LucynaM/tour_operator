@@ -39,10 +39,9 @@ class HomePage(View):
 
 class HomeForSchoolPage(View):
     def get(self, request):
-        for_school = Offer.objects.filter(category='school_trip', selected=False).order_by('title')
+        for_school = Offer.objects.filter(category='school_trip', selected=False).exclude(withdrawn=True).order_by('title')
         for_school_selected = Offer.objects.filter(category='school_trip', selected=True).order_by('selected_sort')
         directions = getDirections()
-        print(directions)
         ctx = {
             'for_school': for_school,
             'for_school_selected': for_school_selected,
@@ -51,6 +50,36 @@ class HomeForSchoolPage(View):
         return render(request, 'webpage/home_for_school.html', ctx)
     def post(self, request):
         return search_snippet(request, 'webpage/home_for_school.html')
+
+
+class HomePilgrimagePage(View):
+    def get(self, request):
+        pilgrimage = Offer.objects.filter(category='pilgrimage', selected=False).exclude(withdrawn=True).order_by('title')
+        pilgrimage_selected = Offer.objects.filter(category='pilgrimage', selected=True).order_by('selected_sort')
+        directions = getDirections()
+        ctx = {
+            'pilgrimage': pilgrimage,
+            'pilgrimage_selected': pilgrimage_selected,
+            'directions': directions,
+        }
+        return render(request, 'webpage/home_pilgrimage.html', ctx)
+    def post(self, request):
+        return search_snippet(request, 'webpage/home_pilgrimage.html')
+    
+    
+class HomeForWorkPage(View):
+    def get(self, request):
+        for_work = Offer.objects.filter(category='work_trip', selected=False).exclude(withdrawn=True).order_by('title')
+        for_work_selected = Offer.objects.filter(category='work_trip', selected=True).order_by('selected_sort')
+        directions = getDirections()
+        ctx = {
+            'for_work': for_work,
+            'for_work_selected': for_work_selected,
+            'directions': directions,
+        }
+        return render(request, 'webpage/home_for_work.html', ctx)
+    def post(self, request):
+        return search_snippet(request, 'webpage/home_for_work.html')
 
 
 class HomeHolidayPage(View):

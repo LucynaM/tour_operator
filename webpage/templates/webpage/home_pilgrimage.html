@@ -1,0 +1,98 @@
+{% extends './_base.html' %}
+{% load static %}
+
+{% block brand %}{% url 'webpage:home' %}{% endblock brand %}
+
+{% block link_pilgrimage %}{% endblock link_pilgrimage %}
+
+{% block about_link %}{% endblock about_link %}
+
+
+{% block content %}
+<!-- Header - start -->
+<header id="header_pilgrimage" class="header_container">
+    <div class="container-fluid">
+        <div id="header_pilgrimage_img" class="header_img"></div>
+    </div>
+</header>
+<!-- Header - stop -->
+<!-- Selected - start -->
+<section id="title_pilgrimage" class="offer_title">
+    <h1>Pielgrzymki</h1>
+</section>
+<section id="selected_pilgrimage" class="selection">
+    <div class="container">
+        <div id="section-{{pilgrimage_selected.0.pk}}" class="row no-gutters selection-row closestElement">
+            <div id="selected_pilgrimage_img0" class="col-md-6 selected-item selected_img img0"></div>
+            <div class="col-md-6 selected-item selected_data">
+                <div class="selected_wrapper">
+                    {% if pilgrimage_selected.0 %}
+                    <h2>{{ pilgrimage_selected.0.title }}
+                        <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' pilgrimage_selected.0.pk %}" title="pokaż szczegóły"></i>
+                    </h2>
+                    <p>{{ pilgrimage_selected.0.short_descr }}</p>
+                    <p>{{ pilgrimage_selected.0.duration_in_days }}{% if pilgrimage_selected.0.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div id="section-{{ pilgrimage_selected.1.pk }}" class="row no-gutters selection-row closestElement">
+            <div class="col-md-6 selected-item selected-item-1 selected_data">
+                <div class="selected_wrapper">
+                    {% if pilgrimage_selected.1 %}
+                    <h2>{{ pilgrimage_selected.1.title }}
+                        <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' pilgrimage_selected.1.pk %}" title="pokaż szczegóły"></i>
+                    </h2>
+                    <p>{{ pilgrimage_selected.1.short_descr }}</p>
+                    <p>{{ pilgrimage_selected.1.duration_in_days }}{% if pilgrimage_selected.1.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div id="selected_pilgrimage_img1" class="col-md-6 selected-item selected-item-1 selected_img img1"></div>
+        </div>
+        <div id="section-{{pilgrimage_selected.2.pk}}" class="row no-gutters selection-row closestElement">
+            <div id="selected_pilgrimage_img2" class="col-md-6 selected-item selected_img img2"></div>
+            <div class="col-md-6 selected-item selected_data">
+                <div class="selected_wrapper">
+                    {% if pilgrimage_selected.2 %}
+                    <h2>{{ pilgrimage_selected.2.title }}
+                        <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' pilgrimage_selected.2.pk %}" title="pokaż szczegóły"></i>
+                    </h2>
+                    <p>{{ pilgrimage_selected.2.short_descr }}</p>
+                    <p>{{ pilgrimage_selected.2.duration_in_days }}{% if pilgrimage_selected.2.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Selected - stop-->
+<!-- Offer for school - start -->
+<section id="offer_pilgrimage" class="offer_table">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+
+                <table class="table">
+                    <tr>
+                        <th>Kierunek</th>
+                        <th>Czas trwania</th>
+                        <th></th>
+                    </tr>
+                    {% if pilgrimage %}
+                    {% for offer in pilgrimage %}
+                    <tr id="table-{{ offer.pk }}" class="closestElement">
+                        <td><strong>{{ offer.title }}</strong></td>
+                        <td>{{ offer.duration_in_days }} {% if offer.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</td>
+                        <td><i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer.pk %}"></i></td>
+                    </tr>
+                    {% endfor %}
+                    {% endif %}
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Offer for school - stop -->
+
+{% endblock content %}
