@@ -15,11 +15,10 @@ section {
   padding-bottom: 8vh; }
   section:first-of-type {
     padding-top: 8vh; }
-
-.offer_title {
-  padding-top: 13vh;
-  padding-bottom: 12vh;
-  text-align: center; }
+    section:first-of-type.offer_title {
+      padding-top: 13vh;
+      padding-bottom: 12vh;
+      text-align: center; }
 
 .offer_table {
   padding-top: 7vh;
@@ -174,7 +173,7 @@ footer {
   background-image: url("../images/AdobeStock_171725583_Preview.jpeg"); }
 
 #offer-img-4 {
-  background-image: url("../images/_MG_2214-corr.jpg"); }
+  background-image: url("../images/pilgrimage/AdobeStock_119593306_Preview.jpeg"); }
 
 #offer-img-5 {
   background-image: url("../images/AdobeStock_138326898_Preview.jpeg"); }
@@ -198,16 +197,20 @@ footer {
   background-image: url("../images/AdobeStock_83919622_Preview.jpeg"); }
 
 #header_pilgrimage_img {
-  background-position: 50% 27%;
-  background-image: url("../images/_MG_2214-corr.jpg"); }
+  background-position: 50% 80%;
+  background-image: url("../images/pilgrimage/AdobeStock_119593306_Preview.jpeg"); }
 
 #header_for_work_img {
-  background-position: 50% 77%;
+  background-position: 50% 72%;
   background-image: url("../images/_MG_0139.jpg"); }
 
 #header_holiday_img {
   background-position: 50% 35%;
   background-image: url("../images/AdobeStock_171725583_Preview.jpeg"); }
+
+#header_recommended_img {
+  background-position: 50% 71%;
+  background-image: url("../images/AdobeStock_66207813_Preview.jpeg"); }
 
 #header_news_img {
   background-position: 50% 65%;
@@ -259,29 +262,41 @@ footer {
 /* Selected_for_school - stop */
 /* Selected_pilgrimage - start */
 #selected_pilgrimage_img0 {
-  background-position: 50% 100%;
-  background-image: url("../images/pilgrimage/AdobeStock_40197495_Preview.jpeg"); }
+  background-position: 0% 50%;
+  background-image: url("../images/pilgrimage/AdobeStock_113589316_Preview.jpeg"); }
 
 #selected_pilgrimage_img1 {
   background-image: url("../images/pilgrimage/AdobeStock_105381495_Preview.jpeg"); }
 
 #selected_pilgrimage_img2 {
-  background-position: 0 50%;
-  background-image: url("../images/pilgrimage/AdobeStock_113589316_Preview.jpeg"); }
+  background-position: 50 100%;
+  background-image: url("../images/pilgrimage/AdobeStock_157182090_Preview.jpeg"); }
 
 /* Selected_pilgrimage - stop */
 /* Selected_pilgrimage - start */
 #selected_for_work_img0 {
   background-position: 50% 25%;
-  background-image: url("../images/work/AdobeStock_71756428_Preview.jpeg"); }
-
-#selected_for_work_img1 {
-  background-image: url("../images/work/AdobeStock_137853264_Preview.jpeg"); }
-
-#selected_for_work_img2 {
   background-image: url("../images/work/AdobeStock_216649646_Preview.jpeg"); }
 
+#selected_for_work_img1 {
+  background-image: url("../images/work/AdobeStock_206018751_Preview.jpeg"); }
+
+#selected_for_work_img2 {
+  background-image: url("../images/work/AdobeStock_137853264_Preview.jpeg"); }
+
 /* Selected_pilgrimage - stop */
+/* Recommended - start */
+#recommended_img0 {
+  background-position: 50% 25%;
+  background-image: url("../images/recommended/AdobeStock_116787150_Preview.jpeg"); }
+
+#recommended_img1 {
+  background-image: url("../images/recommended/AdobeStock_152013093_Preview.jpeg"); }
+
+#recommended_img2 {
+  background-image: url("../images/recommended/AdobeStock_104854790_Preview.jpeg"); }
+
+/* Recommended - stop */
 /* News - start */
 #news .container .row:first-child {
   margin-bottom: 7vh; }

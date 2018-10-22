@@ -1,0 +1,71 @@
+{% extends './_base.html' %}
+{% load static %}
+
+{% block brand %}{% url 'webpage:home' %}{% endblock brand %}
+
+{% block link_recommended %}{% endblock link_recommended %}
+
+{% block about_link %}{% endblock about_link %}
+
+
+{% block content %}
+<!-- Header - start -->
+<header id="header_recommended" class="header_container">
+    <div class="container-fluid">
+        <div id="header_recommended_img" class="header_img"></div>
+    </div>
+</header>
+<!-- Header - stop -->
+<!-- Selected - start -->
+<section id="title_recommended" class="offer_title">
+    <h1>Polecamy</h1>
+</section>
+<section id="selected_recommended" class="selection">
+    <div class="container">
+        <div id="section-{{recommended.0.pk}}" class="row no-gutters selection-row closestElement">
+            <div id="recommended_img0" class="col-md-6 selected-item selected_img img0"></div>
+            <div class="col-md-6 selected-item selected_data">
+                <div class="selected_wrapper">
+                    {% if recommended.0 %}
+                    <h2>{{ recommended.0.title }}
+                        <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' recommended.0.pk %}" title="pokaż szczegóły"></i>
+                    </h2>
+                    <p>{{ recommended.0.short_descr }}</p>
+                    <p>{{ recommended.0.duration_in_days }}{% if recommended.0.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div id="section-{{ recommended.1.pk }}" class="row no-gutters selection-row closestElement">
+            <div class="col-md-6 selected-item selected-item-1 selected_data">
+                <div class="selected_wrapper">
+                    {% if recommended.1 %}
+                    <h2>{{ recommended.1.title }}
+                        <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' recommended.1.pk %}" title="pokaż szczegóły"></i>
+                    </h2>
+                    <p>{{ recommended.1.short_descr }}</p>
+                    <p>{{ recommended.1.duration_in_days }}{% if recommended.1.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div id="recommended_img1" class="col-md-6 selected-item selected-item-1 selected_img img1"></div>
+        </div>
+        <div id="section-{{recommended.2.pk}}" class="row no-gutters selection-row closestElement">
+            <div id="recommended_img2" class="col-md-6 selected-item selected_img img2"></div>
+            <div class="col-md-6 selected-item selected_data">
+                <div class="selected_wrapper">
+                    {% if recommended.2 %}
+                    <h2>{{ recommended.2.title }}
+                        <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' recommended.2.pk %}" title="pokaż szczegóły"></i>
+                    </h2>
+                    <p>{{ recommended.2.short_descr }}</p>
+                    <p>{{ recommended.2.duration_in_days }}{% if recommended.2.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Selected - stop-->
+
+{% endblock content %}

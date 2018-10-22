@@ -82,6 +82,19 @@ class HomeForWorkPage(View):
         return search_snippet(request, 'webpage/home_for_work.html')
 
 
+class HomeRecommendedPage(View):
+    def get(self, request):
+        recommended = Offer.objects.filter(recommended=True).order_by('recommended_sort')
+        directions = getDirections()
+        ctx = {
+            'recommended': recommended,
+            'directions': directions,
+        }
+        return render(request, 'webpage/home_recommended.html', ctx)
+    def post(self, request):
+        return search_snippet(request, 'webpage/home_recommended.html')
+
+
 class HomeHolidayPage(View):
     def get(self, request):
         holiday = Holiday.objects.all()[0:1:-1]
