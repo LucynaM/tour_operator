@@ -111,14 +111,20 @@ $(document).ready(function() {
     /* Show offer on click - stop */
 
     /* autocomplete - start */
+
     function searchAutocomplete() {
         const searchForm = $('[type="search"]');
-        const directions = searchForm.data('directions').split(', ')
-        console.log(directions);
-        searchForm.autocomplete({source: directions});
+        const url = searchForm.data('url');
+        ajaxHandler(url, '', 'GET', processDirections, searchForm)
     };
 
+    function processDirections(r, element) {
+        const directions = r.directions.split(', ');
+        element.autocomplete({source: directions});
+    }
+
     searchAutocomplete();
+
     /* autocomplete -stop */
 
 })

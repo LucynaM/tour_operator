@@ -57,7 +57,7 @@
                 </ul>
                 <form class="form-inline my-2 my-lg-0" method="post">
                     {% csrf_token %}
-                  <input class="form-control ui-widget" type="search" placeholder="kierunek" aria-label="Search" name="search" data-directions="{{directions}}">
+                  <input class="form-control ui-widget" type="search" placeholder="kierunek" aria-label="Search" name="search" data-url="{% url 'webpage:get_directions' %}" >
                   <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
                 </form>
                 <span class="navbar-text">

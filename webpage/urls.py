@@ -14,7 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from .views import HomePage, HomeForSchoolPage, HomePilgrimagePage, HomeForWorkPage, HomeHolidayPage, HomeNewsPage, HomeSearchPage, HomeRecommendedPage
+from .views import HomePage, HomeForSchoolPage, HomePilgrimagePage, HomeForWorkPage, HomeHolidayPage, HomeNewsPage, \
+    HomeSearchPage, HomeRecommendedPage, GetDirectionsBis
 
 urlpatterns = [
     url(r'^$', HomePage.as_view(), name='home'),
@@ -25,4 +26,5 @@ urlpatterns = [
     url(r'^holiday/$', HomeHolidayPage.as_view(), name='holiday'),
     url(r'^news/$', HomeNewsPage.as_view(), name='news'),
     url(r'^search/(?P<search>(\w)+)/$', HomeSearchPage.as_view(), name='search'),
+    url(r'^get_directions/$', GetDirectionsBis.as_view(), name='get_directions'),
 ]
