@@ -14,7 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from .views import AddTour, AddParticipant, EditTour, EditParticipant, ChangeStatus, generate_pdf
+from .views import AddTour, AddParticipant, EditTour, EditParticipant, ChangeStatus, generate_pdf, FillParticipant, SortParticipants
+from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
@@ -24,5 +25,10 @@ urlpatterns = [
     url(r'^edit_participant/(?P<tour_pk>(\d)+)/(?P<participant_pk>(\d)+)/$', EditParticipant.as_view(), name='edit_participant'),
     url(r'^change_status/(?P<pk>(\d)+)/$', ChangeStatus.as_view(), name='change_status'),
     url(r'^generate_pdf/$', generate_pdf, name='generate_pdf'),
+    url(r'^fill_participant/$', FillParticipant.as_view(), name='fill_participant'),
+    url(r'^sort_participants/(?P<pk>(\d)+)/$', SortParticipants.as_view(), name='sort_participants'),
+
+    url(r'^login/$', auth_views.login, {'template_name': 'webpage_tour/login.html'},  name='login'),
+    url(r'^logout/$', auth_views.logout, {'next_page': 'tour:login'}, name='logout'),
 
 ]

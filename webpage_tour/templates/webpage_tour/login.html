@@ -1,0 +1,29 @@
+{% extends './_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block link_management %}
+
+{% endblock link_management %}
+
+{% block content %}
+
+
+<section id="login">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8 offset-lg-2">
+                <div>
+                    <h2 class="page-header">Zaloguj się</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <input type="submit" name="submit" value="login" class="btn btn-danger">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock content %}
