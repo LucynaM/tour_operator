@@ -173,13 +173,13 @@ footer {
   background-image: url("../images/AdobeStock_171725583_Preview.jpeg"); }
 
 #offer-img-4 {
-  background-image: url("../images/pilgrimage/AdobeStock_119593306_Preview.jpeg"); }
+  background-image: url("../images/_MG_2214-corr.jpg"); }
 
 #offer-img-5 {
   background-image: url("../images/AdobeStock_138326898_Preview.jpeg"); }
 
 #offer-img-6 {
-  background-image: url("../images/AdobeStock_66207813_Preview.jpeg"); }
+  background-image: url("../images/recommended/AdobeStock_31306421_Preview.jpeg"); }
 
 /* header - stop */
 /* Header_for_school, Header_holiday - start */
@@ -197,8 +197,8 @@ footer {
   background-image: url("../images/AdobeStock_83919622_Preview.jpeg"); }
 
 #header_pilgrimage_img {
-  background-position: 50% 80%;
-  background-image: url("../images/pilgrimage/AdobeStock_119593306_Preview.jpeg"); }
+  background-position: 50% 20%;
+  background-image: url("../images/_MG_2214-corr.jpg"); }
 
 #header_for_work_img {
   background-position: 50% 72%;
@@ -210,7 +210,7 @@ footer {
 
 #header_recommended_img {
   background-position: 50% 71%;
-  background-image: url("../images/AdobeStock_66207813_Preview.jpeg"); }
+  background-image: url("../images/recommended/AdobeStock_31306421_Preview.jpeg"); }
 
 #header_news_img {
   background-position: 50% 65%;
@@ -262,15 +262,15 @@ footer {
 /* Selected_for_school - stop */
 /* Selected_pilgrimage - start */
 #selected_pilgrimage_img0 {
-  background-position: 0% 50%;
-  background-image: url("../images/pilgrimage/AdobeStock_113589316_Preview.jpeg"); }
+  background-position: 50% 100%;
+  background-image: url("../images/pilgrimage/AdobeStock_157182090_Preview.jpeg"); }
 
 #selected_pilgrimage_img1 {
   background-image: url("../images/pilgrimage/AdobeStock_105381495_Preview.jpeg"); }
 
 #selected_pilgrimage_img2 {
-  background-position: 50 100%;
-  background-image: url("../images/pilgrimage/AdobeStock_157182090_Preview.jpeg"); }
+  background-position: 0% 50%;
+  background-image: url("../images/pilgrimage/AdobeStock_113589316_Preview.jpeg"); }
 
 /* Selected_pilgrimage - stop */
 /* Selected_pilgrimage - start */
@@ -287,14 +287,13 @@ footer {
 /* Selected_pilgrimage - stop */
 /* Recommended - start */
 #recommended_img0 {
-  background-position: 50% 25%;
-  background-image: url("../images/recommended/AdobeStock_116787150_Preview.jpeg"); }
+  background-image: url("../images/recommended/AdobeStock_190033421_Preview.jpeg"); }
 
 #recommended_img1 {
-  background-image: url("../images/recommended/AdobeStock_152013093_Preview.jpeg"); }
+  background-image: url("../images/recommended/AdobeStock_196141359_Preview.jpeg"); }
 
 #recommended_img2 {
-  background-image: url("../images/recommended/AdobeStock_104854790_Preview.jpeg"); }
+  background-image: url("../images/recommended/AdobeStock_214637081_Preview.jpeg"); }
 
 /* Recommended - stop */
 /* News - start */
