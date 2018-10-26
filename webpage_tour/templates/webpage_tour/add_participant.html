@@ -20,16 +20,16 @@
     </div>
 </section>
 
-<section id="participants" class="list-elements">
+<section id="participants" class="list-elements" data-url="{% url 'tour:sort_participants' tour.pk %}">
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-lg-8 offset-lg-2">
                 {% if participants %}
                 <table class="table">
                     <tr>
-                        <th>uczestnik</th>
+                        <th id="participant-label">uczestnik</th>
                         <th>telefon</th>
-                        <th>status</th>
+                        <th id="status-label">status</th>
                         <th></th>
                     </tr>
                     {% for participant in participants %}
@@ -66,7 +66,7 @@
             <div class="col-md-12 col-lg-8 offset-lg-2">
                 <div>
                     <h2 class="page-header">Dodaj uczestnika</h2>
-                    <form action="" method="post">
+                    <form action="" method="post" class="ui-widget" data-url="{% url 'tour:fill_participant' %}" id="participant_form">
                         {% csrf_token %}
                         {{ form|crispy }}
                         <input type="submit" name="submit" value="add" class="btn btn-danger">

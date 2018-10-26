@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from django.views import View
 from django.http import JsonResponse, HttpResponseBadRequest, HttpResponse
+from django.views import View
 
 from .models import Tour, TourParticipant, Participant, STATUSES
 from .forms import TourForm, ParticipantForm, TourParticipantForm
@@ -98,10 +98,10 @@ class EditTour(View):
 
     def post(self, request, pk):
         tour = Tour.objects.get(pk=pk)
-        form = TourForm(request.POST, instance=tour)
+        form = TourForm(request.POST)
 
         if form.is_valid():
-            form.save()
+            Tour.objects.filter(pk=pk).update(**form.cleaned_data)
             return redirect('tour:add_participant', pk=tour.pk)
         ctx = {
             'tour': tour,
@@ -131,7 +131,7 @@ class EditParticipant(View):
             'participant': participant,
             'form': form,
         }
-        
+
         return render(request, 'webpage_tour/edit_participant.html', ctx)
 
 
@@ -175,3 +175,49 @@ def generate_pdf(request):
     p.showPage()
     p.save()
     return response
+
+
+class FillParticipant(View):
+    def get(self, request):
+        try:
+            participants = Participant.objects.all()
+            data = []
+            for participant in participants:
+                participant_dict = {}
+                for key, value in participant.__dict__.items():
+                    if key != '_state':
+                        participant_dict[key] = value
+                data.append(participant_dict)
+
+            return JsonResponse(participants, safe=False)
+        except Exception as e:
+            print(e)
+
+
+class SortParticipants(View):
+
+    def get(self, request, pk):
+        try:
+            if 'key' in request.GET.keys():
+                tour = Tour.objects.get(pk=pk)
+                order_key = request.GET['key']
+                participants = tour.participants.all().order_by(order_key)
+                data = []
+                for participant in participants:
+                    participant_item = {}
+                    for key, item in participant.__dict__.items():
+                        if key != '_state':
+                            participant_item[key] = item
+                        if key == 'participant_id':
+                            participant_data = Participant.objects.get(pk=key)
+                            participant_item['name'] = participant_data['name']
+                            participant_item['phone'] = participant_data['phone']
+                    data.append(participant_item)
+
+                return JsonResponse(data, safe=False)
+        except Exception as e:
+            print(e)
+
+
+
+
