@@ -38,11 +38,11 @@
 
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             {% block link_for_school %}<a class="dropdown-item" href="{% url 'webpage:for_school' %}">dla szkół</a>{% endblock link_for_school %}
-                            {% block link_for_work %}<a class="dropdown-item" href="#">dla firm</a>{% endblock link_for_work %}
+                            {% block link_for_work %}<a class="dropdown-item" href="{% url 'webpage:for_work' %}">dla firm</a>{% endblock link_for_work %}
                             {% block link_holiday %}<a class="dropdown-item" href="{% url 'webpage:holiday' %}">wakacje</a>{% endblock link_holiday %}
-                            {% block link_pilgrimage %}<a class="dropdown-item" href="#">pielgrzymki</a>{% endblock link_pilgrimage %}
+                            {% block link_pilgrimage %}<a class="dropdown-item" href="{% url 'webpage:pilgrimage' %}">pielgrzymki</a>{% endblock link_pilgrimage %}
                             {% block link_news %}<a class="dropdown-item" href="{% url 'webpage:news' %}">aktualności</a>{% endblock link_news %}
-                            {% block link_recommend %}<a class="dropdown-item" href="#">polecamy</a>{% endblock link_recommend %}
+                            {% block link_recommend %}<a class="dropdown-item" href="{% url 'webpage:recommended' %}">polecamy</a>{% endblock link_recommend %}
                         </div>
                     </li>
                     <!-- Offer as dropdown menu - stop -->
@@ -85,12 +85,12 @@
                 <div class="col-lg-2 col-md-3 col-sm-6">
                     <h6>Oferta</h6>
                     <ul>
-                        <li><a href="">Oferta dla szkół</a></li>
-                        <li><a href="">Oferta dla firm</a></li>
-                        <li><a href="">Wakacje</a></li>
-                        <li><a href="">Pielgrzymki</a></li>
-                        <li><a href="">Aktualności</a></li>
-                        <li><a href="">Polecamy</a></li>
+                        <li><a href="{% url 'webpage:for_school' %}">Oferta dla szkół</a></li>
+                        <li><a href="{% url 'webpage:for_work' %}">Oferta dla firm</a></li>
+                        <li><a href="{% url 'webpage:holiday' %}">Wakacje</a></li>
+                        <li><a href="{% url 'webpage:pilgrimage' %}">Pielgrzymki</a></li>
+                        <li><a href="{% url 'webpage:news' %}">Aktualności</a></li>
+                        <li><a href="{% url 'webpage:recommended' %}">Polecamy</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-6">
