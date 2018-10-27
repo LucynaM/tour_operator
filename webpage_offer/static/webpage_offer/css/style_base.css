@@ -131,6 +131,7 @@ section {
   #manager-intro .row div:first-child .manager {
     float: right; }
   #manager-intro .manager {
+    float: left;
     margin-left: 2.5vh;
     margin-right: 2.5vh;
     width: 42.5vh;
@@ -173,7 +174,7 @@ section {
 
 @media (max-width: 575px) {
   #manager-intro .row div:first-child .manager {
-    float: inherit; }
+    float: left; }
   #manager-intro .manager {
     left: 0;
     right: 0;

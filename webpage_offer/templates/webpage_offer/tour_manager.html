@@ -7,33 +7,25 @@
     <div class="container-fluid">
         <div class="row no-gutters">
             <div class="col-sm-6">
-                <a href="{% url 'offer:add_offer' %}">
-                    <div class="manager" id="offer-manager">
-                        <h5>oferta</h5>
-                    </div>
+                <a href="{% url 'offer:add_offer' %}" class="manager" id="offer-manager">
+                    <h5>oferta</h5>
                 </a>
             </div>
             <div class="col-sm-6">
-                <a href="{% url 'offer:add_holiday' %}">
-                    <div class="manager" id="holiday-manager">
-                        <h5>wakacje</h5>
-                    </div>
+                <a href="{% url 'offer:add_holiday' %}" class="manager" id="holiday-manager">
+                    <h5>wakacje</h5>
                 </a>
             </div>
         </div>
         <div class="row no-gutters">
-            <div class="col-sm-6">
-                <a href="{% url 'offer:add_news' %}">
-                    <div class="manager" id="news-manager">
-                        <h5>aktualności</h5>
-                    </div>
+            <div class="col-sm-6" >
+                <a href="{% url 'offer:add_news' %}" class="manager" id="news-manager">
+                    <h5>aktualności</h5>
                 </a>
             </div>
             <div class="col-sm-6">
-                <a href="">
-                    <div class="manager" id="tour-manager">
-                        <h5>wycieczka</h5>
-                    </div>
+                <a href="{% url 'tour:add_tour' %}" class="manager" id="tour-manager">
+                    <h5>wycieczka</h5>
                 </a>
             </div>
         </div>
