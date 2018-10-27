@@ -33,7 +33,15 @@
                 <ul class="navbar-nav">
 
                     {% block link_management %}
+
                     {% endblock link_management %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'offer:tour_manager' %}">manager</a>
+                    </li>
+
+                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'tour:logout' %}">wyloguj</a>
+                    </li>
 
                 </ul>
             </div>
