@@ -249,7 +249,7 @@ $(document).ready(function(){
 
     function setDate() {
         const datePicker = $('.datepicker');
-        datePicker.datepicker({ dateFormat: 'dd.mm.yy' });
+        datePicker.datepicker({ dateFormat: 'dd/mm/yy' });
     }
 
     setDate();

@@ -17,14 +17,13 @@ from reportlab.lib.units import mm
 # Create your views here.
 
 def get_dates(start, end):
-    # get dates range for search form
     if start.year == end.year and start.month == end.month:
-        start = start.strftime('%d.')
+        start = start.strftime('%d')
     elif start.year == end.year:
-        start = start.strftime('%d.%m.')
+        start = start.strftime('%d/%m')
     else:
-        start = start.strftime('%d.%m.%Y')
-    end = end.strftime('%d.%m.%Y')
+        start = start.strftime('%d/%m/%Y')
+    end = end.strftime('%d/%m/%Y')
     date = ('{}-{}'.format(start, end))
     return date
 
@@ -50,7 +49,7 @@ class AddTour(View):
             tour.date = get_dates(tour.start_date, tour.end_date)
 
         if form.is_valid():
-            tour = Tour.objects.create(**form.cleaned_data)
+            tour = form.save()
             return redirect('tour:add_participant', pk=tour.pk)
         ctx = {
             'form': form,
@@ -103,12 +102,7 @@ class EditTour(View):
     def get(self, request, pk):
         tour = Tour.objects.get(pk=pk)
         tour.date = get_dates(tour.start_date, tour.end_date)
-
-        form = TourForm(initial={'offer': tour.offer,
-                                 'start_date': tour.start_date.strftime('%d.%m.%Y'),
-                                 'end_date': tour.end_date.strftime('%d.%m.%Y'),
-                                 })
-        #form = TourForm(instance=tour)
+        form = TourForm(instance=tour)
 
         ctx = {
             'tour': tour,
@@ -121,10 +115,10 @@ class EditTour(View):
         tour = Tour.objects.get(pk=pk)
         tour.date = get_dates(tour.start_date, tour.end_date)
 
-        form = TourForm(request.POST)
+        form = TourForm(request.POST, instance=tour)
 
         if form.is_valid():
-            Tour.objects.filter(pk=pk).update(**form.cleaned_data)
+            tour.save()
             return redirect('tour:add_participant', pk=tour.pk)
         ctx = {
             'tour': tour,

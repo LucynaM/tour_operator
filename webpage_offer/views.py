@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.http import JsonResponse, HttpResponseBadRequest
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Offer, Holiday, News
 from .forms import AddOfferForm, EditOfferForm, HolidayForm, NewsForm
 
