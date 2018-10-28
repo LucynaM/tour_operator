@@ -101,7 +101,6 @@ $(document).ready(function(){
                 const draggableId = ui.draggable.data('id');
                 const draggableText = ui.draggable.html();
 
-
                 // prepare data needed for ajax function
                 const data = {}
                 const url = $(this).data('url');
@@ -227,7 +226,7 @@ $(document).ready(function(){
     textCounter();
     /* Counter of characters - stop*/
 
-   /* Change status od participant of a tour - start */
+   /* Change status of participant of a tour - start */
 
     function seeIfOK(r) {
         console.log(r);
@@ -235,7 +234,6 @@ $(document).ready(function(){
 
     function changeStatus() {
         $('select').on('change', function() {
-            console.log('działam');
             const url = $(this).data('url');
             const status = $(this).val();
             data = {
@@ -246,8 +244,15 @@ $(document).ready(function(){
     };
 
     changeStatus();
-    /* Change status od participant of a tour - stop */
+    /* Change status of participant of a tour - stop */
 
+
+    function setDate() {
+        const datePicker = $('.datepicker');
+        datePicker.datepicker({ dateFormat: 'dd.mm.yy' });
+    }
+
+    setDate();
 
 
 });

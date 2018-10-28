@@ -16,11 +16,25 @@ from reportlab.lib.units import mm
 
 # Create your views here.
 
+def get_dates(start, end):
+    # get dates range for search form
+    if start.year == end.year and start.month == end.month:
+        start = start.strftime('%d.')
+    elif start.year == end.year:
+        start = start.strftime('%d.%m.')
+    else:
+        start = start.strftime('%d.%m.%Y')
+    end = end.strftime('%d.%m.%Y')
+    date = ('{}-{}'.format(start, end))
+    return date
+
 
 class AddTour(View):
     def get(self, request):
         form = TourForm()
-        tour_list = Tour.objects.all().exclude(end_date__lte=datetime.now().date())
+        tour_list = Tour.objects.all().exclude(end_date__lte=datetime.now().date()).order_by('start_date')
+        for tour in tour_list:
+            tour.date = get_dates(tour.start_date, tour.end_date)
 
         ctx = {
             'form': form,
@@ -32,6 +46,8 @@ class AddTour(View):
     def post(self, request):
         form = TourForm(request.POST)
         tour_list = Tour.objects.all().exclude(end_date__lte=datetime.now().date()).order_by('start_date')
+        for tour in tour_list:
+            tour.date = get_dates(tour.start_date, tour.end_date)
 
         if form.is_valid():
             tour = Tour.objects.create(**form.cleaned_data)
@@ -47,6 +63,8 @@ class AddTour(View):
 class AddParticipant(View):
     def get(self, request, pk):
         tour = Tour.objects.get(pk=pk)
+        tour.date = get_dates(tour.start_date, tour.end_date)
+
         form = ParticipantForm()
         participants = tour.participants.all()
         ctx = {
@@ -59,6 +77,8 @@ class AddParticipant(View):
 
     def post(self, request, pk):
         tour = Tour.objects.get(pk=pk)
+        tour.date = get_dates(tour.start_date, tour.end_date)
+
         form = ParticipantForm(request.POST)
         if form.is_valid():
             participant_list = Participant.objects.filter(**form.cleaned_data)
@@ -82,10 +102,11 @@ class AddParticipant(View):
 class EditTour(View):
     def get(self, request, pk):
         tour = Tour.objects.get(pk=pk)
+        tour.date = get_dates(tour.start_date, tour.end_date)
 
         form = TourForm(initial={'offer': tour.offer,
-                                 'start_date': tour.start_date.strftime('%Y-%m-%d'),
-                                 'end_date': tour.end_date.strftime('%Y-%m-%d'),
+                                 'start_date': tour.start_date.strftime('%d.%m.%Y'),
+                                 'end_date': tour.end_date.strftime('%d.%m.%Y'),
                                  })
         #form = TourForm(instance=tour)
 
@@ -98,6 +119,8 @@ class EditTour(View):
 
     def post(self, request, pk):
         tour = Tour.objects.get(pk=pk)
+        tour.date = get_dates(tour.start_date, tour.end_date)
+
         form = TourForm(request.POST)
 
         if form.is_valid():
@@ -174,7 +197,7 @@ def generate_pdf(request):
     # Close the PDF object cleanly, and we're done.
     p.showPage()
     p.save()
-    return response
+    return redirect('tour:add_tour')
 
 
 class FillParticipant(View):

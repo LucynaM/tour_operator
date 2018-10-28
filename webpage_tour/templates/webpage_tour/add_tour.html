@@ -38,7 +38,7 @@
                     {% for tour in tour_list %}
                     <tr id="table-{{ tour.pk }}" class="closestElement">
                         <td><strong>{{ tour.offer.title }}</strong></td>
-                        <td><strong>{{ tour.start_date|date:'d.m.' }}-{{ tour.end_date|date:'d.m.' }}</strong></td>
+                        <td><strong>{{ tour.date }}</strong></td>
                         <td><a href="{% url 'tour:add_participant' tour.pk %}"><i class="fas fa-archive"></i></a></td>
                         <td><a href="{% url 'tour:edit_tour' tour.pk %}"><i class="fas fa-edit"></i></a></td>
                     </tr>

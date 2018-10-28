@@ -3,8 +3,8 @@ from .models import Tour, TourParticipant, Participant
 
 
 class TourForm(forms.ModelForm):
-    start_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
-    end_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    start_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'text', 'class': 'datepicker', 'placeholder': 'dd.mm.yyyy'}))
+    end_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'text', 'class': 'datepicker', 'placeholder': 'dd.mm.yyyy'}))
     class Meta:
         model = Tour
         fields = ('offer',)
