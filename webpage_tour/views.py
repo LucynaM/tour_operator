@@ -176,7 +176,7 @@ class ChangeStatus(View):
 def generate_pdf(request):
     # Create the HttpResponse object with the appropriate PDF headers.
     response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="somefilename.pdf"'
+    response['Content-Disposition'] = 'attachment; filename="tour_participants.pdf"'
     pdfmetrics.registerFont(TTFont('Theano', 'webpage_offer/static/webpage_offer/fonts/TheanoOldStyle-Regular.ttf'))
 
     # Create the PDF object, using the response object as its "file."
@@ -186,7 +186,7 @@ def generate_pdf(request):
 
     # Draw things on the PDF.
     tour = Tour.objects.get(pk=5)
-    participants = tour.participants.all().order_by('status', 'participant__last_name')
+    participants = tour.participants.all().order_by('-status', 'participant__last_name')
     y = 750
     for participant in participants:
         p.drawString(100, y, u"{}".format(participant.participant.name))
@@ -197,7 +197,7 @@ def generate_pdf(request):
     # Close the PDF object cleanly, and we're done.
     p.showPage()
     p.save()
-    return redirect('tour:add_tour')
+    return response
 
 
 class FillParticipant(View):

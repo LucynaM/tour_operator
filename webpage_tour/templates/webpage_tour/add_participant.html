@@ -49,7 +49,7 @@
                     </tr>
                     {% endfor %}
                 </table>
-
+                <a href="{% url 'tour:generate_pdf' %}" id="link-with-redirect" class="btn btn-danger" data-redirect="{% url 'tour:add_participant' tour.pk %}">generuj pdf</a>
                 {% else %}
                 <p>Brak uczestników do wyświetlenia</p>
                 {% endif %}

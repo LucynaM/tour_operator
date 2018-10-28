@@ -34,7 +34,7 @@ $(document).ready(function(){
     function showOffer(r, row, thisToggler) {
         let newRow;
         let newRowContent;
-        let newRowContentText
+        let newRowContentText;
         if (row.prop('tagName') === 'TR') {
             newRow = $("<tr>", {class: "new-row"});
             newRowContent = $("<td>", {colspan: "4"});
@@ -233,7 +233,7 @@ $(document).ready(function(){
     };
 
     function changeStatus() {
-        $('select').on('change', function() {
+        $('select[name="status"]').on('change', function() {
             const url = $(this).data('url');
             const status = $(this).val();
             data = {
@@ -253,6 +253,17 @@ $(document).ready(function(){
     }
 
     setDate();
+
+    function redirectOnSuccess() {
+        console.log('działam');
+        $('#link-with-redirect').on('click', function() {
+            setTimeout(function(){
+                url = $(this).data('redirect');
+                window.location.replace(url);
+            });
+        }, 5000);
+    }
+    redirectOnSuccess();
 
 
 });

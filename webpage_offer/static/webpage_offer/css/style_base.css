@@ -195,3 +195,9 @@ select.custom-select {
 
 #participants td:nth-of-type(3) {
   text-align: left; }
+
+#link-with-redirect {
+  color: #fff;
+  font-weight: 600; }
+  #link-with-redirect:hover {
+    color: #fff; }
