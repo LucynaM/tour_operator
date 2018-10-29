@@ -28,6 +28,17 @@ def get_dates(start, end):
     return date
 
 
+def format_phone(phone):
+    phone = str(phone)
+    j = len(phone)
+    new_phone = ""
+    for i in phone[::-3]:
+        z = phone[j-3:j]
+        new_phone = " {}{}".format(z, new_phone)
+        j -= 3
+    return new_phone.strip()
+
+
 class AddTour(View):
     def get(self, request):
         form = TourForm()
@@ -66,6 +77,9 @@ class AddParticipant(View):
 
         form = ParticipantForm()
         participants = tour.participants.all()
+        for participant in participants:
+            participant.participant.new_phone = format_phone(participant.participant.phone)
+
         ctx = {
             'tour': tour,
             'form': form,
@@ -89,6 +103,9 @@ class AddParticipant(View):
                 TourParticipant.objects.create(tour=tour, participant=participant)
             form = ParticipantForm()
         participants = tour.participants.all()
+        for participant in participants:
+            participant.participant.new_phone = format_phone(participant.participant.phone)
+
         ctx = {
             'tour': tour,
             'form': form,
@@ -130,6 +147,7 @@ class EditTour(View):
 class EditParticipant(View):
     def get(self, request, tour_pk, participant_pk):
         participant = Participant.objects.get(pk=participant_pk)
+        participant.new_phone = format_phone(participant.phone)
         form = ParticipantForm(instance=participant)
         ctx = {
             'participant': participant,
@@ -139,6 +157,8 @@ class EditParticipant(View):
 
     def post(self, request, tour_pk, participant_pk):
         participant = Participant.objects.get(pk=participant_pk)
+
+        participant.new_phone = format_phone(participant.phone)
         form = ParticipantForm(request.POST, instance=participant)
         if form.is_valid():
             form.save()
