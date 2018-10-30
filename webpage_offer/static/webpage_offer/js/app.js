@@ -255,7 +255,6 @@ $(document).ready(function(){
     setDate();
 
     function redirectOnSuccess() {
-        console.log('działam');
         $('#link-with-redirect').on('click', function() {
             setTimeout(function(){
                 url = $(this).data('redirect');

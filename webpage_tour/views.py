@@ -17,6 +17,7 @@ from reportlab.lib.units import mm
 # Create your views here.
 
 def get_dates(start, end):
+    # format dates range
     if start.year == end.year and start.month == end.month:
         start = start.strftime('%d')
     elif start.year == end.year:
@@ -40,11 +41,15 @@ def format_phone(phone):
 
 
 class AddTour(View):
-    def get(self, request):
-        form = TourForm()
+    def get_tour_list(self):
         tour_list = Tour.objects.all().exclude(end_date__lte=datetime.now().date()).order_by('start_date')
         for tour in tour_list:
             tour.date = get_dates(tour.start_date, tour.end_date)
+        return tour_list
+
+    def get(self, request):
+        form = TourForm()
+        tour_list = self.get_tour_list()
 
         ctx = {
             'form': form,
@@ -55,13 +60,12 @@ class AddTour(View):
 
     def post(self, request):
         form = TourForm(request.POST)
-        tour_list = Tour.objects.all().exclude(end_date__lte=datetime.now().date()).order_by('start_date')
-        for tour in tour_list:
-            tour.date = get_dates(tour.start_date, tour.end_date)
+        tour_list = self.get_tour_list()
 
         if form.is_valid():
             tour = form.save()
             return redirect('tour:add_participant', pk=tour.pk)
+
         ctx = {
             'form': form,
             'tour_list': tour_list,
@@ -71,14 +75,22 @@ class AddTour(View):
 
 
 class AddParticipant(View):
-    def get(self, request, pk):
+
+    def get_tour(self, pk):
         tour = Tour.objects.get(pk=pk)
         tour.date = get_dates(tour.start_date, tour.end_date)
+        return tour
 
-        form = ParticipantForm()
-        participants = tour.participants.all()
+    def get_tour_participants(self, obj):
+        participants = obj.participants.all().order_by('-status', 'participant__last_name')
         for participant in participants:
             participant.participant.new_phone = format_phone(participant.participant.phone)
+        return participants
+
+    def get(self, request, pk):
+        tour = self.get_tour(pk)
+        form = ParticipantForm()
+        participants = self.get_tour_participants(tour)
 
         ctx = {
             'tour': tour,
@@ -89,36 +101,46 @@ class AddParticipant(View):
         return render(request, 'webpage_tour/add_participant.html', ctx)
 
     def post(self, request, pk):
-        tour = Tour.objects.get(pk=pk)
-        tour.date = get_dates(tour.start_date, tour.end_date)
-
+        tour = self.get_tour(pk)
         form = ParticipantForm(request.POST)
+        msg_err = ""
+
         if form.is_valid():
+            # check if a person with already exists in db, if so - retrieve old one, if no - create a new one
             participant_list = Participant.objects.filter(**form.cleaned_data)
             if participant_list:
                 participant = participant_list[0]
             else:
                 participant = form.save()
+
             if not TourParticipant.objects.filter(tour=tour, participant=participant):
                 TourParticipant.objects.create(tour=tour, participant=participant)
+            else:
+                msg_err = "This participant has already been added to the tour"
+
             form = ParticipantForm()
-        participants = tour.participants.all()
-        for participant in participants:
-            participant.participant.new_phone = format_phone(participant.participant.phone)
+
+        participants = self.get_tour_participants(tour)
 
         ctx = {
             'tour': tour,
             'form': form,
             'participants': participants,
             'statuses': STATUSES,
+            "msg_err": msg_err,
         }
         return render(request, 'webpage_tour/add_participant.html', ctx)
 
 
 class EditTour(View):
-    def get(self, request, pk):
+
+    def get_tour(self, pk):
         tour = Tour.objects.get(pk=pk)
         tour.date = get_dates(tour.start_date, tour.end_date)
+        return tour
+
+    def get(self, request, pk):
+        tour = self.get_tour(pk)
         form = TourForm(instance=tour)
 
         ctx = {
@@ -129,9 +151,7 @@ class EditTour(View):
         return render(request, 'webpage_tour/edit_tour.html', ctx)
 
     def post(self, request, pk):
-        tour = Tour.objects.get(pk=pk)
-        tour.date = get_dates(tour.start_date, tour.end_date)
-
+        tour = tour = self.get_tour(pk)
         form = TourForm(request.POST, instance=tour)
 
         if form.is_valid():
@@ -145,10 +165,15 @@ class EditTour(View):
 
 
 class EditParticipant(View):
-    def get(self, request, tour_pk, participant_pk):
+    def get_participant(self, participant_pk):
         participant = Participant.objects.get(pk=participant_pk)
         participant.new_phone = format_phone(participant.phone)
+        return participant
+
+    def get(self, request, tour_pk, participant_pk):
+        participant = self.get_participant(participant_pk)
         form = ParticipantForm(instance=participant)
+
         ctx = {
             'participant': participant,
             'form': form,
@@ -156,10 +181,9 @@ class EditParticipant(View):
         return render(request, 'webpage_tour/edit_participant.html', ctx)
 
     def post(self, request, tour_pk, participant_pk):
-        participant = Participant.objects.get(pk=participant_pk)
-
-        participant.new_phone = format_phone(participant.phone)
+        participant = self.get_participant(participant_pk)
         form = ParticipantForm(request.POST, instance=participant)
+
         if form.is_valid():
             form.save()
             return redirect('tour:add_participant', pk=tour_pk)
@@ -191,20 +215,32 @@ def generate_pdf(request):
     # Create the HttpResponse object with the appropriate PDF headers.
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="tour_participants.pdf"'
-    pdfmetrics.registerFont(TTFont('Theano', 'webpage_offer/static/webpage_offer/fonts/TheanoOldStyle-Regular.ttf'))
+
+    pdfmetrics.registerFont(TTFont('Radjhani', 'webpage_offer/static/webpage_offer/fonts/Rajdhani-Regular.ttf'))
+    pdfmetrics.registerFont(TTFont('RadjhaniBd', 'webpage_offer/static/webpage_offer/fonts/Rajdhani-Bold.ttf'))
 
     # Create the PDF object, using the response object as its "file."
     p = canvas.Canvas(response, pagesize=A4)
     p.translate(mm, mm)
-    p.setFont('Theano', 10)
 
-    # Draw things on the PDF.
+
+
     tour = Tour.objects.get(pk=5)
     participants = tour.participants.all().order_by('-status', 'participant__last_name')
+    for participant in participants:
+        participant.participant.new_phone = format_phone(participant.participant.phone)
+
+    # Draw things on the PDF.
+    p.setFont('RadjhaniBd', 10)
+    p.drawString(100, 775, "uczestnik")
+    p.drawString(250, 775, "telefon")
+    p.drawString(350, 775, "status")
+
     y = 750
     for participant in participants:
+        p.setFont('Radjhani', 10)
         p.drawString(100, y, u"{}".format(participant.participant.name))
-        p.drawString(250, y, u"tel:{}".format(participant.participant.phone))
+        p.drawString(250, y, u"{}".format(participant.participant.new_phone))
         p.drawString(350, y, u"{}".format(participant.status))
         y -= 20
 
@@ -229,32 +265,5 @@ class FillParticipant(View):
             return JsonResponse(participants, safe=False)
         except Exception as e:
             print(e)
-
-
-class SortParticipants(View):
-
-    def get(self, request, pk):
-        try:
-            if 'key' in request.GET.keys():
-                tour = Tour.objects.get(pk=pk)
-                order_key = request.GET['key']
-                participants = tour.participants.all().order_by(order_key)
-                data = []
-                for participant in participants:
-                    participant_item = {}
-                    for key, item in participant.__dict__.items():
-                        if key != '_state':
-                            participant_item[key] = item
-                        if key == 'participant_id':
-                            participant_data = Participant.objects.get(pk=key)
-                            participant_item['name'] = participant_data['name']
-                            participant_item['phone'] = participant_data['phone']
-                    data.append(participant_item)
-
-                return JsonResponse(data, safe=False)
-        except Exception as e:
-            print(e)
-
-
 
 
