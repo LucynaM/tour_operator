@@ -237,13 +237,16 @@ footer {
     margin: 7% 7% 0 7%;
     bottom: 7%; }
     .selection .selected_data .selected_wrapper h2 {
-      margin-bottom: 7%; }
+      font-size: 1.5rem; }
     .selection .selected_data .selected_wrapper p {
       text-align: left; }
+      .selection .selected_data .selected_wrapper p:first-of-type {
+        display: table-cell;
+        vertical-align: middle; }
     .selection .selected_data .selected_wrapper .offer-details {
       float: right;
-      font-size: 1.5rem;
-      line-height: 2rem;
+      font-size: 1.2rem;
+      line-height: 1.5rem;
       transform: translateY(7%); }
 
 .selection .new-row {

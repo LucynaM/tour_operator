@@ -264,5 +264,38 @@ $(document).ready(function(){
     }
     redirectOnSuccess();
 
+    function fillData() {
+        console.log('działam');
+        $('.fill_data').autocomplete({
+
+            delay: 500,
+            minLength: 3,
+            source: function (request, response) {
+                url = $('#participant_form').data('url')
+                $.getJSON(url, {
+                    q: request.term,
+                }, function (data) {
+                    var array = data.error ? [] : $.map(data.participants, function (m) {
+                        return {
+                            first_name: m.first_name,
+                            last_name: m.last_name,
+                            phone: m.phone,
+                        };
+                    });
+                    response(array);
+                    console.log(array);
+                });
+            },
+            focus: function (event, ui) {
+                event.preventDefault();
+            }
+        });
+
+        $('.fill_data').each(function() {
+            $(this).data('ui-autocomplete');
+            });
+    };
+    fillData();
+
 
 });

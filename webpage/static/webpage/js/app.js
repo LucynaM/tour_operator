@@ -114,8 +114,10 @@ $(document).ready(function() {
 
     function searchAutocomplete() {
         const searchForm = $('[type="search"]');
-        const url = searchForm.data('url');
-        ajaxHandler(url, '', 'GET', processDirections, searchForm)
+        searchForm.on('keyup', function() {
+            const url = searchForm.data('url');
+            ajaxHandler(url, '', 'GET', processDirections, searchForm)
+        });
     };
 
     function processDirections(r, element) {
@@ -126,5 +128,22 @@ $(document).ready(function() {
     searchAutocomplete();
 
     /* autocomplete -stop */
+
+    function setHeightOfText() {
+        const selectedItems = $('.selected_data');
+        selectedItems.each(function(index) {
+            const itemHeight = $(this).height();
+            const itemPadding = $(this).width() * 0.14;
+            const itemHeaderHeight = $(this).find('h2').outerHeight(true);
+            const itemBottomHeight = $(this).find('p').eq(1).outerHeight(true);
+            const itemBody = $(this).find('p').eq(0);
+            itemBody.outerHeight(itemHeight-itemPadding-itemHeaderHeight-itemBottomHeight);
+        });
+    };
+    setHeightOfText()
+
+    $(window).resize(function() {
+        setHeightOfText();
+    });
 
 })
