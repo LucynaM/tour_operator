@@ -12,13 +12,12 @@ CATEGORIES = (
 
 class Offer(models.Model):
     """A class to represent offer"""
-    title = models.CharField(max_length=255)
-    category = models.CharField(choices=CATEGORIES, max_length=20)
-    direction = models.CharField(max_length=255)
-    duration_in_days = models.IntegerField()
-    short_descr = models.TextField(max_length=200)
-    schedule = HTMLField()
-    price = models.FloatField(null=True, blank=True)
+    title = models.CharField(max_length=255, verbose_name='Tytuł')
+    category = models.CharField(choices=CATEGORIES, max_length=20, verbose_name='Kategoria')
+    direction = models.CharField(max_length=255, verbose_name='Kierunki')
+    duration_in_days = models.IntegerField(verbose_name='Czas trwania')
+    short_descr = models.TextField(max_length=200, verbose_name='Krótki opis')
+    schedule = HTMLField(verbose_name='Program')
     #flags for selection in category
     selected = models.BooleanField(default=False)
     selected_sort = models.IntegerField(null=True, blank=True)
@@ -26,7 +25,7 @@ class Offer(models.Model):
     recommended = models.BooleanField(default=False)
     recommended_sort = models.IntegerField(null=True, blank=True)
     # flag that allows admin to set an offer as "inactive"
-    withdrawn = models.BooleanField(default=False)
+    withdrawn = models.BooleanField(default=False, verbose_name='Wycofana z oferty')
 
     @property
     def name(self):
@@ -38,9 +37,9 @@ class Offer(models.Model):
 
 class Holiday(models.Model):
     """A class to represent holiday offer"""
-    title = models.CharField(max_length=255)
-    short_descr = models.TextField(max_length=200)
-    schedule = HTMLField()
+    title = models.CharField(max_length=255, verbose_name='Tytuł')
+    short_descr = models.TextField(max_length=200, verbose_name='Krótki opis')
+    schedule = HTMLField(verbose_name='Program')
 
     def __str__(self):
         return self.title
@@ -48,9 +47,9 @@ class Holiday(models.Model):
 
 class News(models.Model):
     """A class to represent news"""
-    title = models.CharField(max_length=255)
-    short_descr = models.TextField(max_length=200)
-    entry = models.TextField()
+    title = models.CharField(max_length=255, verbose_name='Tytuł')
+    short_descr = models.TextField(max_length=200, verbose_name='Krótki opis')
+    entry = models.TextField(verbose_name='Wpis')
     entry_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
