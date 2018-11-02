@@ -76,7 +76,7 @@
     <footer id=contact>
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-md-6 col-sm-12">
+                <div class="col-lg-7 col-md-5 col-sm-12">
                     <h6>Marco Polo Travel</h6>
                     <p>Skontaktuj się z nami przez telefon lub e-mail <span class="/man"></span>i pozwól nam zaplanować Twoją podróż.</p>
                     <p>tel: 606-723-829 lub 508-195-683</p>
@@ -93,10 +93,13 @@
                         <li><a href="{% url 'webpage:recommended' %}">Polecamy</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-2 col-md-3 col-sm-6">
+                <div class="col-lg-3 col-md-4 col-sm-6">
                     <h6>Siedziba firmy</h6>
                     <p>Słoneczny Stok 91 <br>
                         35-213 Rzeszów </p>
+                    <h6>Dokumenty do pobrania</h6>
+                    <a target="__blank" href="{% static 'webpage/pdfs/somefilename.pdf' %}">Umowa zgłoszenie</a></br>
+                    <a target="__blank" href="{% static 'webpage/pdfs/tour_participants.pdf' %}">Ogólne warunki uczestnictwa</a>
                 </div>
             </div>
         </div>
