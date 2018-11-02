@@ -21,8 +21,6 @@ class HomePage(View):
         return search_snippet(request, 'webpage/home.html')
 
 
-
-
 class HomeForSchoolPage(View):
     def get(self, request):
         for_school = Offer.objects.filter(category='school_trip', selected=False).exclude(withdrawn=True).order_by('title')
