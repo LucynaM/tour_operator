@@ -26,6 +26,14 @@ strong {
   padding-right: 0;
   padding-left: 0; }
 
+input[type="text"].ui-widget,
+input[type="number"].ui-widget,
+.ui-menu-item-wrapper {
+  font-family: 'Rajdhani', sans-serif !important; }
+
+.test {
+  color: black; }
+
 .navbar {
   padding-top: 2vh;
   padding-bottom: 2vh; }

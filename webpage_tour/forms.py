@@ -15,12 +15,6 @@ class ParticipantForm(forms.ModelForm):
     class Meta:
         model = Participant
         fields = "__all__"
-        widgets = {
-            #'first_name': forms.TextInput(attrs={'class': 'fill_data'}),
-            'last_name': forms.TextInput(attrs={'class': 'fill_name'}),
-            #'phone': forms.NumberInput(attrs={'class': 'fill_data'})
-        }
-
 
 
 class TourParticipantForm(forms.ModelForm):
