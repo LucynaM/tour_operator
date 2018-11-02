@@ -259,43 +259,59 @@ $(document).ready(function(){
             setTimeout(function(){
                 url = $(this).data('redirect');
                 window.location.replace(url);
-            });
-        }, 5000);
-    }
+            }, 5000);
+        });
+    };
     redirectOnSuccess();
 
-    function fillData() {
-        console.log('działam');
-        $('.fill_data').autocomplete({
 
-            delay: 500,
-            minLength: 3,
-            source: function (request, response) {
-                url = $('#participant_form').data('url')
-                $.getJSON(url, {
-                    q: request.term,
-                }, function (data) {
-                    var array = data.error ? [] : $.map(data.participants, function (m) {
-                        return {
-                            first_name: m.first_name,
-                            last_name: m.last_name,
-                            phone: m.phone,
-                        };
-                    });
-                    response(array);
-                    console.log(array);
-                });
-            },
-            focus: function (event, ui) {
-                event.preventDefault();
+    function processData (r, element) {
+
+        r.new_phones = [];
+        if (r.phones) {
+            for (let i=0; i<r.phones.length; i++) {
+                r.new_phones[i] = "" + r.phones[i];
             }
-        });
-
-        $('.fill_data').each(function() {
-            $(this).data('ui-autocomplete');
-            });
+        }
+        element.autocomplete({
+            minLength: 0,
+            source: (r.phones) ? r.new_phones : r.names,
+        })
     };
-    fillData();
 
+
+    function fillParticipantData() {
+        const lastName = $('#id_last_name');
+        lastName.on('keyup', function() {
+            url = $('#participant_form').data('url');
+            ajaxHandler(url, '', 'GET', processData, lastName);
+        });
+    };
+
+
+    function fillPhone() {
+        const phoneField = $('#id_phone');
+        const nameField = $('#id_last_name');
+        /*get name value from nameField */
+        nameField.on('blur', function() {
+            const firstName = $('#id_first_name').val();
+            const lastName = $('#id_last_name').val();
+            console.log('imię :' + firstName);
+            console.log('nazwisko :' + lastName);
+            const data = {
+                firstName: firstName,
+                lastName: lastName,
+            };
+            /* get phones of people with given first and last name*/
+            phoneField.on('focus', function() {
+                url = $('#participant_form').data('url');
+                ajaxHandler(url, data, 'GET', processData, phoneField);
+            });
+        });
+    };
+
+
+    fillParticipantData();
+    fillPhone();
 
 });

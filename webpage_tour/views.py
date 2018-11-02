@@ -151,7 +151,7 @@ class EditTour(View):
         return render(request, 'webpage_tour/edit_tour.html', ctx)
 
     def post(self, request, pk):
-        tour = tour = self.get_tour(pk)
+        tour = self.get_tour(pk)
         form = TourForm(request.POST, instance=tour)
 
         if form.is_valid():
@@ -252,18 +252,31 @@ def generate_pdf(request):
 
 class FillParticipant(View):
     def get(self, request):
-        try:
-            participants = Participant.objects.all()
-            data = []
-            for participant in participants:
-                participant_dict = {}
-                for key, value in participant.__dict__.items():
-                    if key != '_state':
-                        participant_dict[key] = value
-                data.append(participant_dict)
+        if not 'firstName' in request.GET.keys() and not 'lastName' in request.GET.keys():
+            try:
+                participants = Participant.objects.all()
+                data = {}
+                data['names'] = []
+                for participant in participants:
+                    if not participant.last_name in data['names']:
+                        data['names'].append(participant.last_name)
+                return JsonResponse(data)
+            except Exception as e:
+                print(e)
+        elif 'firstName' in request.GET.keys() and 'lastName' in request.GET.keys():
+            try:
+                last_name = request.GET['lastName']
+                first_name = request.GET['firstName']
+                participants = Participant.objects.filter(last_name=last_name, first_name=first_name)
+                data = {}
+                data['phones'] = []
+                for participant in participants:
+                    if not participant.phone in data['phones']:
+                        data['phones'].append(participant.phone)
+                return JsonResponse(data)
+            except Exception as e:
+                print(e)
 
-            return JsonResponse(participants, safe=False)
-        except Exception as e:
-            print(e)
+
 
 
