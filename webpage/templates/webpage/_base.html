@@ -9,9 +9,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}Marco Polo Travel{% endblock title %}</title>
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'webpage/dependencies/css/jquery-ui.min.css'%}">
+    <link rel="stylesheet" href="{% static 'webpage/dependencies/css/bootstrap.min.css'%}">
+
     <link href="https://fonts.googleapis.com/css?family=Rajdhani:300,400,500,600,700&amp;subset=latin-ext" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'webpage/css/style_base.css' %}">
@@ -109,14 +109,10 @@
     </section>
 
     {% endblock footer %}
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-			  crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"></script>
+    <script src="{% static 'webpage/dependencies/js/jquery-3.3.1.min.js'%}"></script>
+    <script src="{% static 'webpage/dependencies/js/jquery-ui.min.js'%}"></script>
+    <script src="{% static 'webpage/dependencies/js/popper.min.js'%}"></script>
+    <script src="{% static 'webpage/dependencies/js/bootstrap.min.js'%}"></script>
     <script src="{% static 'webpage/js/app.js' %}"></script>
 
 </body>
