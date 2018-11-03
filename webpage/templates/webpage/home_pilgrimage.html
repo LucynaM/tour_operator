@@ -10,19 +10,19 @@
 
 {% block content %}
 <!-- Header - start -->
-<header id="header_pilgrimage" class="header_container">
+<header id="header_pilgrimage" class="header_container scroll">
     <div class="container-fluid">
         <div id="header_pilgrimage_img" class="header_img"></div>
     </div>
 </header>
 <!-- Header - stop -->
 <!-- Selected - start -->
-<section id="title_pilgrimage" class="offer_title">
+<section id="title_pilgrimage" class="offer_title scroll">
     <h1>Pielgrzymki</h1>
 </section>
 <section id="selected_pilgrimage" class="selection">
     <div class="container">
-        <div id="section-{{pilgrimage_selected.0.pk}}" class="row no-gutters selection-row closestElement">
+        <div id="section-{{pilgrimage_selected.0.pk}}" class="row no-gutters selection-row closestElement scroll">
             <div id="selected_pilgrimage_img0" class="col-md-6 selected-item selected_img img0"></div>
             <div class="col-md-6 selected-item selected_data">
                 <div class="selected_wrapper">
@@ -36,7 +36,7 @@
                 </div>
             </div>
         </div>
-        <div id="section-{{ pilgrimage_selected.1.pk }}" class="row no-gutters selection-row closestElement">
+        <div id="section-{{ pilgrimage_selected.1.pk }}" class="row no-gutters selection-row closestElement scroll">
             <div class="col-md-6 selected-item selected-item-1 selected_data">
                 <div class="selected_wrapper">
                     {% if pilgrimage_selected.1 %}
@@ -50,7 +50,7 @@
             </div>
             <div id="selected_pilgrimage_img1" class="col-md-6 selected-item selected-item-1 selected_img img1"></div>
         </div>
-        <div id="section-{{pilgrimage_selected.2.pk}}" class="row no-gutters selection-row closestElement">
+        <div id="section-{{pilgrimage_selected.2.pk}}" class="row no-gutters selection-row closestElement scroll">
             <div id="selected_pilgrimage_img2" class="col-md-6 selected-item selected_img img2"></div>
             <div class="col-md-6 selected-item selected_data">
                 <div class="selected_wrapper">
@@ -68,7 +68,8 @@
 </section>
 <!-- Selected - stop-->
 <!-- Offer for school - start -->
-<section id="offer_pilgrimage" class="offer_table">
+{% if pilgrimage %}
+<section id="offer_pilgrimage" class="offer_table scroll">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 offset-lg-3">
@@ -79,7 +80,7 @@
                         <th>Czas trwania</th>
                         <th></th>
                     </tr>
-                    {% if pilgrimage %}
+
                     {% for offer in pilgrimage %}
                     <tr id="table-{{ offer.pk }}" class="closestElement">
                         <td><strong>{{ offer.title }}</strong></td>
@@ -87,12 +88,12 @@
                         <td><i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer.pk %}"></i></td>
                     </tr>
                     {% endfor %}
-                    {% endif %}
                 </table>
             </div>
         </div>
     </div>
 </section>
+{% endif %}
 <!-- Offer for school - stop -->
 
 {% endblock content %}

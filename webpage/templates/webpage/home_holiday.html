@@ -8,7 +8,7 @@
 
 {% block content %}
 <!-- Header - start -->
-<header id="header_holiday" class="header_container">
+<header id="header_holiday" class="header_container scroll">
     <div class="container-fluid">
         <div id="header_holiday_img" class="header_img"></div>
     </div>
@@ -17,9 +17,9 @@
 <!-- Selected - start -->
 <section id="holiday">
     <div class="container">
-        <h1>{{ holiday.0.title }}</h1>
-        <p><strong>{{ holiday.0.short_descr }}</strong></p>
-        <div>{{ holiday.0.schedule | safe }}</div>
+        <h1 class="scroll">{{ holiday.0.title }}</h1>
+        <p class="scroll"><strong>{{ holiday.0.short_descr }}</strong></p>
+        <div class="scroll">{{ holiday.0.schedule | safe }}</div>
     </div>
 
 </section>

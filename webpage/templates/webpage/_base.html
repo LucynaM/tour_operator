@@ -75,7 +75,7 @@
     {% block footer %}
     <footer id=contact>
         <div class="container">
-            <div class="row">
+            <div class="row scroll">
                 <div class="col-lg-7 col-md-5 col-sm-12">
                     <h6>Marco Polo Travel</h6>
                     <p>Skontaktuj się z nami przez telefon lub e-mail <span class="/man"></span>i pozwól nam zaplanować Twoją podróż.</p>
@@ -109,10 +109,12 @@
     </section>
 
     {% endblock footer %}
+    <script src="https://unpkg.com/scrollreveal@3.3.2/dist/scrollreveal.min.js"></script>
     <script src="{% static 'webpage/dependencies/js/jquery-3.3.1.min.js'%}"></script>
     <script src="{% static 'webpage/dependencies/js/jquery-ui.min.js'%}"></script>
     <script src="{% static 'webpage/dependencies/js/popper.min.js'%}"></script>
     <script src="{% static 'webpage/dependencies/js/bootstrap.min.js'%}"></script>
+
     <script src="{% static 'webpage/js/common.js' %}"></script>
     <script src="{% static 'webpage/js/app.js' %}"></script>
 
