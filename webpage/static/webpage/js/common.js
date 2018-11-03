@@ -268,7 +268,7 @@ $(document).ready(function() {
                 } else if (element.attr('id') == 'id_date_of_birth') {
                     response(r.dates_of_birth);
                 };
-            };
+            },
         });
     };
 

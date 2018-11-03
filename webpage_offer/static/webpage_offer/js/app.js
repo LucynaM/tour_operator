@@ -29,18 +29,4 @@ $(document).ready(function(){
 
     /* Datepicker - stop */
 
-    /* Redirect after creating pdf - start */
-
-    function redirectOnSuccess() {
-        $('#link-with-redirect').on('click', function() {
-            setTimeout(function(){
-                url = $(this).data('redirect');
-                window.location.replace(url);
-            }, 5000);
-        });
-    };
-    redirectOnSuccess();
-
-    /* Redirect after creating pdf - stop */
-
 });

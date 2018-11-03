@@ -211,7 +211,7 @@ class ChangeStatus(View):
             print(e)
 
 
-def generate_pdf(request):
+def generate_pdf(request, pk):
     # Create the HttpResponse object with the appropriate PDF headers.
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="tour_participants.pdf"'
@@ -224,7 +224,7 @@ def generate_pdf(request):
     p.translate(mm, mm)
 
 
-    tour = Tour.objects.get(pk=5)
+    tour = Tour.objects.get(pk=pk)
     participants = tour.participants.all().order_by('-status', 'participant__last_name')
     for participant in participants:
         participant.participant.new_phone = format_phone(participant.participant.phone)
@@ -232,15 +232,17 @@ def generate_pdf(request):
     # Draw things on the PDF.
     p.setFont('RadjhaniBd', 10)
     p.drawString(100, 775, "uczestnik")
-    p.drawString(250, 775, "telefon")
-    p.drawString(350, 775, "status")
+    p.drawString(250, 775, "data urodzin")
+    p.drawString(350, 775, "telefon")
+    p.drawString(450, 775, "status")
 
     y = 750
     for participant in participants:
         p.setFont('Radjhani', 10)
         p.drawString(100, y, u"{}".format(participant.participant.name))
-        p.drawString(250, y, u"{}".format(participant.participant.new_phone))
-        p.drawString(350, y, u"{}".format(participant.status))
+        p.drawString(250, y, u"{}".format(participant.participant.date_of_birth))
+        p.drawString(350, y, u"{}".format(participant.participant.new_phone))
+        p.drawString(450, y, u"{}".format(participant.status))
         y -= 20
 
     # Close the PDF object cleanly, and we're done.

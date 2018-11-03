@@ -25,15 +25,17 @@
                 {% if participants %}
                 <table class="table">
                     <tr>
-                        <th id="participant-label">uczestnik</th>
+                        <th>uczestnik</th>
+                        <th>rok urodzenia</th>
                         <th>telefon</th>
-                        <th id="status-label">status</th>
+                        <th>status</th>
                         <th></th>
                     </tr>
                     {% for participant in participants %}
                     <tr id="table-{{ participant.participant.pk }}" class="closestElement">
                         <td><strong>{{ participant.participant.name }}</strong></td>
-                        <td><strong>{{ participant.participant.new_phone }}</strong></td>
+                        <td>{{ participant.participant.name }}</td>
+                        <td>{{ participant.participant.date_of_birth }}</td>
                         <td>
                             <select name="status" id="" class="custom-select" data-url="{% url 'tour:change_status' participant.pk %}">
                                 {% for status in statuses %}
@@ -49,7 +51,7 @@
                     </tr>
                     {% endfor %}
                 </table>
-                <a href="{% url 'tour:generate_pdf' %}" id="link-with-redirect" class="btn btn-danger" data-redirect="{% url 'tour:add_participant' tour.pk %}">generuj pdf</a>
+                <a href="{% url 'tour:generate_pdf' tour.pk %}" target="__blank" id="link-with-redirect" class="btn btn-danger" data-redirect="{% url 'tour:add_participant' tour.pk %}">generuj pdf</a>
                 {% else %}
                 <p>Brak uczestników do wyświetlenia</p>
                 {% endif %}
