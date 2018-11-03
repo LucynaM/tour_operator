@@ -34,8 +34,8 @@
                     {% for participant in participants %}
                     <tr id="table-{{ participant.participant.pk }}" class="closestElement">
                         <td><strong>{{ participant.participant.name }}</strong></td>
-                        <td>{{ participant.participant.name }}</td>
-                        <td>{{ participant.participant.date_of_birth }}</td>
+                        <td>{{ participant.participant.date_of_birth  }}</td>
+                        <td>{{ participant.participant.new_phone }}</td>
                         <td>
                             <select name="status" id="" class="custom-select" data-url="{% url 'tour:change_status' participant.pk %}">
                                 {% for status in statuses %}

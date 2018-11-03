@@ -125,12 +125,8 @@ section {
 
 .select-offer ul {
   list-style: none;
-  column-count: 3;
-  column-width: auto;
-  column-gap: 30px;
-  column-rule-color: #F7F5F5;
-  column-rule-style: solid;
-  padding-left: 0; }
+  padding-left: 0;
+  text-align: center; }
 
 #manager-intro {
   background-color: #F7F5F5;
@@ -171,14 +167,6 @@ section {
       margin-bottom: 2.5vw;
       width: 42.5vw;
       height: 42.5vw; } }
-
-@media (max-width: 991px) {
-  .select-offer ul {
-    column-count: 2; } }
-
-@media (max-width: 767px) {
-  .select-offer ul {
-    column-count: 1; } }
 
 @media (max-width: 575px) {
   #manager-intro .row div:first-child .manager {

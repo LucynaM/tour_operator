@@ -242,7 +242,9 @@ footer {
       text-align: left; }
       .selection .selected_data .selected_wrapper p:first-of-type {
         display: table-cell;
-        vertical-align: middle; }
+        vertical-align: middle;
+        padding-top: 2%;
+        padding-bottom: 2%; }
     .selection .selected_data .selected_wrapper .offer-details {
       float: right;
       font-size: 1.2rem;

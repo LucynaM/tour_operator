@@ -29,6 +29,7 @@ $(document).ready(function() {
 
     /* change order of image and offer presentation box depending on screen width - stop */
 
+    /* calculate height of text box in offer selection - start */
 
     function setHeightOfText() {
         const selectedItems = $('.selected_data');
@@ -47,4 +48,6 @@ $(document).ready(function() {
         setHeightOfText();
     });
 
-})
+    /* calculate height of text box in offer selection - stop */
+
+});
