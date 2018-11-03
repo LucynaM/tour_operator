@@ -224,7 +224,6 @@ def generate_pdf(request):
     p.translate(mm, mm)
 
 
-
     tour = Tour.objects.get(pk=5)
     participants = tour.participants.all().order_by('-status', 'participant__last_name')
     for participant in participants:
@@ -269,14 +268,13 @@ class FillParticipant(View):
                 first_name = request.GET['firstName']
                 participants = Participant.objects.filter(last_name=last_name, first_name=first_name)
                 data = {}
-                data['phones'] = []
+                data['phones'], data['dates_of_birth'] = [], []
+
                 for participant in participants:
                     if not participant.phone in data['phones']:
                         data['phones'].append(participant.phone)
+                    if not participant.date_of_birth in data['dates_of_birth']:
+                        data['dates_of_birth'].append(participant.date_of_birth)
                 return JsonResponse(data)
             except Exception as e:
                 print(e)
-
-
-
-

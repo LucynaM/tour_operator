@@ -121,14 +121,12 @@ class GetDirectionsBis(View):
     def get(self, request):
         try:
             offer_list = Offer.objects.exclude(withdrawn=True)
-            directions = []
+            data = {}
+            data['directions'] = []
             for offer in offer_list:
                 for direction in offer.direction.split(', '):
-                    if direction not in directions:
-                        directions.append(direction)
-            directions = {
-                'directions': ', '.join(directions),
-            }
-            return JsonResponse(directions)
+                    if direction not in data['directions']:
+                        data['directions'].append(direction)
+            return JsonResponse(data)
         except Exception as e:
             print(e)
