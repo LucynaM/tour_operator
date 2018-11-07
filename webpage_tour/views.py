@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponseBadRequest, HttpResponse
 from django.views import View
-
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Tour, TourParticipant, Participant, STATUSES
 from .forms import TourForm, ParticipantForm, TourParticipantForm
 
@@ -40,7 +40,7 @@ def format_phone(phone):
     return new_phone.strip()
 
 
-class AddTour(View):
+class AddTour(LoginRequiredMixin, View):
     def get_tour_list(self):
         tour_list = Tour.objects.all().exclude(end_date__lte=datetime.now().date()).order_by('start_date')
         for tour in tour_list:
@@ -74,7 +74,7 @@ class AddTour(View):
 
 
 
-class AddParticipant(View):
+class AddParticipant(LoginRequiredMixin, View):
 
     def get_tour(self, pk):
         tour = Tour.objects.get(pk=pk)
@@ -132,7 +132,7 @@ class AddParticipant(View):
         return render(request, 'webpage_tour/add_participant.html', ctx)
 
 
-class EditTour(View):
+class EditTour(LoginRequiredMixin, View):
 
     def get_tour(self, pk):
         tour = Tour.objects.get(pk=pk)
@@ -164,7 +164,7 @@ class EditTour(View):
         return render(request, 'webpage_tour/add_tour.html', ctx)
 
 
-class EditParticipant(View):
+class EditParticipant(LoginRequiredMixin, View):
     def get_participant(self, participant_pk):
         participant = Participant.objects.get(pk=participant_pk)
         participant.new_phone = format_phone(participant.phone)
@@ -251,7 +251,7 @@ def generate_pdf(request, pk):
     return response
 
 
-class FillParticipant(View):
+class FillParticipant(LoginRequiredMixin, View):
     def get(self, request):
         if not 'firstName' in request.GET.keys() and not 'lastName' in request.GET.keys():
             try:

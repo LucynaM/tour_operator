@@ -7,13 +7,13 @@ from .forms import AddOfferForm, EditOfferForm, HolidayForm, NewsForm
 
 # Create your views here.
 
-class TourManager(View):
+class TourManager(LoginRequiredMixin, View):
 
     def get(self, request):
         return render(request, 'webpage_offer/tour_manager.html')
 
 
-class AddListOffer(View):
+class AddListOffer(LoginRequiredMixin, View):
     """Show all offer and add new one"""
 
     def get(self, request):
@@ -38,7 +38,7 @@ class AddListOffer(View):
         return render(request, 'webpage_offer/add_offer.html', ctx)
 
 
-class EditOffer(View):
+class EditOffer(LoginRequiredMixin, View):
 
     def get(self, request, pk):
         offer = Offer.objects.get(pk=pk)
@@ -70,7 +70,7 @@ def show_elements(obj):
     return data
 
 
-class ShowOffer(View):
+class ShowOffer(LoginRequiredMixin, View):
 
     def get(self, request, pk):
         try:
@@ -82,7 +82,7 @@ class ShowOffer(View):
             print(e)
 
 
-class ShowHoliday(View):
+class ShowHoliday(LoginRequiredMixin, View):
 
     def get(self, request, pk):
         try:
@@ -94,7 +94,7 @@ class ShowHoliday(View):
             print(e)
 
 
-class ShowNews(View):
+class ShowNews(LoginRequiredMixin, View):
 
     def get(self, request, pk):
         try:
@@ -189,7 +189,7 @@ class SetRecommended(View):
             print(e)
 
 
-class AddListHoliday(View):
+class AddListHoliday(LoginRequiredMixin, View):
     def get(self, request):
         holiday_list = Holiday.objects.all().order_by('-pk')
         form = HolidayForm()
@@ -211,7 +211,7 @@ class AddListHoliday(View):
         return render(request, 'webpage_offer/add_holiday.html', ctx)
 
 
-class EditHoliday(View):
+class EditHoliday(LoginRequiredMixin, View):
     def get(self, request, pk):
         holiday = Holiday.objects.get(pk=pk)
         form = HolidayForm(instance=holiday)
@@ -235,7 +235,7 @@ class EditHoliday(View):
         return render(request, 'webpage_offer/edit_holiday.html', ctx)
 
 
-class AddListNews(View):
+class AddListNews(LoginRequiredMixin, View):
     def get(self, request):
         news_list = News.objects.all().order_by('entry_date')
         form = NewsForm()
@@ -258,7 +258,7 @@ class AddListNews(View):
         return render(request, 'webpage_offer/add_news.html', ctx)
 
 
-class EditNews(View):
+class EditNews(LoginRequiredMixin, View):
     def get(self, request, pk):
         news = News.objects.get(pk=pk)
         form = NewsForm(instance=news)
