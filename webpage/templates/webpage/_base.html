@@ -55,11 +55,11 @@
                         <a class="nav-link" href="#contact">kontakt</a>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0" method="post">
+               <!-- <form class="form-inline my-2 my-lg-0" method="post">
                     {% csrf_token %}
                   <input class="form-control ui-widget" type="search" placeholder="kierunek" aria-label="Search" name="search" data-url="{% url 'webpage:get_directions' %}" >
-                  <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-                </form>
+                -->  <a class="btn btn-outline-danger my-2 my-sm-0" ><i class="fas fa-search"></i></a>
+                <!--</form>-->
                 <span class="navbar-text">
                     <div>tel: <strong>606-723-829</strong> lub <strong>508-195-683</strong></div>
                     <div>email: <strong><a href="mailto:biuro@marcopolo.rzeszow.pl">biuro@marcopolo.rzeszow.pl</a></strong></div>
@@ -67,7 +67,17 @@
 
             </div>
         </div>
+
     </nav>
+    <div class="container" id="search-to-display">
+        <div class="row">
+            <form class="search-wrapper" method="post">
+                {% csrf_token %}
+              <input class="form-control ui-widget" type="search" placeholder="kierunek" aria-label="Search" name="search" data-url="{% url 'webpage:get_directions' %}" >
+              <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+    </div>
     <!-- Nav - stop -->
     {% endblock nav %}
     {% block content %}
