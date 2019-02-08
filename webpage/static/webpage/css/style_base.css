@@ -207,8 +207,6 @@ footer {
       transform: translateY(-50%); }
       #header .offer-img .offer-mask .offer-info .offer-link {
         display: none;
-        font-size: 3rem;
-        color: #fff;
         font-size: 2rem;
         color: lightgoldenrodyellow;
         text-transform: uppercase;
@@ -427,6 +425,48 @@ footer {
   .full-offer a > .fas.fa-arrow-circle-down {
     font-size: 2.5em;
     color: white; }
+
+#img-section {
+  background: #fcb21e;
+  padding-bottom: 0; }
+
+.banner-section {
+  height: 25vh;
+  padding-bottom: 0;
+  /*    .fourth-banner {
+        background-image: url("../images/banner/DSC_0397.JPG");
+        background-size: cover;
+        background-position: bottom;
+
+    }
+    .fifth-banner {
+        background-image: url("../images/banner/0522.JPG");
+        background-size: cover;
+
+    }
+    .sixth-banner {
+        background-image: url("../images/banner/DSC_0351.JPG");
+        background-size: cover;
+
+    }*/ }
+  .banner-section .first-banner {
+    background-image: url("../images/banner/P_20160730_170032_HDR.jpg");
+    background-size: cover; }
+  .banner-section .second-banner {
+    background-color: lightgrey;
+    font-size: 2rem;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 2px;
+    padding: 25px; }
+    .banner-section .second-banner .red {
+      color: #B91B22; }
+    .banner-section .second-banner .blue {
+      color: #207ba3; }
+  .banner-section .third-banner {
+    background-image: url("../images/banner/DSC_0061.JPG");
+    background-size: cover; }
 
 /* Responsive styles - start */
 /* navigation - start */
