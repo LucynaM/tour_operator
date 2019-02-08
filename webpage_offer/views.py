@@ -70,7 +70,7 @@ def show_elements(obj):
     return data
 
 
-class ShowOffer(LoginRequiredMixin, View):
+class ShowOffer(View):
 
     def get(self, request, pk):
         try:
@@ -82,7 +82,7 @@ class ShowOffer(LoginRequiredMixin, View):
             print(e)
 
 
-class ShowHoliday(LoginRequiredMixin, View):
+class ShowHoliday(View):
 
     def get(self, request, pk):
         try:
@@ -94,7 +94,7 @@ class ShowHoliday(LoginRequiredMixin, View):
             print(e)
 
 
-class ShowNews(LoginRequiredMixin, View):
+class ShowNews(View):
 
     def get(self, request, pk):
         try:

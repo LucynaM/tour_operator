@@ -19,13 +19,15 @@ $(document).ready(function() {
     /* Show offer on click - start */
 
     function hideElement(nextRow, toggler) {
-        nextRow.hide();
+        //nextRow.hide();
+        nextRow.slideUp();
         toggler.removeClass('fa-eye-slash').addClass('fa-eye');
     };
 
     function prepareOffer(row, nextRow, thisToggler, url) {
         if (nextRow.hasClass('new-row')) {
-            nextRow.show();
+            //nextRow.show();
+            nextRow.slideDown();
             thisToggler.removeClass('fa-eye').addClass('fa-eye-slash');
         } else {
             ajaxHandler(url, '', 'GET', showOffer, row, thisToggler);
@@ -50,6 +52,7 @@ $(document).ready(function() {
         thisToggler.removeClass('fa-eye').addClass('fa-eye-slash');
         newRow.append(newRowContent);
         newRowContent.html(newRowContentText);
+        newRow.slideDown();
 
     };
 
@@ -318,7 +321,7 @@ $(document).ready(function() {
 
     /* smooth scrolling - start */
     function smoothScrolling() {
-        $(".navbar a").on('click', function(event) {
+        $(".navbar a, .offer_title a, .full-offer a").on('click', function(event) {
 
             // Make sure this.hash has a value before overriding default behavior
             if (this.hash !== "") {

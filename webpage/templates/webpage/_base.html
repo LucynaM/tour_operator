@@ -19,67 +19,117 @@
 </head>
 
 <body>
-    {% block nav %}
-    <!-- Nav - start -->
 
-    <nav class="navbar navbar-expand-xl">
+
+  {% block nav %}
+
+    <nav class="navbar navbar-expand-md">
         <div class="container">
+
+
             <a class="navbar-brand" href="{% block brand %}#{% endblock brand %}"><img src="{% static 'webpage/images/logo-przezr-tlo.png' %}" alt="Marco Polo"></a>
+
+
+            <!--desktop menu -->
+            <div class="collapse navbar-collapse ">
+
+                <ul class="navbar-nav desktop">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" role="button" data-toggle="to-display" data-target="#displayNavbar" aria-controls="displayNavbar" aria-expanded="false" aria-label="Toggle offer">oferta</a>
+
+
+                        <div id="displayNavbar" class="to-display navbar-details">
+                            <ul>
+                                <li class="nav-item ">
+                                    {% block link_for_school %}<a class="nav-link" href="{% url 'webpage:for_school' %}">dla szkół</a>{% endblock link_for_school %}
+                                </li>
+                                <li class="nav-item ">
+                                    {% block link_for_work %}<a class="nav-link" href="{% url 'webpage:for_work' %}">dla firm</a>{% endblock link_for_work %}
+                                </li>
+                                <li class="nav-item ">
+                                    {% block link_holiday %}<a class="nav-link" href="{% url 'webpage:holiday' %}">wakacje</a>{% endblock link_holiday %}
+                                </li>
+                                <li class="nav-item ">
+                                    {% block link_pilgrimage %}<a class="nav-link" href="{% url 'webpage:pilgrimage' %}">pielgrzymki</a>{% endblock link_pilgrimage %}
+                                </li>
+                                <li class="nav-item ">
+                                    {% block link_news %}<a class="nav-link" href="{% url 'webpage:news' %}">aktualności</a>{% endblock link_news %}
+                                </li>
+                                <li class="nav-item ">
+                                    {% block link_recommend %}<a class="nav-link" href="{% url 'webpage:recommended' %}">polecamy</a>{% endblock link_recommend %}
+                                </li>
+                            </ul>
+                        </div>
+
+
+                    </li >
+
+                    <li class="nav-item">
+                         <a class="nav-link" href="#contact">kontakt</a>
+                    </li>
+                </ul>
+
+
+                <form class="form-inline my-2 my-lg-0 search-form" method="post">
+                        {% csrf_token %}
+                        <input class="form-control ui-widget" type="search" placeholder="kierunek" aria-label="Search" name="search" data-url="{% url 'webpage:get_directions' %}" >
+                        <button class="btn my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                </form>
+
+
+            </div>
+
+
+            <!--mobile menu - start -->
             <button class="navbar-toggler navbar-light" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto justify-content-center">
-                    <!-- Offer as dropdown menu - start -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">oferta</a>
-
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            {% block link_for_school %}<a class="dropdown-item" href="{% url 'webpage:for_school' %}">dla szkół</a>{% endblock link_for_school %}
-                            {% block link_for_work %}<a class="dropdown-item" href="{% url 'webpage:for_work' %}">dla firm</a>{% endblock link_for_work %}
-                            {% block link_holiday %}<a class="dropdown-item" href="{% url 'webpage:holiday' %}">wakacje</a>{% endblock link_holiday %}
-                            {% block link_pilgrimage %}<a class="dropdown-item" href="{% url 'webpage:pilgrimage' %}">pielgrzymki</a>{% endblock link_pilgrimage %}
-                            {% block link_news %}<a class="dropdown-item" href="{% url 'webpage:news' %}">aktualności</a>{% endblock link_news %}
-                            {% block link_recommend %}<a class="dropdown-item" href="{% url 'webpage:recommended' %}">polecamy</a>{% endblock link_recommend %}
-                        </div>
+                    <li class="nav-item ">
+                        {% block link_for_school_mob %}<a class="nav-link" href="{% url 'webpage:for_school' %}">dla szkół</a>{% endblock link_for_school_mob %}
                     </li>
-                    <!-- Offer as dropdown menu - stop -->
-                    {% block about_link %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">o nas</a>
+                    <li class="nav-item ">
+                        {% block link_for_work_mob %}<a class="nav-link" href="{% url 'webpage:for_work' %}">dla firm</a>{% endblock link_for_work_mob %}
                     </li>
-                    {% endblock about_link %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">kontakt</a>
+                    <li class="nav-item ">
+                        {% block link_holiday_mob %}<a class="nav-link" href="{% url 'webpage:holiday' %}">wakacje</a>{% endblock link_holiday_mob %}
+                    </li>
+                    <li class="nav-item ">
+                        {% block link_pilgrimage_mob %}<a class="nav-link" href="{% url 'webpage:pilgrimage' %}">pielgrzymki</a>{% endblock link_pilgrimage_mob %}
+                    </li>
+                    <li class="nav-item ">
+                        {% block link_news_mob %}<a class="nav-link" href="{% url 'webpage:news' %}">aktualności</a>{% endblock link_news_mob %}
+                    </li>
+                    <li class="nav-item ">
+                        {% block link_recommend_mob %}<a class="nav-link" href="{% url 'webpage:recommended' %}">polecamy</a>{% endblock link_recommend_mob %}
                     </li>
                 </ul>
-               <!-- <form class="form-inline my-2 my-lg-0" method="post">
-                    {% csrf_token %}
-                  <input class="form-control ui-widget" type="search" placeholder="kierunek" aria-label="Search" name="search" data-url="{% url 'webpage:get_directions' %}" >
-                -->  <a class="btn btn-outline-danger my-2 my-sm-0" ><i class="fas fa-search"></i></a>
-                <!--</form>-->
+
                 <span class="navbar-text">
                     <div>tel: <strong>606-723-829</strong> lub <strong>508-195-683</strong></div>
                     <div>email: <strong><a href="mailto:biuro@marcopolo.rzeszow.pl">biuro@marcopolo.rzeszow.pl</a></strong></div>
                 </span>
 
+               <form class="form-inline my-2 my-lg-0" method="post">
+                    {% csrf_token %}
+                  <input class="form-control ui-widget" type="search" placeholder="kierunek" aria-label="Search" name="search" data-url="{% url 'webpage:get_directions' %}" >
+                    <button class="btn my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                </form>
             </div>
+            <!--mobile menu stop-->
+
+
         </div>
 
     </nav>
-    <div class="container" id="search-to-display">
-        <div class="row">
-            <form class="search-wrapper" method="post">
-                {% csrf_token %}
-              <input class="form-control ui-widget" type="search" placeholder="kierunek" aria-label="Search" name="search" data-url="{% url 'webpage:get_directions' %}" >
-              <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-            </form>
-        </div>
-    </div>
+
     <!-- Nav - stop -->
     {% endblock nav %}
+
+
     {% block content %}
     {% endblock content %}
     {% block footer %}
