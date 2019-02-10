@@ -76,7 +76,7 @@ $(document).ready(function() {
             const mousePositionX = e.clientX;
             const mousePositionY = e.clientY;
 
-            if ( ( ( mousePositionX < startTargetX || mousePositionX > endTargetX ) && mousePositionY < 287 ) || mousePositionY > 287 ) {
+            if ( ( ( mousePositionX < startTargetX || mousePositionX > endTargetX ) && mousePositionY < 323 ) || mousePositionY > 323 ) {
                     hideNavElements();
                     showHideNavElements = false;
             }

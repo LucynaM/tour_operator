@@ -124,7 +124,7 @@ class GetDirectionsBis(View):
             data = {}
             data['directions'] = []
             for offer in offer_list:
-                for direction in offer.direction.split(', '):
+                for direction in offer.direction.split('; '):
                     if direction not in data['directions']:
                         data['directions'].append(direction)
             return JsonResponse(data)

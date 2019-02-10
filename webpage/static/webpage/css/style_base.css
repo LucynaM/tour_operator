@@ -13,19 +13,6 @@ a {
     font-weight: 600;
     text-decoration: none; }
 
-/*
-a {
-    position: relative;
-}
-
-a[title]:hover:after {
-    content: attr(title);
-    position: absolute;
-    top: -100%;
-    left: 0;
-    background: yellow;
-}
-*/
 .row.no-gutters > [class^="col-"],
 .row.no-gutters > [class*=" col-"] {
   padding-right: 0;
@@ -38,14 +25,21 @@ section {
     section:first-of-type.offer_title {
       padding-top: 10vh;
       padding-bottom: 9vh;
-      text-align: center; }
+      text-align: center;
+      color: #fff; }
+      section:first-of-type.offer_title a > i {
+        color: #fff; }
 
 .selection {
   padding-bottom: 0; }
 
 .offer_table {
-  padding-top: 15vh;
-  padding-bottom: 15vh; }
+  padding-top: 8vh;
+  padding-bottom: 8vh; }
+
+.background {
+  height: 8vh;
+  background-color: #0c1433; }
 
 footer .row:nth-child(1) {
   padding-top: 8vh;
@@ -59,13 +53,15 @@ h1 {
 
 .table {
   margin-bottom: 0; }
-  .table th:last-child, .table td:last-child {
-    text-align: right; }
-  .table th:first-of-type, .table td:first-of-type {
-    text-align: left; }
+  .table th, .table td {
+    border-top: none; }
+    .table th:last-child, .table td:last-child {
+      text-align: right; }
+    .table th:first-of-type, .table td:first-of-type {
+      text-align: left; }
 
 .offer-details {
-  color: gray; }
+  color: #0c1433; }
 
 td:hover .offer-details, .selected_wrapper:hover .offer-details {
   color: #B91B22;
@@ -124,7 +120,7 @@ nav .form-control {
 
 .to-display {
   display: none;
-  top: 86px;
+  top: 83px;
   position: absolute;
   z-index: 1000;
   width: auto;
@@ -137,7 +133,6 @@ nav .form-control {
 /* navigation - stop */
 /* footer - start */
 footer {
-  background-color: #F7F5F5;
   background-color: #0c1433;
   color: #e6e7ea;
   font-weight: 500; }
@@ -263,12 +258,12 @@ footer {
   background-position: 50% 35%;
   background-image: url("../images/AdobeStock_171725583_Preview.jpeg"); }
 
-#header_recommended_img {
+#header_news_img {
   background-position: 50% 71%;
   background-image: url("../images/recommended/AdobeStock_31306421_Preview.jpeg"); }
 
-#header_news_img {
-  background-position: 50% 65%;
+#header_recommended_img {
+  background-position: 50% 69%;
   background-image: url("../images/AdobeStock_138326898_Preview.jpeg"); }
 
 #header_search_img {
@@ -276,34 +271,24 @@ footer {
 
 /* Header_for_school, Header_holiday - stop */
 #title_for_school {
-  background: #f4cb42;
-  color: #FBEFC6; }
-  #title_for_school a > i {
-    color: #FBEFC6; }
+  background: #f4d300; }
 
 #title_for_work {
-  background: #207ba3;
-  color: #bcd7e3; }
-  #title_for_work a > i {
-    color: #bcd7e3; }
+  background: #207ba3; }
 
 #title_pilgrimage {
-  background: #d28c22;
-  color: #f6e8d2; }
-  #title_pilgrimage a > i {
-    color: #f6e8d2; }
+  background: #d28c22; }
 
 #title_recommended {
-  background: #1d87e2;
-  color: #d1e7f9; }
-  #title_recommended a > i {
-    color: #d1e7f9; }
+  background: #157796; }
 
 /* Selected_for_school - start */
 .selection {
   background: #B91B22; }
   .selection .selected-item {
     height: 25vh; }
+  .selection#selected_recommended .selected-item {
+    height: 33vh; }
   .selection .selected_img {
     background-position: center;
     background-size: cover;
@@ -414,8 +399,8 @@ footer {
 /* News - stop */
 .full-offer {
   text-align: center;
-  background: #e1e1e1;
-  color: white;
+  background: #0c1433;
+  color: #e1e1e1;
   padding-top: 5vh;
   padding-bottom: 5vh; }
   .full-offer h2 {
@@ -426,47 +411,24 @@ footer {
     font-size: 2.5em;
     color: white; }
 
-#img-section {
-  background: #fcb21e;
+#bottom-img-section {
   padding-bottom: 0; }
 
-.banner-section {
-  height: 25vh;
-  padding-bottom: 0;
-  /*    .fourth-banner {
-        background-image: url("../images/banner/DSC_0397.JPG");
-        background-size: cover;
-        background-position: bottom;
+.offer-bottom-img {
+  background-size: cover;
+  height: 30vh; }
 
-    }
-    .fifth-banner {
-        background-image: url("../images/banner/0522.JPG");
-        background-size: cover;
+#offer-for-school-bottom {
+  background-image: url("../images/banner/DSC_0218.JPG");
+  background-position: 0 52%; }
 
-    }
-    .sixth-banner {
-        background-image: url("../images/banner/DSC_0351.JPG");
-        background-size: cover;
+#offer-for-work-bottom {
+  background-image: url("../images/banner/macedonia.JPG");
+  background-position: 0 33%; }
 
-    }*/ }
-  .banner-section .first-banner {
-    background-image: url("../images/banner/P_20160730_170032_HDR.jpg");
-    background-size: cover; }
-  .banner-section .second-banner {
-    background-color: lightgrey;
-    font-size: 2rem;
-    color: white;
-    text-transform: uppercase;
-    font-weight: 500;
-    letter-spacing: 2px;
-    padding: 25px; }
-    .banner-section .second-banner .red {
-      color: #B91B22; }
-    .banner-section .second-banner .blue {
-      color: #207ba3; }
-  .banner-section .third-banner {
-    background-image: url("../images/banner/DSC_0061.JPG");
-    background-size: cover; }
+#offer-pilgrimage-bottom {
+  background-image: url("../images/banner/grecja-2.JPG");
+  background-position: 0 33%; }
 
 /* Responsive styles - start */
 /* navigation - start */
@@ -495,8 +457,10 @@ footer {
     padding-top: 10vw;
     padding-bottom: 9vw; }
   .offer_table {
-    padding-top: 15vw;
-    padding-bottom: 15vw; }
+    padding-top: 8vw;
+    padding-bottom: 8vw; }
+  .background {
+    height: 8vw; }
   footer .row:nth-child(1) {
     padding-top: 1vw;
     padding-bottom: 8vw; }
@@ -510,13 +474,23 @@ footer {
 
 /*small window size*/
 @media (max-width: 767px) {
+  .selection .selected_img {
+    height: 50vh; }
   .selection .selected_data {
     height: auto;
-    min-height: initial; } }
+    min-height: initial; }
+  .selection#selected_recommended .selected_data {
+    height: auto; }
+  .selection#selected_recommended .selected_img {
+    height: 50vh; } }
 
 @media (min-width: 576px) and (max-width: 767px) {
   h1 {
-    font-size: 80px; } }
+    font-size: 80px; }
+  .full-offer h2 {
+    font-size: 50px; }
+  .full-offer a > .fas.fa-arrow-circle-down {
+    font-size: 2.2em; } }
 
 @media (min-width: 767px) {
   .fa-arrow-circle-down {
@@ -526,6 +500,11 @@ footer {
   h1 {
     font-size: 40px;
     font-weight: 400; }
+  .full-offer h2 {
+    font-size: 30px;
+    font-weight: 400; }
+  .full-offer a > .fas.fa-arrow-circle-down {
+    font-size: 2em; }
   nav img {
     width: 180px;
     height: auto; } }
