@@ -75,8 +75,9 @@ $(document).ready(function() {
         if (showHideNavElements) {
             const mousePositionX = e.clientX;
             const mousePositionY = e.clientY;
+            const hoverHeight = 84 + $(target).height();
 
-            if ( ( ( mousePositionX < startTargetX || mousePositionX > endTargetX ) && mousePositionY < 323 ) || mousePositionY > 323 ) {
+            if ( ( ( mousePositionX < startTargetX || mousePositionX > endTargetX ) && mousePositionY < hoverHeight ) || mousePositionY > hoverHeight ) {
                     hideNavElements();
                     showHideNavElements = false;
             }

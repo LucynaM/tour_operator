@@ -19,7 +19,7 @@
 <!-- Selected - start -->
 <section id="title_for_school" class="offer_title scroll">
     <h1>Oferta dla szkół</h1>
-    <a href="#selected_for_school"><i class="fas fa-2x fa-arrow-circle-down "></i></a>
+    <a class="btn btn-primary" href="#selected_for_school">Oferta <!--<i class="fas fa-2x fa-arrow-circle-down "></i>--></a>
 
 </section>
 <section id="selected_for_school" class="selection">
@@ -75,37 +75,28 @@
 
 
 <!-- Full offer - start -->
-<section id="show-full-offer" class="row no-gutters full-offer scroll">
+<section id="show-full-offer" class="row no-gutters full-offer scroll school">
     <div class="container">
-        <h2>Pełna oferta</h2>
-        <a href="#section-background">
-            <i class="fas fa-arrow-circle-down "></i>
+       <!-- <h2>Pełna oferta</h2>-->
+        <a class="btn btn-primary" href="#section-background"> Pełna oferta
+            <!--<i class="fas fa-arrow-circle-down "></i>-->
         </a>
     </div>
 </section>
 <!-- Full offer - stop -->
 
-<section id="section-background" class="background scroll"></section>
+<section id="section-background" class="background scroll " ></section>
 
 <!-- Offer for school - start -->
-
 {% if for_school %}
 <section id="offer_for_school" class="offer_table scroll">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 offset-lg-3">
-
+            <div class="col-lg-6 offset-lg-3 ">
                 <table class="table">
-                    <tr>
-                        <th>Kierunek</th>
-                        <th>Czas trwania</th>
-                        <th></th>
-                    </tr>
-
                     {% for offer in for_school %}
                     <tr id="table-{{ offer.pk }}" class="closestElement">
-                        <td><strong>{{ offer.title }}</strong></td>
-                        <td>{{ offer.duration_in_days }} {% if offer.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</td>
+                        <td><h2>{{ offer.title }}</h2></td>
                         <td><i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer.pk %}"></i></td>
                     </tr>
                     {% endfor %}
@@ -117,7 +108,17 @@
 </section>
 {% endif %}
 <!-- Offer for school - stop -->
+<section class="background scroll "></section>
+
 <section id="offer-for-school-bottom" class="offer-bottom-img scroll">
     <div class="container-fluid"></div>
 </section>
+
+<section id="show-contact" class="row no-gutters full-offer school scroll">
+    <div class="container">
+        <a class="btn btn-primary" href="#contact"> Kontakt
+        </a>
+    </div>
+</section>
+
 {% endblock content %}

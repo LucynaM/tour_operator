@@ -19,8 +19,8 @@
 <!-- Selected - start -->
 <section id="title_for_work" class="offer_title scroll">
     <h1>Oferta dla firm</h1>
-    <a href="#selected_for_work">
-        <i class="fas fa-2x fa-arrow-circle-down "></i>
+    <a class="btn btn-primary" href="#selected_for_work">Oferta
+       <!-- <i class="fas fa-2x fa-arrow-circle-down "></i>-->
     </a>
 
 </section>
@@ -73,16 +73,13 @@
 <!-- Selected - stop-->
 
 <!-- Full offer - start -->
-<section id="show-full-offer" class="row no-gutters full-offer scroll">
+<section id="show-full-offer" class="row no-gutters full-offer work scroll">
     <div class="container">
-        <h2>Pełna oferta</h2>
-        <a href="#section-background">
-            <i class="fas fa-arrow-circle-down "></i>
-        </a>
+        <a class="btn btn-primary" href="#section-background">Pełna oferta</a>
     </div>
 </section>
 <!-- Full offer - stop -->
-<section id="section-background" class="background scroll"></section>
+<section id="section-background" class="background scroll "></section>
 <!-- Offer for school - start -->
 {% if for_work %}
 <section id="offer_for_work" class="offer_table scroll">
@@ -91,16 +88,12 @@
             <div class="col-lg-6 offset-lg-3">
 
                 <table class="table">
-                    <tr>
-                        <th>Kierunek</th>
-                        <th>Czas trwania</th>
-                        <th></th>
-                    </tr>
+
 
                     {% for offer in for_work %}
                     <tr id="table-{{ offer.pk }}" class="closestElement">
-                        <td><strong>{{ offer.title }}</strong></td>
-                        <td>{{ offer.duration_in_days }} {% if offer.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</td>
+                        <td><h2>{{ offer.title }}</h2></td>
+
                         <td><i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer.pk %}"></i></td>
                     </tr>
                     {% endfor %}
@@ -111,8 +104,14 @@
 </section>
 {% endif %}
 <!-- Offer for school - stop -->
-
+<section class="background scroll "></section>
 <section id="offer-for-work-bottom" class="offer-bottom-img scroll">
     <div class="container-fluid"></div>
+</section>
+<section id="show-contact" class="row no-gutters full-offer scroll work">
+    <div class="container">
+        <a class="btn btn-primary" href="#contact"> Kontakt
+        </a>
+    </div>
 </section>
 {% endblock content %}
