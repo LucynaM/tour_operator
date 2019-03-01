@@ -3,29 +3,33 @@ $(document).ready(function() {
     /* change order of image and offer presentation box depending on screen width - start*/
     function changeOrderOfLaoutElements() {
 
-        const imageToChangePosition = $('.img1');
-        const selectedItem1 = $('.selected-item-1');
-        const selectionRowToBeChanged = $('.selection-row').eq(1);
+        const imagesToChangePosition = $('.selected_img');
+        const selectionRow = $('.selection-row');
 
         /*conditions to fulfill*/
         const windowWidthCondition = window.innerWidth < 768;
-        const classCondition = selectedItem1.eq(1).hasClass('selected_img');
 
+        if (windowWidthCondition) {
+            selectionRow.each(function(index) {
+                if (index % 2 !== 0) {
+                    $(this).find(".selected_img").remove();
+                    $(this).prepend(imagesToChangePosition[index]);
+                }
+            })
 
-        if (windowWidthCondition && classCondition) {
-            selectedItem1.eq(1).remove();
-            selectionRowToBeChanged.prepend(imageToChangePosition);
-        } else if (!windowWidthCondition && !classCondition) {
-            selectedItem1.eq(0).remove();
-            selectionRowToBeChanged.append(imageToChangePosition);
+        } else  {
+            selectionRow.each(function(index) {
+                if (index % 2 !== 0 && $(this).children().eq(0).hasClass('selected_img')) {
+                    $(this).children().eq(0).remove();
+                    $(this).append(imagesToChangePosition[index]);
+                }
+            })
         }
     };
 
     changeOrderOfLaoutElements();
 
-    $(window).resize(function() {
-        changeOrderOfLaoutElements();
-    });
+    $(window).resize(changeOrderOfLaoutElements);
 
     /* change order of image and offer presentation box depending on screen width - stop */
 
@@ -75,7 +79,7 @@ $(document).ready(function() {
         if (showHideNavElements) {
             const mousePositionX = e.clientX;
             const mousePositionY = e.clientY;
-            const hoverHeight = 84 + $(target).height();
+            const hoverHeight = 115 + $(target).height();
 
             if ( ( ( mousePositionX < startTargetX || mousePositionX > endTargetX ) && mousePositionY < hoverHeight ) || mousePositionY > hoverHeight ) {
                     hideNavElements();

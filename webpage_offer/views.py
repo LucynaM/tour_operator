@@ -26,7 +26,7 @@ class AddListOffer(LoginRequiredMixin, View):
         return render(request, 'webpage_offer/add_offer.html', ctx)
 
     def post(self, request):
-        form = AddOfferForm(request.POST)
+        form = AddOfferForm(request.POST, request.FILES)
         if form.is_valid():
             Offer.objects.create(**form.cleaned_data)
             form = AddOfferForm()
@@ -51,7 +51,7 @@ class EditOffer(LoginRequiredMixin, View):
 
     def post(self, request, pk):
         offer = Offer.objects.get(pk=pk)
-        form = EditOfferForm(request.POST, instance=offer)
+        form = EditOfferForm(request.POST, request.FILES, instance=offer)
         if form.is_valid():
             form.save()
         offer = Offer.objects.get(pk=pk)

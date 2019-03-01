@@ -35,7 +35,7 @@
             <div class="col-md-12 col-lg-8 offset-lg-2">
                 <div >
                     <h2 class="page-header">Edytuj ofertę</h2>
-                    <form action="" method="post">
+                    <form action="" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{ form|crispy }}
                         <input type="submit" name="submit" value="edytuj" class="btn btn-danger">

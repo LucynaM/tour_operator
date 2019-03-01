@@ -8,6 +8,11 @@ from webpage_offer.models import Offer, Holiday, News
 def search_snippet(request, page):
     try:
         search = request.POST['search']
+        if " " in search:
+            search = search.replace(' ', '_')
+        if ". " in search:
+            search = search.replace('. ', ' ')
+
         return redirect('webpage:search', search=search)
     except Exception as e:
         print(e)
@@ -20,7 +25,7 @@ class HomePage(View):
     def post(self, request):
         return search_snippet(request, 'webpage/home.html')
 
-
+"""
 class HomeForSchoolPage(View):
     def get(self, request):
         for_school = Offer.objects.filter(category='school_trip', selected=False).exclude(withdrawn=True).order_by('title')
@@ -32,6 +37,21 @@ class HomeForSchoolPage(View):
         return render(request, 'webpage/home_for_school.html', ctx)
     def post(self, request):
         return search_snippet(request, 'webpage/home_for_school.html')
+"""
+
+class HomeForSchoolPage(View):
+    def get(self, request):
+        for_school_first = Offer.objects.filter(category='school_trip', selected=False).exclude(withdrawn=True).order_by('title')
+        for_school = [(for_school_first[x:x+2]) for x in range(0, len(for_school_first), 2)]
+        for_school_selected = Offer.objects.filter(category='school_trip', selected=True).order_by('selected_sort')
+        ctx = {
+            'for_school': for_school,
+            'for_school_selected': for_school_selected,
+        }
+        return render(request, 'webpage/home_for_school_2.html', ctx)
+    def post(self, request):
+        return search_snippet(request, 'webpage/home_for_school_2.html')
+
 
 
 class HomePilgrimagePage(View):
@@ -99,6 +119,10 @@ class HomeNewsPage(View):
 
 class HomeSearchPage(View):
     def get(self, request, search):
+        if '_' in search:
+            search = search.replace('_', ' ')
+        if ". " in search:
+            search = search.replace('. ', ' ')
         offer_list = Offer.objects.filter(direction__icontains=search)
 
         ctx = {
@@ -108,6 +132,10 @@ class HomeSearchPage(View):
         return render(request, 'webpage/home_search.html', ctx)
     def post(self, request, search):
         search = request.POST['search']
+        if '_' in search:
+            search = search.replace('_', ' ')
+        if ". " in search:
+            search = search.replace('. ', ' ')
         offer_list = Offer.objects.filter(direction__icontains=search)
 
         ctx = {

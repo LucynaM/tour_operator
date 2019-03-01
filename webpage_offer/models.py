@@ -18,6 +18,7 @@ class Offer(models.Model):
     duration_in_days = models.CharField(max_length=64, verbose_name='Czas trwania')
     short_descr = models.TextField(max_length=200, verbose_name='Krótki opis')
     schedule = HTMLField(verbose_name='Program')
+    image = models.ImageField(upload_to='images', null=True, blank=True)
     #flags for selection in category
     selected = models.BooleanField(default=False)
     selected_sort = models.IntegerField(null=True, blank=True)

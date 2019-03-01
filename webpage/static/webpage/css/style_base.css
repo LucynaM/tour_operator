@@ -142,7 +142,7 @@ td:hover .offer-details, .selected_wrapper:hover .offer-details {
       margin-right: 20px; }
 
 nav img {
-  width: 200px;
+  width: 250px;
   height: auto; }
 
 nav strong a {
@@ -171,7 +171,7 @@ nav .form-control {
 
 .to-display {
   display: none;
-  top: 83px;
+  top: 114px;
   position: absolute;
   z-index: 1000;
   width: auto;
@@ -182,8 +182,8 @@ nav .form-control {
   padding-left: 0; }
 
 .navbar {
-  padding-top: 2vh;
-  padding-bottom: 2vh; }
+  padding-top: 3vh;
+  padding-bottom: 3vh; }
 
 /* Menu - stop*/
 /* Menu responsive - start*/
@@ -199,6 +199,11 @@ nav .form-control {
     padding-right: 0; }
   .navbar-expand-md #navbarSupportedContent {
     width: 100%; } }
+
+@media (max-width: 575px) {
+  nav img {
+    width: 180px;
+    height: auto; } }
 
 /* Menu responsive - stop*/
 /* Footer - start*/
@@ -238,7 +243,7 @@ footer {
   padding-right: 0; }
 
 #header .offer-img {
-  height: 45vh;
+  height: 44vh;
   position: relative;
   background-position: center;
   background-size: cover;
@@ -291,6 +296,14 @@ footer {
 
 /* MainPage - stop*/
 /* MainPage responsive - start*/
+@media (max-width: 767px) and (orientation: portrait) {
+  #header .offer-img {
+    height: 29vh; } }
+
+@media (max-width: 575px) and (orientation: landscape) {
+  #header .offer-img {
+    height: 65vh; } }
+
 /* MainPage responsive - stop*/
 /* OfferHeader - start*/
 .header_container .container-fluid {
@@ -355,13 +368,13 @@ footer {
 .selection {
   background: #B91B22; }
   .selection .selected-item {
-    height: 30vh; }
+    height: 45vh; }
   .selection#selected_recommended .selected-item {
     height: 33vh; }
-  .selection .selected_img {
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat; }
+  .selection .selected_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; }
   .selection .selected_data {
     background-color: #F7F5F5; }
     .selection .selected_data .selected_wrapper {
@@ -397,15 +410,26 @@ footer {
     padding: 7%;
     display: none; }
 
-#selected_for_school_img0 {
-  background-image: url("../images/AdobeStock_203413374_Preview.jpeg"); }
+.selection-offer {
+  background: transparent; }
+  .selection-offer .selected-item {
+    height: 33vh; }
+  .selection-offer .selected_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; }
+
+/*#selected_for_school_img0 {
+    background-image: url("../images/AdobeStock_203413374_Preview.jpeg");
+}
 
 #selected_for_school_img1 {
-  background-image: url("../images/AdobeStock_123235384_Preview.jpeg"); }
+    background-image: url("../images/AdobeStock_123235384_Preview.jpeg");
+}
 
 #selected_for_school_img2 {
-  background-image: url("../images/AdobeStock_181976409_Preview.jpeg"); }
-
+    background-image: url("../images/AdobeStock_181976409_Preview.jpeg");
+}*/
 #selected_pilgrimage_img0 {
   background-position: 50% 100%;
   background-image: url("../images/pilgrimage/AdobeStock_157182090_Preview.jpeg"); }
