@@ -1,0 +1,131 @@
+{% extends './_base.html' %}
+{% load static %}
+
+{% block brand %}{% url 'webpage:home' %}{% endblock brand %}
+
+{% block link_for_school %}{% endblock link_for_school %}
+
+{% block about_link %}{% endblock about_link %}
+
+
+{% block content %}
+<!-- Header - start -->
+<header id="header_for_school" class="header_container scroll">
+    <div class="container-fluid">
+        <div id="header_for_school_img" class="header_img"></div>
+    </div>
+</header>
+<!-- Header - stop -->
+<!-- Selected - start -->
+<section id="title_for_school" class="offer_title scroll">
+    <h1>Oferta dla szkół</h1>
+    <a class="btn btn-primary" href="#selected_for_school">Oferta <!--<i class="fas fa-2x fa-arrow-circle-down "></i>--></a>
+
+</section>
+<section id="selected_for_school" class="selection">
+    <div class="container">
+        <div id="section-{{for_school_selected.0.pk}}" class="row no-gutters selection-row closestElement scroll">
+            <div id="selected_for_school_img0" class="col-md-6 selected-item selected_img img0"></div>
+            <div class="col-md-6 selected-item selected_data">
+                <div class="selected_wrapper">
+                    {% if for_school_selected.0 %}
+                    <h2>{{ for_school_selected.0.title }}
+                        <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' for_school_selected.0.pk %}" title="pokaż szczegóły"></i>
+                    </h2>
+                    <p>{{ for_school_selected.0.short_descr }}</p>
+                    <p>Czas trwania: {{ for_school_selected.0.duration_in_days }}{% if for_school_selected.0.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div id="section-{{ for_school_selected.1.pk }}" class="row no-gutters selection-row closestElement scroll">
+            <div class="col-md-6 selected-item selected-item-1 selected_data">
+                <div class="selected_wrapper">
+                    {% if for_school_selected.1 %}
+                    <h2>{{ for_school_selected.1.title }}
+                        <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' for_school_selected.1.pk %}" title="pokaż szczegóły"></i>
+                    </h2>
+                    <p>{{ for_school_selected.1.short_descr }}</p>
+                    <p>Czas trwania: {{ for_school_selected.1.duration_in_days }}{% if for_school_selected.1.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div id="selected_for_school_img1" class="col-md-6 selected-item selected-item-1 selected_img img1"></div>
+        </div>
+        <div id="section-{{for_school_selected.2.pk}}" class="row no-gutters selection-row closestElement scroll">
+            <div id="selected_for_school_img2" class="col-md-6 selected-item selected_img img2"></div>
+            <div class="col-md-6 selected-item selected_data">
+                <div class="selected_wrapper">
+                    {% if for_school_selected.2 %}
+                    <h2>{{ for_school_selected.2.title }}
+                        <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' for_school_selected.2.pk %}" title="pokaż szczegóły"></i>
+                    </h2>
+                    <p>{{ for_school_selected.2.short_descr }}</p>
+                    <p>Czas trwania: {{ for_school_selected.2.duration_in_days }}{% if for_school_selected.2.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</section>
+<!-- Selected - stop-->
+
+
+<!-- Full offer - start -->
+<section id="show-full-offer" class="row no-gutters full-offer scroll school">
+    <div class="container">
+       <!-- <h2>Pełna oferta</h2>-->
+        <a class="btn btn-primary" href="#section-background"> Pełna oferta
+            <!--<i class="fas fa-arrow-circle-down "></i>-->
+        </a>
+    </div>
+</section>
+<!-- Full offer - stop -->
+
+<section id="section-background" class="background scroll " ></section>
+
+<!-- Offer for school - start -->
+{% if for_school %}
+<section id="offer_for_school" class="offer_table scroll">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3 ">
+                <table class="table">
+                    <tr>
+                        <th>Kierunek</th>
+                        <th>Czas trwania</th>
+                        <th></th>
+                    </tr>
+                    {% for offer in for_school %}
+
+                    <tr id="table-{{ offer.pk }}" class="closestElement">
+                        <td><strong>{{ offer.title }}</strong></td>
+                        <td>{{ offer.duration_in_days }} </td>
+                        <td><i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer.pk %}"></i></td>
+                    </tr>
+                    {% endfor %}
+
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+<!-- Offer for school - stop -->
+<!--<section class="background scroll "></section>-->
+
+<section id="offer-for-school-bottom" class="offer-bottom-img scroll">
+    <div class="container-fluid"></div>
+</section>
+
+<section id="show-contact" class="row no-gutters full-offer school scroll">
+    <div class="container">
+        <a class="btn btn-primary" href="#contact"> Kontakt
+        </a>
+    </div>
+</section>
+
+{% endblock content %}

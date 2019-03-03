@@ -16,12 +16,12 @@ Including another URLconf
 from django.conf.urls import url
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import HomePage, HomeForSchoolPage, HomePilgrimagePage, HomeForWorkPage, HomeHolidayPage, HomeNewsPage, \
+from .views import HomePage, OfferPage, HomePilgrimagePage, HomeForWorkPage, HomeHolidayPage, HomeNewsPage, \
     HomeSearchPage, HomeRecommendedPage, GetDirectionsBis
 
 urlpatterns = [
     url(r'^$', HomePage.as_view(), name='home'),
-    url(r'^for_school/$', HomeForSchoolPage.as_view(), name='for_school'),
+    url(r'^for_school/$', OfferPage.as_view(), name='for_school'),
     url(r'^pilgrimage/$', HomePilgrimagePage.as_view(), name='pilgrimage'),
     url(r'^recommended/$', HomeRecommendedPage.as_view(), name='recommended'),
     url(r'^for_work/$', HomeForWorkPage.as_view(), name='for_work'),

@@ -25,32 +25,21 @@ class HomePage(View):
     def post(self, request):
         return search_snippet(request, 'webpage/home.html')
 
-"""
-class HomeForSchoolPage(View):
+
+class OfferPage(View):
     def get(self, request):
-        for_school = Offer.objects.filter(category='school_trip', selected=False).exclude(withdrawn=True).order_by('title')
-        for_school_selected = Offer.objects.filter(category='school_trip', selected=True).order_by('selected_sort')
+        category = request.path[1:-1]
+        offer = Offer.objects.filter(category=category, selected=False).exclude(withdrawn=True).order_by('title')
+        offer_chunk = ((offer[x:x+2]) for x in range(0, len(offer), 2))
+        offer_selected = Offer.objects.filter(category=category, selected=True).order_by('selected_sort')
         ctx = {
-            'for_school': for_school,
-            'for_school_selected': for_school_selected,
+            'category': category,
+            'offer_all': offer_chunk,
+            'offer_selected': offer_selected,
         }
         return render(request, 'webpage/home_for_school.html', ctx)
     def post(self, request):
         return search_snippet(request, 'webpage/home_for_school.html')
-"""
-
-class HomeForSchoolPage(View):
-    def get(self, request):
-        for_school_first = Offer.objects.filter(category='school_trip', selected=False).exclude(withdrawn=True).order_by('title')
-        for_school = [(for_school_first[x:x+2]) for x in range(0, len(for_school_first), 2)]
-        for_school_selected = Offer.objects.filter(category='school_trip', selected=True).order_by('selected_sort')
-        ctx = {
-            'for_school': for_school,
-            'for_school_selected': for_school_selected,
-        }
-        return render(request, 'webpage/home_for_school_2.html', ctx)
-    def post(self, request):
-        return search_snippet(request, 'webpage/home_for_school_2.html')
 
 
 

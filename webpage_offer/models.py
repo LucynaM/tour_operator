@@ -5,8 +5,8 @@ from tinymce.models import HTMLField
 
 
 CATEGORIES = (
-    ('school_trip', 'oferta dla szkół'),
-    ('work_trip', 'oferta dla firm'),
+    ('for_school', 'oferta dla szkół'),
+    ('for_work', 'oferta dla firm'),
     ('pilgrimage', 'pielgrzymka'),
 )
 

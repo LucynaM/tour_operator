@@ -10,121 +10,120 @@
 
 {% block content %}
 <!-- Header - start -->
-<header id="header_for_school" class="header_container scroll">
+<header id="header_{{ category }}" class="header_container">
     <div class="container-fluid">
-        <div id="header_for_school_img" class="header_img"></div>
+        <div id="header_{{ category }}_img" class="header_img"></div>
     </div>
 </header>
 <!-- Header - stop -->
+
 <!-- Selected - start -->
-<section id="title_for_school" class="offer_title scroll">
+<section id="title_{{ category }}" class="offer_title">
     <h1>Oferta dla szkół</h1>
-    <a class="btn btn-primary" href="#selected_for_school">Oferta <!--<i class="fas fa-2x fa-arrow-circle-down "></i>--></a>
-
+    <a class="btn btn-primary" href="#selected_offer">Oferta</a>
 </section>
-<section id="selected_for_school" class="selection">
+
+<section id="selected_offer" class="selection">
     <div class="container">
-        <div id="section-{{for_school_selected.0.pk}}" class="row no-gutters selection-row closestElement scroll">
-            <div id="selected_for_school_img0" class="col-md-6 selected-item selected_img img0"></div>
+        <div id="section-{{offer_selected.0.pk}}" class="row no-gutters selection-row closestElement ">
+            <div id="selected_{{ category }}_img0" class="col-md-6 selected-item selected_img">
+                <img src="{{ offer_selected.0.image.url }}" alt="">
+            </div>
             <div class="col-md-6 selected-item selected_data">
                 <div class="selected_wrapper">
-                    {% if for_school_selected.0 %}
-                    <h2>{{ for_school_selected.0.title }}
-                        <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' for_school_selected.0.pk %}" title="pokaż szczegóły"></i>
+                    {% if offer_selected.0 %}
+                    <h2>{{ offer_selected.0.title }}
+                        <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer_selected.0.pk %}" title="pokaż szczegóły"></i>
                     </h2>
-                    <p>{{ for_school_selected.0.short_descr }}</p>
-                    <p>Czas trwania: {{ for_school_selected.0.duration_in_days }}{% if for_school_selected.0.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</p>
+                    <p>{{ offer_selected.0.short_descr }}</p>
+                    <p>Czas trwania: {{ offer_selected.0.duration_in_days }}</p>
                     {% endif %}
                 </div>
             </div>
         </div>
-        <div id="section-{{ for_school_selected.1.pk }}" class="row no-gutters selection-row closestElement scroll">
-            <div class="col-md-6 selected-item selected-item-1 selected_data">
-                <div class="selected_wrapper">
-                    {% if for_school_selected.1 %}
-                    <h2>{{ for_school_selected.1.title }}
-                        <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' for_school_selected.1.pk %}" title="pokaż szczegóły"></i>
-                    </h2>
-                    <p>{{ for_school_selected.1.short_descr }}</p>
-                    <p>Czas trwania: {{ for_school_selected.1.duration_in_days }}{% if for_school_selected.1.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</p>
-                    {% endif %}
-                </div>
-            </div>
-            <div id="selected_for_school_img1" class="col-md-6 selected-item selected-item-1 selected_img img1"></div>
-        </div>
-        <div id="section-{{for_school_selected.2.pk}}" class="row no-gutters selection-row closestElement scroll">
-            <div id="selected_for_school_img2" class="col-md-6 selected-item selected_img img2"></div>
+        <div id="section-{{ offer_selected.1.pk }}" class="row no-gutters selection-row closestElement ">
             <div class="col-md-6 selected-item selected_data">
                 <div class="selected_wrapper">
-                    {% if for_school_selected.2 %}
-                    <h2>{{ for_school_selected.2.title }}
-                        <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' for_school_selected.2.pk %}" title="pokaż szczegóły"></i>
+                    {% if offer_selected.1 %}
+                    <h2>{{ offer_selected.1.title }}
+                        <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer_selected.1.pk %}" title="pokaż szczegóły"></i>
                     </h2>
-                    <p>{{ for_school_selected.2.short_descr }}</p>
-                    <p>Czas trwania: {{ for_school_selected.2.duration_in_days }}{% if for_school_selected.2.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</p>
+                    <p>{{ offer_selected.1.short_descr }}</p>
+                    <p>Czas trwania: {{ offer_selected.1.duration_in_days }}</p>
                     {% endif %}
                 </div>
             </div>
+            <div id="selected_{{ category }}_img1" class="col-md-6 selected-item selected_img ">
+                <img src="{{ offer_selected.1.image.url }}" alt="">
+            </div>
         </div>
-
-
-
     </div>
 </section>
 <!-- Selected - stop-->
 
 
 <!-- Full offer - start -->
-<section id="show-full-offer" class="row no-gutters full-offer scroll school">
+<section id="show-full-offer" class="row no-gutters full-offer {{ category }}">
     <div class="container">
-       <!-- <h2>Pełna oferta</h2>-->
-        <a class="btn btn-primary" href="#section-background"> Pełna oferta
-            <!--<i class="fas fa-arrow-circle-down "></i>-->
-        </a>
+        <a class="btn btn-primary" href="#all_offer"> Pełna oferta</a>
     </div>
 </section>
 <!-- Full offer - stop -->
 
-<section id="section-background" class="background scroll " ></section>
 
-<!-- Offer for school - start -->
-{% if for_school %}
-<section id="offer_for_school" class="offer_table scroll">
+<!-- Offer - start -->
+{% if offer_all %}
+<section id="all_offer" class="selection selection-offer">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-6 offset-lg-3 ">
-                <table class="table">
-                    <tr>
-                        <th>Kierunek</th>
-                        <th>Czas trwania</th>
-                        <th></th>
-                    </tr>
-                    {% for offer in for_school %}
+            {% for offer in offer_all %}
+                {% if offer.0 %}
+                    <div id="offer-{{ offer.0.pk }}" class="row no-gutters selection-row closestElement">
+                        <div id="offer_img{{ offer.0.pk }}" class="col-md-6 selected-item selected_img">
+                            <img src="{{offer.0.image.url}}" alt="">
+                        </div>
+                        <div class="col-md-6 selected-item selected_data">
+                            <div class="selected_wrapper">
 
-                    <tr id="table-{{ offer.pk }}" class="closestElement">
-                        <td><strong>{{ offer.title }}</strong></td>
-                        <td>{{ offer.duration_in_days }} </td>
-                        <td><i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer.pk %}"></i></td>
-                    </tr>
-                    {% endfor %}
+                                <h2>{{ offer.0.title }}
+                                    <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer.0.pk %}" title="pokaż szczegóły"></i>
+                                </h2>
+                                <p>{{ offer.0.short_descr }}</p>
+                                <p>Czas trwania: {{ offer.0.duration_in_days }}</p>
 
-                </table>
-            </div>
-        </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if offer.1 %}
+                    <div id="offer-{{ offer.1.pk }}" class="row no-gutters selection-row closestElement">
+
+                        <div class="col-md-6 selected-item selected_data">
+                            <div class="selected_wrapper">
+
+                                <h2>{{ offer.1.title }}
+                                    <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer.1.pk %}" title="pokaż szczegóły"></i>
+                                </h2>
+                                <p>{{ offer.1.short_descr }}</p>
+                                <p>Czas trwania: {{ offer.1.duration_in_days }}</p>
+
+                            </div>
+                        </div>
+                        <div id="offer_img{{ offer.1.pk }}" class="col-md-6 selected-item selected_img">
+                            <img src="{{offer.1.image.url}}" alt="">
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
     </div>
 </section>
 {% endif %}
-<!-- Offer for school - stop -->
-<!--<section class="background scroll "></section>-->
+<!-- Offer - stop -->
 
-<section id="offer-for-school-bottom" class="offer-bottom-img scroll">
-    <div class="container-fluid"></div>
-</section>
 
-<section id="show-contact" class="row no-gutters full-offer school scroll">
+
+<section id="show-contact" class="row no-gutters full-offer {{ category }} ">
     <div class="container">
-        <a class="btn btn-primary" href="#contact"> Kontakt
-        </a>
+        <a class="btn btn-primary" href="#contact"> Kontakt</a>
     </div>
 </section>
 
