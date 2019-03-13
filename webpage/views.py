@@ -70,6 +70,7 @@ class HomeForWorkPage(View):
         return search_snippet(request, 'webpage/home_for_work.html')
 
 
+
 class HomeRecommendedPage(View):
     def get(self, request):
         recommended = Offer.objects.filter(recommended=True).order_by('recommended_sort')

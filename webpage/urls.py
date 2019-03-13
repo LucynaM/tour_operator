@@ -22,9 +22,9 @@ from .views import HomePage, OfferPage, HomePilgrimagePage, HomeForWorkPage, Hom
 urlpatterns = [
     url(r'^$', HomePage.as_view(), name='home'),
     url(r'^for_school/$', OfferPage.as_view(), name='for_school'),
-    url(r'^pilgrimage/$', HomePilgrimagePage.as_view(), name='pilgrimage'),
+    url(r'^pilgrimage/$', OfferPage.as_view(), name='pilgrimage'),
     url(r'^recommended/$', HomeRecommendedPage.as_view(), name='recommended'),
-    url(r'^for_work/$', HomeForWorkPage.as_view(), name='for_work'),
+    url(r'^for_work/$', OfferPage.as_view(), name='for_work'),
     url(r'^holiday/$', HomeHolidayPage.as_view(), name='holiday'),
     url(r'^news/$', HomeNewsPage.as_view(), name='news'),
     url(r'^search/(?P<search>(\w)+)/$', HomeSearchPage.as_view(), name='search'),

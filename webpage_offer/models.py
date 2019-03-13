@@ -15,7 +15,7 @@ class Offer(models.Model):
     title = models.CharField(max_length=255, verbose_name='Tytuł')
     category = models.CharField(choices=CATEGORIES, max_length=20, verbose_name='Kategoria')
     direction = models.CharField(max_length=255, verbose_name='Kierunki')
-    duration_in_days = models.CharField(max_length=64, verbose_name='Czas trwania')
+    duration_in_days = models.CharField(max_length=255, verbose_name='Czas trwania')
     short_descr = models.TextField(max_length=200, verbose_name='Krótki opis')
     schedule = HTMLField(verbose_name='Program')
     image = models.ImageField(upload_to='images', null=True, blank=True)

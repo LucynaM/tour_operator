@@ -28,7 +28,7 @@
         <div class="row">
             {% if category == 'pilgrimage' %}
             <h2>Oferta pielgrzymkowa</h2>
-            {% elif category == 'school_trip' %}
+            {% elif category == 'for_school' %}
             <h2>Oferta dla szkół </h2>
             {% else %}
             <h2>Oferta dla firm</h2>
@@ -36,7 +36,7 @@
         </div>
         <div class="row">
 
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <div class="select-drop select-container ui-widget-header" data-sort="0" data-url="{% url 'offer:set_selected' %}">
                     {% for offer in all_offer %}
                     {% if offer.category == category and offer.selected and offer.selected_sort == 0 %}
@@ -48,7 +48,7 @@
                     {% endfor %}
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <div class="select-drop select-container ui-widget-header" data-sort="1" data-url="{% url 'offer:set_selected' %}">
                     {% for offer in all_offer %}
                     {% if offer.category == category and offer.selected and offer.selected_sort == 1 %}
@@ -60,18 +60,7 @@
                     {% endfor %}
                 </div>
             </div>
-            <div class="col-lg-4">
-                <div class="select-drop select-container ui-widget-header" data-sort="2" data-url="{% url 'offer:set_selected' %}">
-                    {% for offer in all_offer %}
-                    {% if offer.category == category and offer.selected and offer.selected_sort == 2 %}
-                    <p data-id="{{ offer.id }}" data-sort="2" class="select-drag ui-widget-content">
-                        <strong>{{ offer.title }}</strong> - {{ offer.duration_in_days }}
-                        {% if offer.duration_in_days == 1 %} dzień {% else %} dni {% endif %}
-                    </p>
-                    {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
+
 
 
             <div class="list-row select-drop ui-widget-header" data-url="{% url 'offer:set_selected' %}">

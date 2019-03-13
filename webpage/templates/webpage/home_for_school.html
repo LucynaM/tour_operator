@@ -19,7 +19,17 @@
 
 <!-- Selected - start -->
 <section id="title_{{ category }}" class="offer_title">
-    <h1>Oferta dla szkół</h1>
+    <h1>
+        {% if category == 'pilgrimage' %}
+            Pielgrzymki
+        {% elif category == 'for_school' %}
+            Oferta dla szkół
+        {% else %}
+            Oferta dla firm
+        {% endif %}
+
+    </h1>
+
     <a class="btn btn-primary" href="#selected_offer">Oferta</a>
 </section>
 

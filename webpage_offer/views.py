@@ -109,7 +109,7 @@ class ShowNews(View):
 class SelectOffer(View):
     def get(self, request):
         all_offer = Offer.objects.all().order_by('category', 'title')
-        categories = ['pilgrimage', 'school_trip', 'work_trip']
+        categories = ['pilgrimage', 'for_school', 'for_work']
 
         ctx = {
             'all_offer': all_offer,
