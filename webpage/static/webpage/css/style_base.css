@@ -44,6 +44,8 @@ section {
       color: #fff; }
       section:first-of-type.offer_title a > i {
         color: #fff; }
+      section:first-of-type.offer_title#title_search {
+        color: black; }
 
 .selection {
   padding-bottom: 0; }
@@ -350,16 +352,16 @@ footer {
   background: #f4d300; }
 
 #title_for_work {
-  background: #207ba3;
   background: #207ba3; }
 
 #title_pilgrimage {
-  background: #d28c22;
   background: #d28c22; }
 
 #title_recommended {
-  background: #157796;
   background: #157796; }
+
+#title_holiday {
+  background: #ffc005; }
 
 /* OfferTitle - stop*/
 /* OfferTitle responsive - start*/
@@ -412,6 +414,8 @@ footer {
 
 .selection-offer {
   background: transparent; }
+  .selection-offer.search {
+    background-color: #B91B22; }
   .selection-offer .selected-item {
     height: 33vh; }
   .selection-offer .selected_img img {
@@ -535,18 +539,6 @@ footer {
   background-size: cover;
   height: 30vh; }
 
-#offer-for-school-bottom {
-  background-image: url("../images/banner/DSC_0218.JPG");
-  background-position: 0 52%; }
-
-#offer-for-work-bottom {
-  background-image: url("../images/banner/macedonia.JPG");
-  background-position: 0 33%; }
-
-#offer-pilgrimage-bottom {
-  background-image: url("../images/banner/grecja-2.JPG");
-  background-position: 0 33%; }
-
 /* OfferBottom - stop*/
 /* OfferBottom responsive - start*/
 /* OfferBottom responsive - stop*/
@@ -594,3 +586,25 @@ footer {
   padding-top: 15px; }
 
 /* News - stop */
+/* Holiday - start */
+#holiday {
+  background: #B91B22;
+  padding-bottom: 0; }
+  #holiday .row {
+    background: #fff; }
+  #holiday img {
+    width: 100%;
+    height: 100%;
+    max-height: 550px;
+    object-fit: cover; }
+  #holiday .holiday-info {
+    padding: 30px 50px; }
+  #holiday p.holiday-info {
+    padding-top: 0;
+    font-size: 13px; }
+  #holiday h2.holiday-info {
+    font-size: 1.5rem; }
+  #holiday .holiday-details {
+    margin-left: 50px; }
+
+/* Holiday - stop */

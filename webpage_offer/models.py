@@ -39,8 +39,10 @@ class Offer(models.Model):
 class Holiday(models.Model):
     """A class to represent holiday offer"""
     title = models.CharField(max_length=255, verbose_name='Tytuł')
-    short_descr = models.TextField(max_length=200, verbose_name='Krótki opis')
+    short_descr = models.TextField(max_length=400, verbose_name='Krótki opis')
     schedule = HTMLField(verbose_name='Program')
+    image = models.ImageField(upload_to='images', null=True, blank=True)
+    withdrawn = models.BooleanField(default=False, verbose_name='Wycofana z oferty')
 
     def __str__(self):
         return self.title

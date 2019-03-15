@@ -14,14 +14,36 @@
     </div>
 </header>
 <!-- Header - stop -->
+<section id="title_holiday" class="offer_title">
+    <h1>
+        Wakacje
+    </h1>
+
+    <a class="btn btn-primary" href="#holiday">Oferta</a>
+</section>
+
 <!-- Selected - start -->
 <section id="holiday">
     <div class="container">
-        <h1 class="scroll">{{ holiday.0.title }}</h1>
-        <p class="scroll"><strong>{{ holiday.0.short_descr }}</strong></p>
-        <div class="scroll">{{ holiday.0.schedule | safe }}</div>
-    </div>
+        {% for offer in offer_all %}
+        <div class="row  no-gutters ">
 
+            <div class="col-lg-3">
+                <h2 class="holiday-info">{{ offer.title }}</h2>
+                <p class="holiday-info"><strong>{{ offer.short_descr }}</strong></p>
+                <a class="btn btn-primary holiday-details" href="#{{ offer.pk }}">Szczegóły</a>
+            </div>
+            <div class="col-lg-9">
+                <img src="{{ offer.image.url }}" alt="">
+            </div>
+            <div id="{{offer.pk}}" class="col-md-12 holiday-info">
+                <div >{{ offer.schedule | safe }}</div>
+            </div>
+
+
+        </div>
+        {% endfor %}
+    </div>
 </section>
 
 {% endblock content %}

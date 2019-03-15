@@ -20,13 +20,22 @@ class EditOfferForm(forms.ModelForm):
             'price': forms.NumberInput(attrs={'step': 0.01})
         }
 
-class HolidayForm(forms.ModelForm):
+class AddHolidayForm(forms.ModelForm):
+    class Meta:
+        model = Holiday
+        exclude = ('withdrawn',)
+        widgets = {
+            'short_descr': forms.Textarea(attrs={'rows': 4, 'cols': 80, 'class': 'counter'}),
+        }
+
+class EditHolidayForm(forms.ModelForm):
     class Meta:
         model = Holiday
         fields = '__all__'
         widgets = {
             'short_descr': forms.Textarea(attrs={'rows': 4, 'cols': 80, 'class': 'counter'}),
         }
+
 
 class NewsForm(forms.ModelForm):
     class Meta:

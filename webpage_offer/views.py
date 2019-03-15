@@ -3,7 +3,7 @@ from django.views import View
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Offer, Holiday, News
-from .forms import AddOfferForm, EditOfferForm, HolidayForm, NewsForm
+from .forms import AddOfferForm, EditOfferForm, AddHolidayForm, EditHolidayForm, NewsForm
 
 # Create your views here.
 
@@ -192,7 +192,7 @@ class SetRecommended(View):
 class AddListHoliday(LoginRequiredMixin, View):
     def get(self, request):
         holiday_list = Holiday.objects.all().order_by('-pk')
-        form = HolidayForm()
+        form = AddHolidayForm()
         ctx = {
             'holiday_list': holiday_list,
             'form': form,
@@ -200,7 +200,7 @@ class AddListHoliday(LoginRequiredMixin, View):
         return render(request, 'webpage_offer/add_holiday.html', ctx)
 
     def post(self, request):
-        form = HolidayForm(request.POST)
+        form = AddHolidayForm(request.POST, request.FILES)
 
         if form.is_valid():
             holiday = form.save()
@@ -214,7 +214,7 @@ class AddListHoliday(LoginRequiredMixin, View):
 class EditHoliday(LoginRequiredMixin, View):
     def get(self, request, pk):
         holiday = Holiday.objects.get(pk=pk)
-        form = HolidayForm(instance=holiday)
+        form = EditHolidayForm(instance=holiday)
         ctx = {
             'form': form,
             'holiday': holiday,
@@ -224,7 +224,7 @@ class EditHoliday(LoginRequiredMixin, View):
 
     def post(self, request, pk):
         holiday = Holiday.objects.get(pk=pk)
-        form = HolidayForm(request.POST, instance=holiday)
+        form = EditHolidayForm(request.POST, request.FILES, instance=holiday)
         if form.is_valid():
             form.save()
         holiday = Holiday.objects.get(pk=pk)

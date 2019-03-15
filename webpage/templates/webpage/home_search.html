@@ -13,32 +13,63 @@
     </div>
 </header>
 <!-- Header - stop -->
-<!-- Offer for school - start -->
-<section id="offer_search scroll">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 offset-lg-3">
 
-                <table class="table">
-                    <tr>
-                        <th>Kierunek</th>
-                        <th>Czas trwania</th>
-                        <th></th>
-                    </tr>
-                    {% if offer_list %}
-                    {% for offer in offer_list %}
-                    <tr id="table-{{ offer.pk }}" class="closestElement">
-                        <td><strong>{{ offer.title }}</strong></td>
-                        <td>{{ offer.duration_in_days }} {% if offer.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</td>
-                        <td><i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer.pk %}"></i></td>
-                    </tr>
-                    {% endfor %}
-                    {% endif %}
-                </table>
-            </div>
-        </div>
+<section id="title_search" class="offer_title">
+    <h1>
+        {{category}}
+    </h1>
+
+    <a class="btn btn-primary" href="#all_offer">Oferta</a>
+</section>
+
+<!-- Offer - start -->
+{% if offer_all %}
+<section id="all_offer" class="selection selection-offer search">
+    <div class="container">
+            {% for offer in offer_all %}
+                {% if offer.0 %}
+                    <div id="offer-{{ offer.0.pk }}" class="row no-gutters selection-row closestElement">
+                        <div id="offer_img{{ offer.0.pk }}" class="col-md-6 selected-item selected_img">
+                            <img src="{{offer.0.image.url}}" alt="">
+                        </div>
+                        <div class="col-md-6 selected-item selected_data">
+                            <div class="selected_wrapper">
+
+                                <h2>{{ offer.0.title }}
+                                    <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer.0.pk %}" title="pokaż szczegóły"></i>
+                                </h2>
+                                <p>{{ offer.0.short_descr }}</p>
+                                <p>Czas trwania: {{ offer.0.duration_in_days }}</p>
+
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if offer.1 %}
+                    <div id="offer-{{ offer.1.pk }}" class="row no-gutters selection-row closestElement">
+
+                        <div class="col-md-6 selected-item selected_data">
+                            <div class="selected_wrapper">
+
+                                <h2>{{ offer.1.title }}
+                                    <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer.1.pk %}" title="pokaż szczegóły"></i>
+                                </h2>
+                                <p>{{ offer.1.short_descr }}</p>
+                                <p>Czas trwania: {{ offer.1.duration_in_days }}</p>
+
+                            </div>
+                        </div>
+                        <div id="offer_img{{ offer.1.pk }}" class="col-md-6 selected-item selected_img">
+                            <img src="{{offer.1.image.url}}" alt="">
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
     </div>
 </section>
+{% endif %}
+<!-- Offer - stop -->
+
 <!-- Offer for school - stop -->
 
 {% endblock content %}
