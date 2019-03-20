@@ -37,38 +37,9 @@ class OfferPage(View):
             'offer_all': offer_chunk,
             'offer_selected': offer_selected,
         }
-        return render(request, 'webpage/home_for_school.html', ctx)
+        return render(request, 'webpage/home_offer.html', ctx)
     def post(self, request):
-        return search_snippet(request, 'webpage/home_for_school.html')
-
-
-
-class HomePilgrimagePage(View):
-    def get(self, request):
-        pilgrimage = Offer.objects.filter(category='pilgrimage', selected=False).exclude(withdrawn=True).order_by('title')
-        pilgrimage_selected = Offer.objects.filter(category='pilgrimage', selected=True).order_by('selected_sort')
-        ctx = {
-            'pilgrimage': pilgrimage,
-            'pilgrimage_selected': pilgrimage_selected,
-        }
-        return render(request, 'webpage/home_pilgrimage.html', ctx)
-    def post(self, request):
-        return search_snippet(request, 'webpage/home_pilgrimage.html')
-    
-    
-class HomeForWorkPage(View):
-    def get(self, request):
-        for_work = Offer.objects.filter(category='work_trip', selected=False).exclude(withdrawn=True).order_by('title')
-        for_work_selected = Offer.objects.filter(category='work_trip', selected=True).order_by('selected_sort')
-
-        ctx = {
-            'for_work': for_work,
-            'for_work_selected': for_work_selected,
-        }
-        return render(request, 'webpage/home_for_work.html', ctx)
-    def post(self, request):
-        return search_snippet(request, 'webpage/home_for_work.html')
-
+        return search_snippet(request, 'webpage/home_offer.html')
 
 
 class HomeRecommendedPage(View):
@@ -85,10 +56,10 @@ class HomeRecommendedPage(View):
 
 class HomeHolidayPage(View):
     def get(self, request):
-        holiday = Holiday.objects.all()[0:1:-1]
+        holiday = Holiday.objects.all().exclude(withdrawn=True)
 
         ctx = {
-            'holiday': holiday,
+            'offer_all': holiday,
         }
         return render(request, 'webpage/home_holiday.html', ctx)
     def post(self, request):
@@ -113,10 +84,12 @@ class HomeSearchPage(View):
             search = search.replace('_', ' ')
         if ". " in search:
             search = search.replace('. ', ' ')
-        offer_list = Offer.objects.filter(direction__icontains=search)
+        offer = Offer.objects.filter(direction__icontains=search)
+        offer_chunk = ((offer[x:x + 2]) for x in range(0, len(offer), 2))
 
         ctx = {
-            'offer_list': offer_list,
+            'offer_all': offer_chunk,
+            'category': search,
 
         }
         return render(request, 'webpage/home_search.html', ctx)
@@ -126,12 +99,14 @@ class HomeSearchPage(View):
             search = search.replace('_', ' ')
         if ". " in search:
             search = search.replace('. ', ' ')
-        offer_list = Offer.objects.filter(direction__icontains=search)
+        offer = Offer.objects.filter(direction__icontains=search)
+        offer_chunk = ((offer[x:x + 2]) for x in range(0, len(offer), 2))
 
         ctx = {
-            'offer_list': offer_list,
-
+            'offer_all': offer_chunk,
+            'category': search,
         }
+
         return render(request, 'webpage/home_search.html', ctx)
 
 

@@ -159,7 +159,12 @@
                         35-213 Rzeszów </p>
                     <h6>Dokumenty do pobrania</h6>
                     <a target="__blank" href="{% static 'webpage/pdfs/somefilename.pdf' %}">Umowa zgłoszenie</a></br>
-                    <a target="__blank" href="{% static 'webpage/pdfs/tour_participants.pdf' %}">Ogólne warunki uczestnictwa</a>
+                    <a target="__blank" href="{% static 'webpage/pdfs/tour_participants.pdf' %}">Ogólne warunki uczestnictwa</a><br/>
+                    <!-- Button trigger modal -->
+                    <a type="button" data-toggle="modal" data-target="#CompanyData">
+                      Numer rachunku bankowego
+                    </a>
+
                 </div>
             </div>
         </div>
@@ -167,7 +172,32 @@
     <section id="copyright">
         <p>Copyright: <span>Marco Polo Travel 2018</span></p>
     </section>
+    <!-- Modal -->
+    <div class="modal fade" id="CompanyData" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+        </button>
+          <div class="modal-body">
+              <div class="row">
+                  <div class="col-lg-6">
+                      <figure id="modal-img" ></figure>
+                  </div>
+                  <div class="col-lg-6">
+                      <p>Organizatorem świadczenia usług turystycznych (dalej Impreza) jest Biuro Podróży Marco Polo Travel S.C. (dalej Biuro) z siedzibą 35-213 Rzeszów, ul. Słoneczny Stok 91, wpisane do Rejestru Organizatorów Turystyki i Pośredników Turystycznych prowadzonego przez Marszałka Województwa Podkarpackiego nr 220/15, NIP 8133699003 REGON 360239179. Biuro jest podmiotem wpisanym do Centralnej Ewidencji Organizatorów Turystyki i Pośredników Turystycznych pod numerem 9225. Przedmiotem działalności gospodarczej prowadzonej przez Marco Polo Travel S.C. jest organizowanie i pośredniczenie w organizowaniu imprez turystycznych na terenie Polski, krajów sąsiadujących z RP oraz pozostałych krajów europejskich. Biuro jest uprawnione do pobierania przedpłaty powyżej 30% ceny imprezy, powyżej 180 dni przed dniem rozpoczęcia imprezy. Biuro Podróży Marco Polo Travel S.C. posiada zabezpieczenia finansowe, o których mowa w art. 5 ust. 1 pkt. 2, tj. gwarancję ubezpieczeniową TU Europa SA na kwotę 42 000 EUR ważną do 20-01-2020. Alarmowy numer telefonu Gwaranta do bezpośredniego kontaktu w przypadku wystąpienia zdarzenia objętego przedmiotem Gwarancji, tj. na wypadek niewypłacalności Organizatora (pokrycie kosztów powrotu z imprezy turystycznej do miejsca wyjazdu lub planowanego powrotu z imprezy turystycznej, obejmujących koszty transportu, zakwaterowania, transferów, w tym także koszty poniesione przez klientów): +48 22 354 86 04; +48 71 36 92 726; +48 71 36 92 727; fax: +48 71 36 92 707; mail: info@tueuropa.pl. </p>
+                      <div><strong>KONTO ZŁOTÓWKOWE Marco Polo Travel S.C. w PBS Sanok o/Rzeszów:</strong><br/>
+                          <strong>83 8642 1126 2012 1144 0716 0001</strong>. Na to konto można dokonywać wpłat złotówkowych oraz eurowych (po przeliczeniu na PLN wg stałego kursu 4,5. Przy wszelkich wpłatach złotówkowych i w Euro koszty transakcji ponosi Klient.
+                          <div><strong>KONTO EUROWE Marco Polo Travel S.C. w PBS Sanok o/Rzeszów:</strong><br/>
+                              <strong>56 8642 1126 2012 1144 0716 0002</strong>. Na to konto przelewane/wpłacane mogą być środki w €. Przy wszelkich wpłatach złotówkowych i w Euro koszty transakcji ponosi Klient. </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
 
+        </div>
+      </div>
+    </div>
     {% endblock footer %}
     <script src="https://unpkg.com/scrollreveal@3.3.2/dist/scrollreveal.min.js"></script>
     <script src="{% static 'webpage/dependencies/js/jquery-3.3.1.min.js'%}"></script>
@@ -177,6 +207,7 @@
 
     <script src="{% static 'webpage/js/common.js' %}"></script>
     <script src="{% static 'webpage/js/app.js' %}"></script>
+    <script src="{% static 'webpage/js/show_offer.js' %}"></script>
 
 </body>
 

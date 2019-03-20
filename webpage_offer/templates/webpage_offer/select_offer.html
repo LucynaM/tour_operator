@@ -42,7 +42,7 @@
                     {% if offer.category == category and offer.selected and offer.selected_sort == 0 %}
                     <p data-id="{{ offer.id }}" data-sort="0" class="select-drag ui-widget-content">
                         <strong>{{ offer.title }}</strong> - {{ offer.duration_in_days }}
-                        {% if offer.duration_in_days == 1 %} dzień {% else %} dni {% endif %}
+
                     </p>
                     {% endif %}
                     {% endfor %}
@@ -54,7 +54,7 @@
                     {% if offer.category == category and offer.selected and offer.selected_sort == 1 %}
                     <p data-id="{{ offer.id }}" data-sort="1" class="select-drag ui-widget-content">
                         <strong>{{ offer.title }}</strong> - {{ offer.duration_in_days }}
-                        {% if offer.duration_in_days == 1 %} dzień {% else %} dni {% endif %}
+
                     </p>
                     {% endif %}
                     {% endfor %}
@@ -68,7 +68,7 @@
                     {% for offer in all_offer %}
                     {% if offer.category == category and offer.selected == False %}
                     <li data-id="{{ offer.id }}" class="select-drag ui-widget-content"><strong>{{ offer.title }}</strong>
-                         - {{ offer.duration_in_days }} {% if offer.duration_in_days == 1 %} dzień {% else %} dni {% endif %} </li>
+                         - {{ offer.duration_in_days }}
                     {% endif %}
                     {% endfor %}
                 </ul>
@@ -93,7 +93,7 @@
                     <p data-id="{{ offer.id }}" data-sort="0" class="select-drag ui-widget-content">
                         {{ offer.get_category_display }}: <strong>{{ offer.title }}</strong>
                          - {{ offer.duration_in_days }}
-                        {% if offer.duration_in_days == 1 %} dzień {% else %} dni {% endif %}
+
                     </p>
                     {% endif %}
                     {% endfor %}
@@ -106,7 +106,7 @@
                     <p data-id="{{ offer.id }}" data-sort="1" class="select-drag ui-widget-content">
                         {{ offer.get_category_display }}: <strong>{{ offer.title }}</strong>
                          - {{ offer.duration_in_days }}
-                        {% if offer.duration_in_days == 1 %} dzień {% else %} dni {% endif %}
+
                     </p>
                     {% endif %}
                     {% endfor %}
@@ -119,7 +119,7 @@
                     <p data-id="{{ offer.id }}" data-sort="2" class="select-drag ui-widget-content">
                         {{ offer.get_category_display }}: <strong>{{ offer.title }}</strong>
                          - {{ offer.duration_in_days }}
-                        {% if offer.duration_in_days == 1 %} dzień {% else %} dni {% endif %}
+
                     </p>
                     {% endif %}
                     {% endfor %}
@@ -132,7 +132,7 @@
                     {% if offer.recommended == False %}
                     <li data-id="{{ offer.id }}" class="select-drag ui-widget-content">{{ offer.get_category_display }}:
                         <strong>{{ offer.title }}</strong> - {{ offer.duration_in_days }}
-                        {% if offer.duration_in_days == 1 %} dzień {% else %} dni {% endif %} </li>
+
                     {% endif %}
                     {% endfor %}
                 </ul>
