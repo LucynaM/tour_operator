@@ -52,11 +52,12 @@
                                 <li class="nav-item ">
                                     {% block link_pilgrimage %}<a class="nav-link" href="{% url 'webpage:pilgrimage' %}">pielgrzymki</a>{% endblock link_pilgrimage %}
                                 </li>
-                                <li class="nav-item ">
-                                    {% block link_news %}<a class="nav-link" href="{% url 'webpage:news' %}">aktualności</a>{% endblock link_news %}
-                                </li>
+
                                 <li class="nav-item ">
                                     {% block link_recommend %}<a class="nav-link" href="{% url 'webpage:recommended' %}">polecamy</a>{% endblock link_recommend %}
+                                </li>
+                                <li class="nav-item ">
+                                    {% block link_news %}<a class="nav-link" href="{% url 'webpage:news' %}">blog</a>{% endblock link_news %}
                                 </li>
                             </ul>
                         </div>
@@ -145,12 +146,13 @@
                 <div class="col-lg-2 col-md-3 col-sm-6">
                     <h6>Oferta</h6>
                     <ul>
-                        <li><a href="{% url 'webpage:for_school' %}">Oferta dla szkół</a></li>
-                        <li><a href="{% url 'webpage:for_work' %}">Oferta dla firm</a></li>
-                        <li><a href="{% url 'webpage:holiday' %}">Wakacje</a></li>
-                        <li><a href="{% url 'webpage:pilgrimage' %}">Pielgrzymki</a></li>
-                        <li><a href="{% url 'webpage:news' %}">Aktualności</a></li>
-                        <li><a href="{% url 'webpage:recommended' %}">Polecamy</a></li>
+                        <li><a href="{% url 'webpage:for_school' %}">oferta dla szkół</a></li>
+                        <li><a href="{% url 'webpage:for_work' %}">oferta dla firm</a></li>
+                        <li><a href="{% url 'webpage:holiday' %}">wakacje</a></li>
+                        <li><a href="{% url 'webpage:pilgrimage' %}">pielgrzymki</a></li>
+                        <li><a href="{% url 'webpage:recommended' %}">polecamy</a></li>
+
+                        <li><a href="{% url 'webpage:news' %}">blog</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
@@ -207,7 +209,7 @@
 
     <script src="{% static 'webpage/js/common.js' %}"></script>
     <script src="{% static 'webpage/js/app.js' %}"></script>
-    <script src="{% static 'webpage/js/show_offer.js' %}"></script>
+    <!--<script src="{% static 'webpage/js/show_offer.js' %}"></script>-->
 
 </body>
 

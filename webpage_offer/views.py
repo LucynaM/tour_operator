@@ -246,7 +246,7 @@ class AddListNews(LoginRequiredMixin, View):
         return render(request, 'webpage_offer/add_news.html', ctx)
 
     def post(self, request):
-        form = NewsForm(request.POST)
+        form = NewsForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             form = NewsForm()
@@ -271,7 +271,7 @@ class EditNews(LoginRequiredMixin, View):
 
     def post(self, request, pk):
         news = News.objects.get(pk=pk)
-        form = NewsForm(request.POST, instance=news)
+        form = NewsForm(request.POST, request.FILES, instance=news)
         if form.is_valid():
             news = form.save()
         ctx = {

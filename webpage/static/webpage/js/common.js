@@ -9,14 +9,21 @@ $(document).ready(function() {
             }).done(function(result) {
                 callback(result, ...others);
             }).fail(function(xhr, status, err){
-                console.log(xhr, status, err);
+//                console.log(xhr, status, err);
             }).always(function(xhr, status){
-                console.log(xhr, status);
+//                console.log(xhr, status);
         });
     };
 
 
-    /* Show offer on click - start */
+    /* Show offer on click - start*/
+    function slideTo(element) {
+        console.log(element);
+        console.log($(element).offset().top);
+        $('html, body').animate({
+            scrollTop: $(element).offset().top
+        }, 800);
+    }
 
     function hideElement(nextRow, toggler) {
         //nextRow.hide();
@@ -48,11 +55,13 @@ $(document).ready(function() {
             newRowContent = $("<p>");
             newRowContentText = r.schedule;
         }
+
         row.after(newRow);
         thisToggler.removeClass('fa-eye').addClass('fa-eye-slash');
         newRow.append(newRowContent);
         newRowContent.html(newRowContentText);
         newRow.slideDown();
+
 
     };
 
@@ -78,6 +87,7 @@ $(document).ready(function() {
                     prepareOffer(thisRow, thisNextRow, thisToggler, url);
                 }
             }
+            slideTo(thisRow);
         });
     };
 
@@ -179,13 +189,12 @@ $(document).ready(function() {
                 .addClass('select-drag ui-widget-content')
                 .css('position', 'relative');
 
-            const dayMarker = (r[i] == '1')? 'dzień' : 'dni';
 
             if (recommendation) {
                 const category = renameCategory(r[i].category);
-                newListElement.html(category + ': <strong>'+ r[i].title + '</strong> - ' + r[i].duration_in_days + ' ' + dayMarker);
+                newListElement.html(category + ': <strong>'+ r[i].title + '</strong> - ' + r[i].duration_in_days );
             } else {
-                newListElement.html('<strong>'+ r[i].title + '</strong> - ' + r[i].duration_in_days + ' ' + dayMarker)
+                newListElement.html('<strong>'+ r[i].title + '</strong> - ' + r[i].duration_in_days)
             }
         }
         // initilize draggable after ajax
@@ -198,10 +207,10 @@ $(document).ready(function() {
 
     function renameCategory(category) {
         switch (category) {
-            case 'school_trip':
+            case 'for_school':
                 category = 'oferta dla szkół';
                 break;
-            case 'work_trip':
+            case 'for_work':
                 category = 'oferta dla firm';
                 break;
             case 'pilgrimage':
@@ -321,7 +330,7 @@ $(document).ready(function() {
 
     /* smooth scrolling - start */
     function smoothScrolling() {
-        $(".navbar a, .offer_title a, .full-offer a").on('click', function(event) {
+        $(".navbar a, .offer_title a, .full-offer a, aside a").on('click', function(event) {
 
             // Make sure this.hash has a value before overriding default behavior
             if (this.hash !== "") {
@@ -335,11 +344,7 @@ $(document).ready(function() {
                 // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
                 $('html, body').animate({
                     scrollTop: $(hash).offset().top
-                }, 800, function(){
-
-                // Add hash (#) to URL when done scrolling (default click behavior)
-                window.location.hash = hash;
-                });
+                }, 800);
             } // End if
         });
     }

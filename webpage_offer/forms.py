@@ -6,6 +6,7 @@ class AddOfferForm(forms.ModelForm):
         model = Offer
         exclude = ('selected', 'selected_sort', 'recommended', 'recommended_sort', 'withdrawn')
         widgets = {
+            'directions': forms.Textarea(attrs={'rows': 4, 'cols': 80, }),
             'short_descr': forms.Textarea(attrs={'rows': 4, 'cols': 80, 'class': 'counter'}),
             'price': forms.NumberInput(attrs={'step': 0.01})
         }
@@ -16,6 +17,7 @@ class EditOfferForm(forms.ModelForm):
         model = Offer
         exclude = ('selected', 'selected_sort', 'recommended', 'recommended_sort')
         widgets = {
+            'directions': forms.Textarea(attrs={'rows': 4, 'cols': 80, }),
             'short_descr': forms.Textarea(attrs={'rows': 4, 'cols': 80, 'class': 'counter'}),
             'price': forms.NumberInput(attrs={'step': 0.01})
         }
@@ -25,6 +27,7 @@ class AddHolidayForm(forms.ModelForm):
         model = Holiday
         exclude = ('withdrawn',)
         widgets = {
+            'directions': forms.Textarea(attrs={'rows': 4, 'cols': 80, }),
             'short_descr': forms.Textarea(attrs={'rows': 4, 'cols': 80, 'class': 'counter'}),
         }
 
@@ -33,6 +36,7 @@ class EditHolidayForm(forms.ModelForm):
         model = Holiday
         fields = '__all__'
         widgets = {
+            'directions': forms.Textarea(attrs={'rows': 4, 'cols': 80, }),
             'short_descr': forms.Textarea(attrs={'rows': 4, 'cols': 80, 'class': 'counter'}),
         }
 
