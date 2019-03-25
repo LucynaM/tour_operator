@@ -30,14 +30,19 @@
 
             <div class="col-lg-3">
                 <h2 class="holiday-info">{{ offer.title }}</h2>
-                <p class="holiday-info"><strong>{{ offer.short_descr }}</strong></p>
-               <!--<a class="btn btn-primary holiday-details" href="#{{ offer.pk }}">Szczegóły</a>-->
+                <p class="holiday-info"><strong>{{ offer.places }}</strong></p>
+                <p class="holiday-info"><strong>{{ offer.duration_in_days }}</strong></p>
+
             </div>
             <div class="col-lg-9">
                 <img src="{{ offer.image.url }}" alt="">
             </div>
             <div id="{{offer.pk}}" class="col-md-12 holiday-info">
-                <div >{{ offer.schedule | safe }}</div>
+                <div >{{ offer.descr }}</div>
+                <div>
+                    <a class="btn btn-primary holiday-details" href="#{{ offer.pk }}">Szczegóły</a>
+                </div>
+
             </div>
 
 

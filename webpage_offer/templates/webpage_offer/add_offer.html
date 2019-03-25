@@ -16,6 +16,81 @@
 
 {% block content %}
 
+
+<section id="list_offer" class="list-elements">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8 offset-lg-2">
+                {% if for_school_list %}
+                <h2>{{ for_school_list.0.get_category_display }}</h2>
+                <table class="table">
+                    <tr>
+
+                        <th>Tytuł</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    {% for offer in for_school_list %}
+                    <tr id="table-{{ offer.pk }}" class="closestElement">
+
+                        <td><strong>{{ offer.title }}</strong></td>
+                        <td>
+                            <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer.pk %}" title="pokaż szczegóły"></i>
+                        </td>
+                        <td><a href="{% url 'offer:edit_offer' offer.pk %}"><i class="fas fa-edit"></i></a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% endif %}
+
+                {% if for_work_list %}
+                <h2>{{ for_work_list.0.get_category_display }}</h2>
+                <table class="table">
+                    <tr>
+
+                        <th>Tytuł</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    {% for offer in for_work_list %}
+                    <tr id="table-{{ offer.pk }}" class="closestElement">
+
+                        <td><strong>{{ offer.title }}</strong></td>
+                        <td>
+                            <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer.pk %}" title="pokaż szczegóły"></i>
+                        </td>
+                        <td><a href="{% url 'offer:edit_offer' offer.pk %}"><i class="fas fa-edit"></i></a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% endif %}
+
+                {% if pilgrimage_list %}
+                <h2>{{ pilgrimage_list.0.get_category_display }}</h2>
+                <table class="table">
+                    <tr>
+
+                        <th>Tytuł</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    {% for offer in pilgrimage_list %}
+                    <tr id="table-{{ offer.pk }}" class="closestElement">
+
+                        <td><strong>{{ offer.title }}</strong></td>
+                        <td>
+                            <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer.pk %}" title="pokaż szczegóły"></i>
+                        </td>
+                        <td><a href="{% url 'offer:edit_offer' offer.pk %}"><i class="fas fa-edit"></i></a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
 <section id="add_offer">
     <div class="container">
         <div class="row">
@@ -34,35 +109,5 @@
 </section>
 
 
-<section id="list_offer" class="list-elements">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-lg-8 offset-lg-2">
-                {% if offer_list %}
-                <table class="table">
-                    <tr>
-                        <th>Kategoria</th>
-                        <th>Tytuł</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    {% for offer in offer_list %}
-                    <tr id="table-{{ offer.pk }}" class="closestElement">
-                        <td>{{ offer.get_category_display }}</td>
-                        <td><strong>{{ offer.title }}</strong></td>
-                        <td>
-                            <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer.pk %}" title="pokaż szczegóły"></i>
-                        </td>
-                        <td><a href="{% url 'offer:edit_offer' offer.pk %}"><i class="fas fa-edit"></i></a></td>
-                    </tr>
-                    {% endfor %}
-                </table>
-                {% else %}
-                <p>Brak ofert do wyświetlenia</p>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-</section>
 
 {% endblock content %}

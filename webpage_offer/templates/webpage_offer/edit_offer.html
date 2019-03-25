@@ -19,11 +19,10 @@
         <div class="row">
             <div class="col-md-12 col-lg-8 offset-lg-2">
                 <h2>{{ offer.title }}</h2>
-                <p>kategoria: <strong>{{ offer.get_category_display }}</strong></p>
-                <p>czas trwania: {{ offer.duration_in_days }}{% if offer.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</p>
-                <p>krótki opis: {{ offer.short_descr }}</p>
-                <p>program: {{ offer.schedule | safe}}</p>
-                {% if offer.price %}<p>cena: {{ offer.price|floatformat:2 }}</p>{% endif %}
+                <p><strong>{{ offer.get_category_display }}</strong></p>
+                <p>{{ offer.duration_in_days }}</p>
+                <p>{{ offer.short_descr }}</p>
+                <p>{{ offer.schedule | safe}}</p>
                 {% if offer.withdrawn %}<p>wycofana z oferty</p>{% endif %}
             </div>
         </div>

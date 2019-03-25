@@ -28,7 +28,9 @@ class AddHolidayForm(forms.ModelForm):
         exclude = ('withdrawn',)
         widgets = {
             'directions': forms.Textarea(attrs={'rows': 4, 'cols': 80, }),
+            'places': forms.Textarea(attrs={'rows': 4, 'cols': 80, }),
             'short_descr': forms.Textarea(attrs={'rows': 4, 'cols': 80, 'class': 'counter'}),
+            'descr': forms.Textarea(attrs={'rows': 4, 'cols': 80, 'class': 'counter'}),
         }
 
 class EditHolidayForm(forms.ModelForm):

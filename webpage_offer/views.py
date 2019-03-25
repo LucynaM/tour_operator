@@ -17,10 +17,14 @@ class AddListOffer(LoginRequiredMixin, View):
     """Show all offer and add new one"""
 
     def get(self, request):
-        offer_list = Offer.objects.all().order_by('category', 'title')
+        for_school_list = Offer.objects.filter(category="for_school").order_by('title')
+        for_work_list = Offer.objects.filter(category="for_work").order_by('title')
+        pilgrimage_list = Offer.objects.filter(category="pilgrimage").order_by('title')
         form = AddOfferForm()
         ctx = {
-            'offer_list': offer_list,
+            'for_school_list': for_school_list,
+            'for_work_list': for_work_list,
+            'pilgrimage_list': pilgrimage_list,
             'form': form,
                }
         return render(request, 'webpage_offer/add_offer.html', ctx)
@@ -30,6 +34,7 @@ class AddListOffer(LoginRequiredMixin, View):
         if form.is_valid():
             Offer.objects.create(**form.cleaned_data)
             form = AddOfferForm()
+
         offer_list = Offer.objects.all().order_by('category', 'title')
         ctx = {
             'offer_list': offer_list,
@@ -54,6 +59,7 @@ class EditOffer(LoginRequiredMixin, View):
         form = EditOfferForm(request.POST, request.FILES, instance=offer)
         if form.is_valid():
             form.save()
+            return redirect('offer:add_offer')
         offer = Offer.objects.get(pk=pk)
         ctx = {
             'form': form,
