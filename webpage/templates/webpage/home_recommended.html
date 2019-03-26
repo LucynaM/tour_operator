@@ -29,7 +29,7 @@
         <div id="section-{{recommended.0.pk}}" class="row no-gutters selection-row closestElement scroll">
 
             <div id="recommended_img0" class="col-md-6 selected-item selected_img img0">
-                <img src="{{ recommended.0.image.url }}" alt="">
+                <img src="{{ recommended.0.image.url }}" alt="{{ recommended.0.title }}">
             </div>
             <div class="col-md-6 selected-item selected_data">
                 <div class="selected_wrapper">
@@ -38,7 +38,7 @@
                         <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' recommended.0.pk %}" title="pokaż szczegóły"></i>
                     </h2>
                     <p>{{ recommended.0.short_descr }}</p>
-                    <p>Czas trwania: {{ recommended.0.duration_in_days }}{% if recommended.0.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</p>
+                    <p>{{ recommended.0.duration_in_days }}{% if recommended.0.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</p>
                     {% endif %}
                 </div>
             </div>
@@ -51,17 +51,17 @@
                         <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' recommended.1.pk %}" title="pokaż szczegóły"></i>
                     </h2>
                     <p>{{ recommended.1.short_descr }}</p>
-                    <p>Czas trwania: {{ recommended.1.duration_in_days }}{% if recommended.1.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</p>
+                    <p>{{ recommended.1.duration_in_days }}{% if recommended.1.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</p>
                     {% endif %}
                 </div>
             </div>
             <div id="recommended_img1" class="col-md-6 selected-item selected-item-1 selected_img img1">
-                <img src="{{ recommended.1.image.url }}" alt="">
+                <img src="{{ recommended.1.image.url }}" alt="{{ recommended.1.title }}">
             </div>
         </div>
         <div id="section-{{recommended.2.pk}}" class="row no-gutters selection-row closestElement scroll">
             <div id="recommended_img2" class="col-md-6 selected-item selected_img img2">
-                <img src="{{ recommended.2.image.url }}" alt="">
+                <img src="{{ recommended.2.image.url }}" alt="{{ recommended.2.title }}">
             </div>
             <div class="col-md-6 selected-item selected_data">
                 <div class="selected_wrapper">
@@ -70,7 +70,7 @@
                         <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' recommended.2.pk %}" title="pokaż szczegóły"></i>
                     </h2>
                     <p>{{ recommended.2.short_descr }}</p>
-                    <p>Czas trwania: {{ recommended.2.duration_in_days }}{% if recommended.2.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</p>
+                    <p>{{ recommended.2.duration_in_days }}{% if recommended.2.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</p>
                     {% endif %}
                 </div>
             </div>

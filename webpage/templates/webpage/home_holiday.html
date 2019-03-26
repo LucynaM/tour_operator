@@ -30,21 +30,20 @@
 
             <div class="col-lg-3">
                 <h2 class="holiday-info">{{ offer.title }}</h2>
-                <p class="holiday-info"><strong>{{ offer.places }}</strong></p>
+                <p class="holiday-info places"><strong>{{ offer.places }}</strong></p>
                 <p class="holiday-info"><strong>{{ offer.duration_in_days }}</strong></p>
 
             </div>
             <div class="col-lg-9">
-                <img src="{{ offer.image.url }}" alt="">
+                <img src="{{ offer.image.url }}" alt="{{ offer.title }}">
             </div>
             <div id="{{offer.pk}}" class="col-md-12 holiday-info">
                 <div >{{ offer.descr }}</div>
-                <div>
-                    <a class="btn btn-primary holiday-details" href="#{{ offer.pk }}">Szczegóły</a>
+                <div class="holiday-details">
+                    <a class="btn btn-primary" href="#holiday-schedule-{{ offer.pk }}">Szczegóły</a>
                 </div>
-
+                <div id="holiday-schedule-{{ offer.pk }}" data-loaded="false" class="holiday-schedule">{{ offer.schedule | safe | linebreaks }}</div>
             </div>
-
 
         </div>
         {% endfor %}

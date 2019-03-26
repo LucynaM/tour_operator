@@ -36,7 +36,7 @@
     <div class="container">
         <div id="section-{{offer_selected.0.pk}}" class="row no-gutters selection-row closestElement ">
             <div id="selected_{{ category }}_img0" class="col-md-6 selected-item selected_img">
-                <img src="{{ offer_selected.0.image.url }}" alt="">
+                <img src="{{ offer_selected.0.image.url }}" alt="{{ offer_selected.0.title }}">
             </div>
             <div class="col-md-6 selected-item selected_data">
                 <div class="selected_wrapper">
@@ -45,7 +45,7 @@
                         <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer_selected.0.pk %}" title="pokaż szczegóły"></i>
                     </h2>
                     <p>{{ offer_selected.0.short_descr }}</p>
-                    <p>Czas trwania: {{ offer_selected.0.duration_in_days }}</p>
+                    <p>{{ offer_selected.0.duration_in_days }}</p>
                     {% endif %}
                 </div>
             </div>
@@ -58,12 +58,12 @@
                         <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer_selected.1.pk %}" title="pokaż szczegóły"></i>
                     </h2>
                     <p>{{ offer_selected.1.short_descr }}</p>
-                    <p>Czas trwania: {{ offer_selected.1.duration_in_days }}</p>
+                    <p>{{ offer_selected.1.duration_in_days }}</p>
                     {% endif %}
                 </div>
             </div>
             <div id="selected_{{ category }}_img1" class="col-md-6 selected-item selected_img ">
-                <img src="{{ offer_selected.1.image.url }}" alt="">
+                <img src="{{ offer_selected.1.image.url }}" alt="{{ offer_selected.1.title }}">
             </div>
         </div>
     </div>
@@ -88,7 +88,7 @@
                 {% if offer.0 %}
                     <div id="offer-{{ offer.0.pk }}" class="row no-gutters selection-row closestElement">
                         <div id="offer_img{{ offer.0.pk }}" class="col-md-6 selected-item selected_img">
-                            <img src="{{offer.0.image.url}}" alt="">
+                            <img src="{{offer.0.image.url}}" alt="{{ offer.0.title }}">
                         </div>
                         <div class="col-md-6 selected-item selected_data">
                             <div class="selected_wrapper">
@@ -97,7 +97,7 @@
                                     <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer.0.pk %}" title="pokaż szczegóły"></i>
                                 </h2>
                                 <p>{{ offer.0.short_descr }}</p>
-                                <p>Czas trwania: {{ offer.0.duration_in_days }}</p>
+                                <p>{{ offer.0.duration_in_days }}</p>
 
                             </div>
                         </div>
@@ -113,12 +113,12 @@
                                     <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer.1.pk %}" title="pokaż szczegóły"></i>
                                 </h2>
                                 <p>{{ offer.1.short_descr }}</p>
-                                <p>Czas trwania: {{ offer.1.duration_in_days }}</p>
+                                <p>{{ offer.1.duration_in_days }}</p>
 
                             </div>
                         </div>
                         <div id="offer_img{{ offer.1.pk }}" class="col-md-6 selected-item selected_img">
-                            <img src="{{offer.1.image.url}}" alt="">
+                            <img src="{{offer.1.image.url}}" alt="{{ offer.1.title }}">
                         </div>
                     </div>
                 {% endif %}

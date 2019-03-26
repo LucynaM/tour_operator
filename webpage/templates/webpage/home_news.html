@@ -39,7 +39,7 @@
             <div class="col-sm-9 col-md-8 offset-md-1">
                 {% for news in news_list %}
                     <div id="news-{{news.pk}}" class="row blog-img">
-                        <img src="{{ news.image.url }}" alt="">
+                        <img src="{{ news.image.url }}" alt="{{ news.title }}">
                     </div>
                     <div class="row blog-content">
                         <div class="news_date ">

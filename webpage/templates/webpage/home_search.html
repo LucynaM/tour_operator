@@ -23,9 +23,10 @@
 </section>
 
 <!-- Offer - start -->
-{% if offer_all %}
+{% if offer_all or holiday_all %}
 <section id="all_offer" class="selection selection-offer search">
     <div class="container">
+        {% if offer_all %}
             {% for offer in offer_all %}
                 {% if offer.0 %}
                     <div id="offer-{{ offer.0.pk }}" class="row no-gutters selection-row closestElement">
@@ -39,7 +40,7 @@
                                     <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer.0.pk %}" title="pokaż szczegóły"></i>
                                 </h2>
                                 <p>{{ offer.0.short_descr }}</p>
-                                <p>Czas trwania: {{ offer.0.duration_in_days }}</p>
+                                <p>{{ offer.0.duration_in_days }}</p>
 
                             </div>
                         </div>
@@ -55,7 +56,7 @@
                                     <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer.1.pk %}" title="pokaż szczegóły"></i>
                                 </h2>
                                 <p>{{ offer.1.short_descr }}</p>
-                                <p>Czas trwania: {{ offer.1.duration_in_days }}</p>
+                                <p>{{ offer.1.duration_in_days }}</p>
 
                             </div>
                         </div>
@@ -65,11 +66,106 @@
                     </div>
                 {% endif %}
             {% endfor %}
+        {% endif %}
+
+
+        {% if holiday_all and offer_len %}
+            {% for offer in holiday_all %}
+                {% if offer.0 %}
+                    <div id="holiday-{{ offer.0.pk }}" class="row no-gutters selection-row closestElement">
+                        <div id="holiday_img{{ offer.0.pk }}" class="col-md-6 selected-item selected_img">
+                            <img src="{{offer.0.image.url}}" alt="">
+                        </div>
+                        <div class="col-md-6 selected-item selected_data">
+                            <div class="selected_wrapper">
+
+                                <h2>{{ offer.0.title }}
+                                    <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer.0.pk %}" title="pokaż szczegóły"></i>
+                                </h2>
+                                <p>{{ offer.0.short_descr }}</p>
+
+                                {% if offer.0.duration_in_days %}
+                                <p>{{ offer.0.duration_in_days }}</p>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if offer.1 %}
+                    <div id="holiday-{{ offer.1.pk }}" class="row no-gutters selection-row closestElement">
+
+                        <div class="col-md-6 selected-item selected_data">
+                            <div class="selected_wrapper">
+
+                                <h2>{{ offer.1.title }}
+                                    <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer.1.pk %}" title="pokaż szczegóły"></i>
+                                </h2>
+                                <p>{{ offer.1.short_descr }}</p>
+
+                                {% if offer.1.duration_in_days %}
+                                <p>{{ offer.1.duration_in_days }}</p>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                        <div id="holiday_img{{ offer.1.pk }}" class="col-md-6 selected-item selected_img">
+                            <img src="{{offer.1.image.url}}" alt="">
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% elif holiday_all and not offer_len %}
+            {% for offer in holiday_all %}
+                {% if offer.0 %}
+                    <div id="holiday-{{ offer.0.pk }}" class="row no-gutters selection-row closestElement">
+                         <div class="col-md-6 selected-item selected_data">
+                            <div class="selected_wrapper">
+
+                                <h2>{{ offer.0.title }}
+                                    <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_holiday' offer.0.pk %}" title="pokaż szczegóły"></i>
+                                </h2>
+                                <p>{{ offer.0.short_descr }}</p>
+
+                                {% if offer.0.duration_in_days %}
+                                <p>{{ offer.0.duration_in_days }}</p>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                        <div id="holiday_img{{ offer.0.pk }}" class="col-md-6 selected-item selected_img">
+                            <img src="{{offer.0.image.url}}" alt="">
+                        </div>
+
+                    </div>
+                {% endif %}
+                {% if offer.1 %}
+                    <div id="holiday-{{ offer.1.pk }}" class="row no-gutters selection-row closestElement">
+                         <div id="holiday_img{{ offer.1.pk }}" class="col-md-6 selected-item selected_img">
+                            <img src="{{offer.1.image.url}}" alt="">
+                        </div>
+                        <div class="col-md-6 selected-item selected_data">
+                            <div class="selected_wrapper">
+
+                                <h2>{{ offer.1.title }}
+                                    <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_holiday' offer.1.pk %}" title="pokaż szczegóły"></i>
+                                </h2>
+                                <p>{{ offer.1.short_descr }}</p>
+
+                                {% if offer.1.duration_in_days %}
+                                <p>{{ offer.1.duration_in_days }}</p>
+                                {% endif %}
+
+                            </div>
+                        </div>
+
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
     </div>
 </section>
 {% endif %}
 <!-- Offer - stop -->
-
-<!-- Offer for school - stop -->
 
 {% endblock content %}

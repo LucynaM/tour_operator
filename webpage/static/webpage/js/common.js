@@ -60,7 +60,9 @@ $(document).ready(function() {
         thisToggler.removeClass('fa-eye').addClass('fa-eye-slash');
         newRow.append(newRowContent);
         newRowContent.html(newRowContentText);
-        newRow.slideDown();
+        newRow.slideDown(300, function() {
+            slideTo(row);
+        });
 
 
     };
@@ -87,7 +89,7 @@ $(document).ready(function() {
                     prepareOffer(thisRow, thisNextRow, thisToggler, url);
                 }
             }
-            slideTo(thisRow);
+
         });
     };
 
@@ -96,7 +98,23 @@ $(document).ready(function() {
 
     /* Show offer on click - stop */
 
+    /* Show holiday - start */
 
+    $('#holiday .holiday-details>a').on('click', function(e){
+        e.preventDefault();
+        const hashValue = $(this).attr('href');
+
+        $(hashValue).data('loaded', !($(hashValue).data('loaded')));
+        if ($(hashValue).data('loaded')) {
+            $('html, body').animate({
+                scrollTop: $(this).offset().top
+            }, 800);
+        };
+        $(hashValue).slideToggle();
+        ($(hashValue).data('loaded')) ? $(this).text("Ukryj") : $(this).text("Szczegóły");
+    })
+
+    /* Show holiday - stop */
 
     /* Select offer - start */
 
@@ -354,5 +372,7 @@ $(document).ready(function() {
     /*scrollReveal - start*/
     window.sr = ScrollReveal({ reset: true }).reveal('.scroll', { duration: 500 });
     /*scrollReveal - stop*/
+
+
 
 });

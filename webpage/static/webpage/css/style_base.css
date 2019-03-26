@@ -654,14 +654,23 @@ footer {
     max-height: 550px;
     object-fit: cover; }
   #holiday .holiday-info {
-    padding: 30px 50px; }
+    padding: 30px 50px 10px; }
   #holiday p.holiday-info {
     padding-top: 0;
     font-size: 13px; }
   #holiday h2.holiday-info {
     font-size: 1.5rem; }
+  #holiday .places {
+    text-transform: uppercase; }
   #holiday .holiday-details {
-    margin-left: 50px; }
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 30px; }
+  #holiday .holiday-schedule {
+    display: none; }
 
 /* Holiday - stop */
 /* Modal - start */

@@ -86,9 +86,15 @@ class HomeSearchPage(View):
             search = search.replace('. ', ' ')
         offer = Offer.objects.filter(direction__icontains=search)
         offer_chunk = ((offer[x:x + 2]) for x in range(0, len(offer), 2))
+        offer_len = len(offer) % 2 == 0
+
+        holiday = Holiday.objects.filter(direction__icontains=search)
+        holiday_chunk = ((holiday[x:x + 2]) for x in range(0, len(holiday), 2))
 
         ctx = {
             'offer_all': offer_chunk,
+            'holiday_all': holiday_chunk,
+            'offer_len': offer_len,
             'category': search,
 
         }
