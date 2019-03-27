@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.http import JsonResponse
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from webpage_offer.models import Offer, Holiday, News
 
 # Create your views here.
@@ -68,10 +69,25 @@ class HomeHolidayPage(View):
 
 class HomeNewsPage(View):
     def get(self, request):
-        news_list = News.objects.all().order_by('-pk')[0:2]
+        news_list = News.objects.all().order_by('-pk')
+        news_list_chunk = ((news_list[x:x+2]) for x in range(0, len(news_list), 2))
 
+        # present split result list in pages
+        paginator = Paginator(news_list, 2)
+
+
+        page = request.GET.get('page', 1)
+        try:
+            news_result = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first page.
+            news_result = paginator.page(1)
+        except EmptyPage:
+            # If page is out of range (e.g. 9999), deliver last page of results.
+            news_result = paginator.page(paginator.num_pages)
         ctx = {
-            'news_list': news_list,
+            'news_list': news_list_chunk,
+            'news_result': news_result,
         }
         return render(request, 'webpage/home_news.html', ctx)
     def post(self, request):
