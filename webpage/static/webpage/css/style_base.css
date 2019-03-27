@@ -565,6 +565,16 @@ footer {
     background: #207ba3; }
   .full-offer.pilgrimage {
     background: #d28c22; }
+  .full-offer.recommended {
+    background: #157796; }
+  .full-offer.news {
+    background: #6eabe5; }
+  .full-offer.holiday {
+    background: #ffc005; }
+  .full-offer.search {
+    background: #fff; }
+  .full-offer.home {
+    background: #B91B22; }
   .full-offer h2 {
     font-size: 70px;
     font-weight: 300;
@@ -765,3 +775,18 @@ button.close {
     display: none; } }
 
 /* Modal - stop */
+#social-media a {
+  display: inline-block;
+  width: 30px;
+  heigth: 30px;
+  line-height: 30px;
+  font-size: 30px;
+  color: white;
+  margin-right: 7px;
+  margin-left: 7px; }
+  #social-media a:hover {
+    font-weight: initial;
+    color: #B91B22; }
+
+#social-media.search a {
+  color: black; }
