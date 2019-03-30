@@ -19,13 +19,16 @@
                 <a href="{% url 'offer:add_offer' cat='pilgrimage' %}" class="manager" >
                     <h5>Dodaj pielgrzymkę</h5>
                 </a>
-                <a href="{% url 'offer:add_offer' cat='holiday' %}" class="manager" id="holiday-manager">
+                <a href="{% url 'offer:add_offer' cat='holiday' %}" class="manager">
                     <h5>Dodaj wakacje</h5>
                 </a>
-                <a href="{% url 'offer:add_news' %}" class="manager" id="news-manager">
+                <a href="{% url 'offer:select_offer' %}" class="manager" >
+                    <h5>Wybór z oferty</h5>
+                </a>
+                <a href="{% url 'offer:add_news' %}" class="manager" >
                     <h5>Blog</h5>
                 </a>
-                <a href="{% url 'tour:add_tour' %}" class="manager" id="tour-manager">
+                <a href="{% url 'tour:add_tour' %}" class="manager" >
                     <h5>Wyjazdy</h5>
                 </a>
             </div>

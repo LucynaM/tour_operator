@@ -23,7 +23,7 @@
 <body>
     {% block nav %}
     <!-- Nav - start -->
-    <nav class="navbar fixed-top navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="{% url 'webpage:home' %}"><img src="{% static 'webpage/images/logo-przezr-tlo.png' %}" alt="Marco Polo"></a>
             <button class="navbar-toggler navbar-light" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -36,7 +36,7 @@
 
                     {% block link_management %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'tour:add_tour' %}">wycieczka</a>
+                        <a class="nav-link" href="{% url 'tour:add_tour' %}">wyjazdy</a>
                     </li>
                     {% endblock link_management %}
                     <li class="nav-item">

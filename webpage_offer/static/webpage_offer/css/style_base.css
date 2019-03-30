@@ -17,6 +17,13 @@ p {
   margin-bottom: .5rem;
   line-height: 1.5; }
 
+a {
+  color: black; }
+  a:hover {
+    color: #B91B22;
+    font-weight: 600;
+    text-decoration: none; }
+
 strong {
   font-weight: 600;
   color: grey; }
@@ -67,12 +74,17 @@ nav {
   background-color: #F7F5F5; }
 
 section {
-  padding-top: 15vh;
-  padding-bottom: 15vh; }
-  section:first-of-type {
-    padding-top: calc(9vh + 45.55px); }
+  padding-top: 3vh;
+  padding-bottom: 3vh; }
   section:nth-of-type(odd) {
     background-color: #F7F5F5; }
+
+#list_offer .table {
+  margin-bottom: 70px; }
+  #list_offer .table td:last-child {
+    width: 50px; }
+  #list_offer .table td:nth-child(2) {
+    width: 50px; }
 
 .list-elements .offer-details, .list-elements a {
   color: black; }

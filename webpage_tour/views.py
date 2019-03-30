@@ -19,12 +19,12 @@ from reportlab.lib.units import mm
 def get_dates(start, end):
     # format dates range
     if start.year == end.year and start.month == end.month:
-        start = start.strftime('%d')
+        start = start.strftime('%d.')
     elif start.year == end.year:
-        start = start.strftime('%d/%m')
+        start = start.strftime('%d.%m.')
     else:
-        start = start.strftime('%d/%m/%Y')
-    end = end.strftime('%d/%m/%Y')
+        start = start.strftime('%d.%m.%Y')
+    end = end.strftime('%d.%m.%Y')
     date = ('{}-{}'.format(start, end))
     return date
 
@@ -54,7 +54,6 @@ class AddTour(LoginRequiredMixin, View):
         ctx = {
             'form': form,
             'tour_list': tour_list,
-            'cat': 'offer',
         }
 
         return render(request, 'webpage_tour/add_tour.html', ctx)
@@ -65,12 +64,11 @@ class AddTour(LoginRequiredMixin, View):
 
         if form.is_valid():
             tour = form.save()
-            return redirect('tour:add_participant', pk=tour.pk, cat="offer")
+            return redirect('tour:add_participant', pk=tour.pk)
 
         ctx = {
             'form': form,
             'tour_list': tour_list,
-            'cat': 'offer',
         }
         return render(request, 'webpage_tour/add_tour.html', ctx)
 

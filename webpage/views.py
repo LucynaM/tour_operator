@@ -3,8 +3,11 @@ from django.views import View
 from django.http import JsonResponse
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from webpage_offer.models import Offer, News
+from datetime import datetime
+from webpage_tour.views import get_dates
 
 # Create your views here.
+
 
 def search_snippet(request, page):
     try:
@@ -58,6 +61,11 @@ class HomeRecommendedPage(View):
 class HomeHolidayPage(View):
     def get(self, request):
         holiday = Offer.objects.filter(category="holiday").exclude(withdrawn=True)
+        for item in holiday:
+            item.dates = []
+            for tour in item.tours.all().exclude(end_date__lte=datetime.now().date()).order_by('start_date'):
+                tour.date = get_dates(tour.start_date, tour.end_date)
+                item.dates.append(tour.date)
 
         ctx = {
             'offer_all': holiday,

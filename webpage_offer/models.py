@@ -8,7 +8,7 @@ CATEGORIES = (
     ('for_school', 'oferta dla szkół'),
     ('for_work', 'oferta dla firm'),
     ('pilgrimage', 'pielgrzymka'),
-    ('holiday', 'holiday'),
+    ('holiday', 'wakacje'),
 )
 
 class Offer(models.Model):

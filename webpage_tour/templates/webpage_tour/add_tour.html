@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-md-12 col-lg-8 offset-lg-2">
                 <div>
-                    <h2 class="page-header">Dodaj wycieczkę</h2>
+                    <h2 class="page-header">Dodaj wyjazd</h2>
                     <form action="" method="post">
                         {% csrf_token %}
                         {{ form|crispy }}
@@ -30,7 +30,7 @@
                 {% if tour_list %}
                 <table class="table">
                     <tr>
-                        <th>Wycieczka</th>
+                        <th>Wyjazd</th>
                         <th>Termin</th>
                         <th></th>
                         <th></th>
@@ -45,7 +45,7 @@
                     {% endfor %}
                 </table>
                 {% else %}
-                <p>Brak wycieczek do wyświetlenia</p>
+                <p>Brak wyjazdów do wyświetlenia</p>
                 {% endif %}
             </div>
         </div>

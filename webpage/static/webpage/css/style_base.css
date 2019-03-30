@@ -713,6 +713,12 @@ footer {
     font-size: 1.5rem; }
   #holiday .places {
     text-transform: uppercase; }
+  #holiday p.holiday-dates {
+    font-size: 20px;
+    color: #B91B22; }
+  #holiday .holiday-duration {
+    padding-left: 0;
+    padding-right: 0; }
   #holiday .holiday-details {
     width: 100%;
     margin-left: auto;

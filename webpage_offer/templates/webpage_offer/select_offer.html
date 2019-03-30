@@ -1,21 +1,9 @@
 {% extends './_base.html' %}
 
 {% block link_management %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'offer:list_offer' %}">oferta</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#school_trip">dla szkół</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#work_trip">dla firm</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#pilgrimage">pielgrzymki</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#recommend">polecamy</a>
-                    </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'offer:list_offer' %}">wszystkie oferty</a>
+        </li>
 {% endblock link_management %}
 
 
