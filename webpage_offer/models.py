@@ -8,15 +8,18 @@ CATEGORIES = (
     ('for_school', 'oferta dla szkół'),
     ('for_work', 'oferta dla firm'),
     ('pilgrimage', 'pielgrzymka'),
+    ('holiday', 'holiday'),
 )
 
 class Offer(models.Model):
     """A class to represent offer"""
     title = models.CharField(max_length=255, verbose_name='Tytuł')
     category = models.CharField(choices=CATEGORIES, max_length=20, verbose_name='Kategoria')
-    direction = models.TextField(max_length=600, verbose_name='Kierunki')
+    direction = models.TextField(max_length=600, verbose_name='Tagi')
+    places = models.TextField(max_length=250, verbose_name='Miejsca', null=True, blank=True)
     duration_in_days = models.CharField(max_length=255, verbose_name='Czas trwania')
     short_descr = models.TextField(max_length=400, verbose_name='Krótki opis')
+    descr = models.TextField(max_length=500, verbose_name='Opis dla wakacji', null=True, blank=True)
     schedule = models.TextField(verbose_name='Program')
     image = models.ImageField(upload_to='images', null=True, blank=True)
     #flags for selection in category
@@ -35,9 +38,9 @@ class Offer(models.Model):
     def __str__(self):
         return self.name
 
-
+"""
 class Holiday(models.Model):
-    """A class to represent holiday offer"""
+    A class to represent holiday offer
     title = models.CharField(max_length=255, verbose_name='Tytuł')
     direction = models.TextField(max_length=600, verbose_name='Kierunki', null=True, blank=True)
     places = models.TextField(max_length=250, verbose_name='Miejsca', null=True, blank=True)
@@ -50,7 +53,7 @@ class Holiday(models.Model):
 
     def __str__(self):
         return self.title
-
+"""
 
 class News(models.Model):
     """A class to represent news"""

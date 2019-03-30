@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from .models import Offer, Holiday, News
+from .models import Offer, News
 from .forms import AddOfferForm, EditOfferForm, AddHolidayForm, EditHolidayForm, NewsForm
 
 # Create your views here.
@@ -13,33 +13,56 @@ class TourManager(LoginRequiredMixin, View):
         return render(request, 'webpage_offer/tour_manager.html')
 
 
-class AddListOffer(LoginRequiredMixin, View):
-    """Show all offer and add new one"""
+class ListOffer(LoginRequiredMixin, View):
+    """Show all offer """
 
     def get(self, request):
         for_school_list = Offer.objects.filter(category="for_school").order_by('title')
         for_work_list = Offer.objects.filter(category="for_work").order_by('title')
         pilgrimage_list = Offer.objects.filter(category="pilgrimage").order_by('title')
-        form = AddOfferForm()
+        holiday_list = Offer.objects.filter(category="holiday").order_by('title')
+
         ctx = {
             'for_school_list': for_school_list,
             'for_work_list': for_work_list,
             'pilgrimage_list': pilgrimage_list,
-            'form': form,
+            'holiday_list': holiday_list,
                }
+        return render(request, 'webpage_offer/list_offer.html', ctx)
+
+
+class AddOffer(LoginRequiredMixin, View):
+    """Show all offer and add new one"""
+
+    def get(self, request, cat):
+        offer_list = Offer.objects.filter(category=cat).order_by('title')
+        if cat == "holiday":
+            form = AddHolidayForm()
+        else:
+            form = AddOfferForm()
+        ctx = {
+            'offer_list': offer_list,
+            'form': form,
+            }
         return render(request, 'webpage_offer/add_offer.html', ctx)
 
-    def post(self, request):
-        form = AddOfferForm(request.POST, request.FILES)
-        if form.is_valid():
-            Offer.objects.create(**form.cleaned_data)
-            form = AddOfferForm()
+    def post(self, request, cat):
+        if cat == "holiday":
+            form = AddHolidayForm(request.POST, request.FILES)
+        else:
+            form = AddOfferForm(request.POST, request.FILES)
 
-        offer_list = Offer.objects.all().order_by('category', 'title')
+        if form.is_valid():
+            Offer.objects.create(**form.cleaned_data, category=cat)
+            return redirect('offer:list_offer')
+
+        offer_list = Offer.objects.filter(category=cat).order_by('title')
+
         ctx = {
             'offer_list': offer_list,
             'form': form,
         }
+
         return render(request, 'webpage_offer/add_offer.html', ctx)
 
 
@@ -47,7 +70,10 @@ class EditOffer(LoginRequiredMixin, View):
 
     def get(self, request, pk):
         offer = Offer.objects.get(pk=pk)
-        form = EditOfferForm(instance=offer)
+        if offer.category == "holiday":
+            form = EditHolidayForm(instance=offer)
+        else:
+            form = EditOfferForm(instance=offer)
         ctx = {
             'form': form,
             'offer': offer,
@@ -56,10 +82,13 @@ class EditOffer(LoginRequiredMixin, View):
 
     def post(self, request, pk):
         offer = Offer.objects.get(pk=pk)
-        form = EditOfferForm(request.POST, request.FILES, instance=offer)
+        if offer.category == "holiday":
+            form = EditHolidayForm(request.POST, request.FILES, instance=offer)
+        else:
+            form = EditOfferForm(request.POST, request.FILES, instance=offer)
         if form.is_valid():
             form.save()
-            return redirect('offer:add_offer')
+            return redirect('offer:list_offer')
         offer = Offer.objects.get(pk=pk)
         ctx = {
             'form': form,
@@ -87,7 +116,7 @@ class ShowOffer(View):
         except Exception as e:
             print(e)
 
-
+"""
 class ShowHoliday(View):
 
     def get(self, request, pk):
@@ -98,7 +127,7 @@ class ShowHoliday(View):
             return JsonResponse(data)
         except Exception as e:
             print(e)
-
+"""
 
 class ShowNews(View):
 
@@ -114,7 +143,7 @@ class ShowNews(View):
 
 class SelectOffer(View):
     def get(self, request):
-        all_offer = Offer.objects.all().order_by('category', 'title')
+        all_offer = Offer.objects.exclude(category="holiday").order_by('category', 'title')
         categories = ['pilgrimage', 'for_school', 'for_work']
 
         ctx = {
@@ -194,7 +223,7 @@ class SetRecommended(View):
         except Exception as e:
             print(e)
 
-
+"""
 class AddListHoliday(LoginRequiredMixin, View):
     def get(self, request):
         holiday_list = Holiday.objects.all().order_by('-pk')
@@ -239,7 +268,7 @@ class EditHoliday(LoginRequiredMixin, View):
             'holiday': holiday,
         }
         return render(request, 'webpage_offer/edit_holiday.html', ctx)
-
+"""
 
 class AddListNews(LoginRequiredMixin, View):
     def get(self, request):

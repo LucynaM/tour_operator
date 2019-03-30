@@ -15,12 +15,9 @@ a {
     font-weight: 600;
     text-decoration: none; }
 
-[type="button"] {
-  color: black; }
-  [type="button"]:hover {
-    color: #B91B22;
-    font-weight: 600;
-    text-decoration: none; }
+a:not([href]):not([tabindex]):hover {
+  cursor: pointer;
+  color: #B91B22; }
 
 .btn-primary {
   color: #fff;
@@ -751,7 +748,8 @@ footer {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url("../images/AdobeStock_116787150_Preview.jpeg");
+  background-image: url("../images/recommended/AdobeStock_145730087_Preview.jpeg");
+  background-position: 25% 0%;
   width: 100%;
   height: 100%; }
 
@@ -789,4 +787,9 @@ button.close {
     color: #B91B22; }
 
 #social-media.search a {
-  color: black; }
+  color: #000; }
+  #social-media.search a:hover {
+    color: #B91B22; }
+
+#social-media.home a:hover {
+  color: #0c1433; }

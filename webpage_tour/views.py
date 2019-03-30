@@ -54,6 +54,7 @@ class AddTour(LoginRequiredMixin, View):
         ctx = {
             'form': form,
             'tour_list': tour_list,
+            'cat': 'offer',
         }
 
         return render(request, 'webpage_tour/add_tour.html', ctx)
@@ -64,14 +65,14 @@ class AddTour(LoginRequiredMixin, View):
 
         if form.is_valid():
             tour = form.save()
-            return redirect('tour:add_participant', pk=tour.pk)
+            return redirect('tour:add_participant', pk=tour.pk, cat="offer")
 
         ctx = {
             'form': form,
             'tour_list': tour_list,
+            'cat': 'offer',
         }
         return render(request, 'webpage_tour/add_tour.html', ctx)
-
 
 
 class AddParticipant(LoginRequiredMixin, View):
@@ -112,7 +113,6 @@ class AddParticipant(LoginRequiredMixin, View):
                 participant = participant_list[0]
             else:
                 participant = form.save()
-
             if not TourParticipant.objects.filter(tour=tour, participant=participant):
                 TourParticipant.objects.create(tour=tour, participant=participant)
             else:
@@ -162,6 +162,7 @@ class EditTour(LoginRequiredMixin, View):
             'form': form,
         }
         return render(request, 'webpage_tour/add_tour.html', ctx)
+
 
 
 class EditParticipant(LoginRequiredMixin, View):

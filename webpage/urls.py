@@ -16,8 +16,8 @@ Including another URLconf
 from django.conf.urls import url
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import HomePage, OfferPage, HomeHolidayPage, HomeNewsPage, \
-    HomeSearchPage, HomeRecommendedPage, GetDirectionsBis
+from .views import HomePage, OfferPage, HomeNewsPage, \
+    HomeRecommendedPage, GetDirectionsBis, HomeSearchPage, HomeHolidayPage
 
 urlpatterns = [
     url(r'^$', HomePage.as_view(), name='home'),

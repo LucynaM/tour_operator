@@ -70,7 +70,7 @@ section {
   padding-top: 15vh;
   padding-bottom: 15vh; }
   section:first-of-type {
-    padding-top: calc(19vh + 45.55px); }
+    padding-top: calc(9vh + 45.55px); }
   section:nth-of-type(odd) {
     background-color: #F7F5F5; }
 
@@ -130,20 +130,16 @@ section {
 
 #manager-intro {
   background-color: #F7F5F5;
-  padding-top: 2.5vh;
-  padding-bottom: 2.5vh; }
-  #manager-intro .row div:first-child .manager {
-    float: right; }
+  padding-top: 2vw;
+  padding-bottom: 2vw; }
   #manager-intro .manager {
-    float: left;
-    margin-left: 2.5vh;
-    margin-right: 2.5vh;
-    width: 42.5vh;
-    height: 42.5vh;
+    width: 100%;
+    height: 50px;
     position: relative;
     background-color: #fff;
-    margin-top: 2.5vh;
-    margin-bottom: 2.5vh; }
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    display: inline-block; }
     #manager-intro .manager h5 {
       text-align: center;
       color: grey;
@@ -155,27 +151,6 @@ section {
       box-shadow: 3px 3px 5px 1px rgba(165, 164, 164, 0.3); }
       #manager-intro .manager:hover h5 {
         color: #B91B22; }
-
-@media (min-width: 576px) and (orientation: portrait) {
-  #manager-intro {
-    padding-top: 2.5vw;
-    padding-bottom: 2.5vw; }
-    #manager-intro .manager {
-      margin-left: 2.5vw;
-      margin-right: 2.5vw;
-      margin-top: 2.5vw;
-      margin-bottom: 2.5vw;
-      width: 42.5vw;
-      height: 42.5vw; } }
-
-@media (max-width: 575px) {
-  #manager-intro .row div:first-child .manager {
-    float: left; }
-  #manager-intro .manager {
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto; } }
 
 select.custom-select {
   border: none;

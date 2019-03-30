@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.http import JsonResponse
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from webpage_offer.models import Offer, Holiday, News
+from webpage_offer.models import Offer, News
 
 # Create your views here.
 
@@ -30,7 +30,7 @@ class HomePage(View):
 class OfferPage(View):
     def get(self, request):
         category = request.path[1:-1]
-        offer = Offer.objects.filter(category=category, selected=False).exclude(withdrawn=True).order_by('title')
+        offer = Offer.objects.filter(category=category, selected=False).exclude(category="holiday", withdrawn=True).order_by('title')
         offer_chunk = ((offer[x:x+2]) for x in range(0, len(offer), 2))
         offer_selected = Offer.objects.filter(category=category, selected=True).order_by('selected_sort')
         ctx = {
@@ -57,7 +57,7 @@ class HomeRecommendedPage(View):
 
 class HomeHolidayPage(View):
     def get(self, request):
-        holiday = Holiday.objects.all().exclude(withdrawn=True)
+        holiday = Offer.objects.filter(category="holiday").exclude(withdrawn=True)
 
         ctx = {
             'offer_all': holiday,
@@ -102,15 +102,9 @@ class HomeSearchPage(View):
             search = search.replace('. ', ' ')
         offer = Offer.objects.filter(direction__icontains=search)
         offer_chunk = ((offer[x:x + 2]) for x in range(0, len(offer), 2))
-        offer_len = len(offer) % 2 == 0
-
-        holiday = Holiday.objects.filter(direction__icontains=search)
-        holiday_chunk = ((holiday[x:x + 2]) for x in range(0, len(holiday), 2))
 
         ctx = {
             'offer_all': offer_chunk,
-            'holiday_all': holiday_chunk,
-            'offer_len': offer_len,
             'category': search,
 
         }

@@ -23,4 +23,3 @@ class TourParticipantForm(forms.ModelForm):
     class Meta:
         model = TourParticipant
         fields = ('status', )
-
