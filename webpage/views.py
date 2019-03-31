@@ -60,16 +60,19 @@ class HomeRecommendedPage(View):
 
 class HomeHolidayPage(View):
     def get(self, request):
-        holiday = Offer.objects.filter(category="holiday").exclude(withdrawn=True)
+        holiday = Offer.objects.filter(category="holiday").exclude(withdrawn=True).order_by('-tours__open', 'title')
         for item in holiday:
-            item.dates = []
+            item.holiday_tours = []
             for tour in item.tours.all().exclude(end_date__lte=datetime.now().date()).order_by('start_date'):
+                holiday_tour = {}
                 tour.date = get_dates(tour.start_date, tour.end_date)
-                item.dates.append(tour.date)
-
+                holiday_tour["dates"] = tour.date
+                holiday_tour["open"] = tour.open
+                item.holiday_tours.append(holiday_tour)
         ctx = {
             'offer_all': holiday,
         }
+
         return render(request, 'webpage/home_holiday.html', ctx)
     def post(self, request):
         return search_snippet(request, 'webpage/home_holiday.html')

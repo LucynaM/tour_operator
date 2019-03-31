@@ -8,6 +8,7 @@ class Tour(models.Model):
     start_date = models.DateField(verbose_name='Data ropoczęcia')
     end_date = models.DateField(verbose_name='Data zakończenia')
     offer = models.ForeignKey(Offer, related_name='tours', on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Oferta')
+    open = models.BooleanField(default=True)
 
     def __str__(self):
         return "{}-{}: {}".format(self.start_date, self.end_date, self.offer)

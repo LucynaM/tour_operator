@@ -30,9 +30,17 @@
 
             <div class="col-lg-3">
                 <h2 class="holiday-info">{{ offer.title }}</h2>
-                {% for date in offer.dates %}
-                    <p class="holiday-info holiday-dates"><strong>{{ date }}</strong></p>
+                {% for tour in offer.holiday_tours %}
+                    {% for k, v in tour.items %}
+                        {% if k == "dates" %}
+                        <p class="holiday-info holiday-dates"><strong>{{ v }}</strong></p>
+                        {% endif %}
+                        {% if k == "open" and v %}
+                        <p class="holiday-info holiday-open"><strong>Oferta otwarta</strong></p>
+                        {% endif %}
+                    {% endfor %}
                 {% endfor %}
+
                 <p class="holiday-info places"><strong>{{ offer.places }}</strong></p>
 
             </div>

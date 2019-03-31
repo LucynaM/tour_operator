@@ -5,7 +5,7 @@ from .models import Tour, TourParticipant, Participant
 class TourForm(forms.ModelForm):
     class Meta:
         model = Tour
-        fields = ('offer', 'start_date', 'end_date',)
+        fields = ('offer', 'start_date', 'end_date', "open")
         widgets = {'start_date': forms.DateInput(attrs={'class': 'datepicker', 'placeholder': 'dd/mm/rrrr'}),
                    'end_date': forms.DateInput(attrs={'class': 'datepicker', 'placeholder': 'dd/mm/rrrr'}),
                    }
