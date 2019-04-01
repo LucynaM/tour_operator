@@ -1,5 +1,4 @@
 from django.db import models
-from tinymce.models import HTMLField
 
 # Create your models here.
 
@@ -38,22 +37,6 @@ class Offer(models.Model):
     def __str__(self):
         return self.name
 
-"""
-class Holiday(models.Model):
-    A class to represent holiday offer
-    title = models.CharField(max_length=255, verbose_name='Tytuł')
-    direction = models.TextField(max_length=600, verbose_name='Kierunki', null=True, blank=True)
-    places = models.TextField(max_length=250, verbose_name='Miejsca', null=True, blank=True)
-    duration_in_days = models.CharField(max_length=255, verbose_name='Czas trwania', null=True, blank=True)
-    short_descr = models.TextField(max_length=400, verbose_name='Krótki opis', null=True, blank=True)
-    descr = models.TextField(max_length=500, verbose_name='Opis', null=True, blank=True)
-    schedule = models.TextField(verbose_name='Program')
-    image = models.ImageField(upload_to='images', null=True, blank=True)
-    withdrawn = models.BooleanField(default=False, verbose_name='Wycofana z oferty')
-
-    def __str__(self):
-        return self.title
-"""
 
 class News(models.Model):
     """A class to represent news"""

@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # other app
     'crispy_forms',
-    'tinymce',
     # my app
     'webpage',
     'webpage_offer',
