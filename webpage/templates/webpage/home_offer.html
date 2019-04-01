@@ -2,6 +2,27 @@
 {% load static %}
 
 
+{% block title %} Marco Polo Travel
+    {% if category == 'pilgrimage' %}
+        Pielgrzymki
+    {% elif category == 'for_school' %}
+        Oferta dla szkół
+    {% else %}
+        Oferta dla firm
+    {% endif %}
+{% endblock title %}
+
+{% block descr-content %}
+    {% if category == 'pilgrimage' %}
+        Organizator imprez turystycznych obejmujących m.in. pielgrzymki do miejsc świetych: sanktuaria adriatyckie, greckie, rumuńskie, bułgarskie, austriackie, węgierskie, chorwackie, bośniackie. Włochy. Trasa św. Franciszka, Trasa św. Benedykta, Trasa Stygmatyków, Trasa świętych z Sycylii, Austria, Węgry: sanktuaria I Opactwa
+    {% elif category == 'for_school' %}
+        Organizator imprez turystycznych obejmujących m.in. Kraków, Warszawę, Lublin, Pieniny, Gorce, Słowację: Małą Fatrę, Zamek Orawski z basenami termalnymi, Litwę: Wileńszczyznę i Auksztotę.
+    {% else %}
+        Organizator imprez turystycznych obejmujących wyjazdy firmowe m.in do Danii, Szwecji, Finlandii z Litwą, Łotwą i Estonią, Wielkiej Brytanii, Włoch, Serbii, Macedonii, Rumunii, Bułgarii, Bośnii i Hercegowiny, Chorwacji, Słowenii.
+    {% endif %}
+{% endblock descr-content %}
+
+
 {% block brand %}{% url 'webpage:home' %}{% endblock brand %}
 
 

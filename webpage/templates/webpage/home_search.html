@@ -1,6 +1,7 @@
 {% extends './_base.html' %}
 {% load static %}
-
+{% block title %}Marco Polo Travel {{category}} {% endblock title %}
+<meta name="description" content="{% block descr-content %}Organizator imprez turystycznych , m.in do {{category}}, obejmujących integracyjne wyjazdy zakładowe, wycieczki pracownicze, wycieczki szkolne, pielgrzymki do miejsc świętych, wczasy jak również wyjazdy indywidualne.{% endblock descr-content %}">
 
 {% block brand %}{% url 'webpage:home' %}{% endblock brand %}
 {% block about_link %}{% endblock about_link %}
