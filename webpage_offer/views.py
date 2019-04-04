@@ -223,53 +223,6 @@ class SetRecommended(View):
         except Exception as e:
             print(e)
 
-"""
-class AddListHoliday(LoginRequiredMixin, View):
-    def get(self, request):
-        holiday_list = Holiday.objects.all().order_by('-pk')
-        form = AddHolidayForm()
-        ctx = {
-            'holiday_list': holiday_list,
-            'form': form,
-        }
-        return render(request, 'webpage_offer/add_holiday.html', ctx)
-
-    def post(self, request):
-        form = AddHolidayForm(request.POST, request.FILES)
-
-        if form.is_valid():
-            holiday = form.save()
-            return redirect('offer:edit_holiday', pk=holiday.pk)
-        ctx = {
-            'form': form,
-        }
-        return render(request, 'webpage_offer/add_holiday.html', ctx)
-
-
-class EditHoliday(LoginRequiredMixin, View):
-    def get(self, request, pk):
-        holiday = Holiday.objects.get(pk=pk)
-        form = EditHolidayForm(instance=holiday)
-        ctx = {
-            'form': form,
-            'holiday': holiday,
-
-        }
-        return render(request, 'webpage_offer/edit_holiday.html', ctx)
-
-    def post(self, request, pk):
-        holiday = Holiday.objects.get(pk=pk)
-        form = EditHolidayForm(request.POST, request.FILES, instance=holiday)
-        if form.is_valid():
-            form.save()
-        holiday = Holiday.objects.get(pk=pk)
-        ctx = {
-            'form': form,
-            'holiday': holiday,
-        }
-        return render(request, 'webpage_offer/edit_holiday.html', ctx)
-"""
-
 class AddListNews(LoginRequiredMixin, View):
     def get(self, request):
         news_list = News.objects.all().order_by('entry_date')
@@ -285,6 +238,7 @@ class AddListNews(LoginRequiredMixin, View):
         if form.is_valid():
             form.save()
             form = NewsForm()
+
         news_list = News.objects.all().order_by('entry_date')
         ctx = {
             'news_list': news_list,
@@ -308,7 +262,8 @@ class EditNews(LoginRequiredMixin, View):
         news = News.objects.get(pk=pk)
         form = NewsForm(request.POST, request.FILES, instance=news)
         if form.is_valid():
-            news = form.save()
+            form.save()
+            return redirect('offer:add_news')
         ctx = {
             'form': form,
             'news': news,
