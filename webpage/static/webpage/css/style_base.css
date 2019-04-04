@@ -306,22 +306,22 @@ footer {
       display: block; }
 
 #offer-img-1 {
-  background-image: url("../images/AdobeStock_83919622_Preview.jpeg"); }
+  background-image: url("../images/main/576/for_school.jpg"); }
 
 #offer-img-2 {
-  background-image: url("../images/_MG_0139.jpg"); }
+  background-image: url("../images/main/576/for_work.jpg"); }
 
 #offer-img-3 {
-  background-image: url("../images/AdobeStock_171725583_Preview.jpeg"); }
+  background-image: url("../images/main/576/holiday.jpg"); }
 
 #offer-img-4 {
-  background-image: url("../images/_MG_2214-corr.jpg"); }
+  background-image: url("../images/main/576/pilgrimage.jpg"); }
 
 #offer-img-5 {
-  background-image: url("../images/AdobeStock_138326898_Preview.jpeg"); }
+  background-image: url("../images/main/576/recommended.jpg"); }
 
 #offer-img-6 {
-  background-image: url("../images/recommended/AdobeStock_31306421_Preview.jpeg"); }
+  background-image: url("../images/main/576/blog.jpg"); }
 
 /* MainPage - stop*/
 /* MainPage responsive - start*/
@@ -346,33 +346,97 @@ footer {
   height: 54vh; }
 
 #header_for_school_img {
-  background-image: url("../images/AdobeStock_83919622_Preview.jpeg"); }
+  background-image: url("../images/main/1980/for_school.jpg"); }
 
 #header_pilgrimage_img {
   background-position: 50% 20%;
-  background-image: url("../images/_MG_2214-corr.jpg"); }
+  background-image: url("../images/main/1980/pilgrimage.jpg"); }
 
 #header_for_work_img {
   background-position: 50% 72%;
-  background-image: url("../images/_MG_0139.jpg"); }
+  background-image: url("../images/main/1980/for_work.jpg"); }
 
 #header_holiday_img {
   background-position: 50% 35%;
-  background-image: url("../images/AdobeStock_171725583_Preview.jpeg"); }
+  background-image: url("../images/main/1980/holiday.jpg"); }
 
 #header_news_img {
-  background-position: 50% 71%;
-  background-image: url("../images/recommended/AdobeStock_31306421_Preview.jpeg"); }
+  background-position: 50% 50%;
+  background-image: url("../images/main/1980/blog.jpg"); }
 
 #header_recommended_img {
   background-position: 50% 69%;
-  background-image: url("../images/AdobeStock_138326898_Preview.jpeg"); }
+  background-image: url("../images/main/1980/recommended.jpg"); }
 
 #header_search_img {
-  background-image: url("../images/_MG_0568-corr.jpg"); }
+  background-image: url("../images/main/1980/search.jpg"); }
 
 /* OfferHeader - stop*/
 /* OfferHeader responsive - start*/
+@media (max-width: 1200px) {
+  #header_for_school_img {
+    background-image: url("../images/main/1200/for_school.jpg"); }
+  #header_pilgrimage_img {
+    background-image: url("../images/main/1200/pilgrimage.jpg"); }
+  #header_for_work_img {
+    background-image: url("../images/main/1200/for_work.jpg"); }
+  #header_holiday_img {
+    background-image: url("../images/main/1200/holiday.jpg"); }
+  #header_news_img {
+    background-image: url("../images/main/1200/blog.jpg"); }
+  #header_recommended_img {
+    background-image: url("../images/main/1200/recommended.jpg"); }
+  #header_search_img {
+    background-image: url("../images/main/1200/search.jpg"); } }
+
+@media (max-width: 992px) {
+  #header_for_school_img {
+    background-image: url("../images/main/992/for_school.jpg"); }
+  #header_pilgrimage_img {
+    background-image: url("../images/main/992/pilgrimage.jpg"); }
+  #header_for_work_img {
+    background-image: url("../images/main/992/for_work.jpg"); }
+  #header_holiday_img {
+    background-image: url("../images/main/992/holiday.jpg"); }
+  #header_news_img {
+    background-image: url("../images/main/992/blog.jpg"); }
+  #header_recommended_img {
+    background-image: url("../images/main/992/recommended.jpg"); }
+  #header_search_img {
+    background-image: url("../images/main/992/search.jpg"); } }
+
+@media (max-width: 767px) {
+  #header_for_school_img {
+    background-image: url("../images/main/767/for_school.jpg"); }
+  #header_pilgrimage_img {
+    background-image: url("../images/main/767/pilgrimage.jpg"); }
+  #header_for_work_img {
+    background-image: url("../images/main/767/for_work.jpg"); }
+  #header_holiday_img {
+    background-image: url("../images/main/767/holiday.jpg"); }
+  #header_news_img {
+    background-image: url("../images/main/767/blog.jpg"); }
+  #header_recommended_img {
+    background-image: url("../images/main/767/recommended.jpg"); }
+  #header_search_img {
+    background-image: url("../images/main/767/search.jpg"); } }
+
+@media (max-width: 576px) {
+  #header_for_school_img {
+    background-image: url("../images/main/576/for_school.jpg"); }
+  #header_pilgrimage_img {
+    background-image: url("../images/main/576/pilgrimage.jpg"); }
+  #header_for_work_img {
+    background-image: url("../images/main/576/for_work.jpg"); }
+  #header_holiday_img {
+    background-image: url("../images/main/576/holiday.jpg"); }
+  #header_news_img {
+    background-image: url("../images/main/576/blog.jpg"); }
+  #header_recommended_img {
+    background-image: url("../images/main/576/recommended.jpg"); }
+  #header_search_img {
+    background-image: url("../images/main/576/search.jpg"); } }
+
 /* OfferHeader responsive - stop*/
 /* OfferTitle - start*/
 #title_for_school {
@@ -455,57 +519,6 @@ footer {
     height: 100%;
     object-fit: cover; }
 
-/*#selected_for_school_img0 {
-    background-image: url("../images/AdobeStock_203413374_Preview.jpeg");
-}
-
-#selected_for_school_img1 {
-    background-image: url("../images/AdobeStock_123235384_Preview.jpeg");
-}
-
-#selected_for_school_img2 {
-    background-image: url("../images/AdobeStock_181976409_Preview.jpeg");
-
-
-#selected_pilgrimage_img0 {
-    background-position: 50% 100%;
-    background-image: url("../images/pilgrimage/AdobeStock_157182090_Preview.jpeg");
-}
-
-#selected_pilgrimage_img1 {
-    background-image: url("../images/pilgrimage/AdobeStock_105381495_Preview.jpeg");
-}
-
-#selected_pilgrimage_img2 {
-    background-position: 0% 50%;
-    background-image: url("../images/pilgrimage/AdobeStock_113589316_Preview.jpeg");
-}
-
-#selected_for_work_img0 {
-    background-position: 50% 25%;
-    background-image: url("../images/work/AdobeStock_216649646_Preview.jpeg");
-}
-
-#selected_for_work_img1 {
-    background-image: url("../images/work/AdobeStock_206018751_Preview.jpeg");
-}
-
-#selected_for_work_img2 {
-    background-image: url("../images/work/AdobeStock_137853264_Preview.jpeg");
-}
-
-#recommended_img0 {
-    background-image: url("../images/recommended/AdobeStock_190033421_Preview.jpeg");
-}
-
-#recommended_img1 {
-    background-image: url("../images/recommended/AdobeStock_196141359_Preview.jpeg");
-}
-
-#recommended_img2 {
-    background-image: url("../images/recommended/AdobeStock_214637081_Preview.jpeg");
-}
-}*/
 /* OfferSelection - stop*/
 /* OfferSelection responsive - start*/
 @media (max-width: 767px) {
