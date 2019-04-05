@@ -61,14 +61,8 @@ section {
   section:first-of-type {
     padding-top: 8vh; }
     section:first-of-type.offer_title {
-      padding-top: 10vh;
-      padding-bottom: 9vh;
       text-align: center;
-      color: #fff;
-      /*
-            &#title_news {
-                color: black;
-            } */ }
+      color: #fff; }
       section:first-of-type.offer_title a > i {
         color: #fff; }
       section:first-of-type.offer_title#title_search {
@@ -107,9 +101,6 @@ td:hover .offer-details, .selection-row:hover .offer-details {
       padding-top: 8vw; }
   .selection {
     padding-bottom: 0; }
-  .offer_title {
-    padding-top: 10vw;
-    padding-bottom: 9vw; }
   .offer_table {
     padding-top: 8vw;
     padding-bottom: 8vw; }
@@ -323,7 +314,7 @@ footer {
 
 @media (max-width: 575px) and (orientation: landscape) {
   #header .offer-img {
-    height: 65vh; } }
+    height: 29vw; } }
 
 /* MainPage responsive - stop*/
 /* OfferHeader - start*/

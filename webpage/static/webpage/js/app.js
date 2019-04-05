@@ -79,7 +79,8 @@ $(document).ready(function() {
         if (showHideNavElements) {
             const mousePositionX = e.clientX;
             const mousePositionY = e.clientY;
-            const hoverHeight = 115 + $(target).height();
+            const hoverHeight = $('nav.navbar').outerHeight() + $(target).height();
+            $(target).css({'top': $('nav.navbar').outerHeight() + 'px' })
 
             if ( ( ( mousePositionX < startTargetX || mousePositionX > endTargetX ) && mousePositionY < hoverHeight ) || mousePositionY > hoverHeight ) {
                     hideNavElements();
@@ -100,4 +101,15 @@ $(document).ready(function() {
 
     /* nav toggle - stop */
 
+    const setTitlePadding = () => {
+        const navHeight = $('nav.navbar').outerHeight();
+        const titleHeight = $('.offer_title h1').innerHeight();
+        const btnHeight = $('.offer_title .btn').innerHeight();
+        const imgHeight = $('.header_img').height();
+        let paddingValue = Math.floor((window.innerHeight - (navHeight + imgHeight + titleHeight + btnHeight)) / 2);
+        paddingValue > 0 ? paddingValue = paddingValue : paddingValue = 0;
+        $('.offer_title').css({'padding-top': paddingValue + 'px', 'padding-bottom': paddingValue + 'px',})
+    };
+    setTitlePadding();
+    $(window).resize(setTitlePadding);
 });
