@@ -24,12 +24,12 @@ Organizator imprez turystycznych ukierunkowanych głównie na europejski fragmen
 <section id="title_recommended" class="offer_title scroll">
     <h1>Polecamy</h1>
     <a class="btn btn-primary" href="#selected_recommended">Oferta
-        <!--<i class="fas fa-2x fa-arrow-circle-down "></i>-->
     </a>
 
 </section>
 <section id="selected_recommended" class="selection">
     <div class="container">
+
         <div id="section-{{recommended.0.pk}}" class="row no-gutters selection-row closestElement scroll">
 
             <div id="recommended_img0" class="col-md-6 selected-item selected_img img0">
@@ -39,23 +39,36 @@ Organizator imprez turystycznych ukierunkowanych głównie na europejski fragmen
                 <div class="selected_wrapper">
                     {% if recommended.0 %}
                     <h2>{{ recommended.0.title }}
+<!--
                         <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' recommended.0.pk %}" title="pokaż szczegóły"></i>
+-->
                     </h2>
                     <p>{{ recommended.0.short_descr }}</p>
-                    <p>{{ recommended.0.duration_in_days }}{% if recommended.0.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</p>
+                    <p>{{ recommended.0.duration_in_days }}
+                        <span class="closed offer-details" data-url="{% url 'offer:show_offer' recommended.0.pk %}" title="pokaż szczegóły">szczegóły
+                            <i class="fas fa-caret-down"></i>
+                        </span>
+                    </p>
                     {% endif %}
                 </div>
             </div>
         </div>
+
         <div id="section-{{ recommended.1.pk }}" class="row no-gutters selection-row closestElement scroll">
             <div class="col-md-6 selected-item selected-item-1 selected_data">
                 <div class="selected_wrapper">
                     {% if recommended.1 %}
                     <h2>{{ recommended.1.title }}
+<!--
                         <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' recommended.1.pk %}" title="pokaż szczegóły"></i>
+-->
                     </h2>
                     <p>{{ recommended.1.short_descr }}</p>
-                    <p>{{ recommended.1.duration_in_days }}{% if recommended.1.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</p>
+                    <p>{{ recommended.1.duration_in_days }}
+                        <span class="closed offer-details" data-url="{% url 'offer:show_offer' recommended.1.pk %}" title="pokaż szczegóły">szczegóły
+                            <i class="fas fa-caret-down"></i>
+                        </span>
+                    </p>
                     {% endif %}
                 </div>
             </div>
@@ -63,6 +76,7 @@ Organizator imprez turystycznych ukierunkowanych głównie na europejski fragmen
                 <img src="{{ recommended.1.image.url }}" alt="{{ recommended.1.title }}">
             </div>
         </div>
+
         <div id="section-{{recommended.2.pk}}" class="row no-gutters selection-row closestElement scroll">
             <div id="recommended_img2" class="col-md-6 selected-item selected_img img2">
                 <img src="{{ recommended.2.image.url }}" alt="{{ recommended.2.title }}">
@@ -71,10 +85,16 @@ Organizator imprez turystycznych ukierunkowanych głównie na europejski fragmen
                 <div class="selected_wrapper">
                     {% if recommended.2 %}
                     <h2>{{ recommended.2.title }}
+<!--
                         <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' recommended.2.pk %}" title="pokaż szczegóły"></i>
+-->
                     </h2>
                     <p>{{ recommended.2.short_descr }}</p>
-                    <p>{{ recommended.2.duration_in_days }}{% if recommended.2.duration_in_days == 1 %} dzień {% else %} dni {% endif %}</p>
+                    <p>{{ recommended.2.duration_in_days }}
+                        <span class="closed offer-details" data-url="{% url 'offer:show_offer' recommended.2.pk %}" title="pokaż szczegóły">szczegóły
+                            <i class="fas fa-caret-down"></i>
+                        </span>
+                    </p>
                     {% endif %}
                 </div>
             </div>

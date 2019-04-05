@@ -47,7 +47,9 @@
                     <tr id="table-{{ news.pk }}" class="closestElement">
                         <td><strong>{{ news.title }}</strong></td>
                         <td>
-                            <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_news' news.pk %}" title="pokaż szczegóły"></i>
+                            <span class="closed offer-details" data-url="{% url 'offer:show_news' news.pk %}" title="pokaż szczegóły">
+                                <i class="fas fa-caret-down"></i>
+                            </span>
                         </td>
                         <td><a href="{% url 'offer:edit_news' news.pk %}"><i class="fas fa-edit"></i></a></td>
                     </tr>

@@ -17,25 +17,34 @@ $(document).ready(function() {
 
 
     /* Show offer on click - start*/
-    function slideTo(element) {
-        console.log(element);
-        console.log($(element).offset().top);
-        $('html, body').animate({
-            scrollTop: $(element).offset().top
-        }, 800);
+
+    const rowIndexes = [];
+    $('.selection-row').each(function(index) {
+        rowIndexes[index] = $(this).offset().top;
+    })
+
+    function slideTo(row) {
+        const rowIndex = $('.selection-row').index(row);
+        if (window.innerWidth > 992) {
+            $('html, body').animate({
+                scrollTop: rowIndexes[rowIndex],
+            }, 300);
+        };
     }
 
-    function hideElement(nextRow, toggler) {
-        //nextRow.hide();
-        nextRow.slideUp();
-        toggler.removeClass('fa-eye-slash').addClass('fa-eye');
+    function hideElement(nextRow, toggler, callback, ...others) {
+        nextRow.slideUp()
+        toggler.removeClass('open').addClass('closed');
+        toggler.children().eq(0).removeClass('fa-caret-up').addClass('fa-caret-down');
+        typeof callback === 'function' && callback(...others);
     };
 
     function prepareOffer(row, nextRow, thisToggler, url) {
         if (nextRow.hasClass('new-row')) {
-            //nextRow.show();
+            slideTo(row);
             nextRow.slideDown();
-            thisToggler.removeClass('fa-eye').addClass('fa-eye-slash');
+            thisToggler.removeClass('closed').addClass('open');
+            thisToggler.children().eq(0).removeClass('fa-caret-down').addClass('fa-caret-up');
         } else {
             ajaxHandler(url, '', 'GET', showOffer, row, thisToggler);
         }
@@ -57,13 +66,12 @@ $(document).ready(function() {
         }
 
         row.after(newRow);
-        thisToggler.removeClass('fa-eye').addClass('fa-eye-slash');
+        thisToggler.removeClass('closed').addClass('open');
+        thisToggler.children().eq(0).removeClass('fa-caret-down').addClass('fa-caret-up');
         newRow.append(newRowContent);
         newRowContent.html(newRowContentText);
-        newRow.slideDown(300, function() {
-            slideTo(row);
-        });
-
+        slideTo(row);
+        newRow.slideDown();
 
     };
 
@@ -76,15 +84,17 @@ $(document).ready(function() {
             const thisRow = $(this).closest('.closestElement');
             const thisNextRow = thisRow.next();
 
-            if (thisToggler.hasClass('fa-eye-slash')){
+            if (thisToggler.hasClass('open')){
                 hideElement(thisNextRow, thisToggler);
             } else {
-                const anySwitchedToggler = $(mainElement + ' .fa-eye-slash');
+
+                const anySwitchedToggler = $(mainElement + ' .open');
+                console.log(anySwitchedToggler);
                 const anySwitchedRow = anySwitchedToggler.closest('.closestElement').next();
                 const url = $(this).data('url');
-                if (anySwitchedToggler) {
-                    hideElement(anySwitchedRow, anySwitchedToggler);
-                    prepareOffer(thisRow, thisNextRow, thisToggler, url);
+                if (anySwitchedToggler.length > 0) {
+                    console.log("działam w ifie");
+                    hideElement(anySwitchedRow, anySwitchedToggler, prepareOffer, thisRow, thisNextRow, thisToggler, url);
                 } else {
                     prepareOffer(thisRow, thisNextRow, thisToggler, url);
                 }

@@ -51,7 +51,9 @@
 
                         <td><strong>{{ offer.title }}</strong></td>
                         <td>
-                            <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer.pk %}" title="pokaż szczegóły"></i>
+                            <span class="closed offer-details" data-url="{% url 'offer:show_offer' offer.pk %}" title="pokaż szczegóły">
+                                <i class="fas fa-caret-down"></i>
+                            </span>
                         </td>
                         <td><a href="{% url 'offer:edit_offer' offer.pk %}"><i class="fas fa-edit"></i></a></td>
                     </tr>

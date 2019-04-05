@@ -94,13 +94,7 @@ h1 {
   padding-bottom: 1vh;
   letter-spacing: 2px; }
 
-.offer-details {
-  color: #0c1433;
-  font-size: .9rem;
-  line-height: .9rem;
-  transform: translateY(7%); }
-
-td:hover .offer-details, .selected_wrapper:hover .offer-details {
+td:hover .offer-details, .selection-row:hover .offer-details {
   color: #B91B22;
   cursor: pointer; }
 
@@ -256,8 +250,6 @@ footer {
       color: #B91B22;
       font-weight: 600;
       text-decoration: none; }
-  footer strong a {
-    color: grey; }
   footer ul {
     list-style-type: none;
     padding-left: 0;
@@ -496,11 +488,11 @@ footer {
           font-size: 16px; }
       .selection .selected_data .selected_wrapper .offer-details {
         float: right;
-        font-size: 1.2rem;
-        line-height: 1.5rem;
-        font-size: .9rem;
-        line-height: .9rem;
-        transform: translateY(7%); }
+        line-height: 1.8;
+        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: 1px;
+        font-size: 12px; }
   .selection .new-row {
     background-color: #fff;
     padding: 7%;
@@ -767,7 +759,7 @@ footer {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url("../images/recommended/AdobeStock_145730087_Preview.jpeg");
+  background-image: url("../images/modal/1200/modal.jpg");
   background-position: 25% 0%;
   width: 100%;
   height: 100%; }

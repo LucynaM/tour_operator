@@ -63,10 +63,16 @@
                 <div class="selected_wrapper">
                     {% if offer_selected.0 %}
                     <h2>{{ offer_selected.0.title }}
+<!--
                         <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer_selected.0.pk %}" title="pokaż szczegóły"></i>
+-->
                     </h2>
                     <p>{{ offer_selected.0.short_descr }}</p>
-                    <p>{{ offer_selected.0.duration_in_days }}</p>
+                    <p>{{ offer_selected.0.duration_in_days }}
+                        <span class="closed offer-details" data-url="{% url 'offer:show_offer' offer_selected.0.pk %}" title="pokaż szczegóły">szczegóły
+                            <i class="fas fa-caret-down"></i>
+                        </span>
+                    </p>
                     {% endif %}
                 </div>
             </div>
@@ -76,10 +82,16 @@
                 <div class="selected_wrapper">
                     {% if offer_selected.1 %}
                     <h2>{{ offer_selected.1.title }}
+<!--
                         <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer_selected.1.pk %}" title="pokaż szczegóły"></i>
+-->
                     </h2>
                     <p>{{ offer_selected.1.short_descr }}</p>
-                    <p>{{ offer_selected.1.duration_in_days }}</p>
+                    <p>{{ offer_selected.1.duration_in_days }}
+                        <span class="closed offer-details" data-url="{% url 'offer:show_offer' offer_selected.1.pk %}" title="pokaż szczegóły">szczegóły
+                            <i class="fas fa-caret-down"></i>
+                        </span>
+                    </p>
                     {% endif %}
                 </div>
             </div>
@@ -115,10 +127,16 @@
                             <div class="selected_wrapper">
 
                                 <h2>{{ offer.0.title }}
+<!--
                                     <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer.0.pk %}" title="pokaż szczegóły"></i>
+-->
                                 </h2>
                                 <p>{{ offer.0.short_descr }}</p>
-                                <p>{{ offer.0.duration_in_days }}</p>
+                                <p>{{ offer.0.duration_in_days }}
+                                    <span class="closed offer-details" data-url="{% url 'offer:show_offer' offer.0.pk %}" title="pokaż szczegóły">szczegóły
+                                        <i class="fas fa-caret-down"></i>
+                                    </span>
+                                </p>
 
                             </div>
                         </div>
@@ -131,10 +149,16 @@
                             <div class="selected_wrapper">
 
                                 <h2>{{ offer.1.title }}
+<!--
                                     <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer.1.pk %}" title="pokaż szczegóły"></i>
+-->
                                 </h2>
                                 <p>{{ offer.1.short_descr }}</p>
-                                <p>{{ offer.1.duration_in_days }}</p>
+                                <p>{{ offer.1.duration_in_days }}
+                                    <span class="closed offer-details" data-url="{% url 'offer:show_offer' offer.1.pk %}" title="pokaż szczegóły">szczegóły
+                                        <i class="fas fa-caret-down"></i>
+                                    </span>
+                                </p>
 
                             </div>
                         </div>
