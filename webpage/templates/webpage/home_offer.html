@@ -30,7 +30,7 @@
 
 {% block content %}
 <!-- Header - start -->
-<header id="header_{{ category }}" class="header_container">
+<header id="header_{{ category }}" class="header_container scroll">
     <div class="container-fluid">
         <div id="header_{{ category }}_img" class="header_img"></div>
     </div>
@@ -38,7 +38,7 @@
 <!-- Header - stop -->
 
 <!-- Selected - start -->
-<section id="title_{{ category }}" class="offer_title">
+<section id="title_{{ category }}" class="offer_title scroll">
     <h1>
         {% if category == 'pilgrimage' %}
             Pielgrzymki
@@ -55,7 +55,7 @@
 
 <section id="selected_offer" class="selection">
     <div class="container">
-        <div id="section-{{offer_selected.0.pk}}" class="row no-gutters selection-row closestElement ">
+        <div id="section-{{offer_selected.0.pk}}" class="row no-gutters selection-row closestElement scroll">
             <div id="selected_{{ category }}_img0" class="col-md-6 selected-item selected_img">
                 <img src="{{ offer_selected.0.image.url }}" alt="{{ offer_selected.0.title }}">
             </div>
@@ -77,7 +77,7 @@
                 </div>
             </div>
         </div>
-        <div id="section-{{ offer_selected.1.pk }}" class="row no-gutters selection-row closestElement ">
+        <div id="section-{{ offer_selected.1.pk }}" class="row no-gutters selection-row closestElement scroll">
             <div class="col-md-6 selected-item selected_data">
                 <div class="selected_wrapper">
                     {% if offer_selected.1 %}
@@ -119,7 +119,7 @@
     <div class="container">
             {% for offer in offer_all %}
                 {% if offer.0 %}
-                    <div id="offer-{{ offer.0.pk }}" class="row no-gutters selection-row closestElement">
+                    <div id="offer-{{ offer.0.pk }}" class="row no-gutters selection-row closestElement scroll">
                         <div id="offer_img{{ offer.0.pk }}" class="col-md-6 selected-item selected_img">
                             <img src="{{offer.0.image.url}}" alt="{{ offer.0.title }}">
                         </div>
@@ -143,7 +143,7 @@
                     </div>
                 {% endif %}
                 {% if offer.1 %}
-                    <div id="offer-{{ offer.1.pk }}" class="row no-gutters selection-row closestElement">
+                    <div id="offer-{{ offer.1.pk }}" class="row no-gutters selection-row closestElement scroll">
 
                         <div class="col-md-6 selected-item selected_data">
                             <div class="selected_wrapper">
