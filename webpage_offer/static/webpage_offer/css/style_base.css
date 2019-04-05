@@ -25,8 +25,7 @@ a {
     text-decoration: none; }
 
 strong {
-  font-weight: 600;
-  color: grey; }
+  font-weight: 600; }
 
 .row.no-gutters > [class^="col-"],
 .row.no-gutters > [class*=" col-"] {
