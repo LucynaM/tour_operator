@@ -704,6 +704,8 @@ footer {
   padding-bottom: 0; }
   #holiday .row {
     background: #fff; }
+    #holiday .row:nth-of-type(even) {
+      background: #F7F5F5; }
   #holiday img {
     width: 100%;
     height: 100%;
@@ -711,6 +713,9 @@ footer {
     object-fit: cover; }
   #holiday .holiday-info {
     padding: 30px 50px 10px; }
+    #holiday .holiday-info.holiday-duration {
+      padding-left: 0;
+      padding-right: 0; }
   #holiday p.holiday-info {
     padding-top: 0;
     font-size: 13px; }
@@ -721,9 +726,11 @@ footer {
   #holiday p.holiday-dates {
     font-size: 20px;
     color: #B91B22; }
-  #holiday .holiday-duration {
-    padding-left: 0;
-    padding-right: 0; }
+    #holiday p.holiday-dates .open-offer {
+      font-size: 14px;
+      text-transform: uppercase;
+      display: block;
+      letter-spacing: 1px; }
   #holiday .holiday-details {
     width: 100%;
     margin-left: auto;
@@ -733,6 +740,16 @@ footer {
     margin-top: 30px; }
   #holiday .holiday-schedule {
     display: none; }
+  #holiday .btn-primary {
+    color: #B91B22;
+    border-color: #B91B22;
+    background-color: transparent;
+    font-size: 12px;
+    letter-spacing: 1px; }
+    #holiday .btn-primary:hover, #holiday .btn-primary:active, #holiday .btn-primary:focus {
+      background-color: #B91B22;
+      color: #fff;
+      box-shadow: none; }
 
 @media (max-width: 1200px) {
   #holiday .holiday-info {
