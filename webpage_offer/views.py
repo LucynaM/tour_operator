@@ -7,13 +7,18 @@ from .forms import AddOfferForm, EditOfferForm, AddHolidayForm, EditHolidayForm,
 
 # Create your views here.
 
-class TourManager(LoginRequiredMixin, View):
+class AdminUserPassesTestMixin(UserPassesTestMixin):
+    def test_func(self):
+        return self.request.user.is_staff
+
+
+class TourManager(AdminUserPassesTestMixin, View):
 
     def get(self, request):
         return render(request, 'webpage_offer/tour_manager.html')
 
 
-class ListOffer(LoginRequiredMixin, View):
+class ListOffer(AdminUserPassesTestMixin, View):
     """Show all offer """
 
     def get(self, request):
@@ -31,7 +36,7 @@ class ListOffer(LoginRequiredMixin, View):
         return render(request, 'webpage_offer/list_offer.html', ctx)
 
 
-class AddOffer(LoginRequiredMixin, View):
+class AddOffer(AdminUserPassesTestMixin, View):
     """Show all offer and add new one"""
 
     def get(self, request, cat):
@@ -66,7 +71,7 @@ class AddOffer(LoginRequiredMixin, View):
         return render(request, 'webpage_offer/add_offer.html', ctx)
 
 
-class EditOffer(LoginRequiredMixin, View):
+class EditOffer(AdminUserPassesTestMixin, View):
 
     def get(self, request, pk):
         offer = Offer.objects.get(pk=pk)
@@ -116,18 +121,6 @@ class ShowOffer(View):
         except Exception as e:
             print(e)
 
-"""
-class ShowHoliday(View):
-
-    def get(self, request, pk):
-        try:
-            holiday = Holiday.objects.get(pk=pk)
-            data = show_elements(holiday)
-
-            return JsonResponse(data)
-        except Exception as e:
-            print(e)
-"""
 
 class ShowNews(View):
 
@@ -223,7 +216,7 @@ class SetRecommended(View):
         except Exception as e:
             print(e)
 
-class AddListNews(LoginRequiredMixin, View):
+class AddListNews(AdminUserPassesTestMixin, View):
     def get(self, request):
         news_list = News.objects.all().order_by('entry_date')
         form = NewsForm()
@@ -247,7 +240,7 @@ class AddListNews(LoginRequiredMixin, View):
         return render(request, 'webpage_offer/add_news.html', ctx)
 
 
-class EditNews(LoginRequiredMixin, View):
+class EditNews(AdminUserPassesTestMixin, View):
     def get(self, request, pk):
         news = News.objects.get(pk=pk)
         form = NewsForm(instance=news)

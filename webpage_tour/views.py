@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponseBadRequest, HttpResponse
 from django.views import View
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Tour, TourParticipant, Participant, STATUSES
 from .forms import TourForm, ParticipantForm, TourParticipantForm
+from webpage_offer.views import AdminUserPassesTestMixin
 
 from datetime import datetime
 
@@ -40,7 +41,7 @@ def format_phone(phone):
     return new_phone.strip()
 
 
-class AddTour(LoginRequiredMixin, View):
+class AddTour(AdminUserPassesTestMixin, View):
     def get_tour_list(self):
         tour_list = Tour.objects.all().exclude(end_date__lte=datetime.now().date()).order_by('start_date')
         for tour in tour_list:
@@ -73,7 +74,7 @@ class AddTour(LoginRequiredMixin, View):
         return render(request, 'webpage_tour/add_tour.html', ctx)
 
 
-class AddParticipant(LoginRequiredMixin, View):
+class AddParticipant(AdminUserPassesTestMixin, View):
 
     def get_tour(self, pk):
         tour = Tour.objects.get(pk=pk)
@@ -130,7 +131,7 @@ class AddParticipant(LoginRequiredMixin, View):
         return render(request, 'webpage_tour/add_participant.html', ctx)
 
 
-class EditTour(LoginRequiredMixin, View):
+class EditTour(AdminUserPassesTestMixin, View):
 
     def get_tour(self, pk):
         tour = Tour.objects.get(pk=pk)
@@ -163,7 +164,7 @@ class EditTour(LoginRequiredMixin, View):
 
 
 
-class EditParticipant(LoginRequiredMixin, View):
+class EditParticipant(AdminUserPassesTestMixin, View):
     def get_participant(self, participant_pk):
         participant = Participant.objects.get(pk=participant_pk)
         participant.new_phone = format_phone(participant.phone)
@@ -250,7 +251,7 @@ def generate_pdf(request, pk):
     return response
 
 
-class FillParticipant(LoginRequiredMixin, View):
+class FillParticipant(View):
     def get(self, request):
         if not 'firstName' in request.GET.keys() and not 'lastName' in request.GET.keys():
             try:
