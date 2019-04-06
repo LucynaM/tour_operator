@@ -7,6 +7,9 @@
     <div class="container">
         <div class="row no-gutters">
             <div class="col-md-12 col-lg-8 offset-lg-2">
+                <a href="{% url 'webpage:home' %}" class="manager" >
+                    <h5>Strona Marco Polo</h5>
+                </a>
                 <a href="{% url 'offer:list_offer' %}" class="manager" >
                     <h5>Wszystkie oferty</h5>
                 </a>
@@ -31,9 +34,11 @@
                 <a href="{% url 'tour:add_tour' %}" class="manager" >
                     <h5>Wyjazdy</h5>
                 </a>
+                {% if user.is_superuser %}
                 <a href="{% url 'staff:add_staff' %}" class="manager" >
                     <h5>Użytkownicy</h5>
                 </a>
+                {% endif %}
             </div>
         </div>
     </div>

@@ -1,13 +1,18 @@
 from django.shortcuts import render, redirect
 from django.views import View
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.models import User
 from .forms import StaffForm
 
 # Create your views here.
 
 # staff admin management
+class SuperUserPassesTestMixin(UserPassesTestMixin):
+    def test_func(self):
+        return self.request.user.is_superuser
 
-class StaffListAdd(View):
+
+class StaffListAdd(SuperUserPassesTestMixin, View):
     """Create, list staff"""
 
     def get(self, request):
@@ -34,7 +39,7 @@ class StaffListAdd(View):
 
 
 
-class StaffEditDelete(View):
+class StaffEditDelete(SuperUserPassesTestMixin, View):
 
     def get(self, request, pk):
         staff = User.objects.get(pk=pk)
