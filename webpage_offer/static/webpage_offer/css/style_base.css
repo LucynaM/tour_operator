@@ -9,6 +9,9 @@ h3 {
   margin-bottom: .5rem;
   line-height: 1.2; }
 
+form .btn.btn-primary {
+  float: right; }
+
 p {
   font-size: 1rem;
   font-weight: 400;
@@ -78,11 +81,11 @@ section {
   section:nth-of-type(odd) {
     background-color: #F7F5F5; }
 
-#list_offer .table {
+#list_offer .table, #list_news .table, #list_staff .table {
   margin-bottom: 70px; }
-  #list_offer .table td:last-child {
+  #list_offer .table td:last-child, #list_news .table td:last-child, #list_staff .table td:last-child {
     width: 50px; }
-  #list_offer .table td:nth-child(2) {
+  #list_offer .table td:nth-child(2), #list_news .table td:nth-child(2), #list_staff .table td:nth-child(2) {
     width: 50px; }
 
 .list-elements .offer-details, .list-elements a {
@@ -140,14 +143,13 @@ section {
   text-align: center; }
 
 #manager-intro {
-  background-color: #F7F5F5;
   padding-top: 2vw;
   padding-bottom: 2vw; }
   #manager-intro .manager {
     width: 100%;
     height: 50px;
     position: relative;
-    background-color: #fff;
+    background-color: #F7F5F5;
     margin-top: 1vh;
     margin-bottom: 1vh;
     display: inline-block; }
