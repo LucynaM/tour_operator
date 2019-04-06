@@ -15,7 +15,6 @@ Including another URLconf
 """
 from django.conf.urls import url
 from .views import AddTour, AddParticipant, EditTour, EditParticipant, ChangeStatus, generate_pdf, FillParticipant
-from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
@@ -26,8 +25,4 @@ urlpatterns = [
     url(r'^change_status/(?P<pk>(\d)+)/$', ChangeStatus.as_view(), name='change_status'),
     url(r'^generate_pdf/(?P<pk>(\d)+)/$', generate_pdf, name='generate_pdf'),
     url(r'^fill_participant/$', FillParticipant.as_view(), name='fill_participant'),
-
-    url(r'^login/$', auth_views.login, {'template_name': 'webpage_tour/login.html'},  name='login'),
-    url(r'^logout/$', auth_views.logout, {'next_page': 'tour:login'}, name='logout'),
-
 ]

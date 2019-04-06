@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'webpage',
     'webpage_offer',
     'webpage_tour',
+    'webpage_staff',
 ]
 
 MIDDLEWARE = [
@@ -127,5 +128,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_URL = 'tour:login'
+LOGIN_URL = 'staff:login'
 LOGIN_REDIRECT_URL = 'offer:tour_manager'
