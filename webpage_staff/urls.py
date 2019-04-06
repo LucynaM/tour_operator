@@ -15,10 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib.auth import views as auth_views
+from .views import StaffListAdd, StaffEditDelete
 
 
 urlpatterns = [
     url(r'^login/$', auth_views.login, {'template_name': 'webpage_staff/login.html'},  name='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': 'staff:login'}, name='logout'),
-
+    url(r'^add_staff/$', StaffListAdd.as_view(), name='add_staff'),
+    url(r'^edit_staff/(?P<pk>[0-9]+)/$', StaffEditDelete.as_view(), name='edit_staff'),
 ]

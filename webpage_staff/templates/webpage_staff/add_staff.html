@@ -1,0 +1,42 @@
+{% extends './_base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+        <!--Staff- start -->
+        <section id="staff-admin">
+            <div class="container">
+                <div class="row">
+                    <div class='col-xs-12 col-sm-6 col-sm-offset-3'>
+                        <div class="table-margin">
+                            <table class="table">
+                                <tr>
+                                    <th>Imię i nazwisko</th>
+                                    <th></th>
+                                </tr>
+                            {% for staff in staff_list %}
+                                <tr>
+                                    <td>{{ staff }}</td>
+                                    <td><a href="{% url 'staff:edit_staff' staff.pk %}">edytuj</a></td>
+                                </tr>
+                            {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class='col-xs-12 col-sm-6 col-sm-offset-3'>
+                        <div class="">
+                            <h2 class="page-header">Dodaj osobę</h2>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                {{ form|crispy }}
+                                <input type="submit" name="submit" value="send" class="btn btn-primary">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <!--Staff - stop -->
+{% endblock content %}
