@@ -14,11 +14,11 @@
 
 {% block descr-content %}
     {% if category == 'pilgrimage' %}
-        Organizator imprez turystycznych obejmujących m.in. pielgrzymki do miejsc świetych: sanktuaria adriatyckie, greckie, rumuńskie, bułgarskie, austriackie, węgierskie, chorwackie, bośniackie. Włochy. Trasa św. Franciszka, Trasa św. Benedykta, Trasa Stygmatyków, Trasa świętych z Sycylii, Austria, Węgry: sanktuaria I Opactwa
+        Organizator imprez turystycznych obejmujących pielgrzymki do miejsc świętych ze zwiedzaniem sanktuariów adriatyckich, greckich, rumuńskich, bułgarskich, austriackich, węgierskich, chorwackich, bośniackich i włoskich.
     {% elif category == 'for_school' %}
-        Organizator imprez turystycznych obejmujących m.in. Kraków, Warszawę, Lublin, Pieniny, Gorce, Słowację: Małą Fatrę, Zamek Orawski z basenami termalnymi, Litwę: Wileńszczyznę i Auksztotę.
+        Organizator imprez turystycznych obejmujących wycieczki dla szkół, m.in. do Krakowa, Warszawy, Lublina, w Pieniny, Gorce, na Słowację i Litwę.
     {% else %}
-        Organizator imprez turystycznych obejmujących wyjazdy firmowe m.in do Danii, Szwecji, Finlandii z Litwą, Łotwą i Estonią, Wielkiej Brytanii, Włoch, Serbii, Macedonii, Rumunii, Bułgarii, Bośnii i Hercegowiny, Chorwacji, Słowenii.
+        Organizator imprez turystycznych obejmujących wyjazdy firmowe m.in. do Danii, Szwecji, Finlandii z Litwą, Łotwą i Estonią, Wielkiej Brytanii, Włoch, Serbii, Macedonii, Rumunii, Bułgarii, Bośnii i Hercegowiny, Chorwacji, Słowenii.
     {% endif %}
 {% endblock descr-content %}
 
@@ -63,9 +63,6 @@
                 <div class="selected_wrapper">
                     {% if offer_selected.0 %}
                     <h2>{{ offer_selected.0.title }}
-<!--
-                        <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer_selected.0.pk %}" title="pokaż szczegóły"></i>
--->
                     </h2>
                     <p>{{ offer_selected.0.short_descr }}</p>
                     <p>{{ offer_selected.0.duration_in_days }}
@@ -82,9 +79,6 @@
                 <div class="selected_wrapper">
                     {% if offer_selected.1 %}
                     <h2>{{ offer_selected.1.title }}
-<!--
-                        <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer_selected.1.pk %}" title="pokaż szczegóły"></i>
--->
                     </h2>
                     <p>{{ offer_selected.1.short_descr }}</p>
                     <p>{{ offer_selected.1.duration_in_days }}
@@ -127,9 +121,6 @@
                             <div class="selected_wrapper">
 
                                 <h2>{{ offer.0.title }}
-<!--
-                                    <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer.0.pk %}" title="pokaż szczegóły"></i>
--->
                                 </h2>
                                 <p>{{ offer.0.short_descr }}</p>
                                 <p>{{ offer.0.duration_in_days }}
@@ -149,9 +140,6 @@
                             <div class="selected_wrapper">
 
                                 <h2>{{ offer.1.title }}
-<!--
-                                    <i class="fas fa-eye offer-details" data-url="{% url 'offer:show_offer' offer.1.pk %}" title="pokaż szczegóły"></i>
--->
                                 </h2>
                                 <p>{{ offer.1.short_descr }}</p>
                                 <p>{{ offer.1.duration_in_days }}
@@ -172,8 +160,6 @@
 </section>
 {% endif %}
 <!-- Offer - stop -->
-
-
 
 <section id="social-media" class="row no-gutters full-offer {{ category }} ">
     <div class="container">

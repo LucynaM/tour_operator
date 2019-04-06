@@ -380,9 +380,9 @@ $(document).ready(function() {
     /* smooth scrolling - stop */
 
     /*scrollReveal - start*/
-    window.sr = ScrollReveal({ reset: true }).reveal('.scroll', { duration: 500 });
+    if (window.innerWidth > 768) {
+        window.sr = ScrollReveal({ reset: true }).reveal('.scroll', { duration: 500 });
+    }
     /*scrollReveal - stop*/
-
-
 
 });
