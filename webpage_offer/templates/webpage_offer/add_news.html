@@ -4,63 +4,63 @@
 
 
 {% block link_management %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="#add_offer">dodaj aktualności</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#list_offer">listuj aktualności</a>
-                    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#add_offer">dodaj aktualności</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#list_offer">listuj aktualności</a>
+    </li>
 
 {% endblock link_management %}
 
 {% block content %}
 
-<section id="add_news">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-lg-8 offset-lg-2">
-                <div>
-                    <h2 class="page-header">Dodaj aktualności</h2>
-                    <form action="" method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {{ form|crispy }}
-                        <input type="submit" name="submit" value="dodaj" class="btn btn-danger">
-                    </form>
+    <section id="add_news">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-8 offset-lg-2">
+                    <div>
+                        <h2 class="page-header">Dodaj aktualności</h2>
+                        <form action="" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            <input type="submit" name="submit" value="dodaj" class="btn btn-danger">
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="list_news" class="list-elements">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-lg-8 offset-lg-2">
-                {% if news_list %}
-                <table class="table">
-                    <tr>
-                        <th>Tytuł</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    {% for news in news_list %}
-                    <tr id="table-{{ news.pk }}" class="closestElement">
-                        <td><strong>{{ news.title }}</strong></td>
-                        <td>
-                            <span class="closed offer-details" data-url="{% url 'offer:show_news' news.pk %}" title="pokaż szczegóły">
-                                <i class="fas fa-caret-down"></i>
-                            </span>
-                        </td>
-                        <td><a href="{% url 'offer:edit_news' news.pk %}"><i class="fas fa-edit"></i></a></td>
-                    </tr>
-                    {% endfor %}
-                </table>
-                {% else %}
-                <p>Brak aktualności do wyświetlenia</p>
-                {% endif %}
+    <section id="list_news" class="list-elements">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-8 offset-lg-2">
+                    {% if news_list %}
+                    <table class="table">
+                        <tr>
+                            <th>Tytuł</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        {% for news in news_list %}
+                        <tr id="table-{{ news.pk }}" class="closestElement">
+                            <td><strong>{{ news.title }}</strong></td>
+                            <td>
+                                <span class="closed offer-details" data-url="{% url 'offer:show_news' news.pk %}" title="pokaż szczegóły">
+                                    <i class="fas fa-caret-down"></i>
+                                </span>
+                            </td>
+                            <td><a href="{% url 'offer:edit_news' news.pk %}"><i class="fas fa-edit"></i></a></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    {% else %}
+                    <p>Brak aktualności do wyświetlenia</p>
+                    {% endif %}
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 {% endblock content %}

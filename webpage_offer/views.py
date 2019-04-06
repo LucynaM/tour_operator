@@ -92,7 +92,10 @@ class EditOffer(AdminUserPassesTestMixin, View):
         else:
             form = EditOfferForm(request.POST, request.FILES, instance=offer)
         if form.is_valid():
-            form.save()
+            if request.POST['submit'] == "edytuj":
+                form.save()
+            elif request.POST['submit'] == "usuń":
+                offer.delete()
             return redirect('offer:list_offer')
         offer = Offer.objects.get(pk=pk)
         ctx = {
@@ -255,7 +258,10 @@ class EditNews(AdminUserPassesTestMixin, View):
         news = News.objects.get(pk=pk)
         form = NewsForm(request.POST, request.FILES, instance=news)
         if form.is_valid():
-            form.save()
+            if request.POST['submit'] == "edytuj":
+                form.save()
+            elif request.POST['submit'] == "usuń":
+                news.delete()
             return redirect('offer:add_news')
         ctx = {
             'form': form,

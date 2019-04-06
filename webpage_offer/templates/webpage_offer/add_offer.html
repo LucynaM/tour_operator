@@ -2,67 +2,67 @@
 {% load crispy_forms_tags %}
 
 {% block link_management %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="#add_offer">dodaj ofertę</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#list_offer">listuj oferty</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'offer:select_offer' %}">zarządzanie wyborem</a>
-                    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#add_offer">dodaj ofertę</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#list_offer">listuj oferty</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'offer:select_offer' %}">wybór z oferty</a>
+    </li>
 
 {% endblock link_management %}
 
 {% block content %}
 
-<section id="add_offer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-lg-8 offset-lg-2">
-                <div>
-                    <h2 class="page-header">Dodaj ofertę</h2>
-                    <form action="" method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {{ form|crispy }}
-                        <input type="submit" name="submit" value="dodaj" class="btn btn-danger">
-                    </form>
+    <section id="add_offer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-8 offset-lg-2">
+                    <div>
+                        <h2 class="page-header">Dodaj ofertę</h2>
+                        <form action="" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            <input type="submit" name="submit" value="dodaj" class="btn btn-danger">
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="list_offer" class="list-elements">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-lg-8 offset-lg-2">
-                {% if offer_list %}
-                <h2>{{ offer_list.0.get_category_display }}</h2>
-                <table class="table">
-                    <tr>
+    <section id="list_offer" class="list-elements">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-8 offset-lg-2">
+                    {% if offer_list %}
+                    <h2>{{ offer_list.0.get_category_display }}</h2>
+                    <table class="table">
+                        <tr>
 
-                        <th>Tytuł</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    {% for offer in offer_list %}
-                    <tr id="table-{{ offer.pk }}" class="closestElement">
+                            <th>Tytuł</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        {% for offer in offer_list %}
+                        <tr id="table-{{ offer.pk }}" class="closestElement">
 
-                        <td><strong>{{ offer.title }}</strong></td>
-                        <td>
-                            <span class="closed offer-details" data-url="{% url 'offer:show_offer' offer.pk %}" title="pokaż szczegóły">
-                                <i class="fas fa-caret-down"></i>
-                            </span>
-                        </td>
-                        <td><a href="{% url 'offer:edit_offer' offer.pk %}"><i class="fas fa-edit"></i></a></td>
-                    </tr>
-                    {% endfor %}
-                </table>
-                {% endif %}
+                            <td><strong>{{ offer.title }}</strong></td>
+                            <td>
+                                <span class="closed offer-details" data-url="{% url 'offer:show_offer' offer.pk %}" title="pokaż szczegóły">
+                                    <i class="fas fa-caret-down"></i>
+                                </span>
+                            </td>
+                            <td><a href="{% url 'offer:edit_offer' offer.pk %}"><i class="fas fa-edit"></i></a></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    {% endif %}
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 {% endblock content %}

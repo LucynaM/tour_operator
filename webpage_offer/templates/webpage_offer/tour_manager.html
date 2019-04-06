@@ -4,7 +4,7 @@
 
 {% block content %}
 <header id="manager-intro">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row no-gutters">
             <div class="col-md-12 col-lg-8 offset-lg-2">
                 <a href="{% url 'offer:list_offer' %}" class="manager" >
@@ -30,6 +30,9 @@
                 </a>
                 <a href="{% url 'tour:add_tour' %}" class="manager" >
                     <h5>Wyjazdy</h5>
+                </a>
+                <a href="{% url 'staff:add_staff' %}" class="manager" >
+                    <h5>Użytkownicy</h5>
                 </a>
             </div>
         </div>

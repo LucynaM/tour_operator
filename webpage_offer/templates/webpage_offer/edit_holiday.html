@@ -16,7 +16,7 @@
             <div class="col-md-12 col-lg-8 offset-lg-2">
                 <h2>{{ holiday.title }}</h2>
                 <p>krótki opis: {{ holiday.short_descr }}</p>
-                <p>program: {{ holiday.schedule | safe}}</p>
+                <p>program: {{ holiday.schedule | safe | linebreaks }}</p>
             </div>
         </div>
     </div>
@@ -30,7 +30,8 @@
                     <form action="" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{ form|crispy }}
-                        <input type="submit" name="submit" value="edytuj" class="btn btn-danger">
+                        <input type="submit" name="submit" value="usuń" class="btn btn-danger">
+                        <input type="submit" name="submit" value="edytuj" class="btn btn-primary">
                     </form>
                 </div>
             </div>

@@ -2,143 +2,136 @@
 {% load crispy_forms_tags %}
 
 {% block link_management %}
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'offer:select_offer' %}">zarządzanie wyborem</a>
-                    </li>
-
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'offer:select_offer' %}">wybór z oferty</a>
+    </li>
 {% endblock link_management %}
 
 {% block content %}
+    <section id="add_offer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 ">
 
-<section id="add_offer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 ">
-
-                <a href="{% url 'offer:add_offer' cat='for_school' %}" class="manager" >
-                    <h5>Dodaj ofertę dla szkół</h5>
-                </a>
-                <a href="{% url 'offer:add_offer' cat='for_work' %}" class="manager" >
-                    <h5>Dodaj ofertę dla firm</h5>
-                </a>
-                <a href="{% url 'offer:add_offer' cat='pilgrimage' %}" class="manager" >
-                    <h5>Dodaj pielgrzymkę</h5>
-                </a>
-                <a href="{% url 'offer:add_offer' cat='holiday' %}" class="manager" id="holiday-manager">
-                    <h5>Dodaj wakacje</h5>
-                </a>
+                    <a href="{% url 'offer:add_offer' cat='for_school' %}" class="manager" >
+                        <h5>Dodaj ofertę dla szkół</h5>
+                    </a>
+                    <a href="{% url 'offer:add_offer' cat='for_work' %}" class="manager" >
+                        <h5>Dodaj ofertę dla firm</h5>
+                    </a>
+                    <a href="{% url 'offer:add_offer' cat='pilgrimage' %}" class="manager" >
+                        <h5>Dodaj pielgrzymkę</h5>
+                    </a>
+                    <a href="{% url 'offer:add_offer' cat='holiday' %}" class="manager" id="holiday-manager">
+                        <h5>Dodaj wakacje</h5>
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="list_offer_links">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 ">
+    <section id="list_offer_links">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 ">
 
-                <a href="#table-for_school" class="manager" >
-                    <h5>Przejdź do oferty dla szkół</h5>
-                </a>
-                <a href="#table-for_work" class="manager" >
-                    <h5>Przejdź do oferty dla firm</h5>
-                </a>
-                <a href="#table-pilgrimage" class="manager" >
-                    <h5>Przejdź do pielgrzymek</h5>
-                </a>
-                <a href="#table-holiday" class="manager">
-                    <h5>Przejdź do wakacji</h5>
-                </a>
+                    <a href="#table-for_school" class="manager" >
+                        <h5>Przejdź do oferty dla szkół</h5>
+                    </a>
+                    <a href="#table-for_work" class="manager" >
+                        <h5>Przejdź do oferty dla firm</h5>
+                    </a>
+                    <a href="#table-pilgrimage" class="manager" >
+                        <h5>Przejdź do pielgrzymek</h5>
+                    </a>
+                    <a href="#table-holiday" class="manager">
+                        <h5>Przejdź do wakacji</h5>
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
+    <section id="list_offer" class="list-elements">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 ">
+                    {% if for_school_list %}
+                    <h2>{{ for_school_list.0.get_category_display }}</h2>
+                    <table class="table" id="table-for_school">
 
-<section id="list_offer" class="list-elements">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 ">
-                {% if for_school_list %}
-                <h2>{{ for_school_list.0.get_category_display }}</h2>
-                <table class="table" id="table-for_school">
+                        {% for offer in for_school_list %}
+                        <tr id="table-{{ offer.pk }}" class="closestElement">
 
-                    {% for offer in for_school_list %}
-                    <tr id="table-{{ offer.pk }}" class="closestElement">
+                            <td><strong>{{ offer.title }}</strong></td>
+                            <td>
+                                <span class="closed offer-details" data-url="{% url 'offer:show_offer' offer.pk %}" title="pokaż szczegóły">
+                                    <i class="fas fa-caret-down"></i>
+                                </span>
+                            </td>
+                            <td><a href="{% url 'offer:edit_offer' offer.pk %}"><i class="fas fa-edit"></i></a></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    {% endif %}
 
-                        <td><strong>{{ offer.title }}</strong></td>
-                        <td>
-                            <span class="closed offer-details" data-url="{% url 'offer:show_offer' offer.pk %}" title="pokaż szczegóły">
-                                <i class="fas fa-caret-down"></i>
-                            </span>
-                        </td>
-                        <td><a href="{% url 'offer:edit_offer' offer.pk %}"><i class="fas fa-edit"></i></a></td>
-                    </tr>
-                    {% endfor %}
-                </table>
-                {% endif %}
+                    {% if for_work_list %}
+                    <h2>{{ for_work_list.0.get_category_display }}</h2>
+                    <table class="table" id="table-for_work">
 
-                {% if for_work_list %}
-                <h2>{{ for_work_list.0.get_category_display }}</h2>
-                <table class="table" id="table-for_work">
+                        {% for offer in for_work_list %}
+                        <tr id="table-{{ offer.pk }}" class="closestElement">
 
-                    {% for offer in for_work_list %}
-                    <tr id="table-{{ offer.pk }}" class="closestElement">
+                            <td><strong>{{ offer.title }}</strong></td>
+                            <td>
+                                <span class="closed offer-details" data-url="{% url 'offer:show_offer' offer.pk %}" title="pokaż szczegóły">
+                                    <i class="fas fa-caret-down"></i>
+                                </span>
+                            </td>
+                            <td><a href="{% url 'offer:edit_offer' offer.pk %}"><i class="fas fa-edit"></i></a></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    {% endif %}
 
-                        <td><strong>{{ offer.title }}</strong></td>
-                        <td>
-                            <span class="closed offer-details" data-url="{% url 'offer:show_offer' offer.pk %}" title="pokaż szczegóły">
-                                <i class="fas fa-caret-down"></i>
-                            </span>
-                        </td>
-                        <td><a href="{% url 'offer:edit_offer' offer.pk %}"><i class="fas fa-edit"></i></a></td>
-                    </tr>
-                    {% endfor %}
-                </table>
-                {% endif %}
+                    {% if pilgrimage_list %}
+                    <h2>{{ pilgrimage_list.0.get_category_display }}</h2>
+                    <table class="table" id="table-pilgrimage">
 
-                {% if pilgrimage_list %}
-                <h2>{{ pilgrimage_list.0.get_category_display }}</h2>
-                <table class="table" id="table-pilgrimage">
+                        {% for offer in pilgrimage_list %}
+                        <tr id="table-{{ offer.pk }}" class="closestElement">
 
-                    {% for offer in pilgrimage_list %}
-                    <tr id="table-{{ offer.pk }}" class="closestElement">
+                            <td><strong>{{ offer.title }}</strong></td>
+                            <td>
+                                <span class="closed offer-details" data-url="{% url 'offer:show_offer' offer.pk %}" title="pokaż szczegóły">
+                                    <i class="fas fa-caret-down"></i>
+                                </span>
+                            </td>
+                            <td><a href="{% url 'offer:edit_offer' offer.pk %}"><i class="fas fa-edit"></i></a></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    {% endif %}
+                    {% if holiday_list %}
+                    <h2>{{ holiday_list.0.get_category_display }}</h2>
+                    <table class="table" id="table-holiday">
 
-                        <td><strong>{{ offer.title }}</strong></td>
-                        <td>
-                            <span class="closed offer-details" data-url="{% url 'offer:show_offer' offer.pk %}" title="pokaż szczegóły">
-                                <i class="fas fa-caret-down"></i>
-                            </span>
-                        </td>
-                        <td><a href="{% url 'offer:edit_offer' offer.pk %}"><i class="fas fa-edit"></i></a></td>
-                    </tr>
-                    {% endfor %}
-                </table>
-                {% endif %}
-                {% if holiday_list %}
-                <h2>{{ holiday_list.0.get_category_display }}</h2>
-                <table class="table" id="table-holiday">
+                        {% for offer in holiday_list %}
+                        <tr id="table-{{ offer.pk }}" class="closestElement">
 
-                    {% for offer in holiday_list %}
-                    <tr id="table-{{ offer.pk }}" class="closestElement">
-
-                        <td><strong>{{ offer.title }}</strong></td>
-                        <td>
-                            <span class="closed offer-details" data-url="{% url 'offer:show_offer' offer.pk %}" title="pokaż szczegóły">
-                                <i class="fas fa-caret-down"></i>
-                            </span>
-                        </td>
-                        <td><a href="{% url 'offer:edit_offer' offer.pk %}"><i class="fas fa-edit"></i></a></td>
-                    </tr>
-                    {% endfor %}
-                </table>
-                {% endif %}
+                            <td><strong>{{ offer.title }}</strong></td>
+                            <td>
+                                <span class="closed offer-details" data-url="{% url 'offer:show_offer' offer.pk %}" title="pokaż szczegóły">
+                                    <i class="fas fa-caret-down"></i>
+                                </span>
+                            </td>
+                            <td><a href="{% url 'offer:edit_offer' offer.pk %}"><i class="fas fa-edit"></i></a></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    {% endif %}
+                </div>
             </div>
         </div>
-    </div>
-</section>
-
-
-
+    </section>
 {% endblock content %}

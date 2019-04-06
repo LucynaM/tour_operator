@@ -22,7 +22,7 @@
                 <p><strong>{{ offer.get_category_display }}</strong></p>
                 <p>{{ offer.duration_in_days }}</p>
                 <p>{{ offer.short_descr }}</p>
-                <p>{{ offer.schedule | safe}}</p>
+                <p>{{ offer.schedule | safe | linebreaks }}</p>
                 {% if offer.withdrawn %}<p>wycofana z oferty</p>{% endif %}
             </div>
         </div>
@@ -37,7 +37,8 @@
                     <form action="" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{ form|crispy }}
-                        <input type="submit" name="submit" value="edytuj" class="btn btn-danger">
+                        <input type="submit" name="submit" value="usuń" class="btn btn-danger">
+                        <input type="submit" name="submit" value="edytuj" class="btn btn-primary">
                     </form>
                 </div>
             </div>

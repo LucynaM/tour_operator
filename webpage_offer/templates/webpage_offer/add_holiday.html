@@ -3,63 +3,63 @@
 
 
 {% block link_management %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="#add_holiday">dodaj wakacje</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#list_holiday">listuj wakacje</a>
-                    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#add_holiday">dodaj wakacje</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#list_holiday">listuj wakacje</a>
+    </li>
 
 {% endblock link_management %}
 
 {% block content %}
 
-<section id="add_holiday">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-lg-8 offset-lg-2">
-                <div>
-                    <h2 class="page-header">Dodaj wakacje</h2>
-                    <form action="" method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {{ form|crispy }}
-                        <input type="submit" name="submit" value="dodaj" class="btn btn-danger">
-                    </form>
+    <section id="add_holiday">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-8 offset-lg-2">
+                    <div>
+                        <h2 class="page-header">Dodaj wakacje</h2>
+                        <form action="" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            <input type="submit" name="submit" value="dodaj" class="btn btn-danger">
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="list_holiday" class="list-elements">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-lg-8 offset-lg-2">
-                {% if holiday_list %}
-                <table class="table">
-                    <tr>
-                        <th>Tytuł</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    {% for holiday in holiday_list %}
-                    <tr id="table-{{ holiday.pk }}" class="closestElement">
-                        <td><strong>{{ holiday.title }}</strong></td>
-                        <td>
-                            <span class="closed offer-details" data-url="{% url 'offer:show_holiday' holiday.pk %}" title="pokaż szczegóły">
-                                <i class="fas fa-caret-down"></i>
-                            </span>
-                        </td>
-                        <td><a href="{% url 'offer:edit_holiday' holiday.pk %}"><i class="fas fa-edit"></i></a></td>
-                    </tr>
-                    {% endfor %}
-                </table>
-                {% else %}
-                <p>Brak wakacji do wyświetlenia</p>
-                {% endif %}
+    <section id="list_holiday" class="list-elements">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-8 offset-lg-2">
+                    {% if holiday_list %}
+                    <table class="table">
+                        <tr>
+                            <th>Tytuł</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        {% for holiday in holiday_list %}
+                        <tr id="table-{{ holiday.pk }}" class="closestElement">
+                            <td><strong>{{ holiday.title }}</strong></td>
+                            <td>
+                                <span class="closed offer-details" data-url="{% url 'offer:show_holiday' holiday.pk %}" title="pokaż szczegóły">
+                                    <i class="fas fa-caret-down"></i>
+                                </span>
+                            </td>
+                            <td><a href="{% url 'offer:edit_holiday' holiday.pk %}"><i class="fas fa-edit"></i></a></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    {% else %}
+                    <p>Brak wakacji do wyświetlenia</p>
+                    {% endif %}
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 {% endblock content %}
