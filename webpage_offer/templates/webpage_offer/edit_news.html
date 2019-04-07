@@ -10,7 +10,7 @@
 
 {% block content %}
 
-<section id="show_news">
+<section id="show_news" class="show-elements">
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-lg-8 offset-lg-2">
@@ -31,7 +31,7 @@
                         {% csrf_token %}
                         {{ form|crispy }}
                         <input type="submit" name="submit" value="usuń" class="btn btn-danger">
-                        <input type="submit" name="submit" value="edytuj" class="btn btn-primary">
+                        <input type="submit" name="submit" value="edytuj" class="btn btn-success">
                     </form>
                 </div>
             </div>
