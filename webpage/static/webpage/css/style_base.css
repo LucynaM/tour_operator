@@ -19,6 +19,9 @@ a:not([href]):not([tabindex]):hover {
   cursor: pointer;
   color: #B91B22; }
 
+html [type=button] {
+  -webkit-appearance: none; }
+
 .btn-primary {
   color: #fff;
   border-color: #B91B22;
