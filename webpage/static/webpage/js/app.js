@@ -107,7 +107,7 @@ $(document).ready(function() {
         const btnHeight = $('.offer_title .btn').innerHeight();
         const imgHeight = $('.header_img').height();
         let paddingValue = Math.floor((window.innerHeight - (navHeight + imgHeight + titleHeight + btnHeight)) / 2);
-        paddingValue > 0 ? paddingValue = paddingValue : paddingValue = 0;
+        paddingValue = paddingValue > 0 ? paddingValue : 0;
         $('.offer_title').css({'padding-top': paddingValue + 'px', 'padding-bottom': paddingValue + 'px',})
     };
     setTitlePadding();
