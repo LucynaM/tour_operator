@@ -311,9 +311,26 @@ footer {
 
 /* MainPage - stop*/
 /* MainPage responsive - start*/
-@media (max-width: 767px) and (orientation: portrait) {
+@media (max-width: 767px) {
   #header .offer-img {
-    height: 29vh; } }
+    height: 29vh; }
+    #header .offer-img .offer-mask {
+      position: absolute;
+      left: 0;
+      top: auto;
+      bottom: 0;
+      width: 100%;
+      height: 18%; }
+      #header .offer-img .offer-mask .offer-info {
+        top: auto;
+        transform: translateY(0); }
+        #header .offer-img .offer-mask .offer-info .offer-link {
+          display: block;
+          font-size: 1.5rem; }
+    #header .offer-img:hover .offer-mask {
+      height: 18%; }
+      #header .offer-img:hover .offer-mask .offer-info .offer-link {
+        display: block; } }
 
 @media (max-width: 575px) and (orientation: landscape) {
   #header .offer-img {
@@ -777,7 +794,7 @@ button.close {
   color: #0c1433; }
 
 /*OFFER - start*/
-form .btn.btn-primary {
+form .btn.btn-success {
   float: right; }
 
 .show-elements {

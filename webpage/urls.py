@@ -29,4 +29,5 @@ urlpatterns = [
     url(r'^news/$', HomeNewsPage.as_view(), name='news'),
     url(r'^search/(?P<search>(\w)+)/$', HomeSearchPage.as_view(), name='search'),
     url(r'^get_directions/$', GetDirectionsBis.as_view(), name='get_directions'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
+  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

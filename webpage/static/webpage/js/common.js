@@ -77,7 +77,7 @@ $(document).ready(function() {
 
 
     function getOfferOnClick(mainElement) {
-        $(mainElement).on('click', '.offer-details', function(e) {
+        $(mainElement).on('click touch', '.offer-details', function(e) {
             e.preventDefault();
 
             const thisToggler = $(this);
@@ -110,7 +110,7 @@ $(document).ready(function() {
 
     /* Show holiday - start */
 
-    $('#holiday .holiday-details>a').on('click', function(e){
+    $('#holiday .holiday-details>a').on('click touch', function(e){
         e.preventDefault();
         const hashValue = $(this).attr('href');
 
@@ -384,5 +384,11 @@ $(document).ready(function() {
         window.sr = ScrollReveal({ reset: true }).reveal('.scroll', { duration: 500 });
     }
     /*scrollReveal - stop*/
+
+    /*fix viewport bugs for safri and IOS - start*/
+
+    window.viewportUnitsBuggyfill.init();
+
+    /* fix viewport bugs for safri and IOS - stop */
 
 });
