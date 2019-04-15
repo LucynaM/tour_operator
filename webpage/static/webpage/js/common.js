@@ -385,10 +385,10 @@ $(document).ready(function() {
     }
     /*scrollReveal - stop*/
 
-    /*fix viewport bugs for safri and IOS - start*/
+    /*fix viewport bugs for safari and IOS - start*/
 
     window.viewportUnitsBuggyfill.init();
 
-    /* fix viewport bugs for safri and IOS - stop */
+    /* fix viewport bugs for safari and IOS - stop */
 
 });
