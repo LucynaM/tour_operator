@@ -289,22 +289,22 @@ footer {
       display: block; }
 
 #offer-img-1 {
-  background-image: url("../images/main/576/for_school.jpg"); }
+  background-image: url("../images/main/767/for_school.jpg"); }
 
 #offer-img-2 {
-  background-image: url("../images/main/576/for_work.jpg"); }
+  background-image: url("../images/main/767/for_work.jpg"); }
 
 #offer-img-3 {
-  background-image: url("../images/main/576/holiday.jpg"); }
+  background-image: url("../images/main/767/holiday.jpg"); }
 
 #offer-img-4 {
-  background-image: url("../images/main/576/pilgrimage.jpg"); }
+  background-image: url("../images/main/767/pilgrimage.jpg"); }
 
 #offer-img-5 {
-  background-image: url("../images/main/576/recommended.jpg"); }
+  background-image: url("../images/main/767/recommended.jpg"); }
 
 #offer-img-6 {
-  background-image: url("../images/main/576/blog.jpg"); }
+  background-image: url("../images/main/767/blog.jpg"); }
 
 /* MainPage - stop*/
 /* MainPage responsive - start*/
@@ -372,38 +372,66 @@ footer {
 
 /* OfferHeader - stop*/
 /* OfferHeader responsive - start*/
+/*
 @media (max-width: 1200px) {
-  #header_for_school_img {
-    background-image: url("../images/main/1200/for_school.jpg"); }
-  #header_pilgrimage_img {
-    background-image: url("../images/main/1200/pilgrimage.jpg"); }
-  #header_for_work_img {
-    background-image: url("../images/main/1200/for_work.jpg"); }
-  #header_holiday_img {
-    background-image: url("../images/main/1200/holiday.jpg"); }
-  #header_news_img {
-    background-image: url("../images/main/1200/blog.jpg"); }
-  #header_recommended_img {
-    background-image: url("../images/main/1200/recommended.jpg"); }
-  #header_search_img {
-    background-image: url("../images/main/1200/search.jpg"); } }
-
+    #header_for_school_img {
+        background-image: url("../images/main/1200/for_school.jpg");
+    }
+    
+    #header_pilgrimage_img {
+        background-image: url("../images/main/1200/pilgrimage.jpg");
+    }
+    
+    #header_for_work_img {
+        background-image: url("../images/main/1200/for_work.jpg");
+    }
+    
+    #header_holiday_img {
+        background-image: url("../images/main/1200/holiday.jpg");
+    }
+    
+    #header_news_img {
+        background-image: url("../images/main/1200/blog.jpg");
+    }
+    
+    #header_recommended_img {
+        background-image: url("../images/main/1200/recommended.jpg");
+    }
+    
+    #header_search_img {
+        background-image: url("../images/main/1200/search.jpg");
+    }
+}
 @media (max-width: 992px) {
-  #header_for_school_img {
-    background-image: url("../images/main/992/for_school.jpg"); }
-  #header_pilgrimage_img {
-    background-image: url("../images/main/992/pilgrimage.jpg"); }
-  #header_for_work_img {
-    background-image: url("../images/main/992/for_work.jpg"); }
-  #header_holiday_img {
-    background-image: url("../images/main/992/holiday.jpg"); }
-  #header_news_img {
-    background-image: url("../images/main/992/blog.jpg"); }
-  #header_recommended_img {
-    background-image: url("../images/main/992/recommended.jpg"); }
-  #header_search_img {
-    background-image: url("../images/main/992/search.jpg"); } }
-
+    #header_for_school_img {
+        background-image: url("../images/main/992/for_school.jpg");
+    }
+    
+    #header_pilgrimage_img {
+        background-image: url("../images/main/992/pilgrimage.jpg");
+    }
+    
+    #header_for_work_img {
+        background-image: url("../images/main/992/for_work.jpg");
+    }
+    
+    #header_holiday_img {
+        background-image: url("../images/main/992/holiday.jpg");
+    }
+    
+    #header_news_img {
+        background-image: url("../images/main/992/blog.jpg");
+    }
+    
+    #header_recommended_img {
+        background-image: url("../images/main/992/recommended.jpg");
+    }
+    
+    #header_search_img {
+        background-image: url("../images/main/992/search.jpg");
+    }
+}
+*/
 @media (max-width: 767px) {
   #header_for_school_img {
     background-image: url("../images/main/767/for_school.jpg"); }
@@ -420,22 +448,37 @@ footer {
   #header_search_img {
     background-image: url("../images/main/767/search.jpg"); } }
 
+/*
 @media (max-width: 576px) {
-  #header_for_school_img {
-    background-image: url("../images/main/576/for_school.jpg"); }
-  #header_pilgrimage_img {
-    background-image: url("../images/main/576/pilgrimage.jpg"); }
-  #header_for_work_img {
-    background-image: url("../images/main/576/for_work.jpg"); }
-  #header_holiday_img {
-    background-image: url("../images/main/576/holiday.jpg"); }
-  #header_news_img {
-    background-image: url("../images/main/576/blog.jpg"); }
-  #header_recommended_img {
-    background-image: url("../images/main/576/recommended.jpg"); }
-  #header_search_img {
-    background-image: url("../images/main/576/search.jpg"); } }
-
+    #header_for_school_img {
+        background-image: url("../images/main/576/for_school.jpg");
+    }
+    
+    #header_pilgrimage_img {
+        background-image: url("../images/main/576/pilgrimage.jpg");
+    }
+    
+    #header_for_work_img {
+        background-image: url("../images/main/576/for_work.jpg");
+    }
+    
+    #header_holiday_img {
+        background-image: url("../images/main/576/holiday.jpg");
+    }
+    
+    #header_news_img {
+        background-image: url("../images/main/576/blog.jpg");
+    }
+    
+    #header_recommended_img {
+        background-image: url("../images/main/576/recommended.jpg");
+    }
+    
+    #header_search_img {
+        background-image: url("../images/main/576/search.jpg");
+    }
+}
+*/
 /* OfferHeader responsive - stop*/
 /* OfferTitle - start*/
 #title_for_school {

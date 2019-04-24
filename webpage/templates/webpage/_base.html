@@ -8,14 +8,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}Marco Polo Travel{% endblock title %}</title>
-    <meta name="description" content="{% block descr-content %}Organizator imprez turystycznych obejmujących integracyjne wyjazdy zakładowe, wycieczki pracownicze, wycieczki szkolne, pielgrzymki do miejsc świętych, wczasy oraz wyjazdy indywidualne.{% endblock descr-content %}">
+    <meta name="description" content="{% block descr-content %}Organizator imprez turystycznych obejmujących wyjazdy zakładowe, wycieczki szkolne, pielgrzymki, wczasy oraz wyjazdy indywidualne.{% endblock descr-content %}">
 
-    <link rel="stylesheet" href="{% static 'webpage/dependencies/css/jquery-ui.min.css'%}">
-    <link rel="stylesheet" href="{% static 'webpage/dependencies/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'webpage/dependencies/css/jquery-ui.min.css'%}" data-viewport-units-buggyfill="ignore">
+    <link rel="stylesheet" href="{% static 'webpage/dependencies/css/bootstrap.min.css'%}" data-viewport-units-buggyfill="ignore">
 
+    <!--Favicons - start-->
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'webpage/images/favicon/icon-16.png' %}">
+    <link rel="icon" type="image/png" sizes="24x24" href="{% static 'webpage/images/favicon/icon-24.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'webpage/images/favicon/icon-32.png' %}">
+    <link rel="icon" type="image/png" sizes="57x57" href="{% static 'webpage/images/favicon/icon-57.png' %}">
+    <link rel="icon" type="image/png" sizes="72x72" href="{% static 'webpage/favicon/icon-72.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'webpage/images/favicon/icon-96.png' %}">
+    <link rel="icon" type="image/png" sizes="114x114" href="{% static 'webpage/images/favicon/icon-114.png' %}">
+    <link rel="icon" type="image/png" sizes="128x128" href="{% static 'webpage/images/favicon/icon-128.png' %}">
+    <link rel="icon" type="image/png" sizes="195x195" href="{% static 'webpage/images/favicon/icon-195.png' %}">
+     <!--Favicons - stop-->
+    <!--Fonts - start -->
     <link href="https://fonts.googleapis.com/css?family=Rajdhani:300,400,500,600,700&amp;subset=latin-ext" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900&amp;subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" >
+    <!--Fonts - stop-->
+    <!--CSS - start -->
     <link rel="stylesheet" href="{% static 'webpage/css/style_base.css' %}">
+    <!--CSS - stop -->
 
 </head>
 

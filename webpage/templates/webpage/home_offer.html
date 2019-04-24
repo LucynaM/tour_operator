@@ -12,16 +12,6 @@
     {% endif %}
 {% endblock title %}
 
-{% block descr-content %}
-    {% if category == 'pilgrimage' %}
-        Organizator imprez turystycznych obejmujących pielgrzymki do miejsc świętych ze zwiedzaniem sanktuariów adriatyckich, greckich, rumuńskich, bułgarskich, austriackich, węgierskich, chorwackich, bośniackich i włoskich.
-    {% elif category == 'for_school' %}
-        Organizator imprez turystycznych obejmujących wycieczki dla szkół, m.in. do Krakowa, Warszawy, Lublina, w Pieniny, Gorce, na Słowację i Litwę.
-    {% else %}
-        Organizator imprez turystycznych obejmujących wyjazdy firmowe m.in. do Danii, Szwecji, Finlandii z Litwą, Łotwą i Estonią, Wielkiej Brytanii, Włoch, Serbii, Macedonii, Rumunii, Bułgarii, Bośnii i Hercegowiny, Chorwacji, Słowenii.
-    {% endif %}
-{% endblock descr-content %}
-
 
 {% block brand %}{% url 'webpage:home' %}{% endblock brand %}
 
