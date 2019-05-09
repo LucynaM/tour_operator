@@ -1,7 +1,7 @@
 {% extends './_base.html' %}
 {% load static %}
 
-{% block title %} Marco Polo Travel Wakacje {% endblock title %}
+{% block title %} Wakacje Marco Polo Travel {% endblock title %}
 {% block brand %}{% url 'webpage:home' %}{% endblock brand %}
 {% block link_holiday %}{% endblock link_holiday %}
 {% block about_link %}{% endblock about_link %}
@@ -14,13 +14,13 @@
     </div>
 </header>
 <!-- Header - stop -->
-<section id="title_holiday" class="offer_title ">
-    <h1>
-        Wakacje
-    </h1>
 
+<!-- Title - start -->
+<section id="title_holiday" class="offer_title ">
+    <h1>Wakacje</h1>
     <a class="btn btn-primary" href="#holiday">Oferta</a>
 </section>
+<!-- Title - stop -->
 
 <!-- Selected - start -->
 <section id="holiday">
@@ -63,12 +63,13 @@
         {% endfor %}
     </div>
 </section>
-
+<!-- Selected - stop -->
+<!--Social media - start-->
 <section id="social-media" class="row no-gutters full-offer holiday">
     <div class="container">
         <a href="#"> <i class="fab fa-instagram"></i></a>
         <a href="#"> <i class="fab fa-facebook"></i></a>
     </div>
 </section>
-
+<!--Social media - stop-->
 {% endblock content %}

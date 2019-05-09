@@ -1,6 +1,6 @@
 {% extends './_base.html' %}
 {% load static %}
-{% block title %}Marco Polo Travel {{category}} {% endblock title %}
+{% block title %}{{category}} Marco Polo Travel{% endblock title %}
 
 {% block brand %}{% url 'webpage:home' %}{% endblock brand %}
 {% block about_link %}{% endblock about_link %}
@@ -13,17 +13,19 @@
     </div>
 </header>
 <!-- Header - stop -->
-
+<!--Title - start-->
 <section id="title_search" class="offer_title">
     <h1>
         {{category}}
     </h1>
 
     <a class="btn btn-primary" href="#all_offer">Oferta</a>
+
 </section>
+<!--Title - stop-->
 
 <!-- Offer - start -->
-{% if offer_all or holiday_all %}
+{% if offer_all|length %}
 <section id="all_offer" class="selection selection-offer search">
     <div class="container">
         {% if offer_all %}
@@ -76,13 +78,16 @@
         {% endif %}
     </div>
 </section>
+{% else %}
+<h5 class="no-item-msg">Niestety nie mamy jeszcze w ofercie miejsca takiego jak {{category}} </h5>
 {% endif %}
 <!-- Offer - stop -->
-
+<!--Social media - start-->
 <section id="social-media" class="row no-gutters full-offer search ">
     <div class="container">
         <a href="#"> <i class="fab fa-instagram"></i></a>
         <a href="#"> <i class="fab fa-facebook"></i></a>
     </div>
 </section>
+<!--Social media - stop-->
 {% endblock content %}

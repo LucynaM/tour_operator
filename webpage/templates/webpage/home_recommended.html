@@ -1,7 +1,7 @@
 {% extends './_base.html' %}
 {% load static %}
 
-{% block title %} Marco Polo Travel Polecamy {% endblock title %}
+{% block title %} Polecamy Marco Polo Travel  {% endblock title %}
 
 {% block brand %}{% url 'webpage:home' %}{% endblock brand %}
 
@@ -18,13 +18,14 @@
     </div>
 </header>
 <!-- Header - stop -->
-<!-- Selected - start -->
+<!-- Title - start -->
 <section id="title_recommended" class="offer_title">
     <h1>Polecamy</h1>
     <a class="btn btn-primary" href="#selected_recommended">Oferta
     </a>
-
 </section>
+<!-- Title - stop -->
+<!-- Selected - start -->
 <section id="selected_recommended" class="selection">
     <div class="container">
 
@@ -91,12 +92,12 @@
     </div>
 </section>
 <!-- Selected - stop-->
-
+<!--Social media - start-->
 <section id="social-media" class="row no-gutters full-offer recommended ">
     <div class="container">
         <a href="#"> <i class="fab fa-instagram"></i></a>
         <a href="#"> <i class="fab fa-facebook"></i></a>
     </div>
 </section>
-
+<!--Social media - stop-->
 {% endblock content %}

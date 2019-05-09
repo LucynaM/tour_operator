@@ -2,7 +2,7 @@
 {% load static %}
 
 
-{% block title %} Marco Polo Travel Blog {% endblock title %}
+{% block title %} Blog Marco Polo Travel {% endblock title %}
 
 
 {% block brand %}{% url 'webpage:home' %}{% endblock brand %}
@@ -17,14 +17,15 @@
     </div>
 </header>
 <!-- Header - stop -->
-<!-- Selected - start -->
+<!-- Title - start -->
 <section id="title_news" class="offer_title">
     <h1>
         Blog podróżniczy
     </h1>
-
     <a class="btn btn-primary" href="#news">Wpisy</a>
 </section>
+<!-- Title - stop -->
+<!-- Blog - start -->
 <section id="news">
 
     <div class="container">
@@ -80,13 +81,14 @@
         </div>
 
     </div>
-
 </section>
-
+<!-- Blog - stop -->
+<!--Social media - start-->
 <section id="social-media" class="row no-gutters full-offer news ">
     <div class="container">
         <a href="#"> <i class="fab fa-instagram"></i></a>
         <a href="#"> <i class="fab fa-facebook"></i></a>
     </div>
 </section>
+<!--Social media - stop-->
 {% endblock content %}

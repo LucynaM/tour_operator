@@ -2,7 +2,7 @@
 {% load static %}
 
 
-{% block title %} Marco Polo Travel
+{% block title %}
     {% if category == 'pilgrimage' %}
         Pielgrzymki
     {% elif category == 'for_school' %}
@@ -10,6 +10,7 @@
     {% else %}
         Oferta dla firm
     {% endif %}
+     Marco Polo Travel
 {% endblock title %}
 
 
@@ -27,7 +28,7 @@
 </header>
 <!-- Header - stop -->
 
-<!-- Selected - start -->
+<!-- Title - start -->
 <section id="title_{{ category }}" class="offer_title">
     <h1>
         {% if category == 'pilgrimage' %}
@@ -42,7 +43,8 @@
 
     <a class="btn btn-primary" href="#selected_offer">Oferta</a>
 </section>
-
+<!-- Title - stop -->
+<!-- Selected - start -->
 <section id="selected_offer" class="selection">
     <div class="container">
         <div id="section-{{offer_selected.0.pk}}" class="row no-gutters selection-row closestElement scroll">
@@ -88,14 +90,13 @@
 <!-- Selected - stop-->
 
 
-<!-- Full offer - start -->
+<!-- Full offer btn - start -->
 <section id="show-full-offer" class="row no-gutters full-offer {{ category }}">
     <div class="container">
         <a class="btn btn-primary" href="#all_offer"> Pełna oferta</a>
     </div>
 </section>
-<!-- Full offer - stop -->
-
+<!-- Full offer btn - stop -->
 
 <!-- Offer - start -->
 {% if offer_all %}
@@ -150,12 +151,12 @@
 </section>
 {% endif %}
 <!-- Offer - stop -->
-
+<!--Social media - start-->
 <section id="social-media" class="row no-gutters full-offer {{ category }} ">
     <div class="container">
         <a href="#"> <i class="fab fa-instagram"></i></a>
         <a href="#"> <i class="fab fa-facebook"></i></a>
     </div>
 </section>
-
+<!--Social media - stop-->
 {% endblock content %}

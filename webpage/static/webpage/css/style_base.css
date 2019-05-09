@@ -95,6 +95,10 @@ td:hover .offer-details, .selection-row:hover .offer-details {
   color: #B91B22;
   cursor: pointer; }
 
+.no-item-msg {
+  text-align: center;
+  margin-bottom: 25px; }
+
 /* General - stop*/
 /* General responsive - start*/
 @media (max-width: 991px) and (orientation: portrait) {
@@ -620,7 +624,9 @@ footer {
   #copyright p {
     margin-bottom: 0; }
     #copyright p span {
-      font-weight: 700; }
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .7px; }
 
 /* copyright - stop */
 /* News - start */

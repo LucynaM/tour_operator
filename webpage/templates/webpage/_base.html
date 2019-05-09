@@ -39,7 +39,7 @@
 
 
   {% block nav %}
-
+    <!-- Nav - start -->
     <nav class="navbar navbar-expand-md">
         <div class="container">
 
@@ -47,7 +47,7 @@
             <a class="navbar-brand" href="{% block brand %}#{% endblock brand %}"><img src="{% static 'webpage/images/logo/logo-przezr-tlo.png' %}" alt="Marco Polo"></a>
 
 
-            <!--desktop menu -->
+            <!--desktop menu - start -->
             <div class="collapse navbar-collapse ">
 
                 <ul class="navbar-nav desktop">
@@ -96,8 +96,7 @@
 
 
             </div>
-
-
+            <!--desktop menu - stop -->
             <!--mobile menu - start -->
             <button class="navbar-toggler navbar-light" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -138,10 +137,7 @@
                 </form>
             </div>
             <!--mobile menu stop-->
-
-
         </div>
-
     </nav>
 
     <!-- Nav - stop -->
@@ -150,7 +146,9 @@
 
     {% block content %}
     {% endblock content %}
+
     {% block footer %}
+    <!--Footer - start-->
     <footer id=contact>
         <div class="container">
             <div class="row scroll">
@@ -190,7 +188,8 @@
     <section id="copyright">
         <p>Copyright: <span>Marco Polo Travel 2018</span></p>
     </section>
-    <!-- Modal -->
+    <!--Footer - stop-->
+    <!-- Modal - start -->
     <div class="modal fade" id="CompanyData" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -216,7 +215,10 @@
         </div>
       </div>
     </div>
+    <!-- Modal - stop -->
     {% endblock footer %}
+
+    <!--Scripts - start -->
     <script src="https://unpkg.com/scrollreveal@3.3.2/dist/scrollreveal.min.js"></script>
     <script src="{% static 'webpage/dependencies/js/jquery-3.3.1.min.js'%}"></script>
     <script src="{% static 'webpage/dependencies/js/jquery-ui.min.js'%}"></script>
@@ -224,9 +226,9 @@
     <script src="{% static 'webpage/dependencies/js/bootstrap.min.js'%}"></script>
     <script src="{% static 'webpage/dependencies/js/viewport-units-buggyfill.js'%}"></script>
 
-
     <script src="{% static 'webpage/js/common.js' %}"></script>
     <script src="{% static 'webpage/js/app.js' %}"></script>
+    <!--Scripts - stop -->
 
 </body>
 
