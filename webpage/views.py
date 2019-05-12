@@ -113,10 +113,12 @@ class HomeSearchPage(View):
             search = search.replace('. ', ' ')
         offer = Offer.objects.filter(direction__icontains=search)
         offer_chunk = ((offer[x:x + 2]) for x in range(0, len(offer), 2))
+        offer_len = len(offer)
 
         ctx = {
             'offer_all': offer_chunk,
             'category': search,
+            'offer_len': offer_len,
 
         }
         return render(request, 'webpage/home_search.html', ctx)
