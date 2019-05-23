@@ -34,9 +34,9 @@
                 <aside class="sticky-top">
                     <ul>
                         {% for news in news_list %}
-                        <li><a href="?page={{ forloop.counter }}/#news-{{news.0.pk}}">{{ news.0.entry_date|date:"d"  }}.{{ news.0.entry_date|date:"m" }}. {{ news.0.title}} </a></li>
+                        <li><a href="{{ request.path }}?page={{ forloop.counter }}{% if forloop.counter == news_result.number %}/#news-{{news.0.pk}}{% endif %}">{{ news.0.entry_date|date:"d"  }}.{{ news.0.entry_date|date:"m" }}. {{ news.0.title}} </a></li>
                             {% if news.1 %}
-                            <li><a href="?page={{ forloop.counter }}/#news-{{news.1.pk}}">{{ news.1.entry_date|date:"d"  }}.{{ news.1.entry_date|date:"m" }}. {{ news.1.title}} </a></li>
+                            <li><a href="{{ request.path }}?page={{ forloop.counter }}{% if forloop.counter == news_result.number %}/#news-{{news.1.pk}}{% endif %}">{{ news.1.entry_date|date:"d"  }}.{{ news.1.entry_date|date:"m" }}. {{ news.1.title}} </a></li>
                             {% endif %}
                         {% endfor %}
                     </ul>

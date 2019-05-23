@@ -665,7 +665,8 @@ footer {
     font-weight: 400;
     letter-spacing: 1px; }
   #news .news_entry {
-    padding-top: 15px; }
+    padding-top: 15px;
+    width: 100%; }
   #news img {
     width: 100%;
     height: 100%;
