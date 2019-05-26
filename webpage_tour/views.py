@@ -17,7 +17,7 @@ from reportlab.lib.units import mm
 # Create your views here.
 
 def get_dates(start, end):
-    # format dates range
+    """format dates range"""
     if start.year == end.year and start.month == end.month:
         start = start.strftime('%d.')
     elif start.year == end.year:
@@ -30,14 +30,13 @@ def get_dates(start, end):
 
 
 def format_phone(phone):
+    """format input phone as 'XXX XXX XXX'"""
     phone = str(phone)
-    j = len(phone)
-    new_phone = ""
-    for i in phone[::-3]:
-        z = phone[j-3:j]
-        new_phone = " {}{}".format(z, new_phone)
-        j -= 3
-    return new_phone.strip()
+    break_point = len(phone) % 3
+    start = phone[0:break_point]
+    end = phone[break_point::]
+    phone_end = " ".join(end[i:i+3] for i in range(0,len(end),3) ).strip()
+    return '{} {}'.format(start, phone_end) if start else phone_end
 
 
 class AddTour(AdminUserPassesTestMixin, View):

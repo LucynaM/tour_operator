@@ -47,13 +47,15 @@
 <!-- Selected - start -->
 <section id="selected_offer" class="selection">
     <div class="container">
+
+        {% if offer_selected.0 and not offer_selected.0.withdrawn %}
         <div id="section-{{offer_selected.0.pk}}" class="row no-gutters selection-row closestElement scroll">
             <div id="selected_{{ category }}_img0" class="col-md-6 selected-item selected_img">
                 <img src="{{ offer_selected.0.image.url }}" alt="{{ offer_selected.0.title }}">
             </div>
             <div class="col-md-6 selected-item selected_data">
                 <div class="selected_wrapper">
-                    {% if offer_selected.0 %}
+
                     <h2>{{ offer_selected.0.title }}
                     </h2>
                     <p>{{ offer_selected.0.short_descr }}</p>
@@ -62,14 +64,25 @@
                             <i class="fas fa-caret-down"></i>
                         </span>
                     </p>
-                    {% endif %}
+
                 </div>
             </div>
         </div>
+        {% else %}
+        <div class="row no-gutters selection-row ">
+            <div class="col-md-6 selected-item selected_img">
+                <img src="">
+            </div>
+            <div class="col-md-6 selected-item selected_data">
+            </div>
+        </div>
+        {% endif %}
+
+        {% if offer_selected.1 and not offer_selected.1.withdrawn %}
         <div id="section-{{ offer_selected.1.pk }}" class="row no-gutters selection-row closestElement scroll">
             <div class="col-md-6 selected-item selected_data">
                 <div class="selected_wrapper">
-                    {% if offer_selected.1 %}
+
                     <h2>{{ offer_selected.1.title }}
                     </h2>
                     <p>{{ offer_selected.1.short_descr }}</p>
@@ -78,13 +91,24 @@
                             <i class="fas fa-caret-down"></i>
                         </span>
                     </p>
-                    {% endif %}
+
                 </div>
             </div>
             <div id="selected_{{ category }}_img1" class="col-md-6 selected-item selected_img ">
                 <img src="{{ offer_selected.1.image.url }}" alt="{{ offer_selected.1.title }}">
             </div>
         </div>
+        {% else %}
+        <div class="row no-gutters selection-row">
+            <div class="col-md-6 selected-item selected_data">
+            </div>
+            <div class="col-md-6 selected-item selected_img">
+                <img src="">
+            </div>
+
+        </div>
+        {% endif %}
+
     </div>
 </section>
 <!-- Selected - stop-->

@@ -33,7 +33,8 @@ class HomePage(View):
 class OfferPage(View):
     def get(self, request):
         category = request.path[1:-1]
-        offer = Offer.objects.filter(category=category, selected=False).exclude(category="holiday", withdrawn=True).order_by('title')
+        offer = Offer.objects.filter(category=category, selected=False).exclude(category="holiday").order_by('title')
+        offer = offer.exclude(withdrawn=True)
         offer_chunk = ((offer[x:x+2]) for x in range(0, len(offer), 2))
         offer_selected = Offer.objects.filter(category=category, selected=True).order_by('selected_sort')
         ctx = {

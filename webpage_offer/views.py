@@ -93,7 +93,13 @@ class EditOffer(AdminUserPassesTestMixin, View):
             form = EditOfferForm(request.POST, request.FILES, instance=offer)
         if form.is_valid():
             if request.POST['submit'] == "edytuj":
+
                 form.save()
+                if form.cleaned_data['withdrawn']:
+                    if offer.selected or offer.recommended:
+                        offer.selected = offer.recommended = False
+                        offer.selected_sort = offer.recommended_sort = None
+                        offer.save()
             elif request.POST['submit'] == "usuń":
                 offer.delete()
             return redirect('offer:list_offer')
@@ -140,6 +146,7 @@ class ShowNews(View):
 class SelectOffer(View):
     def get(self, request):
         all_offer = Offer.objects.exclude(category="holiday").order_by('category', 'title')
+        all_offer = all_offer.exclude(withdrawn=True)
         categories = ['pilgrimage', 'for_school', 'for_work']
 
         ctx = {
@@ -176,18 +183,21 @@ def process_offer(request, func1, func2, get_result):
 
 
 class SetSelected(View):
-    def old_element_deselect(self, obj):
+    @staticmethod
+    def old_element_deselect(obj):
         obj.selected = False
         obj.selected_sort = None
         obj.save()
 
-    def new_element_select(self, obj, sort):
+    @staticmethod
+    def new_element_select(obj, sort):
         obj.selected = True
         obj.selected_sort = sort
         obj.save()
 
-    def get_result(self, obj):
-        return Offer.objects.filter(category=obj.category, selected=False).order_by('title')
+    @staticmethod
+    def get_result(obj):
+        return Offer.objects.filter(category=obj.category, selected=False).exclude(withdrawn=True).order_by('title')
 
     def get(self, request):
         try:
@@ -198,18 +208,21 @@ class SetSelected(View):
 
 
 class SetRecommended(View):
-    def old_element_unrecommend(self, obj):
+    @staticmethod
+    def old_element_unrecommend(obj):
         obj.recommended = False
         obj.recommended_sort = None
         obj.save()
 
-    def new_element_recommend(self, obj, sort):
+    @staticmethod
+    def new_element_recommend(obj, sort):
         obj.recommended = True
         obj.recommended_sort = sort
         obj.save()
 
-    def get_result(self, obj):
-        return Offer.objects.filter(recommended=False).order_by('category', 'title')
+    @staticmethod
+    def get_result():
+        return Offer.objects.filter(recommended=False).exclude(withdrawn=True).order_by('category', 'title')
 
     def get(self, request):
         try:
@@ -218,6 +231,7 @@ class SetRecommended(View):
             return JsonResponse(data, safe=False)
         except Exception as e:
             print(e)
+
 
 class AddListNews(AdminUserPassesTestMixin, View):
     def get(self, request):

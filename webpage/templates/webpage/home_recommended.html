@@ -28,15 +28,14 @@
 <!-- Selected - start -->
 <section id="selected_recommended" class="selection">
     <div class="container">
-
+        {% if recommended.0 and not recommended.0.withdrawn %}
         <div id="section-{{recommended.0.pk}}" class="row no-gutters selection-row closestElement scroll">
-
             <div id="recommended_img0" class="col-md-6 selected-item selected_img img0">
                 <img src="{{ recommended.0.image.url }}" alt="{{ recommended.0.title }}">
             </div>
             <div class="col-md-6 selected-item selected_data">
                 <div class="selected_wrapper">
-                    {% if recommended.0 %}
+
                     <h2>{{ recommended.0.title }}
                     </h2>
                     <p>{{ recommended.0.short_descr }}</p>
@@ -45,15 +44,24 @@
                             <i class="fas fa-caret-down"></i>
                         </span>
                     </p>
-                    {% endif %}
+
                 </div>
             </div>
         </div>
+        {% else %}
+        <div class="row no-gutters selection-row">
+            <div class="col-md-6 selected-item selected_img img0">
+                <img src="" alt="">
+            </div>
+            <div class="col-md-6 selected-item selected_data"></div>
+        </div>
+        {% endif %}
 
+        {% if recommended.1 and not recommended.1.withdrawn %}
         <div id="section-{{ recommended.1.pk }}" class="row no-gutters selection-row closestElement scroll">
             <div class="col-md-6 selected-item selected-item-1 selected_data">
                 <div class="selected_wrapper">
-                    {% if recommended.1 %}
+
                     <h2>{{ recommended.1.title }}
                     </h2>
                     <p>{{ recommended.1.short_descr }}</p>
@@ -62,21 +70,30 @@
                             <i class="fas fa-caret-down"></i>
                         </span>
                     </p>
-                    {% endif %}
+
                 </div>
             </div>
             <div id="recommended_img1" class="col-md-6 selected-item selected-item-1 selected_img img1">
                 <img src="{{ recommended.1.image.url }}" alt="{{ recommended.1.title }}">
             </div>
         </div>
+        {% else %}
+        <div class="row no-gutters selection-row ">
+            <div class="col-md-6 selected-item selected-item-1 selected_data"></div>
+            <div class="col-md-6 selected-item selected-item-1 selected_img img1">
+                <img src="" alt="">
+            </div>
+        </div>
+        {% endif %}
 
+        {% if recommended.2 and not recommended.2.withdrawn %}
         <div id="section-{{recommended.2.pk}}" class="row no-gutters selection-row closestElement scroll">
             <div id="recommended_img2" class="col-md-6 selected-item selected_img img2">
                 <img src="{{ recommended.2.image.url }}" alt="{{ recommended.2.title }}">
             </div>
             <div class="col-md-6 selected-item selected_data">
                 <div class="selected_wrapper">
-                    {% if recommended.2 %}
+
                     <h2>{{ recommended.2.title }}
                     </h2>
                     <p>{{ recommended.2.short_descr }}</p>
@@ -85,10 +102,18 @@
                             <i class="fas fa-caret-down"></i>
                         </span>
                     </p>
-                    {% endif %}
+
                 </div>
             </div>
         </div>
+        {% else %}
+         <div class="row no-gutters selection-row">
+            <div class="col-md-6 selected-item selected_img img2">
+                <img src="" alt="">
+            </div>
+            <div class="col-md-6 selected-item selected_data"></div>
+        </div>
+        {% endif %}
     </div>
 </section>
 <!-- Selected - stop-->

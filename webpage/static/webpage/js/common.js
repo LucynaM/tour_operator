@@ -21,7 +21,7 @@ $(document).ready(function() {
     const rowIndexes = [];
     $('.selection-row').each(function(index) {
         rowIndexes[index] = $(this).offset().top;
-    })
+    });
 
     function slideTo(row) {
         const rowIndex = $('.selection-row').index(row);
@@ -30,7 +30,7 @@ $(document).ready(function() {
                 scrollTop: rowIndexes[rowIndex],
             }, 300);
         };
-    }
+    };
 
     function hideElement(nextRow, toggler, callback, ...others) {
         nextRow.slideUp()
@@ -122,7 +122,7 @@ $(document).ready(function() {
         };
         $(hashValue).slideToggle();
         ($(hashValue).data('loaded')) ? $(this).text("Ukryj") : $(this).text("Szczegóły");
-    })
+    });
 
     /* Show holiday - stop */
 
@@ -134,7 +134,7 @@ $(document).ready(function() {
             revert: "invalid",
             }
         );
-    }
+    };
 
 
     function selectOffer() {
@@ -193,7 +193,7 @@ $(document).ready(function() {
             item.append(aboutSelected);
             return [aboutSelected]
         }
-    }
+    };
 
 
     function createList(r) {
@@ -227,11 +227,11 @@ $(document).ready(function() {
         }
         // initilize draggable after ajax
         makeDraggable();
-    }
+    };
 
     function chooseList(r, flag) {
         return flag ? $('#recommend ul') : $('#'+r[0].category +' ul');
-    }
+    };
 
     function renameCategory(category) {
         switch (category) {
@@ -248,7 +248,7 @@ $(document).ready(function() {
                 console.log("Nie ma takiej kategorii");
         }
         return category;
-    }
+    };
 
     selectOffer();
 
@@ -257,7 +257,7 @@ $(document).ready(function() {
    /* Change status of participant of a tour - start */
 
     function seeIfOK(r) {
-        console.log(r);
+        // console.log(r);
     };
 
     function changeStatus() {
@@ -280,7 +280,7 @@ $(document).ready(function() {
 
     function processDirections(r, element) {
         element.autocomplete({source: r.directions});
-    }
+    };
 
     function searchAutocomplete() {
         const searchForm = $('[type="search"]');
@@ -375,14 +375,15 @@ $(document).ready(function() {
                 }, 800);
             } // End if
         });
-    }
+    };
+
     smoothScrolling();
     /* smooth scrolling - stop */
 
     /*scrollReveal - start*/
     if (window.innerWidth > 768) {
         window.sr = ScrollReveal({ reset: true }).reveal('.scroll', { duration: 500 });
-    }
+    };
     /*scrollReveal - stop*/
 
     /*fix viewport bugs for safari and IOS - start*/
