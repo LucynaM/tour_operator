@@ -112,7 +112,7 @@ class HomeSearchPage(View):
             search = search.replace('_', ' ')
         if ". " in search:
             search = search.replace('. ', ' ')
-        offer = Offer.objects.filter(direction__icontains=search)
+        offer = Offer.objects.filter(direction__icontains=search).exclude(withdrawn=True)
         offer_chunk = ((offer[x:x + 2]) for x in range(0, len(offer), 2))
         offer_len = len(offer)
 
@@ -120,24 +120,11 @@ class HomeSearchPage(View):
             'offer_all': offer_chunk,
             'category': search,
             'offer_len': offer_len,
-
         }
         return render(request, 'webpage/home_search.html', ctx)
+
     def post(self, request, search):
-        search = request.POST['search']
-        if '_' in search:
-            search = search.replace('_', ' ')
-        if ". " in search:
-            search = search.replace('. ', ' ')
-        offer = Offer.objects.filter(direction__icontains=search)
-        offer_chunk = ((offer[x:x + 2]) for x in range(0, len(offer), 2))
-
-        ctx = {
-            'offer_all': offer_chunk,
-            'category': search,
-        }
-
-        return render(request, 'webpage/home_search.html', ctx)
+        return search_snippet(request, 'webpage/home_search.html')
 
 
 class GetDirectionsBis(View):
