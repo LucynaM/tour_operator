@@ -13,6 +13,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
 
+import xlsxwriter
 
 # Create your views here.
 
@@ -73,13 +74,14 @@ class AddTour(AdminUserPassesTestMixin, View):
 
 
 class AddParticipant(AdminUserPassesTestMixin, View):
-
-    def get_tour(self, pk):
+    @staticmethod
+    def get_tour(pk):
         tour = Tour.objects.get(pk=pk)
         tour.date = get_dates(tour.start_date, tour.end_date)
         return tour
 
-    def get_tour_participants(self, obj):
+    @staticmethod
+    def get_tour_participants(obj):
         participants = obj.participants.all().order_by('-status', 'participant__last_name')
         for participant in participants:
             participant.participant.new_phone = format_phone(participant.participant.phone)
@@ -88,13 +90,10 @@ class AddParticipant(AdminUserPassesTestMixin, View):
     def get(self, request, pk):
         tour = self.get_tour(pk)
         form = ParticipantForm()
-        participants = self.get_tour_participants(tour)
 
         ctx = {
             'tour': tour,
             'form': form,
-            'participants': participants,
-            'statuses': STATUSES,
         }
         return render(request, 'webpage_tour/add_participant.html', ctx)
 
@@ -112,37 +111,43 @@ class AddParticipant(AdminUserPassesTestMixin, View):
                 participant = form.save()
             if not TourParticipant.objects.filter(tour=tour, participant=participant):
                 TourParticipant.objects.create(tour=tour, participant=participant)
+                return redirect('tour:edit_tour', pk=tour.pk)
             else:
                 msg_err = "This participant has already been added to the tour"
-
-            form = ParticipantForm()
-
-        participants = self.get_tour_participants(tour)
 
         ctx = {
             'tour': tour,
             'form': form,
-            'participants': participants,
-            'statuses': STATUSES,
             "msg_err": msg_err,
         }
         return render(request, 'webpage_tour/add_participant.html', ctx)
 
 
 class EditTour(AdminUserPassesTestMixin, View):
-
-    def get_tour(self, pk):
+    @staticmethod
+    def get_tour(pk):
         tour = Tour.objects.get(pk=pk)
         tour.date = get_dates(tour.start_date, tour.end_date)
         return tour
 
+    @staticmethod
+    def get_tour_participants(obj):
+        participants = obj.participants.all().order_by('-status', 'participant__last_name')
+        for participant in participants:
+            participant.participant.new_phone = format_phone(participant.participant.phone)
+        return participants
+
     def get(self, request, pk):
+
         tour = self.get_tour(pk)
+        participants = self.get_tour_participants(tour)
         form = TourForm(instance=tour)
 
         ctx = {
             'tour': tour,
             'form': form,
+            'participants': participants,
+            'statuses': STATUSES,
         }
 
         return render(request, 'webpage_tour/edit_tour.html', ctx)
@@ -152,13 +157,18 @@ class EditTour(AdminUserPassesTestMixin, View):
         form = TourForm(request.POST, instance=tour)
 
         if form.is_valid():
-            tour.save()
-            return redirect('tour:add_participant', pk=tour.pk)
+            form.save()
+
+        tour = self.get_tour(pk)
+        participants = self.get_tour_participants(tour)
+
         ctx = {
             'tour': tour,
             'form': form,
+            'participants': participants,
+            'statuses': STATUSES,
         }
-        return render(request, 'webpage_tour/add_tour.html', ctx)
+        return render(request, 'webpage_tour/edit_tour.html', ctx)
 
 
 
@@ -246,6 +256,39 @@ def generate_pdf(request, pk):
     # Close the PDF object cleanly, and we're done.
     p.showPage()
     p.save()
+    return response
+
+
+def generate_xls(request, pk):
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = "attachment; filename=tour_participants.xlsx"
+
+    tour = Tour.objects.get(pk=pk)
+    participants = tour.participants.all().order_by('-status', 'participant__last_name')
+
+    for participant in participants:
+        participant.new_phone = format_phone(participant.participant.phone)
+
+    workbook = xlsxwriter.Workbook(response, {'in_memory': True})
+    bold = workbook.add_format({'bold': True})
+    worksheet = workbook.add_worksheet()
+
+    header_col = 0
+    for header in ['uczestnik', 'data urodzin', 'telefon', 'status']:
+        worksheet.write(0, header_col, header, bold)
+        header_col += 1
+
+    participant_col = 0
+    participant_row = 1
+    for participant in participants:
+        worksheet.write(participant_row, participant_col, participant.participant.name)
+        worksheet.write(participant_row, participant_col + 1, participant.participant.date_of_birth)
+        worksheet.write(participant_row, participant_col + 2, participant.new_phone)
+        worksheet.write(participant_row, participant_col + 3, participant.status)
+        participant_row += 1
+
+    workbook.close()
+
     return response
 
 

@@ -974,10 +974,24 @@ select.custom-select {
 #participants td:nth-of-type(3) {
   text-align: left; }
 
-#link-with-redirect {
+.list-elements a[id^="link-with-redirect"] {
   color: #fff;
   font-weight: 600; }
-  #link-with-redirect:hover {
+  .list-elements a[id^="link-with-redirect"]:hover {
     color: #fff; }
+
+a.go-to-page {
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #B91B22; }
+
+.ui-datepicker .ui-datepicker-next span,
+.ui-datepicker .ui-datepicker-prev span {
+  background-image: url("../images/icons/icons8-right-24.png");
+  background-position: 50% 50%;
+  background-size: contain; }
+
+.ui-datepicker .ui-datepicker-prev span {
+  background-image: url("../images/icons/icons8-left-24.png"); }
 
 /*OFFER - stop*/

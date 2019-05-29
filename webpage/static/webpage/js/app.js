@@ -112,4 +112,16 @@ $(document).ready(function() {
     };
     setTitlePadding();
     $(window).resize(setTitlePadding);
+
+        /*scrollReveal - start*/
+    if (window.innerWidth > 768) {
+        window.sr = ScrollReveal({ reset: true }).reveal('.scroll', { duration: 500 });
+    };
+    /*scrollReveal - stop*/
+
+    /*fix viewport bugs for safari and IOS - start*/
+
+    window.viewportUnitsBuggyfill.init();
+
+    /* fix viewport bugs for safari and IOS - stop */
 });

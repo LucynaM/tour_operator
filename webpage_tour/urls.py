@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import AddTour, AddParticipant, EditTour, EditParticipant, ChangeStatus, generate_pdf, FillParticipant
+from .views import AddTour, AddParticipant, EditTour, EditParticipant, ChangeStatus, generate_pdf,  generate_xls, FillParticipant
 
 
 urlpatterns = [
@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^edit_participant/(?P<tour_pk>(\d)+)/(?P<participant_pk>(\d)+)/$', EditParticipant.as_view(), name='edit_participant'),
     url(r'^change_status/(?P<pk>(\d)+)/$', ChangeStatus.as_view(), name='change_status'),
     url(r'^generate_pdf/(?P<pk>(\d)+)/$', generate_pdf, name='generate_pdf'),
+    url(r'^generate_xls/(?P<pk>(\d)+)/$', generate_xls, name='generate_xls'),
     url(r'^fill_participant/$', FillParticipant.as_view(), name='fill_participant'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

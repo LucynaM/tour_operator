@@ -34,4 +34,59 @@
 </section>
 
 
+<section id="add_participant">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8 offset-lg-2">
+                <a class="go-to-page" href="{% url 'tour:add_participant' tour.pk %}">Dodaj uczestnika >> </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="participants" class="list-elements">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8 offset-lg-2">
+                {% if participants %}
+                <h2 class="page-header">Uczestnicy</h2>
+                <table class="table">
+                    <tr>
+                        <th>uczestnik</th>
+                        <th>rok urodzenia</th>
+                        <th>telefon</th>
+                        <th>status</th>
+                        <th></th>
+                    </tr>
+                    {% for participant in participants %}
+                    <tr id="table-{{ participant.participant.pk }}" class="closestElement">
+                        <td><strong>{{ participant.participant.name }}</strong></td>
+                        <td>{{ participant.participant.date_of_birth  }}</td>
+                        <td>{{ participant.participant.new_phone }}</td>
+                        <td>
+                            <select name="status" id="" class="custom-select" data-url="{% url 'tour:change_status' participant.pk %}">
+                                {% for status in statuses %}
+                                    {% if status.0 == participant.status %}
+                                <option value="{{ status.0 }}" selected>{{ status.1 }}</option>
+                                    {% else %}
+                                <option value="{{ status.0 }}">{{ status.1 }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td><a href="{% url 'tour:edit_participant' tour.pk participant.participant.pk %}"><i class="fas fa-edit"></i></a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <a href="{% url 'tour:generate_pdf' tour.pk %}" target="__blank" id="link-with-redirect" class="btn btn-success" data-redirect="{% url 'tour:add_participant' tour.pk %}">generuj pdf</a>
+                <a href="{% url 'tour:generate_xls' tour.pk %}" target="__blank" id="link-with-redirect-xls" class="btn btn-success" data-redirect="{% url 'tour:add_participant' tour.pk %}">generuj xls</a>
+
+                {% else %}
+                <p>Brak uczestników do wyświetlenia</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
 {% endblock content %}
