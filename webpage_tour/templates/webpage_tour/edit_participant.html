@@ -34,6 +34,14 @@
         </div>
     </div>
 </section>
-
+<section id="delete_participant">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8 offset-lg-2">
+                <a class="go-to-page" href="{% url 'tour:delete_item' model tour_participant.pk %}">Usuń uczestnika >> </a>
+            </div>
+        </div>
+    </div>
+</section>
 
 {% endblock content %}

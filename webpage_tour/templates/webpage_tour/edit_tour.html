@@ -33,12 +33,11 @@
     </div>
 </section>
 
-
-<section id="add_participant">
+<section id="delete_tour">
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-lg-8 offset-lg-2">
-                <a class="go-to-page" href="{% url 'tour:add_participant' tour.pk %}">Dodaj uczestnika >> </a>
+                <a class="go-to-page" href="{% url 'tour:delete_item' model tour.pk %}">Usuń wyjazd >> </a>
             </div>
         </div>
     </div>
@@ -84,6 +83,16 @@
                 {% else %}
                 <p>Brak uczestników do wyświetlenia</p>
                 {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="add_participant">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8 offset-lg-2">
+                <a class="go-to-page" href="{% url 'tour:add_participant' tour.pk %}">Dodaj uczestnika >> </a>
             </div>
         </div>
     </div>

@@ -13,10 +13,18 @@
                             <form action="" method="post">
                                 {% csrf_token %}
                                 {{ form|crispy }}
-                                <input type="submit" name="submit" value="usuń" class="btn btn-danger">
                                 <input type="submit" name="submit" value="edytuj" class="btn btn-success">
                             </form>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="delete_staff">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-lg-8 offset-lg-2">
+                        <a class="go-to-page" href="{% url 'staff:delete_item' staff.pk %}">Usuń użytkownika >> </a>
                     </div>
                 </div>
             </div>

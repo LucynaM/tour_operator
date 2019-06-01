@@ -17,7 +17,7 @@ from django.conf.urls import url
 from django.conf import settings
 from django.conf.urls.static import static
 from .views import ListOffer, AddOffer, EditOffer, ShowOffer, SelectOffer, SetSelected, SetRecommended, \
-    AddListNews, EditNews, ShowNews, TourManager
+    AddListNews, EditNews, ShowNews, TourManager, DeleteItem
 
 urlpatterns = [
     url(r'^manager/$', TourManager.as_view(), name='tour_manager'),
@@ -34,6 +34,8 @@ urlpatterns = [
     url(r'^add_news/$', AddListNews.as_view(), name='add_news'),
     url(r'^edit_news/(?P<pk>(\d)+)/$', EditNews.as_view(), name='edit_news'),
     url(r'^show_news/(?P<pk>(\d)+)/$', ShowNews.as_view(), name='show_news'),
+
+    url(r'^delete_item/(?P<model>(\w)+)/(?P<pk>(\d)+)/$', DeleteItem.as_view(), name='delete_item'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

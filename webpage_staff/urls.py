@@ -17,13 +17,14 @@ from django.conf.urls import url
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
-from .views import StaffListAdd, StaffEditDelete
+from .views import StaffListAdd, StaffEdit, DeleteItem
 
 
 urlpatterns = [
     url(r'^login/$', auth_views.login, {'template_name': 'webpage_staff/login.html'},  name='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': 'staff:login'}, name='logout'),
     url(r'^add_staff/$', StaffListAdd.as_view(), name='add_staff'),
-    url(r'^edit_staff/(?P<pk>[0-9]+)/$', StaffEditDelete.as_view(), name='edit_staff'),
+    url(r'^edit_staff/(?P<pk>[0-9]+)/$', StaffEdit.as_view(), name='edit_staff'),
+    url(r'^delete_item/(?P<pk>[0-9]+)/$', DeleteItem.as_view(), name='delete_item'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

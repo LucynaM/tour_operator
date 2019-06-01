@@ -1,0 +1,25 @@
+{% extends './_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block link_management %}
+{% endblock link_management %}
+
+
+{% block content %}
+
+<section id="delete-item">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8 offset-lg-2">
+                <div >
+                    <h2 class="page-header">{{ item.title }}</h2>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <input type="submit" name="submit" value="usuń" class="btn btn-danger">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

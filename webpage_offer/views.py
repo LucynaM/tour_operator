@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.models import User
 from .models import Offer, News
 from .forms import AddOfferForm, EditOfferForm, AddHolidayForm, EditHolidayForm, NewsForm
 
@@ -82,6 +83,7 @@ class EditOffer(AdminUserPassesTestMixin, View):
         ctx = {
             'form': form,
             'offer': offer,
+            'model': 'offer',
         }
         return render(request, 'webpage_offer/edit_offer.html', ctx)
 
@@ -92,23 +94,48 @@ class EditOffer(AdminUserPassesTestMixin, View):
         else:
             form = EditOfferForm(request.POST, request.FILES, instance=offer)
         if form.is_valid():
-            if request.POST['submit'] == "edytuj":
-
-                form.save()
-                if form.cleaned_data['withdrawn']:
-                    if offer.selected or offer.recommended:
-                        offer.selected = offer.recommended = False
-                        offer.selected_sort = offer.recommended_sort = None
-                        offer.save()
-            elif request.POST['submit'] == "usuń":
-                offer.delete()
+            form.save()
+            if form.cleaned_data['withdrawn']:
+                if offer.selected or offer.recommended:
+                    offer.selected = offer.recommended = False
+                    offer.selected_sort = offer.recommended_sort = None
+                    offer.save()
             return redirect('offer:list_offer')
+
         offer = Offer.objects.get(pk=pk)
         ctx = {
             'form': form,
             'offer': offer,
+            'model': 'offer',
+
         }
         return render(request, 'webpage_offer/edit_offer.html', ctx)
+
+
+class DeleteItem(AdminUserPassesTestMixin, View):
+
+    def get_item(self, model, pk):
+        item = Offer.objects.get(pk=pk)
+        if model == "news":
+            item = News.objects.get(pk=pk)
+        return item
+
+    def get(self, request, model, pk):
+        item = self.get_item(model, pk)
+        ctx = {
+            'item': item,
+        }
+        return render(request, 'webpage_offer/delete_item.html', ctx)
+
+    def post(self, request, model, pk):
+        item = self.get_item(model, pk)
+        item.delete()
+
+        if model == "news":
+            return redirect('offer:add_news')
+
+        return redirect('offer:list_offer')
+
 
 
 def show_elements(obj):
@@ -265,6 +292,7 @@ class EditNews(AdminUserPassesTestMixin, View):
         ctx = {
             'form': form,
             'news': news,
+            'model': 'news',
         }
         return render(request, 'webpage_offer/edit_news.html', ctx)
 
@@ -272,13 +300,13 @@ class EditNews(AdminUserPassesTestMixin, View):
         news = News.objects.get(pk=pk)
         form = NewsForm(request.POST, request.FILES, instance=news)
         if form.is_valid():
-            if request.POST['submit'] == "edytuj":
-                form.save()
-            elif request.POST['submit'] == "usuń":
-                news.delete()
+            form.save()
             return redirect('offer:add_news')
+
         ctx = {
             'form': form,
             'news': news,
+            'model': 'news',
         }
+
         return render(request, 'webpage_offer/edit_news.html', ctx)

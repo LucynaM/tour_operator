@@ -38,8 +38,7 @@ class StaffListAdd(SuperUserPassesTestMixin, View):
         return render(request, 'webpage_staff/add_staff.html', ctx)
 
 
-
-class StaffEditDelete(SuperUserPassesTestMixin, View):
+class StaffEdit(SuperUserPassesTestMixin, View):
 
     def get(self, request, pk):
         staff = User.objects.get(pk=pk)
@@ -54,13 +53,23 @@ class StaffEditDelete(SuperUserPassesTestMixin, View):
         staff = User.objects.get(pk=pk)
         form = StaffForm(request.POST, instance=staff)
         if form.is_valid():
-            if request.POST['submit'] == 'edytuj':
-                staff.set_password(form.cleaned_data['password'])
-                staff.save()
-            elif request.POST['submit'] == 'usuń':
-                staff.delete()
-            return redirect('staff:add_staff')
+            staff.set_password(form.cleaned_data['password'])
+            staff.save()
         ctx = {
             'form': form,
         }
         return render(request, 'webpage_staff/edit_staff.html', ctx)
+
+
+class DeleteItem(SuperUserPassesTestMixin, View):
+    def get(self, request, pk):
+        item = User.objects.get(pk=pk)
+        ctx = {
+            'item': item,
+        }
+        return render(request, 'webpage_staff/delete_item.html', ctx)
+
+    def post(self, request, pk):
+        item = User.objects.get(pk=pk)
+        item.delete()
+        return redirect('staff:add_staff')

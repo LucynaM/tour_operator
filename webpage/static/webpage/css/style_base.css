@@ -212,7 +212,7 @@ nav .form-control {
     display: inline-block;
     width: calc(100% - 50px); }
   .navbar-expand-md .navbar-toggler {
-    border-size: 0;
+    border-width: 0;
     padding-left: 0;
     padding-right: 0; }
   .navbar-expand-md #navbarSupportedContent {
@@ -821,7 +821,7 @@ button.close {
 #social-media a {
   display: inline-block;
   width: 30px;
-  heigth: 30px;
+  height: 30px;
   line-height: 30px;
   font-size: 30px;
   color: white;
@@ -840,9 +840,6 @@ button.close {
   color: #0c1433; }
 
 /*OFFER - start*/
-form .btn.btn-success {
-  float: right; }
-
 .show-elements {
   background-color: #F7F5F5;
   padding-top: 30px;
@@ -965,10 +962,9 @@ select.custom-select {
   padding-left: 0;
   padding-bottom: 0;
   width: auto;
-  height: auto;
-  vertical-align: none; }
+  height: auto; }
   select.custom-select:focus {
-    border-color: none;
+    border-color: transparent;
     box-shadow: none; }
 
 #participants td:nth-of-type(3) {

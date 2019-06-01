@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-md-12 col-lg-8 offset-lg-2">
                     <div>
-                        <h2 class="page-header">Dodaj aktualności</h2>
+                        <h2 class="page-header">Dodaj wpis</h2>
                         <form action="" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                             {{ form|crispy }}
@@ -49,7 +49,7 @@
                         {% endfor %}
                     </table>
                     {% else %}
-                    <p>Brak aktualności do wyświetlenia</p>
+                    <p>Brak wpisów do wyświetlenia</p>
                     {% endif %}
                 </div>
             </div>

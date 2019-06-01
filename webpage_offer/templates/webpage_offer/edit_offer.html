@@ -2,14 +2,14 @@
 {% load crispy_forms_tags %}
 
 {% block link_management %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'offer:list_offer' %}">zarządzanie ofertą</a>
-                    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'offer:list_offer' %}">oferta</a>
+    </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'offer:select_offer' %}">zarządzanie wyborem</a>
-                    </li>
-                    {% endblock link_management %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'offer:select_offer' %}">wybór z oferty</a>
+    </li>
+{% endblock link_management %}
 
 
 {% block content %}
@@ -37,10 +37,18 @@
                     <form action="" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{ form|crispy }}
-                        <input type="submit" name="submit" value="usuń" class="btn btn-danger">
                         <input type="submit" name="submit" value="edytuj" class="btn btn-success">
                     </form>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="delete_offer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8 offset-lg-2">
+                <a class="go-to-page" href="{% url 'offer:delete_item' model offer.pk %}">Usuń ofertę >> </a>
             </div>
         </div>
     </div>
