@@ -115,10 +115,7 @@ class EditOffer(AdminUserPassesTestMixin, View):
 class DeleteItem(AdminUserPassesTestMixin, View):
 
     def get_item(self, model, pk):
-        item = Offer.objects.get(pk=pk)
-        if model == "news":
-            item = News.objects.get(pk=pk)
-        return item
+        return Offer.objects.get(pk=pk) if model == "offer" else News.objects.get(pk=pk)
 
     def get(self, request, model, pk):
         item = self.get_item(model, pk)

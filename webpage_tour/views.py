@@ -148,6 +148,7 @@ class EditTour(AdminUserPassesTestMixin, View):
             'form': form,
             'participants': participants,
             'statuses': STATUSES,
+            'model': 'tour',
         }
 
         return render(request, 'webpage_tour/edit_tour.html', ctx)
@@ -167,6 +168,7 @@ class EditTour(AdminUserPassesTestMixin, View):
             'form': form,
             'participants': participants,
             'statuses': STATUSES,
+            'model': 'tour',
         }
         return render(request, 'webpage_tour/edit_tour.html', ctx)
 
@@ -180,16 +182,23 @@ class EditParticipant(AdminUserPassesTestMixin, View):
 
     def get(self, request, tour_pk, participant_pk):
         participant = self.get_participant(participant_pk)
+        tour = Tour.objects.get(pk=tour_pk)
+        tour_participant = TourParticipant.objects.get(tour=tour, participant=participant)
         form = ParticipantForm(instance=participant)
+
 
         ctx = {
             'participant': participant,
             'form': form,
+            'model': 'participant',
+            'tour_participant': tour_participant
         }
         return render(request, 'webpage_tour/edit_participant.html', ctx)
 
     def post(self, request, tour_pk, participant_pk):
         participant = self.get_participant(participant_pk)
+        tour = Tour.objects.get(pk=tour_pk)
+        tour_participant = TourParticipant.objects.get(tour=tour, participant=participant)
         form = ParticipantForm(request.POST, instance=participant)
 
         if form.is_valid():
@@ -199,6 +208,8 @@ class EditParticipant(AdminUserPassesTestMixin, View):
         ctx = {
             'participant': participant,
             'form': form,
+            'model': 'participant',
+            'tour_participant': tour_participant
         }
 
         return render(request, 'webpage_tour/edit_participant.html', ctx)
@@ -321,3 +332,24 @@ class FillParticipant(View):
                 return JsonResponse(data)
             except Exception as e:
                 print(e)
+
+
+class DeleteItem(AdminUserPassesTestMixin, View):
+
+    def get_item(self, model, pk):
+        return Tour.objects.get(pk=pk) if model == "tour" else TourParticipant.objects.get(pk=pk)
+
+    def get(self, request, model, pk):
+        item = self.get_item(model, pk)
+        ctx = {
+            'item': item,
+        }
+        return render(request, 'webpage_tour/delete_item.html', ctx)
+
+    def post(self, request, model, pk):
+        item = self.get_item(model, pk)
+
+        item.delete()
+        if model == "participant":
+            return redirect('tour:edit_tour', item.tour.pk)
+        return redirect('tour:add_tour')
