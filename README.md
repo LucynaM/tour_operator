@@ -1,4 +1,4 @@
-# tour_operator marcopolo.rzeszow.pl
+# tour operator
 ## A travel agency website combined with an application that allows you to manage your travel offer, website content and travels
 
 1.  Website - presentation of travel agency with special emphasis on the offer
